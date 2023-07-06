@@ -6,7 +6,7 @@
 <mapper namespace="com.project.careerfair.mapper.Note.NoteMapper">
 
     <resultMap type="com.project.careerfair.domain.Note" id="recieveList">
-        <id property="id" column="note_id"></id>
+        <id property="noteId" column="note_id"></id>
         <result property="senderId" column="sender_id"></result>
         <result property="recipeintId" column="recipient_id"></result>
         <result property="title" column="title"></result>

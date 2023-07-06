@@ -11,10 +11,19 @@ import java.util.List;
 public interface NoteMapper {
 
     @Select("""
-            SELECT sender_id, title, content, created
-            FROM NOTE
+            SELECT note_id, sender_id, title, content, created
+            FROM TB_NOTE
             WHERE recipient_id = #{userId}
+            ORDER BY note_id DESC
+            LIMIT #{startIndex} , 10
             """)
     @ResultMap("recieveList")
-    List<Note> getRecieveListByUserId(String userId);
+    List<Note> getRecieveListByUserId(String userId, Integer startIndex);
+
+    @Select("""
+            SELECT COUNT(*)
+            FROM TB_NOTE
+            WHERE recipient_id = #{userId}
+            """)
+    Integer countRecieveListByUserId(String userId);
 }

@@ -3,8 +3,9 @@ package com.project.careerfair.service.Note;
 import com.project.careerfair.domain.Note;
 
 import java.util.List;
+import java.util.Map;
 
 public interface NoteService {
 
-    List<Note> getListByUserId(String userId);
+    Map<String, Object> getListByUserId(String userId, Integer pageNum);
 }
