@@ -10,30 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <style>
-        .table thead th {
-            text-align: left;
-        }
-
-        .table tbody td {
-            text-align: left;
-        }
-
-        .table tbody p {
-            text-align: left;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        .custom-div {
-            max-width: 800px; /* 원하는 크기로 조절합니다. */
-            margin: 0 auto; /* 가운데 정렬을 위해 사용합니다. */
-        }
-
-    </style>
+    <link rel="stylesheet" href="/css/notice.css">
 </head>
 <body>
 <div class="container-lg mt-3 custom-div">
@@ -53,7 +30,7 @@
             </div>
         </div>
         <div class="ms-5">
-            <a class="btn btn-primary" href="#">글작성하기</a>
+            <a class="btn btn-primary" href="/customer/notice/reg">글작성하기</a>
         </div>
     </div>
 
@@ -61,10 +38,10 @@
         <thead>
         <tr>
             <th>번호</th>
-            <th>제목</th>
-            <th>작성일</th>
-            <th>작성자</th>
-            <th>조회수</th>
+            <th style="text-align: center">제목</th>
+            <th style="text-align: center">작성자</th>
+            <th style="text-align: center">조회수</th>
+            <th style="text-align: center">작성일</th>
         </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -74,25 +51,7 @@
     <div class="container-lg">
         <div class="row">
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fa-solid fa-angle-left"></i>
-                        </a>
-                    </li>
-
-                    <c:forEach begin="1" end="10" var="pageNum">
-                        <li class="page-item">
-                            <a class="page-link page-num" href="#" data-page="${pageNum}">${pageNum}</a>
-                        </li>
-                    </c:forEach>
-
-                    <li class=" page-item">
-                        <a class="page-link" href="#">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </a>
-                    </li>
+                <ul id="page-ul" class="pagination justify-content-center">
                 </ul>
             </nav>
         </div>
