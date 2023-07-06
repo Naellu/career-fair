@@ -13,11 +13,13 @@
         <result column="created" property="created"/>
         <result column="member_id" property="memberId"/>
         <result column="hit" property="hit"/>
+        <result column="modifier_id" property="modifierId"/>
+        <result column="modified" property="modified"/>
     </resultMap>
 
     <select id="getNoticeList" resultMap="NoticeMap">
         <bind name="pattern" value="'%' + search + '%'"/>
-        SELECT * FROM NOTICE
+        SELECT * FROM TB_NOTICE
         <where>
             <if test="type eq 'all'">
                 (title LIKE #{pattern} OR content LIKE #{pattern} OR member_id LIKE #{pattern})
@@ -29,11 +31,93 @@
                 OR content LIKE #{pattern}
             </if>
             <if test="type eq 'writer'">
-                OR member_id LIKE #{pattern}
+                OR modifier_id LIKE #{pattern}
             </if>
         </where>
-        ORDER BY notice_id DESC LIMIT 0, 10
+        ORDER BY modified DESC LIMIT #{startNum}, #{pageSize}
     </select>
+
+    <select id="countAll" resultType="Integer">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT COUNT(notice_id) FROM TB_NOTICE
+        <where>
+            <if test="type eq 'all'">
+                (title LIKE #{pattern} OR content LIKE #{pattern} OR member_id LIKE #{pattern})
+            </if>
+            <if test="type eq 'title'">
+                OR title LIKE #{pattern}
+            </if>
+            <if test="type eq 'content'">
+                OR content LIKE #{pattern}
+            </if>
+            <if test="type eq 'writer'">
+                OR modifier_id LIKE #{pattern}
+            </if>
+        </where>
+    </select>
+
+    <!-- notice상세 불러오는 resultMap-->
+    <resultMap type="com.project.careerfair.domain.Notice"
+               id="NoticeViewMap">
+        <id column="notice_id" property="noticeId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="created" property="created"/>
+        <result column="member_id" property="memberId"/>
+        <result column="hit" property="hit"/>
+        <result column="modifier_id" property="modifierId"/>
+        <result column="modified" property="modified"/>
+        <collection property="fileName" ofType="string">
+            <result column="file_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="getDetail" resultMap="NoticeViewMap">
+        SELECT * FROM VIEW_NOTICE WHERE notice_id = #{noticeId}
+    </select>
+
+    <select id="getPrevNotice" resultType="Integer">
+        SELECT notice_id FROM TB_NOTICE WHERE notice_id &lt; #{noticeId} ORDER BY modified DESC LIMIT 1
+    </select>
+
+    <select id="getNextNotice" resultType="Integer">
+        SELECT notice_id FROM TB_NOTICE WHERE notice_id &gt; #{noticeId} ORDER BY modified ASC LIMIT 1
+    </select>
+
+    <select id="getFirstNotice" resultType="Integer">
+        SELECT notice_id FROM TB_NOTICE ORDER BY notice_id ASC LIMIT 1;
+    </select>
+
+    <select id="getLastNotice" resultType="Integer">
+        SELECT notice_id FROM TB_NOTICE ORDER BY notice_id DESC LIMIT 1;
+    </select>
+
+    <!-- 상품 수정 -->
+    <update id="update">
+        UPDATE TB_NOTICE SET
+        title = #{title},
+        content = #{content},
+        modifier_id = #{modifierId},
+        modified = NOW()
+        WHERE
+        notice_id =
+        #{noticeId}
+    </update>
+
+    <!-- 파일관련 -->
+    <insert id="insertFileName">
+        INSERT INTO TB_FILES (notice_id, file_name)
+        VALUES (#{noticeId}, #{originalFilename})
+    </insert>
+
+
+    <!-- 특정상품의 특정사진 삭제 -->
+    <delete id="deleteFileNameByNoticeIdAndFileName">
+        DELETE FROM TB_FILES
+        WHERE notice_id = #{noticeId}
+        AND file_name = #{fileName}
+    </delete>
+
 </mapper>
 
 

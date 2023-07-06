@@ -1,0 +1,2 @@
+SELECT COUNT(notice_id) FROM NOTICE;
+

@@ -1,0 +1,21 @@
+.table thead th {
+    text-align: left;
+}
+
+.table tbody td {
+    text-align: left;
+}
+
+.table tbody p {
+    text-align: left;
+}
+
+#noticeTable a {
+    text-decoration: none;
+    color: black;
+}
+
+.custom-div {
+    max-width: 800px;
+    margin: 0 auto;
+}
