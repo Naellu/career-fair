@@ -4,6 +4,7 @@ import com.project.careerfair.jwt.JwtToken;
 import com.project.careerfair.service.members.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,13 @@ public class LoginController {
     public ResponseEntity<JwtToken> loginSuccess(@RequestBody Map<String, String> loginForm) {
         JwtToken token = service.login(loginForm.get("username"), loginForm.get("password"));
         return ResponseEntity.ok(token);
+    }
+
+    @GetMapping("login")
+    @PreAuthorize("isAnonymous()")
+    public String loginForm() {
+
+        return "redirect:/";
     }
 
 
