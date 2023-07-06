@@ -25,8 +25,8 @@ public class NoteServiceImp implements NoteService {
         Integer begin = 1 + (currentPage-1) / 10 * 10;
         Integer end = Math.min(begin + 9, last);
 
-        Integer previous = Math.max(1, currentPage-10);
-        Integer next = Math.min(last, currentPage+10);
+        Integer previous = Math.max(1, (currentPage-1) / 10 * 10);
+        Integer next = Math.min(last, (currentPage-1) / 10 * 10 +11);
 
         Map<String, Object> pageInfo = new HashMap<>();
         pageInfo.put("page", currentPage);
