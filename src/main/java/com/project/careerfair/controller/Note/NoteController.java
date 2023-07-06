@@ -28,7 +28,7 @@ public class NoteController {
             @RequestParam(value = "page", defaultValue = "1") Integer page
     ) {
 
-        String userId = "user7"; // 나중에 parameter 받아야함
+        String userId = "user1"; // 나중에 parameter 받아야함
 
         Map<String, Object> result = service.getListByUserId(userId, page);
 

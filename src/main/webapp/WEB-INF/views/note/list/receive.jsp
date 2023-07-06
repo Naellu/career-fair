@@ -30,8 +30,9 @@
         <thead>
         <tr>
             <th>보낸 사람</th>
-            <th>내용</th>
-            <th>보낸 시간</th>
+            <th>제목</th>
+            <th>받은 시간</th>
+            <th>삭제</th>
         </tr>
         </thead>
         <tbody>
@@ -43,11 +44,17 @@
                     <c:url value="/note/detail" var="noteDetailURL">
                         <c:param name="noteId" value="${note.noteId}" />
                     </c:url>
-                    <a href="#" onclick="openNoteDetail('${noteDetailURL}')">
+                    <a href="#" onclick="openNoteWindow('${noteDetailURL}')">
                             ${note.title}
                     </a>
                 </td>
                 <td>${fn:replace(note.created, 'T', ' ')}</td>
+                <td>
+                    <button class="btn btn-outline-danger"
+                            name="deleteButton"
+                            data-note-id="${note.noteId}"
+                    >삭제</button>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -113,12 +120,7 @@
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script>
-    function openNoteDetail(noteUrl) {
-
-        window.open(noteUrl, '_blank', 'width=600,height=400');
-    }
-</script>
+<script src="/js/Note/list.js"></script>
 
 </body>
 </html>
