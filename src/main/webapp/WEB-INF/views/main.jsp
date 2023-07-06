@@ -13,7 +13,7 @@
     <my:font></my:font>
 </head>
 <body>
-    <my:templateNavBar/>
+    <my:navBar/>
 
 
     <!-- ======= Hero Section ======= -->
@@ -21,11 +21,30 @@
         <div class="container position-relative">
             <div class="row gy-5" data-aos="fade-in">
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-                    <h2>Welcome to <span>Impact</span></h2>
-                    <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
+                    <h2>2023년 제3회 <span>NN 채용박람회</span></h2>
+                    <p>
+                    <div>
+                        ‘2023 중견기업 일자리 박람회’가 일상 회복에 발맞춰 오는 7월 3일(월) 코엑스 B1홀에서 개최됩니다.
+                    </div>
+
+                        <br>
+
+                    <div>
+                        올해 7회차를 맞이한 ‘중견기업 일자리 박람회’는 국내 유일의 중견기업 일자리 박람회입니다. 대한민국을 대표하는 우수 중견기업 80여 개사가 참가하는 이번 박람회는 기업과
+                        구직자 간 매칭 극대화을 위해 채용 정보를 포함한 다양한 콘텐츠를 온·오프라인으로 제공합니다.
+                        중견기업 구직자에게 실질적인 취업 기회를 제공하기 위해 현직자 채용 상담, 현장 심층 면접, 채용 설명회, 인사 담당자 토크 콘서트 등 다채로운 프로그램을 마련했습니다.
+                        대한민국을 대표하는 우수 중견기업 취업을 희망하는 청년 인재 여러분의 많은 관심과 참여 부탁드립니다.
+                    </div>
+
+                        <br>
+
+                    <div>
+                        다시 찾아온 취업의 기회, 중견기업 일자리 박람회와 뜨겁게 만나길 바랍니다.
+                    </div>
+                    </p>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#about" class="btn-get-started">Get Started</a>
-                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                        <a href="#" class="btn-get-started">참여신청하기</a>
+<%--                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>--%>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
@@ -41,28 +60,28 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-easel"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Lorem Ipsum</a></h4>
+                            <h4 class="title"><a href="" class="stretched-link">소개1</a></h4>
                         </div>
                     </div><!--End Icon Box -->
 
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-gem"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Sed ut perspiciatis</a></h4>
+                            <h4 class="title"><a href="" class="stretched-link">안내1</a></h4>
                         </div>
                     </div><!--End Icon Box -->
 
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-geo-alt"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Magni Dolores</a></h4>
+                            <h4 class="title"><a href="" class="stretched-link">안내2</a></h4>
                         </div>
                     </div><!--End Icon Box -->
 
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-command"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Nemo Enim</a></h4>
+                            <h4 class="title"><a href="" class="stretched-link">홍보3</a></h4>
                         </div>
                     </div><!--End Icon Box -->
 
@@ -79,7 +98,7 @@
         <div class="container" data-aos="fade-up">
 
             <div class="section-header">
-                <h2>About Us</h2>
+                <h2>박람회 소개</h2>
                 <p>Aperiam dolorum et et wuia molestias qui eveniet numquam nihil porro incidunt dolores placeat sunt id nobis omnis tiledo stran delop</p>
             </div>
 
@@ -106,10 +125,10 @@
                             velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
                         </p>
 
-                        <div class="position-relative mt-4">
-                            <img src="assets/img/about-2.jpg" class="img-fluid rounded-4" alt="">
-                            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-                        </div>
+<%--                        <div class="position-relative mt-4">--%>
+<%--                            <img src="assets/img/about-2.jpg" class="img-fluid rounded-4" alt="">--%>
+<%--                            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
             </div>

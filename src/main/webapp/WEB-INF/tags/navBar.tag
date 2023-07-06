@@ -2,60 +2,50 @@
 <%@ attribute name="current"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<nav class="navbar navbar-expand-lg mb-5">
-    <div class="container-lg">
-        <a class="navbar-brand me-5" href="#">
-            <span>채용박람회</span>
+<!-- ======= Header ======= -->
+
+<header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <img src="/img/main/logo.png" alt="">
+<%--            <h1>채용<span>박람회</span></h1>--%>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item me-3">
-                    <a class="nav-link ${current eq 'exhibitionInfo' ? 'active' : '' }" href="#" >박람회 소개</a>
-                </li>
-
-                <li class="nav-item me-3">
-                    <a class="nav-link ${current eq 'conpanies' ? 'active' : '' }" href="#" >참여기업</a>
-                </li>
-
-                <li class="nav-item me-3">
-                    <a class="nav-link ${current eq 'posting' ? 'active' : '' }" href="#" >채용공고</a>
-                </li>
-
-                <li class="nav-item me-3">
-                    <a class="nav-link ${current eq 'qna' ? 'active' : '' }" href="#" >Q&A</a>
-                </li>
-
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="#">박람회 소개</a></li>
+                <li><a href="#">참여기업</a></li>
+                <li><a href="#">채용공고</a></li>
+                <li><a href="#">Q&A</a></li>
+                <li><a href="#">회원가입</a></li>
+                <li><a href="#">로그인</a></li>
+<%--                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>--%>
+<%--                    <ul>--%>
+<%--                        <li><a href="#">Drop Down 1</a></li>--%>
+<%--                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>--%>
+<%--                            <ul>--%>
+<%--                                <li><a href="#">Deep Drop Down 1</a></li>--%>
+<%--                                <li><a href="#">Deep Drop Down 2</a></li>--%>
+<%--                                <li><a href="#">Deep Drop Down 3</a></li>--%>
+<%--                                <li><a href="#">Deep Drop Down 4</a></li>--%>
+<%--                                <li><a href="#">Deep Drop Down 5</a></li>--%>
+<%--                            </ul>--%>
+<%--                        </li>--%>
+<%--                        <li><a href="#">Drop Down 2</a></li>--%>
+<%--                        <li><a href="#">Drop Down 3</a></li>--%>
+<%--                        <li><a href="#">Drop Down 4</a></li>--%>
+<%--                    </ul>--%>
+<%--                </li>--%>
             </ul>
-            <ul class="navbar-nav">
+        </nav><!-- .navbar -->
 
-                    <li class="nav-item me-3">
-                        <a class="nav-link ${current eq 'signup' ? 'active' : '' }" href="#">회원가입</a>
-                    </li>
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
-                    <li class="nav-item me-3">
-                        <a class="nav-link ${current eq 'login' ? 'active' : '' }" href="#" >로그인</a>
-                    </li>
-
-                    <li class="nav-item me-3">
-                        <a class="nav-link ${current eq 'mypage' ? 'active' : '' }" href="#">마이페이지</a>
-                    </li>
-
-                    <li class="nav-item me-3">
-                        <a class="nav-link ${current eq 'support' ? 'active' : '' }" href="#">관리자</a>
-                    </li>
-
-<%--                    <li class="nav-item me-3">--%>
-<%--                        <a class="nav-link" href="/member/logout">로그아웃</a>--%>
-<%--                    </li>--%>
-
-            </ul>
-
-        </div>
     </div>
-</nav>
+</header><!-- End Header -->
+<!-- End Header -->
 
 
-<link rel="stylesheet" href="/css/navBar.css">
+<link rel="stylesheet" href="/css/main.css">
