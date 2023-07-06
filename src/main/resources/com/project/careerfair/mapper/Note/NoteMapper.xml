@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.Note.NoteMapper">
+
+    <resultMap type="com.project.careerfair.domain.Note" id="recieveList">
+        <id property="noteId" column="note_id"></id>
+        <result property="senderId" column="sender_id"></result>
+        <result property="recipeintId" column="recipient_id"></result>
+        <result property="title" column="title"></result>
+        <result property="content" column="content"></result>
+        <result property="created" column="created"></result>
+        <result property="status" column="status"></result>
+    </resultMap>
+
+    <resultMap type="com.project.careerfair.domain.Note" id="noteDetail">
+        <id property="noteId" column="note_id"></id>
+        <result property="senderId" column="sender_id"></result>
+        <result property="recipientId" column="recipient_id"></result>
+        <result property="title" column="title"></result>
+        <result property="content" column="content"></result>
+        <result property="created" column="created"></result>
+        <result property="status" column="status"></result>
+    </resultMap>
+
+
+</mapper>
