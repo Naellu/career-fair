@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping
-    @ResponseBody
     public String home() {
-        return "hello world";
+        return "main";
+    }
+
+    // navBar 출력 테스트 페이지
+    @GetMapping("test")
+    public String test() {
+        return "test";
     }
 }
