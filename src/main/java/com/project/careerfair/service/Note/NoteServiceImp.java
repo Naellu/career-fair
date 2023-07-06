@@ -45,6 +45,17 @@ public class NoteServiceImp implements NoteService {
 
         return resultMap;
     }
+
+    @Override
+    public Note getNoteDetail(Note note) {
+
+        return mapper.getNoteDetailByNoteId(note);
+    }
+
+    @Override
+    public void writeNote(Note note) {
+        mapper.writeNote(note);
+    }
 }
 
 

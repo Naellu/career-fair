@@ -1,6 +1,7 @@
 package com.project.careerfair.mapper.Note;
 
 import com.project.careerfair.domain.Note;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
@@ -26,4 +27,28 @@ public interface NoteMapper {
             WHERE recipient_id = #{userId}
             """)
     Integer countRecieveListByUserId(String userId);
+
+    @Select("""
+            SELECT * FROM TB_NOTE
+            WHERE note_id = #{noteId}
+            """)
+    @ResultMap("noteDetail")
+    Note getNoteDetailByNoteId(Note note);
+
+    @Insert("""
+            INSERT INTO 
+            TB_NOTE(
+                sender_id, 
+                recipient_id, 
+                title, 
+                content
+            )
+            VALUES (
+                #{senderId},
+                #{recipientId},
+                #{title},
+                #{content}
+            )
+            """)
+    void writeNote(Note note);
 }

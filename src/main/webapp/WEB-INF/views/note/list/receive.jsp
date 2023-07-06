@@ -35,11 +35,18 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${noteList}" var="note">
+        <c:forEach items="${noteList}" var="note" varStatus="status">
 
             <tr>
                 <td>${note.senderId}(${note.noteId})</td>
-                <td>${note.title}</td>
+                <td>
+                    <c:url value="/note/detail" var="noteDetailURL">
+                        <c:param name="noteId" value="${note.noteId}" />
+                    </c:url>
+                    <a href="#" onclick="openNoteDetail('${noteDetailURL}')">
+                            ${note.title}
+                    </a>
+                </td>
                 <td>${fn:replace(note.created, 'T', ' ')}</td>
             </tr>
         </c:forEach>
@@ -52,10 +59,10 @@
     <ul class="pagination justify-content-center">
 
 
-        <c:if test="${param.page > 10}">
+        <c:if test="${pageInfo.begin != 1}">
 
         <%--맨앞으로--%>
-            <c:url value="/note/receivelist" var="pageLink">
+            <c:url value="/note/list/receive" var="pageLink">
                 <c:param name="page" value="1"></c:param>
             </c:url>
             <li class="page-item">
@@ -63,7 +70,7 @@
             </li>
 
         <%--10칸 앞으로 --%>
-        <c:url value="/note/receivelist" var="pageLink">
+        <c:url value="/note/list/receive" var="pageLink">
             <c:param name="page" value="${pageInfo.previous }"></c:param>
         </c:url>
         <li class="page-item">
@@ -73,7 +80,7 @@
         </c:if>
 
         <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="page">
-            <c:url value="/note/receivelist" var="pageLink">
+            <c:url value="/note/list/receive" var="pageLink">
                 <c:param name="page" value="${page }"></c:param>
             </c:url>
             <li class="page-item ${page eq param.page ? 'active' : ''}">
@@ -82,10 +89,10 @@
         </c:forEach>
 
 
-        <c:if test="${param.page/10 < pageInfo.last/10}">
+        <c:if test="${pageInfo.end != pageInfo.last}">
 
         <%--10칸 뒤로--%>
-            <c:url value="/note/receivelist" var="pageLink">
+            <c:url value="/note/list/receive" var="pageLink">
                 <c:param name="page" value="${pageInfo.next }"></c:param>
             </c:url>
             <li class="page-item">
@@ -93,7 +100,7 @@
             </li>
 
         <%--맨 뒤로--%>
-            <c:url value="/note/receivelist" var="pageLink">
+            <c:url value="/note/list/receive" var="pageLink">
                 <c:param name="page" value="${pageInfo.last }"></c:param>
             </c:url>
             <li class="page-item">
@@ -106,6 +113,12 @@
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    function openNoteDetail(noteUrl) {
+
+        window.open(noteUrl, '_blank', 'width=600,height=400');
+    }
+</script>
 
 </body>
 </html>
