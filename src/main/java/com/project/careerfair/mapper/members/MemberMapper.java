@@ -1,4 +1,4 @@
-package com.project.careerfair.mapper;
+package com.project.careerfair.mapper.members;
 
 import com.project.careerfair.domain.Members;
 import org.apache.ibatis.annotations.Insert;
@@ -55,7 +55,7 @@ public interface MemberMapper {
     Members selectByMemberId(String member_id);
 
 /*    @Select("""
-            SELECT 
+            SELECT
             FROM MEMBERS
             WHERE member_id = #{member_id}
             """)

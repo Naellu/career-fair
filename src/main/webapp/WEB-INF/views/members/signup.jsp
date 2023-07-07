@@ -21,9 +21,9 @@
             <div>아이디
               <input type="text" id="input-id" name="member_id" value="${members.member_id}" maxlength="20" placeholder="영문 또는 영문 숫자 조합으로 8~20자">
             </div>
-            <div id="idcheck_blank"></div>
+            <div id="idcheck-blank"></div>
             <div>
-              <input type="button" id="id_Confirm" value="중복확인">
+              <input type="button" id="id-Confirm" value="중복확인">
             </div>
             <div>비밀번호
               <input type="password" id="input-password" name="password" placeholder="영문,숫자,특수문자 조합하여 8~16자리" maxlength="16">
@@ -44,7 +44,21 @@
               <label for="input-gender-w">여성</label>
             </div>
             <div>휴대폰번호
-                <input type="text" id="input-phone" name="phone_number" value="${members.phone_number}" placeholder="">
+              <div>
+                  <select id="phoneNum1">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                  </select>
+                <span id="first-hyphen">-</span>
+                <input type="number" id="phoneNum2" maxlength="4" oninput="maxLengthCheck(this)">
+                <span id="second-hyphen">-</span>
+                <input type="number" id="phoneNum3" maxlength="4" oninput="maxLengthCheck(this)">
+                <input type="hidden" id="totalphone-num" name="phone_number" value="${members.phone_number}">
+              </div>
             </div>
             <div>이메일 주소
               <input type="text" id="user-email">
@@ -72,6 +86,18 @@
                 <div class="d-none form-text text-primary" id="verificationSuccessText">
                   <i class="fa-solid fa-check"></i>이메일 인증이 완료되었습니다.
                 </div>
+
+            <%--주소 등록--%>
+            <div>
+              <button type="button" class="" onClick="goPopup();">주소 검색</button>
+                <div class="input-group">
+                  <input name="address" id="inputAddress" type="text" class="form-control" placeholder="Enter Address" required readonly />
+                </div>
+              <div style="display: none;">
+                <input name="addressSggNm" id="inputAddressSggNm" type="text" class="form-control" placeholder="Enter Address" required />
+              </div>
+            </div>
+
 
               <div>
                 <div>

@@ -1,10 +1,8 @@
 package com.project.careerfair.controller;
 
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.service.MemberService;
-import com.project.careerfair.service.MemberServiceImpl;
+import com.project.careerfair.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;

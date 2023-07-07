@@ -1,7 +1,7 @@
-package com.project.careerfair.service;
+package com.project.careerfair.service.member;
 
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.mapper.MemberMapper;
+import com.project.careerfair.mapper.members.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,6 +37,7 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Map<String, Object> checkId(String id) {
         Members member = mapper.selectByMemberId(id);
+        boolean available = (member == null);
         return Map.of("available",member == null);
     }
 }

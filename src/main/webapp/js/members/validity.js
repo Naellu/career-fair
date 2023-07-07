@@ -4,50 +4,45 @@ $("#input-id").blur(function (){
     let idCheck = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$/;
 
     if($("#input-id").val() == "") {
-        $("#idcheck_blank").css("color", "red");
-        $("#idcheck_blank").text("아이디는 필수 입력");
+        $("#idcheck-blank").css("color", "red");
+        $("#idcheck-blank").text("아이디는 필수 입력");
         id = false;
     }else if(!idCheck.test($("#input-id").val())) {
-        $("#idcheck_blank").css("color", "red");
-        $("#idcheck_blank").text("영문 또는 영문 숫자 조합하여 6~20자만 가능");
+        $("#idcheck-blank").css("color", "red");
+        $("#idcheck-blank").text("영문 또는 영문 숫자 조합하여 6~20자만 가능");
         id = false;
     }else {
-        $("#idcheck_blank").css("color", "blue");
-        $("#idcheck_blank").text("사용 가능한 아이디입니다. 중복확인을 해주세요.");
+        $("#idcheck-blank").css("color", "blue");
+        $("#idcheck-blank").text("사용 가능한 아이디입니다. 중복확인을 해주세요.");
         id = true;
     }
         if(id == true) {
-            $("#id_Confirm").show();
+            $("#id-Confirm").show();
         }else {
-            $("#id_Confirm").hide();
+            $("#id-Confirm").hide();
         }
 });
 
 //==============================아이디 중복검사 ==============================================
-$("#id_Confirm").click(function() {
+$("#id-Confirm").click(function() {
     const member_id = $("#input-id").val();
-    if( member_id == "" ) {
+    if (member_id == "") {
         alert("아이디를 입력해주세요.");
-    }else {
+    } else {
         $.ajax({
             url: "/members/checkId/" + member_id,
             type: "get",
-            data: {'member_id':$("#input-id").val()},
             success: function(data) {
-                //alert(data);
-                if(data == "YES") {
-                    $("#idcheck_blank").css("color", "blue");
-                    $("#idcheck_blank").text("사용가능한 아이디입니다.");
-                    id_check = true;
-                }else {
-                    $("#idcheck_blank").css("color", "red");
-                    $("#idcheck_blank").text("중복된 아이디입니다.");
-                    id_check = false;
-                    $("#input-id").val("");
+                if (data.available) {
+                    $("#idcheck-blank").css("color", "blue");
+                    $("#idcheck-blank").text("사용가능한 아이디입니다.");
+                } else {
+                    $("#idcheck-blank").css("color", "red");
+                    $("#idcheck-blank").text("중복된 아이디입니다.");
                 }
             },
             error: function() {
-                alert("오류가 발생했습니다.");
+                alert("오류가 발생했습니다. 다시 시도해주세요.");
             }
         });
     }
@@ -112,3 +107,46 @@ $("#input-name").blur(function() {
         name = true;
     }
 });
+
+//================================성 별 =========================================
+function Gender() {
+    const mRadioButton = $("#input-gender-m");
+    const fRadioButton = $("#input-gender-w");
+
+    if (!mRadioButton.checked && !fRadioButton.checked) {
+        alert("성별을 선택해주세요.");
+        return false;
+    }
+
+    return true;
+}
+
+//================================연락처=========================================
+function maxLengthCheck(object){
+    if (object.value.length > object.maxLength) {
+        object.value = object.value.slice(0, object.maxLength);
+    }
+}
+
+//폰 번호 합치기
+$("#phoneNum1").change(function (){
+    phone();
+});
+
+$("#phoneNum2").change(function (){
+    phone();
+});
+$("#phoneNum3").change(function (){
+    phone();
+});
+
+function phone() {
+    const phonenum = $("#phoneNum1").val();
+    const firsthyphen = $("#first-hyphen").text();
+    const middlenum = $("#phoneNum2").val();
+    const secondhypen = $("#second-hyphen").text();
+    const lastnum = $("#phoneNum3").val();
+    if(phonenum != "" && middlenum != "" && lastnum != "") {
+        $("#totalphone-num").val(phonenum+firsthyphen+middlenum+secondhypen+lastnum);
+    }
+};
