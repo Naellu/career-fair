@@ -26,6 +26,23 @@ function listView(searchValue, typeValue, pageValue, statusValue) {
             const pageUl = document.querySelector("#page-ul");
             tbody.innerHTML = "";
             companyList.forEach((company) => {
+                let statusText = "";
+                switch (company.status) {
+                    case "review":
+                        statusText = "심사중";
+                        break;
+                    case "hold":
+                        statusText = "보류";
+                        break;
+                    case "approved":
+                        statusText = "승인";
+                        break;
+                    case "rejected":
+                        statusText = "반려";
+                        break;
+                    default:
+                        statusText = "";
+                }
                 const recruiterHtml = `
                     <tr>
                         <td style="text-align: center; width: 70px;">${company.round}회차</td>
@@ -34,7 +51,7 @@ function listView(searchValue, typeValue, pageValue, statusValue) {
                         <td style="text-align: center; " >${company.registrationNumber}</td>
                         <td style="text-align: center; width: 150px">${company.establishmentDate}</td>
                         <td style="text-align: center; " >${company.ceoName}</td>
-                        <td style="text-align: center; " >${company.status}</td>
+                        <td style="text-align: center; " >${statusText}</td>
                         <td style="text-align: center; " ><a href="/admin/recruiter/${company.companyId}" class="btn btn-secondary">상세페이지로</a></td>
                     </tr>
                 `;
@@ -62,7 +79,6 @@ searchBtn.addEventListener("click", function () {
 });
 
 const statusButtons = document.querySelectorAll("#status-btn button");
-
 const allButton = document.querySelector('#status-btn button[value="all"]');
 
 allButton.addEventListener("click", function (event) {
