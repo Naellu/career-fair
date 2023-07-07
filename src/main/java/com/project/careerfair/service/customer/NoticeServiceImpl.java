@@ -15,6 +15,7 @@ import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +61,8 @@ public class NoticeServiceImpl implements NoticeService {
         // 다음 페이지
         Integer nextPageNum = leftPageNum + 10;
 
+        Integer number = count - (page -1 ) * pageSize;
+
         Map<String, Object> pageInfo = new HashMap<>();
         pageInfo.put("lastPageNum", lastPage);
         pageInfo.put("leftPageNum", leftPageNum);
@@ -67,6 +70,7 @@ public class NoticeServiceImpl implements NoticeService {
         pageInfo.put("currentPageNum", page);
         pageInfo.put("prevPageNum", prevPageNum);
         pageInfo.put("nextPageNum", nextPageNum);
+        pageInfo.put("number", number);
 
         List<Notice> noticeList = noticeMapper.getNoticeList(startNum, pageSize, search, type);
         return Map.of("pageInfo", pageInfo, "noticeList", noticeList);
@@ -78,15 +82,17 @@ public class NoticeServiceImpl implements NoticeService {
         // 글상세
         Notice notice = noticeMapper.getDetail(noticeId);
 
+        LocalDateTime modified = notice.getModified();
+
         //이전글
-        Integer prevNotice = noticeMapper.getPrevNotice(noticeId);
+        Integer prevNotice = noticeMapper.getPrevNotice(noticeId, modified);
 
         if (prevNotice == null) {
             prevNotice = noticeMapper.getFirstNotice(noticeId);
         }
 
         //다음글
-        Integer nextNotice = noticeMapper.getNextNotice(noticeId);
+        Integer nextNotice = noticeMapper.getNextNotice(noticeId, modified);
 
         if (nextNotice == null) {
             nextNotice = noticeMapper.getLastNotice(noticeId);
@@ -100,49 +106,92 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    public boolean create(Notice notice, MultipartFile[] files) throws IOException {
+        notice.setMemberId("chun");
+        // 공지사항 등록
+        int cnt = noticeMapper.insert(notice);
+
+        fileToS3(notice, files);
+
+        return cnt == 1;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean modify(Notice notice, MultipartFile[] files, List<String> removeFileNames) throws IOException {
         notice.setModifierId("chun2");
+        Integer noticeId = notice.getNoticeId();
         if (removeFileNames != null && !removeFileNames.isEmpty()) {
             for (String fileName : removeFileNames) {
-                // 파일 삭제
-                String objectKey = "career_fair/notice/" + notice.getNoticeId() + "/" + fileName;
-                DeleteObjectRequest dor = DeleteObjectRequest.builder()
-                        .bucket(bucketName)
-                        .key(objectKey)
-                        .build();
-
-                s3.deleteObject(dor);
+                removeFromS3(noticeId, fileName);
 
                 // FileName 테이블의 데이터 삭제
                 noticeMapper.deleteFileNameByNoticeIdAndFileName(notice.getNoticeId(), fileName);
             }
         }
 
-        // 상품 정보 수정
+        // 공지사항 정보 수정
         int cnt = noticeMapper.update(notice);
 
         if (files != null) {
-            // 파일등록
-            for (MultipartFile file : files) {
-                if (file.getSize() > 0) {
-                    String objectKey = "career_fair/notice/" + notice.getNoticeId() + "/" + file.getOriginalFilename();
-
-                    // s3에 파일 업로드
-                    PutObjectRequest por = PutObjectRequest.builder()
-                            .bucket(bucketName)
-                            .acl(ObjectCannedACL.PUBLIC_READ)
-                            .key(objectKey)
-                            .build();
-                    RequestBody rb = RequestBody.fromInputStream(file.getInputStream(),
-                            file.getSize());
-
-                    s3.putObject(por, rb);
-
-                    // db에 관련정보저장 (insert)
-                    noticeMapper.insertFileName(notice.getNoticeId(), file.getOriginalFilename());
-                }
-            }
+            fileToS3(notice, files);
         }
         return cnt == 1;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean delete(Integer noticeId) {
+        //파일 이름들 불러오기
+        List<String> fileNames = noticeMapper.selectFileNamesByNoticeId(noticeId);
+
+        if (fileNames != null && !fileNames.isEmpty()) {
+            for (String fileName : fileNames) {
+                removeFromS3(noticeId, fileName);
+            }
+        }
+
+        // 테이블에서 파일 삭제
+        noticeMapper.deleteFileNameByNoticeId(noticeId);
+
+        //공지사항 삭제
+        int cnt = noticeMapper.deleteById(noticeId);
+        return cnt == 1;
+    }
+
+    // 파일 등록 메소드
+    public void fileToS3(Notice notice, MultipartFile[] files) throws IOException {
+        // 파일등록
+        for (MultipartFile file : files) {
+            if (file.getSize() > 0) {
+                String objectKey = "career_fair/notice/" + notice.getNoticeId() + "/" + file.getOriginalFilename();
+
+                // s3에 파일 업로드
+                PutObjectRequest por = PutObjectRequest.builder()
+                        .bucket(bucketName)
+                        .acl(ObjectCannedACL.PUBLIC_READ)
+                        .key(objectKey)
+                        .build();
+                RequestBody rb = RequestBody.fromInputStream(file.getInputStream(),
+                        file.getSize());
+
+                s3.putObject(por, rb);
+
+                // db에 관련정보저장 (insert)
+                noticeMapper.insertFileName(notice.getNoticeId(), file.getOriginalFilename());
+            }
+        }
+    }
+
+    // 파일 삭제 메소드
+    public void removeFromS3(Integer noticeId, String fileName) {
+        // 파일 삭제
+        String objectKey = "career_fair/notice/" + noticeId + "/" + fileName;
+        DeleteObjectRequest dor = DeleteObjectRequest.builder()
+                .bucket(bucketName)
+                .key(objectKey)
+                .build();
+
+        s3.deleteObject(dor);
     }
 }

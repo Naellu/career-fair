@@ -12,5 +12,9 @@ public interface NoticeService {
 
     Map<String, Object> getDetail(Integer noticeId);
 
+    boolean create(Notice notice, MultipartFile[] files) throws IOException;
+
     boolean modify(Notice notice, MultipartFile[] files, List<String> removeFileNames) throws IOException;
+
+    boolean delete(Integer noticeId);
 }

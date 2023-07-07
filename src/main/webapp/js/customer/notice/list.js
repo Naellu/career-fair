@@ -20,10 +20,11 @@ function listView(searchValue, typeValue, pageValue) {
         .then(data => {
             const noticeList = data.noticeList;
             const pageInfo = data.pageInfo;
+            const number = pageInfo.number;
             const tbody = document.querySelector("#noticeTable tbody");
             const pageUl = document.querySelector("#page-ul");
             tbody.innerHTML = "";
-            noticeList.forEach(notice => {
+            noticeList.forEach((notice, index) => {
                 const date = new Date(notice.modified);
                 const options = {year: 'numeric', month: 'long', day: 'numeric'};
                 const formattedDate = date.toLocaleDateString('ko-KR', options);
@@ -40,7 +41,7 @@ function listView(searchValue, typeValue, pageValue) {
 
                 const noticeHtml = `
                     <tr>
-                        <td style="text-align: center; width: 50px;">${notice.noticeId}</td>
+                        <td style="text-align: center; width: 50px;">${number - index}</td>
                         <td style="text-align: left; width: 300px" ><a href="/customer/notice/${notice.noticeId}">${truncatedTitle}</a></td>
                         <td style="text-align: center; width: 230px " >${notice.modifierId}</td>
                         <td style="text-align: center; width: 70px">${notice.hit}</td>

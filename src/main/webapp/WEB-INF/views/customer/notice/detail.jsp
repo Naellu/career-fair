@@ -1,17 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>공지사항</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <my:font></my:font>
 </head>
 <body>
+<my:navBar/>
+
 <div class="container-lg">
     <!-- .row.justify-content-center>.col-12.col-md-8.col-lg-6 -->
     <div class="row justify-content-center">
@@ -47,25 +53,22 @@
                 <label class="form-label">첨부파일</label>
             </div>
 
+            <div class="mb-3">
+                <a id="prev" class="btn btn-secondary">이전글로 가기</a>
+                <a class="btn btn-secondary" href="/customer/notice/list">목록으로 가기</a>
+                <a id="next" class="btn btn-secondary">다음글로 가기</a>
+            </div>
+
             <div>
                 <div>
                     <a class="btn btn-primary" href="/customer/notice/modify/${noticeId}">수정</a>
                     <button id="removeButton" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#deleteConfirmModal">삭제
                     </button>
-                    <a id="prev" class="btn btn-secondary">이전글로 가기</a>
-                    <a class="btn btn-secondary" href="/customer/notice/list">목록으로 가기</a>
-                    <a id="next" class="btn btn-secondary">다음글로 가기</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="d-none">
-    <form action="/admin/product/remove" method="post" id="removeForm">
-        <input type="text" name="id" value="${product.productId }"/>
-    </form>
 </div>
 
 <!-- Modal -->
@@ -76,9 +79,9 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">상품을 삭제 하시겠습니까?</div>
+            <div class="modal-body">공지를 삭제 하시겠습니까?</div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-danger" form="removeForm">삭제</button>
+                <button id="remove-btn" type="button" class="btn btn-danger" >삭제</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
             </div>
         </div>

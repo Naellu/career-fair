@@ -34,9 +34,9 @@ function detailView() {
 
             const fileNameContainer = document.getElementById('file-name');
 
-            if (data.notice.fileName.length === 0){
+            if (data.notice.fileName.length === 0) {
                 fileNameContainer.classList.add('d-none');
-            } else{
+            } else {
                 data.notice.fileName.forEach(fileName => {
                     const fileLink = document.createElement('a');
                     fileLink.href = `${bucketUrl}/${noticeId}/${fileName}`;
@@ -51,7 +51,7 @@ function detailView() {
             const prev = document.getElementById('prev');
 
             if (prevId === parseInt(noticeId)) {
-                prev.addEventListener("click", function() {
+                prev.addEventListener("click", function () {
                     alert("이전글이 없습니다.");
                 });
             } else {
@@ -61,7 +61,7 @@ function detailView() {
             const next = document.getElementById('next');
 
             if (nextId === parseInt(noticeId)) {
-                next.addEventListener("click", function() {
+                next.addEventListener("click", function () {
                     alert("다음글이 없습니다.");
                 });
             } else {
@@ -73,3 +73,27 @@ function detailView() {
             console.error("Error:", error);
         });
 }
+
+const removeBtn = document.getElementById("remove-btn");
+removeBtn.addEventListener("click", function () {
+    const url = window.location.href;
+    const noticeId = url.substring(url.lastIndexOf("/") + 1);
+
+    fetch(`/api/notices/${noticeId}`, {
+            method: "DELETE"
+        })
+        .then(response => {
+                if (response.status === 200) {
+                    // 수정이 성공한 경우
+                    location.href = "/customer/notice/list";
+                    alert("삭제 되었습니다");
+                } else {
+                    location.href = `/customer/notice/${noticeId}`;
+                    alert("삭제 실패하였습니다.");
+                }
+            }
+        )
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});

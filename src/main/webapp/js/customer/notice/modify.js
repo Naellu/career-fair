@@ -69,7 +69,7 @@ function modifyView() {
                     fileLink.href = `${bucketUrl}/${noticeId}/${fileName}`;
                     fileLink.textContent = fileName;
                     fileLink.classList.add('form-control');
-                    fileLink.download = fileName;
+                    fileLink.download = `${bucketUrl}/${noticeId}/${fileName}`;
 
                     fileNameContainer.appendChild(fileLink);
                 });
@@ -115,9 +115,13 @@ updateBtn.addEventListener("click", function () {
         body: formData
     })
         .then(response => {
-            if (response.ok) {
-                location.href = "/customer/notice/list"
+            if (response.status === 200) {
+                // 수정이 성공한 경우
+                location.href = "/customer/notice/list";
+                alert("수정이 완료되었습니다.");
             } else {
+                location.href = `/customer/notice/modify/${noticeId}`;
+                alert("수정에 실패하였습니다.");
             }
         })
         .catch(error => {
