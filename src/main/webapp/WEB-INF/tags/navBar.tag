@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- ======= Header ======= -->
+<link rel="stylesheet" href="/css/navBar.css">
 
 <header id="header" class="header d-flex align-items-center">
 
@@ -49,4 +50,4 @@
 <!-- End Header -->
 
 
-<link rel="stylesheet" href="/css/main.css">
+<%--<link rel="stylesheet" href="/css/main.css">--%>
