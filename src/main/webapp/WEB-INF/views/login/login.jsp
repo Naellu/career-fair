@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%--<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>--%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page import="java.util.*"%>
 <html>
 <head>
@@ -24,19 +25,16 @@
             <h1>로그인</h1>
             <form method="post">
                 <div class="mb-3">
-                    <label for="inputUsername" class="form-label"> 아이디</label> <input id="inputUsername"
-                                                                                      class="form-control" type="text"
-                                                                                      name="username"/>
+                    <label for="inputUsername" class="form-label"> 아이디</label> <input id="inputUsername" class="form-control" type="text" name="username" />
                 </div>
                 <div class="mb-3">
-                    <label for="inputPassword" class="form-label">암호</label> <input id="inputPassword"
-                                                                                    class="form-control" type="password"
-                                                                                    name="password"/>
+                    <label for="inputPassword" class="form-label">암호</label> <input id="inputPassword" class="form-control" type="password" name="password" />
                 </div>
                 <div class="col-lg-6">
-                    <input class="btn btn-primary loginbutton" type="submit" value="로그인"/>
+                    <input class="btn btn-primary loginbutton" type="submit" value="로그인" />
                 </div>
             </form>
+
         </div>
     </div>
 </div>

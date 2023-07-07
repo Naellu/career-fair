@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <%@ page import="java.util.*"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
     <title>채용박람회</title>
@@ -14,6 +15,11 @@
 </head>
 <body>
     <my:navBar/>
+
+    로그인ID : <sec:authentication property="name"/><br>
+    로그인 Auth : <sec:authentication property="authorities"/><br>
+    로그인 Credentials : <sec:authentication property="Credentials"/>
+    로그인 Principal : <sec:authentication property="Principal"/><br>
 
 
     <!-- ======= Hero Section ======= -->
