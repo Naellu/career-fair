@@ -5,15 +5,15 @@ import com.project.careerfair.service.customer.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.services.s3.S3Client;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +39,29 @@ public class NoticeControllerAPI {
         return ResponseEntity.ok(result);
     }
 
+    @PostMapping
+    public ResponseEntity<Map<String, Object>> create(
+            Notice notice,
+            @RequestParam(value = "files", required = false) MultipartFile[] files) {
+        log.info("log{}", files != null);
+        try {
+            boolean ok = noticeService.create(notice, files);
+            if (true) {
+                // 생성이 성공한 경우에는 적절한 응답을 반환
+                Map<String, Object> response = new HashMap<>();
+                response.put("message", "등록되었습니다.");
+                return ResponseEntity.ok(response);
+            } else {
+                // 생성이 실패한 경우에는 적절한 응답을 반환
+                Map<String, Object> response = new HashMap<>();
+                response.put("message", "등록에 실패하였습니다.");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @GetMapping("{noticeId}")
     public ResponseEntity<Map<String, Object>> detail(@PathVariable("noticeId") Integer noticeId) {
         Map<String, Object> result = noticeService.getDetail(noticeId);
@@ -53,10 +76,36 @@ public class NoticeControllerAPI {
             @RequestParam(value = "files", required = false) MultipartFile[] files) {
         try {
             boolean ok = noticeService.modify(notice, files, removeFileNames);
+            if (ok) {
+                // 수정이 성공한 경우에는 적절한 응답을 반환
+                Map<String, Object> response = new HashMap<>();
+                response.put("message", "수정되었습니다.");
+                return ResponseEntity.ok(response);
+            } else {
+                // 수정이 실패한 경우에는 적절한 응답을 반환
+                Map<String, Object> response = new HashMap<>();
+                response.put("message", "수정에실패하였습니다.");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return ResponseEntity.ok()
-                .body(Collections.singletonMap("message", "Notice modified successfully."));
+    }
+
+    @DeleteMapping("{noticeId}")
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable("noticeId") Integer noticeId) {
+        boolean ok = noticeService.delete(noticeId);
+
+        if (ok) {
+            // 삭제가 성공한 경우에는 적절한 응답을 반환
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "삭제되었습니다.");
+            return ResponseEntity.ok(response);
+        } else {
+            // 삭제가 실패한 경우에는 적절한 응답을 반환
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "삭제에 실패하였습니다.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 }

@@ -15,6 +15,11 @@
     color: black;
 }
 
+#noticeTable a:hover {
+    color: #00b6a1;
+    text-decoration: none;
+}
+
 .custom-div {
     max-width: 800px;
     margin: 0 auto;

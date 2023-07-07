@@ -72,27 +72,46 @@
         </collection>
     </resultMap>
 
+    <!-- 상세보기 -->
     <select id="getDetail" resultMap="NoticeViewMap">
         SELECT * FROM VIEW_NOTICE WHERE notice_id = #{noticeId}
     </select>
 
+    <!-- 이전글 -->
     <select id="getPrevNotice" resultType="Integer">
-        SELECT notice_id FROM TB_NOTICE WHERE notice_id &lt; #{noticeId} ORDER BY modified DESC LIMIT 1
+        SELECT notice_id FROM TB_NOTICE
+        WHERE modified &lt; #{modified}
+        ORDER BY modified DESC
+        LIMIT 1;
     </select>
 
+    <!-- 다음글 -->
     <select id="getNextNotice" resultType="Integer">
-        SELECT notice_id FROM TB_NOTICE WHERE notice_id &gt; #{noticeId} ORDER BY modified ASC LIMIT 1
+        SELECT notice_id
+        FROM TB_NOTICE
+        WHERE modified &gt; #{modified}
+        ORDER BY modified ASC
+        LIMIT 1;
     </select>
 
+    <!-- 첫번째글 -->
     <select id="getFirstNotice" resultType="Integer">
-        SELECT notice_id FROM TB_NOTICE ORDER BY notice_id ASC LIMIT 1;
+        SELECT notice_id FROM TB_NOTICE ORDER BY modified ASC LIMIT 1;
     </select>
 
+    <!-- 마지막글 -->
     <select id="getLastNotice" resultType="Integer">
-        SELECT notice_id FROM TB_NOTICE ORDER BY notice_id DESC LIMIT 1;
+        SELECT notice_id FROM TB_NOTICE ORDER BY modified DESC LIMIT 1;
     </select>
 
-    <!-- 상품 수정 -->
+    <!-- 공지 등록 -->
+    <insert id="insert" useGeneratedKeys="true"
+            keyProperty="noticeId">
+        INSERT INTO TB_NOTICE (title, content, member_id, modifier_id )
+        VALUES (#{title}, #{content}, #{memberId}, #{memberId})
+    </insert>
+
+    <!-- 공지 수정 -->
     <update id="update">
         UPDATE TB_NOTICE SET
         title = #{title},
@@ -104,20 +123,41 @@
         #{noticeId}
     </update>
 
+    <!-- 공지 삭제 -->
+    <delete id="deleteById">
+        DELETE FROM TB_NOTICE WHERE notice_id = #{noticeId}
+    </delete>
+
     <!-- 파일관련 -->
+    <!-- 파일 등록 -->
     <insert id="insertFileName">
         INSERT INTO TB_FILES (notice_id, file_name)
         VALUES (#{noticeId}, #{originalFilename})
     </insert>
 
-
-    <!-- 특정상품의 특정사진 삭제 -->
+    <!-- 특정공지의 특정사진 삭제 -->
     <delete id="deleteFileNameByNoticeIdAndFileName">
         DELETE FROM TB_FILES
         WHERE notice_id = #{noticeId}
         AND file_name = #{fileName}
     </delete>
 
+    <!-- 공지id로 파일 목록 불러오기 -->
+    <select id="selectFileNamesByNoticeId" resultType="String"
+            parameterType="java.lang.Integer">
+        SELECT file_name
+        FROM
+        TB_FILES
+        WHERE notice_id =
+        #{noticeId}
+    </select>
+
+    <!-- 공지id로 파일 삭제 -->
+    <delete id="deleteFileNameByNoticeId">
+        DELETE FROM TB_FILES
+        WHERE notice_id =
+        #{noticeId}
+    </delete>
 </mapper>
 
 
