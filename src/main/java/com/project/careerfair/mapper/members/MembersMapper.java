@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 public interface MembersMapper {
 
     @Select("""
-            SELECT * FROM TB_MEMBERS m LEFT JOIN TB_MEMBERS_AUTH ma ON m.member_id = ma.members_id
+            SELECT * FROM TB_MEMBERS
             WHERE member_id = #{id}
             """)
     @ResultMap("memberMap")
