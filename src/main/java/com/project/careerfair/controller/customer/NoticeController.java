@@ -22,8 +22,6 @@ import java.util.Map;
 @Slf4j
 public class NoticeController {
 
-    private final NoticeService noticeService;
-
     @GetMapping("list")
     public String list() {
         return "customer/notice/list";
@@ -43,21 +41,4 @@ public class NoticeController {
     public String modify(@PathVariable("noticeId") Integer noticeId) {
         return "customer/notice/modify";
     }
-
- /*   @PostMapping("/modify/{noticeId}")
-    public String modify(
-            @PathVariable("noticeId") Integer noticeId,
-            Notice notice,
-            @RequestParam(value = "removeFiles", required = false) List<String> removeFileNames,
-            @RequestParam(value = "files", required = false) MultipartFile[] files,
-            RedirectAttributes rttr) {
-        try {
-            boolean ok = noticeService.modify(notice, files, removeFileNames);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return "redirect:/customer/notice/list" ;
-    }*/
-
-
 }

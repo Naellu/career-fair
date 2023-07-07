@@ -17,18 +17,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/api/notices")
 @RequiredArgsConstructor
 @Slf4j
 public class NoticeControllerAPI {
 
     private final NoticeService noticeService;
-
-    @Value("${aws.s3.bucketName}")
-    private String bucketName;
-
-    private final S3Client s3;
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> getList(
