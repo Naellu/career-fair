@@ -38,7 +38,7 @@ submitBtn.addEventListener("click", function () {
         formData.append("files", files[i]);
     }
     // POST 요청 보내기
-    fetch(`/api/recruiter/`, {
+    fetch(`/api/user/recruiter/`, {
         method: "POST",
         headers: {},
         body: formData,
@@ -46,10 +46,10 @@ submitBtn.addEventListener("click", function () {
         .then(response => {
             if (response.status === 200) {
                 // 수정이 성공한 경우
-                location.href = "/"
+                location.href = "../../.."
                 alert("신청이 완료되었습니다.");
             } else {
-                location.href = "/"
+                location.href = "../../.."
                 alert("신청에 실패하였습니다. 관리자에게 문의해주세요");
             }
         })
@@ -114,7 +114,7 @@ ceoNameInput.addEventListener("keyup", function () {
 
 
 function industryList() {
-    fetch(`/api/recruiter/`, {
+    fetch(`/api/user/recruiter/`, {
         method: "GET",
     })
         .then(response => response.json())

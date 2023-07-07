@@ -1,4 +1,4 @@
-package com.project.careerfair.controller.recruiter;
+package com.project.careerfair.controller.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("companyRecruiterController")
+@Controller("userRecruiterController")
 @Slf4j
-@RequestMapping("/recruiter/")
+@RequestMapping("/user/recruiter/")
 public class RecruiterController {
 
     @Value("${current.event}")
@@ -18,6 +18,6 @@ public class RecruiterController {
     @GetMapping("reg")
     public String list(Model model) {
         model.addAttribute("round", round);
-        return "/recruiter/reg";
+        return "user/recruiter/reg";
     }
 }

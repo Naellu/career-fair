@@ -41,14 +41,13 @@ public class NoticeControllerAPI {
         log.info("log{}", files != null);
         try {
             boolean ok = noticeService.create(notice, files);
-            if (true) {
+            Map<String, Object> response = new HashMap<>();
+            if (ok) {
                 // 생성이 성공한 경우에는 적절한 응답을 반환
-                Map<String, Object> response = new HashMap<>();
                 response.put("message", "등록되었습니다.");
                 return ResponseEntity.ok(response);
             } else {
                 // 생성이 실패한 경우에는 적절한 응답을 반환
-                Map<String, Object> response = new HashMap<>();
                 response.put("message", "등록에 실패하였습니다.");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
             }
@@ -71,14 +70,13 @@ public class NoticeControllerAPI {
             @RequestParam(value = "files", required = false) MultipartFile[] files) {
         try {
             boolean ok = noticeService.modify(notice, files, removeFileNames);
+            Map<String, Object> response = new HashMap<>();
             if (ok) {
                 // 수정이 성공한 경우에는 적절한 응답을 반환
-                Map<String, Object> response = new HashMap<>();
                 response.put("message", "수정되었습니다.");
                 return ResponseEntity.ok(response);
             } else {
                 // 수정이 실패한 경우에는 적절한 응답을 반환
-                Map<String, Object> response = new HashMap<>();
                 response.put("message", "수정에실패하였습니다.");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
             }
@@ -91,14 +89,13 @@ public class NoticeControllerAPI {
     public ResponseEntity<Map<String, Object>> delete(@PathVariable("noticeId") Integer noticeId) {
         boolean ok = noticeService.delete(noticeId);
 
+        Map<String, Object> response = new HashMap<>();
         if (ok) {
             // 삭제가 성공한 경우에는 적절한 응답을 반환
-            Map<String, Object> response = new HashMap<>();
             response.put("message", "삭제되었습니다.");
             return ResponseEntity.ok(response);
         } else {
             // 삭제가 실패한 경우에는 적절한 응답을 반환
-            Map<String, Object> response = new HashMap<>();
             response.put("message", "삭제에 실패하였습니다.");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }

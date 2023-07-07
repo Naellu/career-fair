@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.user.RecruiterMapper">
+
+    <!-- 기업 추가 -->
+    <insert id="insert" useGeneratedKeys="true"
+            keyProperty="companyId">
+        INSERT INTO TB_COMPANIES
+        (round, member_id, company_name, registration_number,
+        number_of_employees, establishment_date, revenue,
+        postal_code, address, detail_address,
+        ceo_name, industry_id, status)
+        VALUES (#{round}, #{memberId}, #{companyName}, #{registrationNumber},
+        #{numberOfEmployees}, #{establishmentDate}, #{revenue},
+        #{postalCode}, #{address}, #{detailAddress},
+        #{ceoName}, #{industryId}, #{status})
+    </insert>
+
+    <!-- 파일 삽입 -->
+    <insert id="insertFileName">
+        INSERT INTO TB_FILES (company_id, file_name)
+        VALUES (#{companyId}, #{originalFilename})
+    </insert>
+
+    <resultMap type="com.project.careerfair.domain.Company"
+               id="companyMap">
+        <id column="round" property="round"/>
+        <result column="company_id" property="companyId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="company_name" property="companyName"/>
+        <result column="registration_number" property="registrationNumber"/>
+        <result column="number_of_employees" property="numberOfEmployees"/>
+        <result column="establishment_date" property="establishmentDate"/>
+        <result column="revenue" property="revenue"/>
+        <result column="postal_code" property="postalCode"/>
+        <result column="address" property="address"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="ceo_name" property="ceoName"/>
+        <result column="industry_id" property="industryId"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="getList" resultMap="companyMap">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT * FROM TB_COMPANIES
+        <where>
+            <if test="type eq 'all'">
+                (member_Id LIKE #{pattern}
+                OR company_name LIKE #{pattern}
+                OR registration_number LIKE #{pattern}
+                )
+            </if>
+            <if test="type eq 'memberId'">
+                OR member_Id LIKE #{pattern}
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'registrationNumber'">
+                OR registration_number LIKE #{pattern}
+            </if>
+            <if test="(status eq 'all') or (status eq '') ">
+            </if>
+            <if test="status neq 'all'">
+                AND status LIKE #{status}
+            </if>
+        </where>
+        ORDER BY company_id DESC
+        LIMIT #{startNum}, #{pageSize}
+    </select>
+
+    <select id="countAll" resultType="Integer">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT
+        count(company_id) FROM TB_COMPANIES
+        <where>
+            <if test="type eq 'all'">
+                (member_Id LIKE #{pattern}
+                OR company_name LIKE #{pattern}
+                OR registration_number LIKE #{pattern}
+                )
+            </if>
+            <if test="type eq 'memberId'">
+                OR member_Id LIKE #{pattern}
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'registrationNumber'">
+                OR registration_number LIKE #{pattern}
+            </if>
+            <if test="(status eq 'all') or (status eq '') ">
+            </if>
+            <if test="status neq 'all'">
+                AND status LIKE #{status}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
+
+

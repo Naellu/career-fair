@@ -1,4 +1,4 @@
-package com.project.careerfair.controller.admin.recruiter;
+package com.project.careerfair.controller.admin;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/recruiter/")
 public class RecruiterController {
 
-
     @GetMapping("list")
     public String list() {
-        return "/admin/recruiter/list";
+        return "admin/recruiter/list";
     }
 }

@@ -1,8 +1,8 @@
-package com.project.careerfair.service.recruiter;
+package com.project.careerfair.service.user;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
-import com.project.careerfair.mapper.recruiter.RecruiterMapper;
+import com.project.careerfair.mapper.user.RecruiterMapper;
 import com.project.careerfair.mapper.industry.IndustryMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import java.io.IOException;
 import java.util.List;
 
-@Service("companyRecruiterServiceImpl")
+@Service("userRecruiterServiceImpl")
 @Slf4j
 @RequiredArgsConstructor
 public class RecruiterServiceImpl implements RecruiterService {

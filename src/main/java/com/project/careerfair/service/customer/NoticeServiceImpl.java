@@ -61,7 +61,7 @@ public class NoticeServiceImpl implements NoticeService {
         // 다음 페이지
         Integer nextPageNum = leftPageNum + 10;
 
-        Integer number = count - (page -1 ) * pageSize;
+        Integer number = count - (page - 1) * pageSize;
 
         Map<String, Object> pageInfo = new HashMap<>();
         pageInfo.put("lastPageNum", lastPage);
@@ -77,8 +77,12 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Map<String, Object> getDetail(Integer noticeId) {
 
+        // 조회수 증가
+        noticeMapper.hitUp(noticeId);
+        
         // 글상세
         Notice notice = noticeMapper.getDetail(noticeId);
 
