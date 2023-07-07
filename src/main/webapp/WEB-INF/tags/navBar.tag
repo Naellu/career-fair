@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- ======= Header ======= -->
+<link rel="stylesheet" href="/css/navBar.css">
 
 <header id="header" class="header d-flex align-items-center">
 
@@ -41,12 +42,12 @@
             </ul>
         </nav><!-- .navbar -->
 
-        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+<%--        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>--%>
+<%--        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>--%>
 
     </div>
 </header><!-- End Header -->
 <!-- End Header -->
 
 
-<link rel="stylesheet" href="/css/main.css">
+<%--<link rel="stylesheet" href="/css/main.css">--%>
