@@ -14,11 +14,9 @@
     <link rel="stylesheet" href="/css/notice.css">
     <my:font></my:font>
     <title>공지사항</title>
-
 </head>
 <body>
 <my:navBar/>
-<div id="alertContainer"></div>
 
 <div class="container-lg mt-3 custom-div">
     <div class="d-flex justify-content-end">
@@ -65,7 +63,7 @@
     </div>
 
     <div>
-        <a class="btn btn-primary" href="/recruiter/reg">참여신청하기</a>
+        <a class="btn btn-primary" href="/user/recruiter/reg">참여신청하기</a>
     </div>
 </div>
 

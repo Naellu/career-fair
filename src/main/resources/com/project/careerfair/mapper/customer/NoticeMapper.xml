@@ -158,6 +158,13 @@
         WHERE notice_id =
         #{noticeId}
     </delete>
+
+    <!-- 조회수 증가 -->
+    <update id="hitUp">
+        UPDATE TB_NOTICE
+        SET hit = hit + 1
+        WHERE notice_id = #{noticeId}
+    </update>
 </mapper>
 
 

@@ -50,5 +50,8 @@ public interface NoticeMapper {
 
     //id로 테이블에서 파일삭제
     void deleteFileNameByNoticeId(Integer noticeId);
+
+    // 조회수 증가
+    void hitUp(Integer noticeId);
 }
 

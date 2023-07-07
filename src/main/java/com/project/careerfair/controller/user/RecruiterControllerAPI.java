@@ -1,8 +1,8 @@
-package com.project.careerfair.controller.recruiter;
+package com.project.careerfair.controller.user;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
-import com.project.careerfair.service.recruiter.RecruiterService;
+import com.project.careerfair.service.user.RecruiterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController("companyRecruiterControllerAPI ")
+@RestController("userRecruiterControllerAPI ")
 @Slf4j
-@RequestMapping("/api/recruiter/")
+@RequestMapping("/api/user/recruiter/")
 @RequiredArgsConstructor
 public class RecruiterControllerAPI {
 

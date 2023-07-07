@@ -1,4 +1,4 @@
-package com.project.careerfair.service.recruiter;
+package com.project.careerfair.service.user;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
