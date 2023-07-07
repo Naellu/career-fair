@@ -1,5 +1,5 @@
 detailView();
-const bucketUrl = document.getElementById("bucketUrl").value;
+const bucketUrl = document.querySelector("#bucketUrl").value;
 
 function detailView() {
     const url = window.location.href;
@@ -12,13 +12,13 @@ function detailView() {
             const prevId = data.prevNotice;
             const nextId = data.nextNotice;
 
-            const titleInput = document.getElementById('title');
+            const titleInput = document.querySelector('#title');
             titleInput.value = notice.title;
 
-            const writerInput = document.getElementById('writer');
+            const writerInput = document.querySelector('#writer');
             writerInput.value = notice.modifierId;
 
-            const createdInput = document.getElementById('created');
+            const createdInput = document.querySelector('#created');
             const options = {
                 year: 'numeric',
                 month: 'long',
@@ -29,10 +29,10 @@ function detailView() {
             };
             createdInput.value = new Date(notice.modified).toLocaleString('ko-KR', options);
 
-            const contentTextarea = document.getElementById('content');
+            const contentTextarea = document.querySelector('#content');
             contentTextarea.value = notice.content;
 
-            const fileNameContainer = document.getElementById('file-name');
+            const fileNameContainer = document.querySelector('#file-name');
 
             if (data.notice.fileName.length === 0) {
                 fileNameContainer.classList.add('d-none');
@@ -48,7 +48,7 @@ function detailView() {
                 });
             }
 
-            const prev = document.getElementById('prev');
+            const prev = document.querySelector('#prev');
 
             if (prevId === parseInt(noticeId)) {
                 prev.addEventListener("click", function () {
@@ -58,7 +58,7 @@ function detailView() {
                 prev.href = `/customer/notice/${prevId}`;
             }
 
-            const next = document.getElementById('next');
+            const next = document.querySelector('#next');
 
             if (nextId === parseInt(noticeId)) {
                 next.addEventListener("click", function () {
@@ -74,7 +74,7 @@ function detailView() {
         });
 }
 
-const removeBtn = document.getElementById("remove-btn");
+const removeBtn = document.querySelector("#remove-btn");
 removeBtn.addEventListener("click", function () {
     const url = window.location.href;
     const noticeId = url.substring(url.lastIndexOf("/") + 1);

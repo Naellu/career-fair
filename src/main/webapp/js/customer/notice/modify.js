@@ -1,5 +1,5 @@
 modifyView();
-const bucketUrl = document.getElementById("bucketUrl").value;
+const bucketUrl = document.querySelector("#bucketUrl").value;
 
 function modifyView() {
     const url = window.location.href;
@@ -9,22 +9,22 @@ function modifyView() {
         .then(data => {
             const notice = data.notice;
 
-            const titleInput = document.getElementById('title');
+            const titleInput = document.querySelector('#title');
             titleInput.value = notice.title;
 
-            const writerInput = document.getElementById('writer');
+            const writerInput = document.querySelector('#writer');
             writerInput.value = notice.modifierId;
 
-            const createdInput = document.getElementById('created');
+            const createdInput = document.querySelector('#created');
             const options = {
                 year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit',
             };
             createdInput.value = new Date(notice.modified).toLocaleString('ko-KR', options);
 
-            const contentTextarea = document.getElementById('content');
+            const contentTextarea = document.querySelector('#content');
             contentTextarea.value = notice.content;
 
-            const fileNameContainer = document.getElementById('file-name');
+            const fileNameContainer = document.querySelector('#file-name');
 
             if (data.notice.fileName.length === 0) {
                 fileNameContainer.classList.add('d-none');
@@ -69,7 +69,7 @@ function modifyView() {
                     fileLink.href = `${bucketUrl}/${noticeId}/${fileName}`;
                     fileLink.textContent = fileName;
                     fileLink.classList.add('form-control');
-                    fileLink.download = `${bucketUrl}/${noticeId}/${fileName}`;
+                    fileLink.download = `${fileName}`;
 
                     fileNameContainer.appendChild(fileLink);
                 });
@@ -80,12 +80,12 @@ function modifyView() {
         });
 }
 
-const updateBtn = document.getElementById("update-btn");
+const updateBtn = document.querySelector("#update-btn");
 updateBtn.addEventListener("click", function () {
     const url = window.location.href;
     const noticeId = url.substring(url.lastIndexOf("/") + 1);
 
-    const checkboxes = document.getElementsByName("removeFiles");
+    const checkboxes = document.querySelectorAll("[name=removeFiles]");
 
     const removeFiles = [];
 
@@ -97,7 +97,7 @@ updateBtn.addEventListener("click", function () {
 
     const formData = new FormData();
 
-    const fileInput = document.getElementById("formFile");
+    const fileInput = document.querySelector("#formFile");
     const files = fileInput.files;
 
     for (let i = 0; i < files.length; i++) {
@@ -106,8 +106,8 @@ updateBtn.addEventListener("click", function () {
 
     formData.append("removeFiles", removeFiles);
     formData.append("noticeId", noticeId);
-    formData.append("title", document.getElementById("title").value);
-    formData.append("content", document.getElementById("content").value);
+    formData.append("title", document.querySelector("#title").value);
+    formData.append("content", document.querySelector("#content").value);
 
     fetch(`/api/notices/${noticeId}`, {
         method: "POST",

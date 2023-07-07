@@ -252,13 +252,23 @@ VALUES
  SELECT n.*, f.file_name FROM TB_NOTICE n LEFT JOIN TB_FILES f ON n.notice_id = f.notice_id;
  
  
-SELECT * FROM VIEW_NOTICE; 
+SELECT * FROM VIEW_NOTICE;
  
  -- 다음글
-SELECT notice_id, title FROM TB_NOTICE WHERE notice_id > 50 ORDER BY modified ASC LIMIT 1;
+SELECT notice_id, title FROM TB_NOTICE ORDER BY modified ASC LIMIT 1;
+
+SELECT * FROM TB_NOTICE WHERE modified >  '2023-07-06 14:10:27' ORDER BY modified ASC;
+
+SELECT * FROM TB_NOTICE  ORDER BY modified DESC;
+
+SELECT *
+FROM TB_NOTICE
+WHERE modified < '2023-07-06 22:38:31'
+ORDER BY modified DESC
+LIMIT 1;
 
 -- 이전글
-SELECT notice_id, title FROM TB_NOTICE WHERE notice_id < 50  ORDER BY modified DESC  LIMIT 1;
+SELECT notice_id, title FROM TB_NOTICE ORDER BY modified DESC  LIMIT 1;
  
  
 UPDATE TB_NOTICE SET
@@ -270,12 +280,7 @@ UPDATE TB_NOTICE SET
         notice_id =
         1;
  
- 
- 
- 
- 
- 
- 
- 
+
+
  
  

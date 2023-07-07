@@ -1,16 +1,16 @@
-const regBtn = document.getElementById("reg-btn");
+const regBtn = document.querySelector("#reg-btn");
 regBtn.addEventListener("click", function () {
     const formData = new FormData();
 
-    const fileInput = document.getElementById("formFile");
+    const fileInput = document.querySelector("#formFile");
     const files = fileInput.files;
 
     for (let i = 0; i < files.length; i++) {
         formData.append("files", files[i]);
     }
 
-    formData.append("title", document.getElementById("title").value);
-    formData.append("content", document.getElementById("content").value);
+    formData.append("title", document.querySelector("#title").value);
+    formData.append("content", document.querySelector("#content").value);
 
     console.log(formData);
 
