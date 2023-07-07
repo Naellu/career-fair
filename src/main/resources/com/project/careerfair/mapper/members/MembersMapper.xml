@@ -13,11 +13,11 @@
         <result property="isActive" column="is_active"></result>
         <result property="phoneNumber" column="phone_number"></result>
         <result property="email" column="email"></result>
-        <result property="memberType" column="member_type"></result>
+<!--        <result property="memberType" column="member_type"></result>-->
         <result property="address" column="address"></result>
 
         <collection property="authority" ofType="string">
-            <result column="authority"></result>
+            <result column="member_type"></result>
         </collection>
     </resultMap>
 </mapper>
