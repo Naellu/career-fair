@@ -5,10 +5,10 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.careerfair.mapper.Note.NoteMapper">
 
-    <resultMap type="com.project.careerfair.domain.Note" id="recieveList">
+    <resultMap type="com.project.careerfair.domain.Note" id="noteList">
         <id property="noteId" column="note_id"></id>
         <result property="senderId" column="sender_id"></result>
-        <result property="recipeintId" column="recipient_id"></result>
+        <result property="recipientId" column="recipient_id"></result>
         <result property="title" column="title"></result>
         <result property="content" column="content"></result>
         <result property="created" column="created"></result>

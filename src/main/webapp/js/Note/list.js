@@ -10,26 +10,9 @@ function writeNote(writeNoteURL){
 
 const deleteButtons = document.getElementsByName("deleteButton");
 for (const deleteButton of deleteButtons){
-    deleteButton.click(function (){
-        alert('hi')
-       /*
+    deleteButton.addEventListener("click",function (){
         const noteId = $(this).data('noteId');
-        const data ={
-            noteId: noteId
-        }
-        $.ajax('/note/delete',{
-            method: "post",
-            contentType:"application/json",
-            data:JSON.stringify(data),
-            success: function (response){
-                alert(response.message)
-            },
-            error(){
-                alert("에러~")
-            }
-        })
-        */
+        $("#deleteNoteById").attr("value", noteId);
+        console.log($("#deleteNoteById").val());
     })
-
-
 }

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 2023-07-05
-  Time: 오후 1:50
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -13,8 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>받은 쪽지함</title>
-    <!-- Bootstrap CSS -->
+    <title>title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -26,29 +18,30 @@
 <my:font/>
 <br>
 <c:if test="${not empty message }">
-    <div class="container">
+    <div class="container-lg">
+
         <div class="alert alert-success" role="alert">
                 ${message}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    </div>
 
+    </div>
 </c:if>
-    <div class="container">
-        <ul class="nav">
-            <li class="nav-item" style="background-color:#f8f3ed">
-                <a class="nav-link active" href="/note/list/receive" style="color: #222222">받은 쪽지함</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/note/list/send" style="color: #222222">보낸 쪽지함</a>
-            </li>
-        </ul>
-    <table class="table" style="">
+<div class="container">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="/note/list/receive" style="color: #222222">받은 쪽지함</a>
+        </li>
+        <li class="nav-item" style="background-color:#f8f3ed">
+            <a class="nav-link" href="/note/list/send" style="color: #222222">보낸 쪽지함</a>
+        </li>
+    </ul>
+    <table class="table">
         <thead>
         <tr>
-            <th>보낸 사람</th>
+            <th>받은 사람</th>
             <th>제목</th>
-            <th>받은 시간</th>
+            <th>보낸 시간</th>
             <th>삭제</th>
         </tr>
         </thead>
@@ -56,11 +49,11 @@
         <c:forEach items="${noteList}" var="note" varStatus="status">
 
             <tr>
-                <td>${note.senderId}</td>
+                <td>${note.recipientId}</td>
                 <td>
                     <c:url value="/note/detail" var="noteDetailURL">
                         <c:param name="noteId" value="${note.noteId}"/>
-                        <c:param name="distinction" value="receive"/>
+                        <c:param name="distinction" value="send"/>
                     </c:url>
                     <a href="#" onclick="openNoteWindow('${noteDetailURL}')" style="color: #222222">
                             ${note.title}
@@ -90,7 +83,7 @@
         <c:if test="${pageInfo.begin != 1}">
 
             <%--맨앞으로--%>
-            <c:url value="/note/list/receive" var="pageLink">
+            <c:url value="/note/list/send" var="pageLink">
                 <c:param name="page" value="1"></c:param>
             </c:url>
             <li class="page-item">
@@ -98,7 +91,7 @@
             </li>
 
             <%-- 앞으로 --%>
-            <c:url value="/note/list/receive" var="pageLink">
+            <c:url value="/note/list/send" var="pageLink">
                 <c:param name="page" value="${pageInfo.previous }"></c:param>
             </c:url>
             <li class="page-item">
@@ -108,7 +101,7 @@
         </c:if>
 
         <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
-            <c:url value="/note/list/receive" var="pageLink">
+            <c:url value="/note/list/send" var="pageLink">
                 <c:param name="page" value="${pageNumber }"></c:param>
             </c:url>
             <c:choose>
@@ -128,7 +121,7 @@
         <c:if test="${pageInfo.end != pageInfo.last}">
 
             <%-- 뒤로--%>
-            <c:url value="/note/list/receive" var="pageLink">
+            <c:url value="/note/list/send" var="pageLink">
                 <c:param name="page" value="${pageInfo.next }"></c:param>
             </c:url>
             <li class="page-item">
@@ -136,7 +129,7 @@
             </li>
 
             <%--맨 뒤로--%>
-            <c:url value="/note/list/receive" var="pageLink">
+            <c:url value="/note/list/send" var="pageLink">
                 <c:param name="page" value="${pageInfo.last }"></c:param>
             </c:url>
             <li class="page-item">
@@ -152,7 +145,7 @@
     <form action="/note/delete" method="post"
           id="deleteNoteForm">
         <input type="text" id="deleteNoteById" name="noteId" value=""/>
-        <input type="hidden" name="distinction" value="receive">
+        <input type="hidden" name="distinction" value="send">
     </form>
 </div>
 
@@ -178,8 +171,6 @@
     </div>
 </div>
 
-
-<!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"
         integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w=="
@@ -188,4 +179,3 @@
 
 </body>
 </html>
-

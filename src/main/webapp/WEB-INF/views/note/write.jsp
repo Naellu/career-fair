@@ -20,7 +20,7 @@
 
 </head>
 <body>
-
+<my:font/>
 <div class="container">
     <form action="/note/write" method="post">
         <div class="row">
@@ -32,7 +32,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="title" class="form-label">제목</label>
-                    <input type="text" class="form-control" name = "title" id="title">
+                    <input type="text" class="form-control" name = "title" id="title" value="${note.title}">
                 </div>
             </div>
         </div>
@@ -40,9 +40,10 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="content" class="form-label">쪽지 내용</label>
-                    <textarea class="form-control" name="content" id="content" rows="5"></textarea>
+                    <textarea class="form-control" name="content" id="content" rows="5">${note.content}</textarea>
                 </div>
             </div>
+
             <input type="hidden" name="senderId" value="${note.senderId}">
             <input type="hidden" name="recipientId" value="${note.recipientId}">
         </div>

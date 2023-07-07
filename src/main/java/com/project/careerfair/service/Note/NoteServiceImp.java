@@ -5,6 +5,7 @@ import com.project.careerfair.mapper.Note.NoteMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,10 +16,17 @@ public class NoteServiceImp implements NoteService {
 
     private final NoteMapper mapper;
     @Override
-    public Map<String, Object> getListByUserId(String userId, Integer currentPage) {
+    public Map<String, Object> getListByUserId(String userId, Integer currentPage, String distinction) {
         Map<String, Object> resultMap = new HashMap<>();
 
-        Integer noteCount = mapper.countRecieveListByUserId(userId);
+        Integer noteCount = 0;
+
+        if (distinction.equals("receive")){
+            noteCount = mapper.countReceiveListByUserId(userId);
+        } else if (distinction.equals("send")){
+            noteCount = mapper.countSendListByUserId(userId);
+        }
+
 
         Integer last = noteCount/10 + 1;
 
@@ -38,7 +46,13 @@ public class NoteServiceImp implements NoteService {
 
 
         Integer startIndex = currentPage * 10 - 10;
-        List<Note> noteList = mapper.getRecieveListByUserId(userId, startIndex);
+        List<Note> noteList = new ArrayList<>();
+        if (distinction.equals("receive")){
+            noteList = mapper.getReceiveListByUserId(userId, startIndex);
+        } else if(distinction.equals("send")){
+            noteList = mapper.getSendListByUserId(userId, startIndex);
+        }
+
 
         resultMap.put("noteList", noteList);
         resultMap.put("pageInfo", pageInfo);
@@ -55,6 +69,13 @@ public class NoteServiceImp implements NoteService {
     @Override
     public void writeNote(Note note) {
         mapper.writeNote(note);
+    }
+
+    @Override
+    public Boolean deleteNot(Integer noteId) {
+        Integer deleteCheck = 1;
+
+        return mapper.deleteNoteByNoteId(noteId) == 1;
     }
 }
 
