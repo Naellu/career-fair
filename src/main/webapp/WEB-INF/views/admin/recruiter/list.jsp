@@ -63,17 +63,17 @@
     </nav>
 </div>
 <div class="container-lg custom-div">
-    <table id="recruiter-table" class="table">
+    <table id="recruiter-table" class="table table-bordered">
         <thead>
         <tr>
             <th>회차</th>
-            <th>채용담당자</th>
-            <th>회사명</th>
-            <th>사업자등록번호</th>
-            <th>설립일</th>
-            <th>대표자명</th>
-            <th>상태</th>
-            <th>상세페이지</th>
+            <th style="text-align: center">채용담당자</th>
+            <th style="text-align: center">회사명</th>
+            <th style="text-align: center">사업자등록번호</th>
+            <th style="text-align: center">설립일</th>
+            <th style="text-align: center">대표자명</th>
+            <th style="text-align: center">상태</th>
+            <th style="text-align: center">상세페이지</th>
         </tr>
         </thead>
         <tbody>
