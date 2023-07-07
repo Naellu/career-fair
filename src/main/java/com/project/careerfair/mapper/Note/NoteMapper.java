@@ -1,15 +1,22 @@
 package com.project.careerfair.mapper.Note;
 
 import com.project.careerfair.domain.Note;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface NoteMapper {
+
+    @Select("""
+             SELECT note_id, recipient_id, title, content, created
+            FROM TB_NOTE
+            WHERE sender_id = #{userId}
+            ORDER BY note_id DESC
+            LIMIT #{startIndex} , 10
+            """)
+    @ResultMap("noteList")
+    List<Note> getSendListByUserId(String userId, Integer startIndex);
 
     @Select("""
             SELECT note_id, sender_id, title, content, created
@@ -18,15 +25,21 @@ public interface NoteMapper {
             ORDER BY note_id DESC
             LIMIT #{startIndex} , 10
             """)
-    @ResultMap("recieveList")
-    List<Note> getRecieveListByUserId(String userId, Integer startIndex);
+    @ResultMap("noteList")
+    List<Note> getReceiveListByUserId(String userId, Integer startIndex);
 
+    @Select("""
+            SELECT COUNT(*)
+            FROM TB_NOTE
+            WHERE sender_id = #{userId}
+            """)
+    Integer countSendListByUserId(String userId);
     @Select("""
             SELECT COUNT(*)
             FROM TB_NOTE
             WHERE recipient_id = #{userId}
             """)
-    Integer countRecieveListByUserId(String userId);
+    Integer countReceiveListByUserId(String userId);
 
     @Select("""
             SELECT * FROM TB_NOTE
@@ -51,4 +64,11 @@ public interface NoteMapper {
             )
             """)
     void writeNote(Note note);
+
+    @Delete(("""
+            DELETE FROM TB_NOTE
+            WHERE note_id = #{noteId}
+            """))
+    Integer deleteNoteByNoteId(Integer noteId);
+
 }
