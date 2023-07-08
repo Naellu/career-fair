@@ -1,7 +1,7 @@
 package com.project.careerfair.service.customer;
 
-import com.project.careerfair.domain.faq.Faq;
-import com.project.careerfair.mapper.customer.FaqMapper;
+import com.project.careerfair.domain.Faq;
+import com.project.careerfair.mapper.faq.FaqMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
