@@ -1,6 +1,6 @@
-package com.project.careerfair.mapper.customer;
+package com.project.careerfair.mapper.faq;
 
-import com.project.careerfair.domain.faq.Faq;
+import com.project.careerfair.domain.Faq;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;

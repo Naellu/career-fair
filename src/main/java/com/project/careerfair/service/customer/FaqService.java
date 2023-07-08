@@ -1,7 +1,6 @@
 package com.project.careerfair.service.customer;
 
-import com.project.careerfair.domain.faq.Faq;
-import org.springframework.stereotype.Service;
+import com.project.careerfair.domain.Faq;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.project.careerfair.controller.customer;
 
-import com.project.careerfair.domain.faq.Faq;
+import com.project.careerfair.domain.Faq;
 import com.project.careerfair.service.customer.FaqService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

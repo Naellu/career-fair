@@ -1,4 +1,4 @@
-package com.project.careerfair.domain.faq;
+package com.project.careerfair.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
