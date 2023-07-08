@@ -2,11 +2,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.careerfair.mapper.customer.NoticeMapper">
+<mapper namespace="com.project.careerfair.mapper.notice.NoticeMapper">
 
     <!-- notice목록 불러오는 resultMap-->
     <resultMap type="com.project.careerfair.domain.Notice"
-               id="NoticeMap">
+               id="noticeMap">
         <id column="notice_id" property="noticeId"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
@@ -17,7 +17,7 @@
         <result column="modified" property="modified"/>
     </resultMap>
 
-    <select id="getNoticeList" resultMap="NoticeMap">
+    <select id="getNoticeList" resultMap="noticeMap">
         <bind name="pattern" value="'%' + search + '%'"/>
         SELECT * FROM TB_NOTICE
         <where>
@@ -58,7 +58,7 @@
 
     <!-- notice상세 불러오는 resultMap-->
     <resultMap type="com.project.careerfair.domain.Notice"
-               id="NoticeViewMap">
+               id="noticeViewMap">
         <id column="notice_id" property="noticeId"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
@@ -73,7 +73,7 @@
     </resultMap>
 
     <!-- 상세보기 -->
-    <select id="getDetail" resultMap="NoticeViewMap">
+    <select id="getDetail" resultMap="noticeViewMap">
         SELECT * FROM VIEW_NOTICE WHERE notice_id = #{noticeId}
     </select>
 

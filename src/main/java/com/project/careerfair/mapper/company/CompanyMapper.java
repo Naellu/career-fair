@@ -1,4 +1,4 @@
-package com.project.careerfair.mapper.user;
+package com.project.careerfair.mapper.company;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Notice;
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface RecruiterMapper {
+public interface CompanyMapper {
 
     // 참여기업 신청 추가
     int insert(Company company);
@@ -20,4 +20,10 @@ public interface RecruiterMapper {
 
     // 참여 기업 목록 개수
     Integer countAll(String type, String search, String status);
+
+    Company getDetail(Integer companyId);
+
+    Integer changeStatus(Integer companyId, String statusValue);
+
+    Integer changeStatusWithMemberType(Integer companyId, String statusValue);
 }

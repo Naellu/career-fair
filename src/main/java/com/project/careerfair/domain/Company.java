@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -22,4 +24,6 @@ public class Company {
     private String ceoName;
     private Integer industryId;
     private String status;
+
+    private List<String> fileName;
 }

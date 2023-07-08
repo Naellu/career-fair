@@ -33,6 +33,16 @@ VALUES
 ('운송 및 물류'),
 ('건설 및 부동산');
 
+CREATE VIEW VIEW_COMPANY
+AS
+SELECT c.*, i.industry_name, f.file_name FROM TB_COMPANIES c 
+JOIN TB_INDUSTRIES i ON c.industry_id = i.industry_id
+LEFT JOIN TB_FILES f ON c.company_id = f.company_id;
 
+SELECT * FROM VIEW_COMPANY;
 
-
+-- 상태변경
+UPDATE TB_COMPANIES t
+JOIN TB_MEMBERS m ON t.member_id = m.member_id
+SET t.status = 'new_status', m.member_type = 'new_member_type'
+WHERE TB_COMPANIES.company_id = 'your_company_id';

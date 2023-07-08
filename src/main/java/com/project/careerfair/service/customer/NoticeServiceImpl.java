@@ -1,7 +1,7 @@
 package com.project.careerfair.service.customer;
 
 import com.project.careerfair.domain.Notice;
-import com.project.careerfair.mapper.customer.NoticeMapper;
+import com.project.careerfair.mapper.notice.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
