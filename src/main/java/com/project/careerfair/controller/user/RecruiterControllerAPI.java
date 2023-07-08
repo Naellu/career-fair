@@ -2,6 +2,7 @@ package com.project.careerfair.controller.user;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
+import com.project.careerfair.service.admin.ExhibitionInfoService;
 import com.project.careerfair.service.user.RecruiterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +23,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RecruiterControllerAPI {
 
-    @Value("${current.event}")
-    String round;
+    private final ExhibitionInfoService exhibitionInfoService;
 
     private final RecruiterService recruiterService;
 

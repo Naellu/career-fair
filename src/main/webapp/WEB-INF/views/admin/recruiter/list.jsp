@@ -52,7 +52,7 @@
                             <option value="registrationNumber">사업자등록번호</option>
                         </select>
                         <input id="search" name="search" class="form-control" type="search" placeholder="Search"
-                               aria-label="Search" value="${param.search }">
+                               aria-label="Search">
                         <button id="search-btn" class="btn btn-outline-success" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>

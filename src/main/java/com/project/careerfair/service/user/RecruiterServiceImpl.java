@@ -2,8 +2,9 @@ package com.project.careerfair.service.user;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
-import com.project.careerfair.mapper.user.RecruiterMapper;
+import com.project.careerfair.mapper.company.CompanyMapper;
 import com.project.careerfair.mapper.industry.IndustryMapper;
+import com.project.careerfair.service.admin.ExhibitionInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,10 +25,9 @@ public class RecruiterServiceImpl implements RecruiterService {
 
     private final IndustryMapper industryMapper;
 
-    private final RecruiterMapper recruiterMapper;
+    private final CompanyMapper companyMapper;
 
-    @Value("${current.event}")
-    String round;
+    private final ExhibitionInfoService exhibitionInfoService;
 
     @Value("${aws.s3.bucketName}")
     private String bucketName;
@@ -41,12 +41,12 @@ public class RecruiterServiceImpl implements RecruiterService {
 
     @Override
     public boolean create(Company company, MultipartFile[] files) throws IOException {
-        Integer roundInt = Integer.parseInt(round);
-        company.setRound(roundInt);
+        Integer round = exhibitionInfoService.getCurrentRound();
+        company.setRound(round);
         company.setMemberId("chuncom");
         company.setStatus("review");
 
-        int cnt = recruiterMapper.insert(company);
+        int cnt = companyMapper.insert(company);
 
         fileToS3(company, files);
 
@@ -72,10 +72,8 @@ public class RecruiterServiceImpl implements RecruiterService {
                 s3.putObject(por, rb);
 
                 // db에 관련정보저장 (insert)
-                recruiterMapper.insertFileName(company.getCompanyId(), file.getOriginalFilename());
+                companyMapper.insertFileName(company.getCompanyId(), file.getOriginalFilename());
             }
         }
     }
-
-
 }

@@ -3,15 +3,14 @@ package com.project.careerfair.controller.admin;
 import com.project.careerfair.service.admin.RecruiterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@Controller("adminRecruiterControllerAPI")
+@RestController("adminRecruiterControllerAPI")
 @Slf4j
 @RequestMapping("/api/admin/recruiter/")
 @RequiredArgsConstructor
@@ -29,5 +28,22 @@ public class RecruiterControllerAPI {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("{companyId}")
+    public ResponseEntity<Map<String, Object>> detail(@PathVariable("companyId") Integer companyId) {
+        Map<String, Object> result = recruiterService.getDetail(companyId);
+        return ResponseEntity.ok(result);
+    }
+
+    @PatchMapping("{companyId}")
+    public ResponseEntity<Void> modify(
+            @PathVariable("companyId") Integer companyId,
+            @RequestBody Map<String, String> statusMap) {
+        boolean success = recruiterService.changeStatus(companyId, statusMap);
+        if (success) {
+            return ResponseEntity.ok().build(); // 200 OK 응답
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500 내부 서버 오류 응답
+        }
+    }
 
 }

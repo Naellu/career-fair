@@ -1,4 +1,4 @@
-package com.project.careerfair.mapper.customer;
+package com.project.careerfair.mapper.notice;
 
 import com.project.careerfair.domain.Notice;
 import org.apache.ibatis.annotations.Mapper;

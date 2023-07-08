@@ -1,7 +1,8 @@
 package com.project.careerfair.service.admin;
 
+import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Notice;
-import com.project.careerfair.mapper.user.RecruiterMapper;
+import com.project.careerfair.mapper.company.CompanyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RecruiterServiceImpl implements RecruiterService {
 
-    private final RecruiterMapper recruiterMapper;
+    private final CompanyMapper companyMapper;
 
     @Override
     public Map<String, Object> getList(String search, String type, Integer page, String status) {
@@ -24,7 +25,7 @@ public class RecruiterServiceImpl implements RecruiterService {
 
         //페이지네이션 정보
         //총 글 개수
-        Integer count = recruiterMapper.countAll(type, search, status);
+        Integer count = companyMapper.countAll(type, search, status);
 
         // 마지막 페이지 번호
         // 총 글개수 -1 / pageSize + 1
@@ -53,7 +54,29 @@ public class RecruiterServiceImpl implements RecruiterService {
         pageInfo.put("prevPageNum", prevPageNum);
         pageInfo.put("nextPageNum", nextPageNum);
 
-        List<Notice> companyList = recruiterMapper.getList(startNum, pageSize, search, type, status);
+        List<Notice> companyList = companyMapper.getList(startNum, pageSize, search, type, status);
         return Map.of("pageInfo", pageInfo, "companyList", companyList);
+    }
+
+    @Override
+    public Map<String, Object> getDetail(Integer companyId) {
+        Company company = companyMapper.getDetail(companyId);
+
+        return Map.of("company", company);
+    }
+
+    @Override
+    public boolean changeStatus(Integer companyId, Map<String, String> status) {
+        String statusValue = status.get("status");
+
+        Integer cnt = 0;
+
+        if (statusValue.equals("approved")) {
+            cnt = companyMapper.changeStatusWithMemberType(companyId, statusValue);
+        } else {
+            cnt = companyMapper.changeStatus(companyId, statusValue);
+        }
+
+        return cnt != 0;
     }
 }
