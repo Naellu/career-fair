@@ -38,8 +38,8 @@ public class RecruiterControllerAPI {
     public ResponseEntity<Void> modify(
             @PathVariable("companyId") Integer companyId,
             @RequestBody Map<String, String> statusMap) {
-        boolean success = recruiterService.changeStatus(companyId, statusMap);
-        if (success) {
+        boolean ok = recruiterService.changeStatus(companyId, statusMap);
+        if (ok) {
             return ResponseEntity.ok().build(); // 200 OK 응답
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500 내부 서버 오류 응답

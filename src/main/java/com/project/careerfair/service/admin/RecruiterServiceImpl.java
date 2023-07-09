@@ -1,8 +1,10 @@
 package com.project.careerfair.service.admin;
 
 import com.project.careerfair.domain.Company;
+import com.project.careerfair.domain.Industry;
 import com.project.careerfair.domain.Notice;
 import com.project.careerfair.mapper.company.CompanyMapper;
+import com.project.careerfair.mapper.industry.IndustryMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import java.util.Map;
 public class RecruiterServiceImpl implements RecruiterService {
 
     private final CompanyMapper companyMapper;
+
+    private final IndustryMapper industryMapper;
 
     @Override
     public Map<String, Object> getList(String search, String type, Integer page, String status) {
@@ -62,7 +66,8 @@ public class RecruiterServiceImpl implements RecruiterService {
     public Map<String, Object> getDetail(Integer companyId) {
         Company company = companyMapper.getDetail(companyId);
 
-        return Map.of("company", company);
+        List<Industry> industryList = industryMapper.getIndustryList();
+        return Map.of("company", company, "industryList", industryList);
     }
 
     @Override

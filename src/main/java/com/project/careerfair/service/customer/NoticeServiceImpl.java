@@ -5,6 +5,7 @@ import com.project.careerfair.mapper.notice.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -110,8 +111,8 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean create(Notice notice, MultipartFile[] files) throws IOException {
-        notice.setMemberId("chun");
+    public boolean create(Notice notice, MultipartFile[] files, Authentication authentication) throws IOException {
+        notice.setMemberId(authentication.getName());
         // 공지사항 등록
         int cnt = noticeMapper.insert(notice);
 
@@ -122,8 +123,8 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean modify(Notice notice, MultipartFile[] files, List<String> removeFileNames) throws IOException {
-        notice.setModifierId("chun2");
+    public boolean modify(Notice notice, MultipartFile[] files, List<String> removeFileNames, Authentication authentication) throws IOException {
+        notice.setModifierId(authentication.getName());
         Integer noticeId = notice.getNoticeId();
         if (removeFileNames != null && !removeFileNames.isEmpty()) {
             for (String fileName : removeFileNames) {

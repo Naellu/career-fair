@@ -26,4 +26,6 @@ public interface CompanyMapper {
     Integer changeStatus(Integer companyId, String statusValue);
 
     Integer changeStatusWithMemberType(Integer companyId, String statusValue);
+
+    List<Company> getListByName(String roundValue, String memberId, Integer round);
 }

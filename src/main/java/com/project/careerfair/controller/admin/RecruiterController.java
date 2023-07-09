@@ -20,5 +20,4 @@ public class RecruiterController {
     public String detail(@PathVariable("companyId") Integer companyId) {
         return "admin/recruiter/detail";
     }
-
 }

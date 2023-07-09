@@ -39,10 +39,9 @@ function detailView() {
             } else {
                 data.notice.fileName.forEach(fileName => {
                     const fileLink = document.createElement('a');
-                    fileLink.href = `${bucketUrl}/${noticeId}/${fileName}`;
+                    fileLink.href = `${bucketUrl}/notice/${noticeId}/${fileName}`;
                     fileLink.textContent = fileName;
                     fileLink.classList.add('form-control');
-                    fileLink.download = fileName;
 
                     fileNameContainer.appendChild(fileLink);
                 });
