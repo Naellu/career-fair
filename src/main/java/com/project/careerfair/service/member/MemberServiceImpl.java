@@ -3,6 +3,7 @@ package com.project.careerfair.service.member;
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.mapper.members.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,4 +41,17 @@ public class MemberServiceImpl implements MemberService{
         boolean available = (member == null);
         return Map.of("available",member == null);
     }
-}
+
+    @Override
+    public Map<String, Object> checkPhoneNum(String phoneNumber, Authentication authentication) {
+        Members member = mapper.selectByPhoneNumber(phoneNumber);
+        if(authentication != null) {
+            Members exMember = mapper.selectByMemberId(authentication.getName());
+
+            return Map.of("available", member == null || exMember.getPhoneNumber().equals(phoneNumber));
+        } else {
+
+            return Map.of("available", member == null);
+        }
+        }
+    }

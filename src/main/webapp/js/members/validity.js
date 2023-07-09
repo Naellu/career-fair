@@ -1,5 +1,19 @@
-
-//==============================아이디 유효성검사 ==============================================
+let checkId = false;
+let password_check = false;
+let name = false;
+let gender = false; // 현재 젠더에 문제가 있음 undissable이 안됨 추후 수정예정 그리고 약관동의 주소도 able 만들어줘야함
+let checkEmail = false;
+let checkphoneNumber = false
+let checkAgree = false;
+//===============================유효성 모두 완료되면 가입가능======================================
+function enableSubmit() {
+    if (checkId && password_check && name && gender && checkEmail && checkphoneNumber && checkAgree) {
+        $("#signup-submit").removeAttr("disabled");
+    } else {
+        $("#signup-submit").attr("disabled", "");
+    }
+}
+//==============================아이디 유효성검사 ================================================
 $("#input-id").blur(function (){
     let idCheck = /^(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$/;
 
@@ -7,14 +21,17 @@ $("#input-id").blur(function (){
         $("#idcheck-blank").css("color", "red");
         $("#idcheck-blank").text("아이디는 필수 입력");
         id = false;
+        enableSubmit();
     }else if(!idCheck.test($("#input-id").val())) {
         $("#idcheck-blank").css("color", "red");
         $("#idcheck-blank").text("영문 또는 영문 숫자 조합하여 6~20자만 가능");
         id = false;
+        enableSubmit();
     }else {
         $("#idcheck-blank").css("color", "blue");
         $("#idcheck-blank").text("사용 가능한 아이디입니다. 중복확인을 해주세요.");
         id = true;
+        enableSubmit();
     }
         if(id == true) {
             $("#id-Confirm").show();
@@ -36,14 +53,17 @@ $("#id-Confirm").click(function() {
                 if (data.available) {
                     $("#idcheck-blank").css("color", "blue");
                     $("#idcheck-blank").text("사용가능한 아이디입니다.");
+                    checkId = true;
                 } else {
                     $("#idcheck-blank").css("color", "red");
                     $("#idcheck-blank").text("중복된 아이디입니다.");
+                    checkId = false;
                 }
             },
             error: function() {
                 alert("오류가 발생했습니다. 다시 시도해주세요.");
             }
+            ,complete: enableSubmit
         });
     }
 });
@@ -76,17 +96,21 @@ $("#password-check").blur(function() {
         $("#pwdcheck-blank2").css("color", "red");
         $("#pwdcheck-blank2").text("패스워드를 입력해주세요.");
         password_check = false;
+        enableSubmit();
     }
     else if(password == true && $("#input-password").val() == $("#password-check").val()) {
         $("#pwdcheck-blank2").css("color", "blue");
         $("#pwdcheck-blank2").text("비밀번호가 일치합니다.");
         password_check = true;
+        enableSubmit();
     }else {
         $("#pwdcheck-blank2").css("color", "red");
         $("#pwdcheck-blank2").text("비밀번호를 다시 확인해주세요.");
         $("#password-check").val("");
         password_check = false;
+        enableSubmit();
     }
+
 });
 
 //==============================이름 확인 ==============================================
@@ -97,30 +121,31 @@ $("#input-name").blur(function() {
         $("#namecheck-blank").css("color", "red");
         $("#namecheck-blank").text("이름은 필수 입력입니다.");
         name = false;
+        enableSubmit();
     } else if (!nameCheck.test($("#input-name").val())) {
         $("#namecheck-blank").css("color", "red");
         $("#namecheck-blank").text("이름은 한글 또는 영어로 이루어져야 하며, 2자에서 20자 사이여야 합니다.");
         name = false;
+        enableSubmit();
     } else {
         $("#namecheck-blank").css("color", "blue");
         $("#namecheck-blank").text("유효한 이름입니다.");
         name = true;
+        enableSubmit();
     }
 });
 
 //================================성 별 =========================================
-function Gender() {
-    const mRadioButton = $("#input-gender-m");
-    const fRadioButton = $("#input-gender-w");
 
-    if (!mRadioButton.checked && !fRadioButton.checked) {
-        alert("성별을 선택해주세요.");
-        return false;
-    }
+$("#input-gender-m").change(function (){
+    gender = true;
+    enableSubmit();
+})
 
-    return true;
-}
-
+$("#input-gender-w").change(function (){
+    gender = true;
+    enableSubmit();
+})
 //================================연락처=========================================
 function maxLengthCheck(object){
     if (object.value.length > object.maxLength) {
@@ -150,3 +175,137 @@ function phone() {
         $("#totalphone-num").val(phonenum+firsthyphen+middlenum+secondhypen+lastnum);
     }
 };
+
+//회원가입 불가 해제
+$("#checkPhoneNumBtn").click(function() {
+    const userphoneNum = $("#totalphone-num").val();
+    // 입력한 ID와 ajax 요청 보내서
+    $.ajax("/members/checkphoneNumber/" + userphoneNum, {
+        success: function(data) {
+
+            if (data.available) {
+                // 사용 가능하다는 메세지 출력
+                $("#availablePhoneNumMessage").removeClass("d-none");
+                $("#notAvailablePhoneNumMessage").addClass("d-none");
+                checkphoneNumber = true;
+            } else {
+                // 사용 가능하지 않다는 메세지 출력
+                $("#availablePhoneNumMessage").addClass("d-none");
+                $("#notAvailablePhoneNumMessage").removeClass("d-none");
+                checkphoneNumber = false;
+            }
+        },
+        complete: enableSubmit
+    })
+});
+
+//================================ 주소 =========================================
+
+//=============================== 메일 주소값 합치기 =================================
+//이메일 주소 합치기
+$("#user-email").blur(function (){
+    email();
+});
+
+$("#email_address").change(function (){
+    email();
+});
+
+function email() {
+    const email = $("#user-email").val();
+    const middle = $("#middle-email").text();
+    const address = $("#email_address").val();
+    if(email != "" && address != "") {
+        $("#totalemail").val(email+middle+address);
+    }
+};
+
+//================================ 이메일 인증 =========================================
+// 이메일 인증 버튼 클릭 이벤트 처리
+$("#checkEmailBtn").click(function() {
+    // 인증하기 버튼을 클릭하면 인증번호 입력 칸과 확인 버튼을 나타내고, 인증하기 버튼은 숨김
+    $("#inputVerificationCode").removeAttr("style");
+    $("#verifyEmailBtn").show();
+    $("#checkEmailBtn").hide();
+
+    var email = $("#totalemail").val();
+    if (email) {
+        // 이메일 전송 요청
+        $.ajax({
+            url: "/members/mail",
+            method: "POST",
+            data: {
+                email: email
+            },
+            success: function(response) {
+                // 이메일 전송 성공 시 처리
+                $("#totalemail").prop("disabled", true);
+                $("#verifyEmailBtn").hide();
+                $("#inputVerificationCode").removeAttr("style");
+                $("#verifyCodeBtn").show();
+            },
+            error: function() {
+                // 에러 처리 로직 추가
+            }
+        });
+    }
+});
+
+// 확인 버튼 클릭 시 동작
+$("#verifyEmailBtn").click(function() {
+    // 인증 확인 버튼을 클릭하면 인증번호 입력 칸과 확인 버튼을 숨기고, 인증 완료 메시지를 나타냄
+    //    $("#inputVerificationCode").hide();
+    //    $("#verifyEmailBtn").hide();
+
+    $("#verificationSuccessText").show();
+});
+
+
+// 확인 버튼 클릭 이벤트 처리
+$("#verifyEmailBtn").click(function() {
+    var enteredCode = $("#verificationCode").val();
+    if (enteredCode) {
+        // 이메일 전송 요청
+        $.ajax({
+            url: "/members/mailCheck",
+            method: "POST",
+            data: {
+                enteredCode: enteredCode
+            },
+            success: function(response) {
+                var authentication = response.authentication;
+                console.log("authentication => " + authentication);
+
+                if (authentication) {
+                    // 인증번호 일치 시 회원 가입 진행
+                    checkEmail = true;
+                    enableSubmit();
+
+                    alert("인증이 완료되었습니다. 회원 가입을 진행합니다.");
+                } else {
+                    alert("인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
+                }
+            }
+
+        });
+    }
+});
+
+//============================회원가입 동의사항================================================
+//팝업창 형태
+function agree1() {
+    window. open('/members/agree', '약관1', 'width=700px,height=500px,scrollbars=yes');
+}
+
+//동의 여부 유효성
+$("#agree1").change(function (){
+    var agree = $("#agree1").val();
+    if(agree == 1){
+        checkAgree = true;
+        enableSubmit();
+    }else {
+        checkAgree = false;
+        enableSubmit();
+    }
+})
+// 동의여부는 좀있다가 다시 수정

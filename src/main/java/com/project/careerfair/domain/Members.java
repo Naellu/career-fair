@@ -20,7 +20,7 @@ public class Members {
     private String email;
 //    private String memberType;
     private String address;
-
+    private String zipCode;
     private List<String> authority;
 
 }

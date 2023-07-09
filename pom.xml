@@ -69,10 +69,11 @@
 			<scope>test</scope>
 		</dependency>
 		<!--SMTP 사용 설정-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>3.1.0</version>
+        </dependency>
 
 		<!--Spring Security 설정-->
 		<dependency>

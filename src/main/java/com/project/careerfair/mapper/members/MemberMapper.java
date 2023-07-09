@@ -21,18 +21,20 @@ public interface MemberMapper {
                    , email
                    , member_type
                    , address
+                   , zip_code
                    )
             VALUES
                   (
-                    #{member_id}
+                    #{id}
                   , #{password}
                   , #{name} 
                   , #{gender}
-                  , #{is_active} 
-                  , #{phone_number}
+                  , #{isActive} 
+                  , #{phoneNumber}
                   , #{email}
-                  , #{member_type}
+                  , #{memberType}
                   , #{address} 
+                  , #{zipCode}
                   )       
             """)
     Integer signUpInsert(Members member);
@@ -48,11 +50,20 @@ public interface MemberMapper {
                 , email
                 , member_type
                 , address  
+                , zip_code
             FROM
             TB_MEMBERS
-            WHERE member_id = #{member_id}
+            WHERE member_id = #{id}
             """)
-    Members selectByMemberId(String member_id);
+    Members selectByMemberId(String id);
+
+    @Select("""
+            SELECT * 
+            FROM 
+            TB_MEMBERS
+            WHERE phone_number = #{phoneNumber}
+            """)
+    Members selectByPhoneNumber(String phoneNumber);
 
 /*    @Select("""
             SELECT
