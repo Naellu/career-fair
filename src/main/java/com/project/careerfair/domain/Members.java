@@ -18,9 +18,8 @@ public class Members {
     private Integer isActive;
     private String phoneNumber;
     private String email;
-//    private String memberType;
+    private String memberType;
     private String address;
     private String zipCode;
     private List<String> authority;
-
 }

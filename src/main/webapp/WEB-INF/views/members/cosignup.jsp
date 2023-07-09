@@ -95,11 +95,12 @@
         #signup-submit{
             padding: 5px;
             border: none;
-            background-color: #CDCDCD;
+            background-color: #9B9B9B;
             border-radius: 5px;
             justify-content: center;
             align-items: center;
             color: white;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -158,7 +159,7 @@
                         <input type="number" class="signphone-input2" id="phoneNum2" maxlength="4" oninput="maxLengthCheck(this)">
                         <span id="second-hyphen">-</span>
                         <input type="number" class="signphone-input2" id="phoneNum3" maxlength="4" oninput="maxLengthCheck(this)">
-                        <input type="hidden" id="totalphone-num" name="phoneNumber" value="${members.phone_number}">
+                        <input type="hidden" id="totalphone-num" name="phoneNumber" value="${members.phoneNumber}">
                         <button class="check-button" type="button" id="checkPhoneNumBtn">중복확인</button>
                     </div>
                     <div class="d-none form-text text-primary" id="availablePhoneNumMessage">
@@ -180,7 +181,14 @@
                         <option value="">직접입력</option>
                     </datalist>
                     <input type="hidden" id="totalemail" name="email" value="${members.email}">
-                    <input type="button" class="check-button" id="checkEmailBtn" value="인증하기">
+                    <input type="button" class="check-button" id="search-email" value="중복확인">
+                    <input style="display: none;" type="button" class="check-button" id="checkEmailBtn" value="인증하기">
+                    <div class="d-none form-text text-primary" id="availableEmailMessage">
+                        <i style="margin-left: 120px;" class="fa-solid fa-check"></i>등록 가능한 이메일 입니다.
+                    </div>
+                    <div class="d-none form-text text-danger" id="notAvailableEmailMessage">
+                        <i style="margin-left: 120px;" class="fa-solid fa-triangle-exclamation"></i>이미 등록된 이메일 입니다.
+                    </div>
                 </div>
 
                 <!-- 인증번호 입력 칸 -->
@@ -220,6 +228,9 @@
                     </div>
                 </div>
 
+                <div style="display: flex; justify-content: center;">
+                    <span id="need-sign" style="color: red;">* 항목은 필수 사항입니다.</span>
+                </div>
                 <div class="member-sign-column">
                     <input disabled  type="submit" id="signup-submit" value="회원가입">
                 </div>

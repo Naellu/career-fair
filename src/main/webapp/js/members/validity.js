@@ -1,16 +1,19 @@
 let checkId = false;
 let password_check = false;
 let name = false;
-let gender = false; // 현재 젠더에 문제가 있음 undissable이 안됨 추후 수정예정 그리고 약관동의 주소도 able 만들어줘야함
+let gender = false;
+let searchEmail = false;
 let checkEmail = false;
 let checkphoneNumber = false
 let checkAgree = false;
 //===============================유효성 모두 완료되면 가입가능======================================
 function enableSubmit() {
-    if (checkId && password_check && name && gender && checkEmail && checkphoneNumber && checkAgree) {
+    if (checkId && password_check && name && gender && searchEmail && checkEmail && checkphoneNumber && checkAgree) {
         $("#signup-submit").removeAttr("disabled");
+        $("#need-sign").hide();
     } else {
         $("#signup-submit").attr("disabled", "");
+        $("#need-sign").show();
     }
 }
 //==============================아이디 유효성검사 ================================================
@@ -199,8 +202,6 @@ $("#checkPhoneNumBtn").click(function() {
     })
 });
 
-//================================ 주소 =========================================
-
 //=============================== 메일 주소값 합치기 =================================
 //이메일 주소 합치기
 $("#user-email").blur(function (){
@@ -219,6 +220,36 @@ function email() {
         $("#totalemail").val(email+middle+address);
     }
 };
+
+//================================ 이메일 중복 확인 =====================================
+
+$("#search-email").click(function() {
+    const userEmail = $("#totalemail").val();
+    // 입력한 ID와 ajax 요청 보내서
+    $.ajax("/members/searchMail", {
+        method: "post",
+        data: {
+            email: userEmail
+        },
+        success: function(data) {
+
+            if (data.available) {
+                // 사용 가능하다는 메세지 출력
+                $("#availableEmailMessage").removeClass("d-none");
+                $("#notAvailableEmailMessage").addClass("d-none");
+                $("#search-email").hide();
+                $("#checkEmailBtn").show();
+                searchEmail = true;
+            } else {
+                // 사용 가능하지 않다는 메세지 출력
+                $("#availableEmailMessage").addClass("d-none");
+                $("#notAvailableEmailMessage").removeClass("d-none");
+                searchEmail = false;
+            }
+        },
+        complete: enableSubmit
+    })
+});
 
 //================================ 이메일 인증 =========================================
 // 이메일 인증 버튼 클릭 이벤트 처리
@@ -298,14 +329,16 @@ function agree1() {
 }
 
 //동의 여부 유효성
-$("#agree1").change(function (){
-    var agree = $("#agree1").val();
-    if(agree == 1){
-        checkAgree = true;
-        enableSubmit();
-    }else {
-        checkAgree = false;
-        enableSubmit();
-    }
-})
+$(function(){
+    $("#agree1").click(function(){
+        checkAgree = $(this).is(":checked");
+        if(checkAgree){
+            $("#agree1").prop('checked', true);
+            enableSubmit();
+        } else {
+            $("#agree1").prop('checked', false);
+            enableSubmit();
+        }
+    });
+});
 // 동의여부는 좀있다가 다시 수정

@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
 
@@ -40,6 +41,18 @@ public class MemberServiceImpl implements MemberService{
         Members member = mapper.selectByMemberId(id);
         boolean available = (member == null);
         return Map.of("available",member == null);
+    }
+
+    @Override
+    public Map<String, Object> checkMailId(String email, Authentication authentication) {
+        Members member = mapper.selectByMailId(email);
+        if(authentication != null) {
+            Members exMember = mapper.selectByMemberId(authentication.getName());
+
+            return Map.of("available", member == null || exMember.getEmail().equals(email));
+        }else {
+            return Map.of("available" , member == null);
+        }
     }
 
     @Override

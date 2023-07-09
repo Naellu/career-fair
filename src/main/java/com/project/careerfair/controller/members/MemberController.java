@@ -89,6 +89,13 @@ public class MemberController {
 
     }
 
+    @PostMapping("searchMail")
+    @ResponseBody
+    public Map<String, Object> checkMailId(@RequestParam("email") String email, Authentication authentication) {
+
+        return memberService.checkMailId(email, authentication);
+    }
+
     //약관 동의서
     @GetMapping("agree")
     public void agreeView (){

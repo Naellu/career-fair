@@ -1,6 +1,5 @@
 package com.project.careerfair.service.member;
 
-import com.project.careerfair.mapper.members.MailMapper;
 import com.project.careerfair.mapper.members.MemberMapper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.mail.*;
 import org.springframework.mail.javamail.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,9 +18,6 @@ public class MailServiceImpl implements MailService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private MailMapper mailMapper;
 
     @Autowired
     private MemberMapper memberMapper;

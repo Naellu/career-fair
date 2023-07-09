@@ -65,6 +65,14 @@ public interface MemberMapper {
             """)
     Members selectByPhoneNumber(String phoneNumber);
 
+    @Select("""
+            SELECT *
+            FROM
+            TB_MEMBERS
+            WHERE email = #{email}
+            """)
+    Members selectByMailId(String email);
+
 /*    @Select("""
             SELECT
             FROM MEMBERS
