@@ -1,12 +1,14 @@
 package com.project.careerfair.controller.customer;
 
 import com.project.careerfair.domain.Notice;
+import com.project.careerfair.service.admin.ExhibitionInfoService;
 import com.project.careerfair.service.customer.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,10 +39,10 @@ public class NoticeControllerAPI {
     @PostMapping
     public ResponseEntity<Map<String, Object>> create(
             Notice notice,
-            @RequestParam(value = "files", required = false) MultipartFile[] files) {
-        log.info("log{}", files != null);
+            @RequestParam(value = "files", required = false) MultipartFile[] files,
+            Authentication authentication) {
         try {
-            boolean ok = noticeService.create(notice, files);
+            boolean ok = noticeService.create(notice, files, authentication);
             Map<String, Object> response = new HashMap<>();
             if (ok) {
                 // 생성이 성공한 경우에는 적절한 응답을 반환
@@ -67,9 +69,10 @@ public class NoticeControllerAPI {
             @PathVariable("noticeId") Integer noticeId,
             Notice notice,
             @RequestParam(value = "removeFiles", required = false) List<String> removeFileNames,
-            @RequestParam(value = "files", required = false) MultipartFile[] files) {
+            @RequestParam(value = "files", required = false) MultipartFile[] files,
+            Authentication authentication) {
         try {
-            boolean ok = noticeService.modify(notice, files, removeFileNames);
+            boolean ok = noticeService.modify(notice, files, removeFileNames,authentication);
             Map<String, Object> response = new HashMap<>();
             if (ok) {
                 // 수정이 성공한 경우에는 적절한 응답을 반환

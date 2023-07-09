@@ -4,7 +4,7 @@ const bucketUrl = document.querySelector("#bucketUrl").value;
 function detailView() {
     const url = window.location.href;
     const companyId = url.substring(url.lastIndexOf("/") + 1);
-    fetch(`/api/admin/recruiter/${companyId}`)
+    fetch(`/api/user/recruiter/${companyId}`)
         .then(response => response.json())
         .then(data => {
             const company = data.company;
@@ -25,7 +25,7 @@ function detailView() {
             const fileNameContainer = document.querySelector('#file-name');
 
 
-            const industryId = company.industryId - 1;
+            const industryId = company.industryId -1;
 
             const industryName = data.industryList[industryId].industryName;
 
@@ -80,52 +80,3 @@ function detailView() {
         });
 }
 
-const holdBtn = document.querySelector('#hold-btn');
-const rejectBtn = document.querySelector('#reject-btn');
-const approveBtn = document.querySelector('#approve-btn');
-
-holdBtn.addEventListener('click', function () {
-    data = {
-        "status": "hold"
-    }
-    changeStatus(data);
-});
-
-rejectBtn.addEventListener('click', function () {
-    data = {
-        "status": "rejected"
-    }
-    changeStatus(data);
-});
-
-approveBtn.addEventListener('click', function () {
-    data = {
-        "status": "approved"
-    }
-    changeStatus(data);
-});
-
-function changeStatus(data) {
-    const url = window.location.href;
-    const companyId = url.substring(url.lastIndexOf("/") + 1);
-    JSON.stringify(data);
-
-    fetch(`/api/admin/recruiter/${companyId}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (response.status === 200) {
-                // 수정이 성공한 경우
-                location.href = `/admin/recruiter/${companyId}`;
-                alert("처리 완료되었습니다.");
-            } else {
-                location.href = `/admin/recruiter/${companyId}`;
-                alert("처리 실패하였습니다.");
-            }
-        })
-
-}

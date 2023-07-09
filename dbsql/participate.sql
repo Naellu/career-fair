@@ -41,8 +41,16 @@ LEFT JOIN TB_FILES f ON c.company_id = f.company_id;
 
 SELECT * FROM VIEW_COMPANY;
 
+SELECT * FROM TB_FILES;
+
 -- 상태변경
 UPDATE TB_COMPANIES t
 JOIN TB_MEMBERS m ON t.member_id = m.member_id
 SET t.status = 'new_status', m.member_type = 'new_member_type'
-WHERE TB_COMPANIES.company_id = 'your_company_id';
+WHERE TB_COMPANIES.company_id = 'your_company_id';
+
+SELECT * FROM TB_FILES;
+TRUNCATE TABLE TB_FILES;
+DELETE FROM TB_FILES WHERE notice_id IS NULL;
+
+ SELECT * FROM TB_COMPANIES WHERE member_id = 'chuncom' and round < 2  ORDER BY company_id DESC;

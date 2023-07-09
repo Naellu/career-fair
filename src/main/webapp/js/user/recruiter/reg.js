@@ -114,7 +114,7 @@ ceoNameInput.addEventListener("keyup", function () {
 
 
 function industryList() {
-    fetch(`/api/user/recruiter/`, {
+    fetch(`/api/user/recruiter/industry`, {
         method: "GET",
     })
         .then(response => response.json())
