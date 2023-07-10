@@ -21,5 +21,7 @@ public interface RecruiterService {
 
     Map<String, Object> getDetail(Integer companyId);
 
-    boolean modify(Company company, MultipartFile[] files, List<String> removeFileNames);
+    boolean modify(Company company, MultipartFile[] files, List<String> removeFileNames) throws IOException;
+
+
 }

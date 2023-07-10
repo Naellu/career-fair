@@ -121,6 +121,7 @@ public class NoticeServiceImpl implements NoticeService {
         return cnt == 1;
     }
 
+    //  공지사항 수정
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean modify(Notice notice, MultipartFile[] files, List<String> removeFileNames, Authentication authentication) throws IOException {
@@ -131,7 +132,7 @@ public class NoticeServiceImpl implements NoticeService {
                 removeFromS3(noticeId, fileName);
 
                 // FileName 테이블의 데이터 삭제
-                noticeMapper.deleteFileNameByNoticeIdAndFileName(notice.getNoticeId(), fileName);
+                noticeMapper.deleteFileNameByNoticeIdAndFileName(noticeId, fileName);
             }
         }
 
@@ -144,6 +145,7 @@ public class NoticeServiceImpl implements NoticeService {
         return cnt == 1;
     }
 
+    // 공지사항삭제
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean delete(Integer noticeId) {
@@ -192,11 +194,15 @@ public class NoticeServiceImpl implements NoticeService {
     public void removeFromS3(Integer noticeId, String fileName) {
         // 파일 삭제
         String objectKey = "career_fair/notice/" + noticeId + "/" + fileName;
+
+        System.out.println("objectKey = " + objectKey);
+        
         DeleteObjectRequest dor = DeleteObjectRequest.builder()
                 .bucket(bucketName)
                 .key(objectKey)
                 .build();
-
+        System.out.println("DeleteObjectRequest = " + dor);
+        System.out.println("bucketName = " + bucketName);
         s3.deleteObject(dor);
     }
 }

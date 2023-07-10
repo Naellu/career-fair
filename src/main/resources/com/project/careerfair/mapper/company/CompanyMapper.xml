@@ -155,6 +155,53 @@
         </where>
         ORDER BY company_id DESC
     </select>
+
+    <!-- 특정 회사의 특정 파일 삭제 -->
+    <delete id="deleteFileNameByCompanyIdAndFileName">
+        DELETE FROM TB_FILES
+        WHERE company_id = #{companyId}
+        AND file_name = #{fileName}
+    </delete>
+
+    <!-- 업데이트 쿼리 -->
+    <update id="update">
+        UPDATE TB_COMPANIES SET
+        company_name = #{companyName},
+        registration_number = #{registrationNumber},
+        number_of_employees = #{numberOfEmployees},
+        establishment_date = #{establishmentDate},
+        revenue = #{revenue},
+        ceo_name = #{ceoName},
+        postal_code = #{postalCode},
+        address = #{address},
+        detail_address = #{detailAddress},
+        industry_id = #{industryId}
+        WHERE company_id = #{companyId};
+    </update>
+
+    <!-- 신청 삭제 -->
+    <delete id="deleteById">
+        DELETE FROM TB_COMPANIES WHERE company_id = #{companyId}
+    </delete>
+
+    <!-- 기업id로 파일 목록 불러오기 -->
+    <select id="selectFileNamesByCompanyId" resultType="String"
+            parameterType="java.lang.Integer">
+        SELECT file_name
+        FROM
+        TB_FILES
+        WHERE company_id =
+        #{companyId}
+    </select>
+
+    <!-- 기업id로 파일 삭제 -->
+    <delete id="deleteFileNameByCompanyId">
+        DELETE FROM TB_FILES
+        WHERE company_id =
+        #{companyId}
+    </delete>
+
+
 </mapper>
 
 

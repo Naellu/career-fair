@@ -28,4 +28,9 @@ public interface CompanyMapper {
     Integer changeStatusWithMemberType(Integer companyId, String statusValue);
 
     List<Company> getListByName(String roundValue, String memberId, Integer round);
+
+    void deleteFileNameByCompanyIdAndFileName(Integer companyId, String fileName);
+
+    int update(Company company);
+
 }

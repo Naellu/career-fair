@@ -28,11 +28,13 @@ public class RecruiterControllerAPI {
 
     private final RecruiterService recruiterService;
 
+    // 업종목록 불러오기
     @GetMapping("industry")
     public List<Industry> industryList() {
         return recruiterService.getIndustryList();
     }
 
+    // 참여기업신청하기
     @PostMapping
     public ResponseEntity<Map<String, Object>> reg(
             Company company,
@@ -48,14 +50,13 @@ public class RecruiterControllerAPI {
         Map<String, Object> response = new HashMap<>();
 
         if (ok) {
-            // 성공 시 적절한 응답 반환
             return ResponseEntity.ok(response);
         } else {
-            // 실패 시 적절한 응답 반환
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
+    // 목록 불러오기
     @GetMapping
     public ResponseEntity<Map<String, Object>> getList(
             @RequestParam(value = "roundValue", required = false) String roundValue,
@@ -64,13 +65,15 @@ public class RecruiterControllerAPI {
         return ResponseEntity.ok(result);
     }
 
+    // 상세 불러오기
     @GetMapping("{companyId}")
     public ResponseEntity<Map<String, Object>> detail(@PathVariable("companyId") Integer companyId) {
         Map<String, Object> result = recruiterService.getDetail(companyId);
         return ResponseEntity.ok(result);
     }
 
- /*   @PostMapping("{companyId}")
+
+    @PostMapping("{companyId}")
     public ResponseEntity<Map<String, Object>> modify(
             @PathVariable("companyId") Integer companyId,
             Company company,
@@ -80,17 +83,14 @@ public class RecruiterControllerAPI {
             boolean ok = recruiterService.modify(company, files, removeFileNames);
             Map<String, Object> response = new HashMap<>();
             if (ok) {
-                // 수정이 성공한 경우에는 적절한 응답을 반환
                 response.put("message", "수정되었습니다.");
                 return ResponseEntity.ok(response);
             } else {
-                // 수정이 실패한 경우에는 적절한 응답을 반환
                 response.put("message", "수정에실패하였습니다.");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }*/
-
+    }
 }
