@@ -25,7 +25,8 @@
     <form action="/note/write" method="post">
         <div class="row">
             <div class="col-sm-12">
-                <h5 class="mb-3">${note.recipientId}님에게 쪽지 보내기</h5>
+                <label for="recipientId" class="form-label">받는사람</label>
+                <input type="text" class="form-control" name = "recipientId" id="recipientId" value="${note.recipientId}">
             </div>
         </div>
         <div class="row">
@@ -45,7 +46,6 @@
             </div>
 
             <input type="hidden" name="senderId" value="${note.senderId}">
-            <input type="hidden" name="recipientId" value="${note.recipientId}">
         </div>
         <div class="row">
             <div class="col-sm-12 text-right">

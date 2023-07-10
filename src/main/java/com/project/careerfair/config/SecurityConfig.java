@@ -30,6 +30,8 @@ public class SecurityConfig {
                 .logoutUrl("/login/logout")
                 .logoutSuccessUrl("/");
 
+
+
 //        http.csrf().disable().cors().disable()
 //                .authorizeHttpRequests(request -> request
 //                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()

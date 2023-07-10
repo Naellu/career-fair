@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.util.*" %>
 
@@ -18,11 +19,15 @@
 </head>
 <body>
 <my:navBar/>
+<sec:authentication property="name" var="userId" />
 
 마이페이지!!!!!!
 <a href="/user/recruiter/list" class="btn btn-primary">신청기록보기</a>
 <button>공고관리</button>
-<button>쪽지</button>
+<c:url value="/note/list/receive" var="noteListURL">
+    <c:param name="userId" value="${userId}"/>
+</c:url>
+<button onclick="location.href='${noteListURL}'">쪽지</button>
 <button>내정보</button>
 <button>업종별이력서보기</button>
 
