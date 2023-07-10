@@ -16,7 +16,7 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a href="#">박람회 소개</a></li>
-                <li><a href="#">참여기업</a></li>
+                <li><a href="/company/list">참여기업</a></li>
                 <li><a href="#">채용공고</a></li>
                 <li><a href="#">Q&A</a></li>
 
@@ -44,7 +44,7 @@
                     <li><a href="/login/login">로그인</a></li>
                 </sec:authorize>
 
-                <li><a href="/member/company/mypage">작업용마이페이지</a></li>
+                <li><a href="/member/company/mypage">작업용기업마이페이지(삭제예정)</a></li>
 
                 <sec:authorize access="hasAuthority('user')">
                     <li><a href="/member/mypage">마이페이지</a></li>
