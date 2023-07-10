@@ -56,7 +56,6 @@ function listView(roundValue) {
 
 const statusButtons = document.querySelectorAll("#round-btn button");
 
-
 statusButtons.forEach(button => {
     button.addEventListener("click", function (event) {
         roundValue = button.value;

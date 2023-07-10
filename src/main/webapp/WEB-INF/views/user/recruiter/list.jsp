@@ -28,7 +28,7 @@
     ${memberId}님의 참여 현황
 </my:cheader>
 
-<div class="container-lg">
+<div class="container-lg d-flex mt-3">
     <nav class="navbar navbar-expand-lg bg-body-white ">
         <div class="container-fluid bg-white">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -51,6 +51,9 @@
             </div>
         </div>
     </nav>
+    <div>
+        <a class="btn btn-success" href="/user/recruiter/reg">참여신청하기</a>
+    </div>
 </div>
 <div class="container-lg custom-div">
     <table id="recruiter-table" class="table table-bordered">

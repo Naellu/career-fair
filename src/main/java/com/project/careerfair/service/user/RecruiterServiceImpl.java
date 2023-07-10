@@ -5,6 +5,7 @@ import com.project.careerfair.domain.Industry;
 import com.project.careerfair.mapper.company.CompanyMapper;
 import com.project.careerfair.mapper.industry.IndustryMapper;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
+import com.project.careerfair.service.industry.IndustryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +28,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RecruiterServiceImpl implements RecruiterService {
 
-    private final IndustryMapper industryMapper;
+    private final IndustryService industryService;
 
     private final CompanyMapper companyMapper;
 
@@ -37,11 +38,6 @@ public class RecruiterServiceImpl implements RecruiterService {
     private String bucketName;
 
     private final S3Client s3;
-
-    @Override
-    public List<Industry> getIndustryList() {
-        return industryMapper.getIndustryList();
-    }
 
     // 신청
     @Override
@@ -74,7 +70,7 @@ public class RecruiterServiceImpl implements RecruiterService {
     public Map<String, Object> getDetail(Integer companyId) {
         Company company = companyMapper.getDetail(companyId);
 
-        List<Industry> industryList = industryMapper.getIndustryList();
+        List<Industry> industryList = industryService.getIndustryList();
         return Map.of("company", company, "industryList", industryList);
     }
 

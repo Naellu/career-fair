@@ -61,10 +61,6 @@
             </nav>
         </div>
     </div>
-
-    <div>
-        <a class="btn btn-primary" href="/user/recruiter/reg">참여신청하기</a>
-    </div>
 </div>
 
 

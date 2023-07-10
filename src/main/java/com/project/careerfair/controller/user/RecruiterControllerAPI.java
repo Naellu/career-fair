@@ -2,13 +2,10 @@ package com.project.careerfair.controller.user;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
-import com.project.careerfair.domain.Notice;
-import com.project.careerfair.mapper.industry.IndustryMapper;
-import com.project.careerfair.service.admin.ExhibitionInfoService;
+import com.project.careerfair.service.industry.IndustryService;
 import com.project.careerfair.service.user.RecruiterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -28,10 +25,12 @@ public class RecruiterControllerAPI {
 
     private final RecruiterService recruiterService;
 
+    private final IndustryService industryService;
+
     // 업종목록 불러오기
     @GetMapping("industry")
     public List<Industry> industryList() {
-        return recruiterService.getIndustryList();
+        return industryService.getIndustryList();
     }
 
     // 참여기업신청하기
