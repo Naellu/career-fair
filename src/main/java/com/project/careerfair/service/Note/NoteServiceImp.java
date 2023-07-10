@@ -61,9 +61,9 @@ public class NoteServiceImp implements NoteService {
     }
 
     @Override
-    public Note getNoteDetail(Note note) {
+    public Note getNoteDetail(Integer noteId) {
 
-        return mapper.getNoteDetailByNoteId(note);
+        return mapper.getNoteDetailByNoteId(noteId);
     }
 
     @Override

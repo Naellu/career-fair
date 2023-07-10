@@ -1,14 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 2023-07-05
-  Time: 오후 1:50
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +18,7 @@
 <body>
 <my:navBar/>
 <my:font/>
+<sec:authentication property="name" var="userId" />
 <br>
 <c:if test="${not empty message }">
     <div class="container">
@@ -37,10 +32,13 @@
     <div class="container">
         <ul class="nav">
             <li class="nav-item" style="background-color:#f8f3ed">
-                <a class="nav-link active" href="/note/list/receive" style="color: #222222">받은 쪽지함</a>
+                <a class="nav-link active" href="/note/list/receive?userId=${userId}" style="color: #222222">받은 쪽지함</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/note/list/send" style="color: #222222">보낸 쪽지함</a>
+                <a class="nav-link" href="/note/list/send?userId=${userId}" style="color: #222222">보낸 쪽지함</a>
+            </li>
+            <li class="nav-item ml-auto"> <!-- 오른쪽 정렬 -->
+                <button class="btn btn-primary" onclick="openNoteWindow('/note/write?senderId=${userId}')">쪽지쓰기</button>
             </li>
         </ul>
     <table class="table" style="">

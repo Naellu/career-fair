@@ -46,7 +46,7 @@ public interface NoteMapper {
             WHERE note_id = #{noteId}
             """)
     @ResultMap("noteDetail")
-    Note getNoteDetailByNoteId(Note note);
+    Note getNoteDetailByNoteId(Integer noteId);
 
     @Insert("""
             INSERT INTO 

@@ -8,7 +8,7 @@ public interface NoteService {
 
     Map<String, Object> getListByUserId(String userId, Integer currentPage, String distinction);
 
-    Note getNoteDetail(Note note);
+    Note getNoteDetail(Integer noteId);
 
     void writeNote(Note note);
 
