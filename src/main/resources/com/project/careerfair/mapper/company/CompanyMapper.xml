@@ -201,6 +201,10 @@
         #{companyId}
     </delete>
 
+    <select id="getApprovedList" resultMap="companyMap">
+        SELECT * FROM TB_COMPANIES
+        WHERE status = 'approved'
+    </select>
 
 </mapper>
 

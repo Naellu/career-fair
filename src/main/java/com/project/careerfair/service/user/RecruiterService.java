@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface RecruiterService {
-    // 산업 정보
-    List<Industry> getIndustryList();
-
     // 신청 등록
     boolean create(Company company, MultipartFile[] files, Authentication authentication) throws IOException;
 

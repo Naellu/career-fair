@@ -1,31 +1,33 @@
-package com.project.careerfair.service.admin;
+package com.project.careerfair.service.user;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
-import com.project.careerfair.domain.Notice;
 import com.project.careerfair.mapper.company.CompanyMapper;
-import com.project.careerfair.mapper.industry.IndustryMapper;
+import com.project.careerfair.service.admin.ExhibitionInfoService;
 import com.project.careerfair.service.industry.IndustryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("adminRecruiterServiceImpl")
+@Service
 @Slf4j
 @RequiredArgsConstructor
-public class RecruiterServiceImpl implements RecruiterService {
+public class ParticipatingCompanyServiceImpl implements ParticipatingCompanyService {
 
     private final CompanyMapper companyMapper;
 
     private final IndustryService industryService;
 
+    private final ExhibitionInfoService exhibitionInfoService;
+
     @Override
-    public Map<String, Object> getList(String search, String type, Integer page, String status) {
-        Integer pageSize = 10; // 10개씩
+    public Map<String, Object> getList(String search, String type, Integer industryId, Integer roundValue) {
+        log.info("log {}, {}, {}, {} ", search, type, industryId, roundValue);
+
+      /*  Integer pageSize = 10; // 10개씩
         Integer startNum = (page - 1) * pageSize; // 0 10 20
 
         //페이지네이션 정보
@@ -57,33 +59,16 @@ public class RecruiterServiceImpl implements RecruiterService {
         pageInfo.put("rightPageNum", rightPageNum);
         pageInfo.put("currentPageNum", page);
         pageInfo.put("prevPageNum", prevPageNum);
-        pageInfo.put("nextPageNum", nextPageNum);
+        pageInfo.put("nextPageNum", nextPageNum);*/
 
-        List<Company> companyList = companyMapper.getList(startNum, pageSize, search, type, status);
-
-        return Map.of("pageInfo", pageInfo, "companyList", companyList);
-    }
-
-    @Override
-    public Map<String, Object> getDetail(Integer companyId) {
-        Company company = companyMapper.getDetail(companyId);
-
+        // 산업 목록
         List<Industry> industryList = industryService.getIndustryList();
-        return Map.of("company", company, "industryList", industryList);
-    }
 
-    @Override
-    public boolean changeStatus(Integer companyId, Map<String, String> status) {
-        String statusValue = status.get("status");
+        // 회차
+        Integer round = exhibitionInfoService.getCurrentRound();
 
-        Integer cnt = 0;
-
-        if (statusValue.equals("approved")) {
-            cnt = companyMapper.changeStatusWithMemberType(companyId, statusValue);
-        } else {
-            cnt = companyMapper.changeStatus(companyId, statusValue);
-        }
-
-        return cnt != 0;
+        List<Company> companyList = companyMapper.getApprovedList();
+        // "pageInfo", pageInfo,
+        return Map.of("companyList", companyList, "industryList", industryList, "round", round);
     }
 }
