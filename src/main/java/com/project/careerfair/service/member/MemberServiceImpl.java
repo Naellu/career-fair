@@ -2,11 +2,13 @@ package com.project.careerfair.service.member;
 
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.mapper.members.MemberMapper;
+import com.project.careerfair.mapper.members.MembersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
@@ -20,6 +22,9 @@ public class MemberServiceImpl implements MemberService{
 
     @Autowired
     private MemberMapper mapper;
+
+    @Autowired
+    private MembersMapper mapper2;
 
     @Override
     public boolean signup(Members member) {
@@ -55,6 +60,7 @@ public class MemberServiceImpl implements MemberService{
         }
     }
 
+
     @Override
     public Map<String, Object> checkPhoneNum(String phoneNumber, Authentication authentication) {
         Members member = mapper.selectByPhoneNumber(phoneNumber);
@@ -82,4 +88,9 @@ public class MemberServiceImpl implements MemberService{
 
             return result;
         }
+    @Override
+    public Members get(String id) {
+            return mapper2.selectId(id);
     }
+}
+

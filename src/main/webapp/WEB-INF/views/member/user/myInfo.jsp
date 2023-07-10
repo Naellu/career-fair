@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: user
   Date: 2023-07-10
-  Time: 오후 2:02
+  Time: 오후 2:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -26,15 +26,8 @@
 <body>
 <my:navBar/>
 
-<sec:authentication property="name" var="userId" />
-<c:url value="/note/list/receive" var="noteListURL">
-    <c:param name="userId" value="${userId}"/>
-</c:url>
-<button onclick="location.href='${noteListURL}'">쪽지</button>
-<div>입사지원 - 아직</div>
-<div>이력서 - 아직</div>
-<div>스크랩한 공고 - 아직</div>
-<a href="/member/user/myInfo">내 정보</a>
+    <div>${members.id}님의 정보</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
