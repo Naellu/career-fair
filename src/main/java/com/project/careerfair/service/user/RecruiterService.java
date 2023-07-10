@@ -23,5 +23,5 @@ public interface RecruiterService {
 
     boolean modify(Company company, MultipartFile[] files, List<String> removeFileNames) throws IOException;
 
-    boolean delete(Integer companyId);
+
 }

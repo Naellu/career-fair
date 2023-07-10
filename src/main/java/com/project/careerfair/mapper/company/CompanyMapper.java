@@ -33,9 +33,4 @@ public interface CompanyMapper {
 
     int update(Company company);
 
-    List<String> selectFileNamesByCompanyId(Integer companyId);
-
-    void deleteFileNameByCompanyId(Integer companyId);
-
-    int deleteById(Integer companyId);
 }

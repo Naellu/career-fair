@@ -103,29 +103,6 @@ public class RecruiterServiceImpl implements RecruiterService {
         return cnt == 1;
     }
 
-    // 신청 삭제
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public boolean delete(Integer companyId) {
-        //파일 이름들 불러오기
-        List<String> fileNames = companyMapper.selectFileNamesByCompanyId(companyId);
-
-        log.info("filenames: {}",  fileNames);
-
-        if (fileNames != null && !fileNames.isEmpty()) {
-            for (String fileName : fileNames) {
-                removeFromS3(companyId, fileName);
-            }
-        }
-
-        // 테이블에서 파일 삭제
-        companyMapper.deleteFileNameByCompanyId(companyId);
-
-        //공지사항 삭제
-        int cnt = companyMapper.deleteById(companyId);
-        return cnt == 1;
-    }
-
     // 파일 등록 메소드
     public void fileToS3(Company company, MultipartFile[] files) throws IOException {
         // 파일등록

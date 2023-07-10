@@ -61,7 +61,6 @@ public class RecruiterControllerAPI {
     public ResponseEntity<Map<String, Object>> getList(
             @RequestParam(value = "roundValue", required = false) String roundValue,
             Authentication authentication) {
-        log.info("ddd");
         Map<String, Object> result = recruiterService.getList(roundValue, authentication.getName());
         return ResponseEntity.ok(result);
     }
@@ -94,21 +93,4 @@ public class RecruiterControllerAPI {
             throw new RuntimeException(e);
         }
     }
-
- @DeleteMapping("{companyId}")
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable("companyId") Integer companyId) {
-        boolean ok = recruiterService.delete(companyId);
-
-        Map<String, Object> response = new HashMap<>();
-        if (ok) {
-            // 삭제가 성공한 경우에는 적절한 응답을 반환
-            response.put("message", "삭제되었습니다.");
-            return ResponseEntity.ok(response);
-        } else {
-            // 삭제가 실패한 경우에는 적절한 응답을 반환
-            response.put("message", "삭제에 실패하였습니다.");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
-    }
-
 }
