@@ -31,7 +31,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-tabs nav-pills">
+                    <ul id="round-ul" class="navbar-nav me-auto mb-2 mb-lg-0 nav-tabs nav-pills">
                         <c:forEach begin="1" end="5"  varStatus="st">
                             <li class="nav-item">
                                 <a id="chickenLink" class="nav-link">${6 - st.index}</a>
