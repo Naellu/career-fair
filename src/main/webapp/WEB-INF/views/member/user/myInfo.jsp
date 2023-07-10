@@ -26,7 +26,7 @@
 <body>
 <my:navBar/>
 
-    <div>${members.id}님의 정보</div>
+    <div>${members.name}님의 정보</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
