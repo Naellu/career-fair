@@ -43,6 +43,7 @@ public class RecruiterServiceImpl implements RecruiterService {
         return industryMapper.getIndustryList();
     }
 
+    // 신청
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean create(Company company, MultipartFile[] files, Authentication authentication) throws IOException {
@@ -58,6 +59,7 @@ public class RecruiterServiceImpl implements RecruiterService {
         return cnt == 1;
     }
 
+    // 신청내용 목록
     @Override
     public Map<String, Object> getList(String roundValue, String memberId) {
         Integer round = exhibitionInfoService.getCurrentRound();
@@ -67,6 +69,7 @@ public class RecruiterServiceImpl implements RecruiterService {
         return Map.of("companyList", companyList);
     }
 
+    // 신청내용 상세
     @Override
     public Map<String, Object> getDetail(Integer companyId) {
         Company company = companyMapper.getDetail(companyId);
@@ -75,10 +78,52 @@ public class RecruiterServiceImpl implements RecruiterService {
         return Map.of("company", company, "industryList", industryList);
     }
 
+    // 신청내역 수정
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean modify(Company company, MultipartFile[] files, List<String> removeFileNames) {
-        return false;
+    public boolean modify(Company company, MultipartFile[] files, List<String> removeFileNames) throws IOException {
+        //파일삭제
+        Integer companyId = company.getCompanyId();
+        log.info("log : {}", companyId);
+        if (removeFileNames != null && !removeFileNames.isEmpty()){
+            for ( String fileName: removeFileNames) {
+                removeFromS3(companyId, fileName);
+
+                //테이블의 데이터 삭제
+                companyMapper.deleteFileNameByCompanyIdAndFileName(companyId, fileName);
+            }
+        }
+        
+        // 업데이트
+        int cnt = companyMapper.update(company);
+
+        if (files != null) {
+            fileToS3(company, files);
+        }
+        return cnt == 1;
+    }
+
+    // 신청 삭제
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean delete(Integer companyId) {
+        //파일 이름들 불러오기
+        List<String> fileNames = companyMapper.selectFileNamesByCompanyId(companyId);
+
+        log.info("filenames: {}",  fileNames);
+
+        if (fileNames != null && !fileNames.isEmpty()) {
+            for (String fileName : fileNames) {
+                removeFromS3(companyId, fileName);
+            }
+        }
+
+        // 테이블에서 파일 삭제
+        companyMapper.deleteFileNameByCompanyId(companyId);
+
+        //공지사항 삭제
+        int cnt = companyMapper.deleteById(companyId);
+        return cnt == 1;
     }
 
     // 파일 등록 메소드
@@ -109,6 +154,7 @@ public class RecruiterServiceImpl implements RecruiterService {
     public void removeFromS3(Integer companyId, String fileName) {
         // 파일 삭제
         String objectKey = "career_fair/company/" + companyId + "/" + fileName;
+
         DeleteObjectRequest dor = DeleteObjectRequest.builder()
                 .bucket(bucketName)
                 .key(objectKey)
@@ -116,5 +162,4 @@ public class RecruiterServiceImpl implements RecruiterService {
 
         s3.deleteObject(dor);
     }
-
 }

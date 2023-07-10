@@ -1,16 +1,17 @@
 modifyView();
-const companyNameInput = document.querySelector("#input-company-name");
-const registrationNumberInput = document.querySelector("#input-registration-number");
-const numberOfEmployeesInput = document.querySelector("#input-number-of-employees");
-const establishmentDateInput = document.querySelector("#input-establishment-date");
-const revenueInput = document.querySelector("#input-revenue");
-const ceoNameInput = document.querySelector("#input-ceo-name");
-const industryIdSelect = document.querySelector("#input-industry-id");
-const postalCodeInput = document.querySelector("#post-code");
-const addressInput = document.querySelector("#input-address");
-const detailAddressInput = document.querySelector("#input-detail-address");
-const fileInput = document.querySelector("#form-file");
-const updateBtn = document.querySelector("#update-btn");
+
+const companyNameInput = document.querySelector('#input-company-name');
+const registrationNumberInput = document.querySelector('#input-registration-number');
+const numberOfEmployeesInput = document.querySelector('#input-number-of-employees');
+const establishmentDateInput = document.querySelector('#input-establishment-date');
+const revenueInput = document.querySelector('#input-revenue');
+const ceoNameInput = document.querySelector('#input-ceo-name');
+const industryIdInput = document.querySelector('#input-industry-id');
+const postalCodeInput = document.querySelector('#post-code');
+const addressInput = document.querySelector('#input-address');
+const detailAddressInput = document.querySelector('#input-detail-address');
+const fileNameContainer = document.querySelector('#file-name');
+const updateBtn = document.querySelector('#update-btn');
 
 function modifyView() {
     const url = window.location.href;
@@ -19,21 +20,10 @@ function modifyView() {
         .then(response => response.json())
         .then(data => {
             const company = data.company;
-            const companyInput = document.querySelector('#input-company-name');
-            const registrationNumberInput = document.querySelector('#input-registration-number');
-            const numberOfEmployeesInput = document.querySelector('#input-number-of-employees');
-            const establishmentDateInput = document.querySelector('#input-establishment-date');
-            const revenueInput = document.querySelector('#input-revenue');
-            const ceoNameInput = document.querySelector('#input-ceo-name');
-            const postalCodeInput = document.querySelector('#post-code');
-            const addressInput = document.querySelector('#input-address');
-            const detailAddressInput = document.querySelector('#input-detail-address');
-            const statusInput = document.querySelector('#status');
-            const fileNameContainer = document.querySelector('#file-name');
 
             industryList(company.industryId);
 
-            companyInput.value = company.companyName;
+            companyNameInput.value = company.companyName;
             registrationNumberInput.value = company.registrationNumber;
             numberOfEmployeesInput.value = company.numberOfEmployees;
             establishmentDateInput.value = company.establishmentDate;
@@ -99,7 +89,61 @@ function modifyView() {
 }
 
 updateBtn.addEventListener("click", function () {
-    alert("dd");
+    const url = window.location.href;
+    const companyId = url.substring(url.lastIndexOf("/") + 1);
+
+    const checkboxes = document.querySelectorAll("[name=removeFiles]");
+
+    const removeFiles = [];
+
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            removeFiles.push(checkboxes[i].value);
+        }
+    }
+
+    const formData = new FormData();
+
+    const fileInput = document.querySelector("#form-file");
+    const files = fileInput.files;
+
+    for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+    }
+
+    formData.append("removeFiles", removeFiles);
+    formData.append("companyId", companyId);
+    formData.append("companyName", companyNameInput.value);
+    formData.append("registrationNumber", registrationNumberInput.value);
+    formData.append("numberOfEmployees", numberOfEmployeesInput.value);
+    formData.append("establishmentDate", establishmentDateInput.value);
+    formData.append("revenue", revenueInput.value);
+    formData.append("ceoName", ceoNameInput.value);
+    formData.append("industryId", industryIdInput.value);
+    formData.append("postalCode", postalCodeInput.value);
+    formData.append("address", addressInput.value);
+    formData.append("detailAddress", detailAddressInput.value);
+
+
+    fetch(`/api/user/recruiter/${companyId}`, {
+        method: "POST",
+        headers: {},
+        body: formData
+    })
+        .then(response => {
+            if (response.status === 200) {
+                // 수정이 성공한 경우
+                location.href = "/user/recruiter/list";
+                alert("수정이 완료되었습니다.");
+            } else {
+                location.href = `/user/recruiter/modify/${companyId}`;
+                alert("수정에 실패하였습니다.");
+            }
+        })
+        .catch(error => {
+            location.href = `/`;
+            alert("오류가 발생했습니다 관리자에게 문의해주세요");
+        });
 });
 
 function industryList(industryId) {

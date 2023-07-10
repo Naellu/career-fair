@@ -28,7 +28,9 @@ public class RecruiterController {
 
     @GetMapping("list")
     public String list(Authentication authentication, Model model) {
-        model.addAttribute("memberId", authentication.getName());
+        if (authentication!= null){
+            model.addAttribute("memberId", authentication.getName());
+        }
         return "user/recruiter/list";
     }
 

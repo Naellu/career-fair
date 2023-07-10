@@ -24,7 +24,6 @@ function detailView() {
             const statusInput = document.querySelector('#status');
             const fileNameContainer = document.querySelector('#file-name');
 
-
             const industryId = company.industryId -1;
 
             const industryName = data.industryList[industryId].industryName;
@@ -79,4 +78,29 @@ function detailView() {
             console.error("Error:", error);
         });
 }
+
+const removeBtn = document.querySelector("#remove-btn");
+removeBtn.addEventListener("click", function () {
+    const url = window.location.href;
+    const companyId = url.substring(url.lastIndexOf("/") + 1);
+    console.log(companyId);
+
+    fetch(`/api/user/recruiter/${companyId}`, {
+        method: "DELETE"
+    })
+        .then(response => {
+                if (response.status === 200) {
+                    // 수정이 성공한 경우
+                    location.href = "/user/recruiter/list";
+                    alert("삭제 되었습니다");
+                } else {
+                    location.href = `/user/recruiter/${companyId}`;
+                    alert("삭제 실패하였습니다.");
+                }
+            }
+        )
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});
 
