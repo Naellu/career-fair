@@ -23,28 +23,29 @@
     <section id="hero" class="hero">
         <div class="container position-relative">
             <div class="row gy-5" data-aos="fade-in">
-                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-                    <h2>2023년 제3회 <span>NN 채용박람회</span></h2>
-                    <p>
-                    <div>
-                        ‘2023 중견기업 일자리 박람회’가 일상 회복에 발맞춰 오는 7월 3일(월) 코엑스 B1홀에서 개최됩니다.
-                    </div>
+<%--                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">--%>
+                <div class="col-lg-6 order-1 order-lg-2">
+<%--                    <h2>2023년 제3회 <span>NN 채용박람회</span></h2>--%>
+<%--                    <p>--%>
+<%--                    <div>--%>
+<%--                        ‘2023 중견기업 일자리 박람회’가 일상 회복에 발맞춰 오는 7월 3일(월) 코엑스 B1홀에서 개최됩니다.--%>
+<%--                    </div>--%>
 
-                        <br>
+<%--                        <br>--%>
 
-                    <div>
-                        올해 7회차를 맞이한 ‘중견기업 일자리 박람회’는 국내 유일의 중견기업 일자리 박람회입니다. 대한민국을 대표하는 우수 중견기업 80여 개사가 참가하는 이번 박람회는 기업과
-                        구직자 간 매칭 극대화을 위해 채용 정보를 포함한 다양한 콘텐츠를 온·오프라인으로 제공합니다.
-                        중견기업 구직자에게 실질적인 취업 기회를 제공하기 위해 현직자 채용 상담, 현장 심층 면접, 채용 설명회, 인사 담당자 토크 콘서트 등 다채로운 프로그램을 마련했습니다.
-                        대한민국을 대표하는 우수 중견기업 취업을 희망하는 청년 인재 여러분의 많은 관심과 참여 부탁드립니다.
-                    </div>
+<%--                    <div>--%>
+<%--                        올해 7회차를 맞이한 ‘중견기업 일자리 박람회’는 국내 유일의 중견기업 일자리 박람회입니다. 대한민국을 대표하는 우수 중견기업 80여 개사가 참가하는 이번 박람회는 기업과--%>
+<%--                        구직자 간 매칭 극대화을 위해 채용 정보를 포함한 다양한 콘텐츠를 온·오프라인으로 제공합니다.--%>
+<%--                        중견기업 구직자에게 실질적인 취업 기회를 제공하기 위해 현직자 채용 상담, 현장 심층 면접, 채용 설명회, 인사 담당자 토크 콘서트 등 다채로운 프로그램을 마련했습니다.--%>
+<%--                        대한민국을 대표하는 우수 중견기업 취업을 희망하는 청년 인재 여러분의 많은 관심과 참여 부탁드립니다.--%>
+<%--                    </div>--%>
 
-                        <br>
+<%--                        <br>--%>
 
-                    <div>
-                        다시 찾아온 취업의 기회, 중견기업 일자리 박람회와 뜨겁게 만나길 바랍니다.
-                    </div>
-                    </p>
+<%--                    <div>--%>
+<%--                        다시 찾아온 취업의 기회, 중견기업 일자리 박람회와 뜨겁게 만나길 바랍니다.--%>
+<%--                    </div>--%>
+                    <img src="/img/main/careerfair_visual_txt.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <a href="#" class="btn-get-started">참여신청하기</a>
 <%--                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>--%>

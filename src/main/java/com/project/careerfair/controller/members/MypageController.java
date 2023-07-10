@@ -19,4 +19,14 @@ public class MypageController {
 
         return "member/company/mypage";
     }
+
+    @GetMapping("resume")
+    public String resumeList() {
+        return "member/resume/list";
+    }
+
+    @GetMapping("resume/write")
+    public String writeOnlineResume() {
+        return "member/resume/write";
+    }
 }
