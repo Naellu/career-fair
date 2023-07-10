@@ -12,6 +12,7 @@ public class Posting {
     private Integer postingId;
     private String title;
     private Integer hiringCount;
+    private Integer spareCount;
     private String startDate;
     private String endDate;
     private String status;
