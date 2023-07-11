@@ -7,8 +7,11 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+import java.util.List;
+
 @Mapper
 public interface PostingMapper {
+
 
 
     @Select("""
@@ -26,4 +29,11 @@ public interface PostingMapper {
             WHERE member_id = #{memberId}
             """)
     Integer countPostingBymemberId(String memberId);
+
+    List<Posting> getNowPostingList(Integer companyId);
+
+    Integer countAll(Integer companyId);
+
+    List<Posting> getPastPostingList(Integer startNum, Integer pageSize, Integer companyId);
+
 }

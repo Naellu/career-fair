@@ -16,6 +16,7 @@ public class Members {
     private String gender;
     private Integer isActive;
     private String phoneNumber;
+    private String memberType;
     private String email;
     private String address;
     private String zipCode;
