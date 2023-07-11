@@ -62,7 +62,7 @@
         </div>
     </div>
     <div style="text-align: center">
-        <button class="btn" style="width: 500px; background-color: lightgray">
+        <button id="page-btn" class="btn" style="width: 500px; background-color: lightgray">
             목 록 더 보 기
         </button>
     </div>
@@ -75,6 +75,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/user/company/list.js"></script>
+<script src="/js/company/list.js"></script>
 </body>
 </html>

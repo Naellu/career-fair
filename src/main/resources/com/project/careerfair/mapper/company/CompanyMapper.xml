@@ -201,11 +201,48 @@
         #{companyId}
     </delete>
 
+    <!-- 회차별 승인 기업 목록 -->
     <select id="getApprovedList" resultMap="companyMap">
-        SELECT * FROM TB_COMPANIES
-        WHERE status = 'approved'
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT * FROM (SELECT * FROM TB_COMPANIES  WHERE status = 'approved' and round = #{roundValue}) c
+        <where>
+            <if test="type eq 'all'">
+                (company_name LIKE #{pattern}
+                OR address LIKE #{pattern}
+                )
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'address'">
+                OR address LIKE #{pattern}
+            </if>
+            <if test="industryId neq null">
+                and industry_id = #{industryId}
+            </if>
+        </where>
+        LIMIT #{startNum}, #{pageSize}
     </select>
 
+    <!-- 승인 기업 총 개수 -->
+    <select id="countApprovedList">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT COUNT(*) FROM (SELECT * FROM TB_COMPANIES  WHERE status = 'approved' and round = #{roundValue}) c
+        <where>
+            <if test="type eq 'all'">
+                (company_name LIKE #{pattern}
+                OR address LIKE #{pattern}
+                )
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'address'">
+                OR address LIKE #{pattern}
+            </if>
+            <if test="industryId neq null">
+                and industry_id = #{industryId}
+            </if>
+        </where>
+    </select>
 </mapper>
-
-

@@ -30,4 +30,4 @@ WHERE registration_number IN (
 SELECT DISTINCT registration_number
 FROM TB_COMPANIES;
 
-
+ SELECT * FROM (SELECT * FROM TB_COMPANIES  WHERE status = 'approved' and round = 2) c
