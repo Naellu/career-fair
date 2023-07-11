@@ -2,10 +2,65 @@ let searchValue = "";
 let typeValue = "";
 let industryValue = "";
 let roundValue = "";
+let pageValue = "8";
+let count = "";
 
-listView();
-
+roundList();
 industryList();
+
+function roundList() {
+    fetch(`/api/company/round`, {
+        method: "GET",
+    })
+        .then(response => response.json())
+        .then(data => {
+                const round = data;
+                roundValue = round;
+                const roundUl = document.querySelector("#round-ul");
+                listView(searchValue, typeValue, industryValue, roundValue, pageValue);
+                roundUl.innerHTML = "";
+
+                let i = round;
+
+                for (i; i > 0; i--) {
+                    let roundItem = document.createElement('li');
+                    roundItem.classList.add('nav-item');
+
+                    let roundLinkItem = document.createElement('a');
+                    roundLinkItem.classList.add('nav-link');
+                    roundLinkItem.setAttribute('href', '#');
+                    roundLinkItem.textContent = i + '회차';
+                    roundLinkItem.value = i;
+
+                    roundLinkItem.addEventListener("click", function (event) {
+                        roundValue = roundLinkItem.value;
+                        typeValue = "";
+                        searchValue = "";
+                        const search = document.querySelector("#search");
+                        search.value = "";
+
+                        const type = document.querySelector("#type");
+                        type.value = 'all';
+                        industryValue = "";
+
+                        const industrySelect = document.querySelector("#industry-select");
+                        industrySelect.value = "";
+
+                        pageValue = "8";
+                        listView(searchValue, typeValue, industryValue, roundValue, pageValue);
+                        event.preventDefault();
+                    });
+
+                    roundItem.appendChild(roundLinkItem);
+                    roundUl.appendChild(roundItem);
+                }
+
+            }
+        )
+        .catch(error => {
+            console.error("Error:", error);
+        });
+}
 
 function industryList() {
     fetch(`/api/user/recruiter/industry`, {
@@ -42,9 +97,9 @@ function listView() {
         search: searchValue,
         type: typeValue,
         industryId: industryValue,
-        roundValue: roundValue
+        roundValue: roundValue,
+        page: pageValue
     };
-
     // URL 매개변수로 데이터 직렬화
     const params = new URLSearchParams(requestData).toString();
 
@@ -52,47 +107,13 @@ function listView() {
         .then(response => response.json())
         .then(data => {
             const companyList = data.companyList;
-            const pageInfo = data.pageInfo;
             const industryList = data.industryList
-            const round = data.round;
             const companyView = document.querySelector("#company-view");
-            const pageUl = document.querySelector("#page-ul");
-            const roundUl = document.querySelector("#round-ul");
+            const cnt = data.count;
 
-            roundUl.innerHTML = "";
+            count = cnt;
 
-            let i = round;
-
-            for (i; i > 0; i--) {
-                let roundItem = document.createElement('li');
-                roundItem.classList.add('nav-item');
-
-                let roundLinkItem = document.createElement('a');
-                roundLinkItem.classList.add('nav-link');
-                roundLinkItem.setAttribute('href', '#');
-                roundLinkItem.textContent = i + '회차';
-                roundLinkItem.value = i;
-
-                roundLinkItem.addEventListener("click", function () {
-                    roundValue = roundLinkItem.value;
-                    typeValue = "";
-                    searchValue = "";
-                    const search = document.querySelector("#search");
-                    search.value = "";
-
-                    const type = document.querySelector("#type");
-                    type.value = 'all';
-
-                    const industrySelect = document.querySelector("#industry-select");
-                    industrySelect.value = "";
-
-                    listView(searchValue, typeValue, industryValue, roundValue);
-                });
-
-                roundItem.appendChild(roundLinkItem);
-                roundUl.appendChild(roundItem);
-            }
-
+            companyView.innerHTML = "";
             companyList.forEach(company => {
                 const industryId = company.industryId - 1;
                 const industryName = industryList[industryId].industryName;
@@ -114,7 +135,7 @@ function listView() {
                                 </div >
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
-                                        <a class="btn btn-primary" href="/admin/recruiter/${company.companyId}">기업 정보 보기</a>
+                                        <a class="btn btn-primary" href="/company/${company.companyId}">기업 정보 보기</a>
                                     </div>
                             </div >
                         </div >
@@ -123,8 +144,6 @@ function listView() {
                 companyView.insertAdjacentHTML('beforeend', companyHtml);
             })
 
-            //pageUl.innerHTML = "";
-            //createPagination(pageInfo, pageUl);
         })
         .catch(error => {
             console.error("Error:", error);
@@ -143,7 +162,20 @@ searchBtn.addEventListener("click", function () {
     const industryId = document.querySelector("#industry-select");
     industryValue = industryId.value;
 
-    listView(searchValue, typeValue, industryValue, roundValue);
+    pageValue = "8";
+
+    listView(searchValue, typeValue, industryValue, roundValue, pageValue);
 });
 
+const pageBtn = document.querySelector("#page-btn");
+pageBtn.addEventListener("click", function () {
+
+    if (count < pageValue)  {
+        alert("목록이 더 없습니다.");
+    } else {
+        pageValue = parseInt(pageValue) + 8;
+
+        listView(searchValue, typeValue, industryValue, roundValue, pageValue);
+    }
+});
 

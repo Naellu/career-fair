@@ -39,5 +39,8 @@ public interface CompanyMapper {
     int update(Company company);
 
     // 승인된 목록만
-    List<Company> getApprovedList();
+    List<Company> getApprovedList(Integer startNum, Integer pageSize, String search, String type, Integer industryId, Integer roundValue);
+
+    //승인된 목록 개수세기
+    Integer countApprovedList(String search, String type, Integer industryId, Integer roundValue);
 }
