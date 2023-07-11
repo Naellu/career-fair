@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page import="java.util.*" %>
 
 <html>
@@ -34,7 +35,9 @@
 <div>입사지원 - 아직</div>
 <div>이력서 - 아직</div>
 <div>스크랩한 공고 - 아직</div>
-<a href="/member/user/myInfo">내 정보</a>
+<sec:authorize access="isAuthenticated()">
+    <a href="/member/user/myInfo?id=<sec:authentication property="name" />">내 정보</a>
+</sec:authorize>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
