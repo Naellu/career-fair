@@ -27,22 +27,23 @@ public class NoteController {
 
     @GetMapping("/list/receive")
     public String getReceiveList(
-            String userId,
+            String memberId,
             Model model,
             @RequestParam(value = "page", defaultValue = "1") Integer page
     ) {
 
         String distinction = "receive";
 
-        Map<String, Object> result = service.getListByUserId(userId, page, distinction);
+        Map<String, Object> result = service.getListByUserId(memberId, page, distinction);
 
+        System.out.println(result);
         model.addAllAttributes(result);
         return "note/list/receive";
     }
 
     @GetMapping("/list/send")
     public void getSendList(
-            String userId,
+            String memberId,
             Model model,
             @RequestParam(value = "page", defaultValue = "1") Integer page
 
@@ -50,7 +51,7 @@ public class NoteController {
 
         String distinction = "send";
 
-        Map<String, Object> result = service.getListByUserId(userId, page, distinction);
+        Map<String, Object> result = service.getListByUserId(memberId, page, distinction);
 
         model.addAllAttributes(result);
     }
