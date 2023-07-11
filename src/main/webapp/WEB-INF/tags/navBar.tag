@@ -18,7 +18,7 @@
                 <li><a href="#">박람회 소개</a></li>
                 <li><a href="/company/list">참여기업</a></li>
                 <li><a href="#">채용공고</a></li>
-                <li><a href="#">Q&A</a></li>
+                <li><a href="/qna/QnaList">Q&A</a></li>
 
                 <li class="dropdown"><a href="#"><span>고객센터</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
