@@ -1,13 +1,26 @@
-detailView();
+let pageValue = "1";
 
-function detailView() {
+detailView(pageValue);
+
+function detailView(pageValue) {
     const url = window.location.href;
     const companyId = url.substring(url.lastIndexOf("/") + 1);
-    fetch(`/api/company/${companyId}`)
+
+    const requestData = {
+        page: pageValue
+    };
+
+    // URL 매개변수로 데이터 직렬화
+    const params = new URLSearchParams(requestData).toString();
+
+    fetch(`/api/company/${companyId}?${params}`)
         .then(response => response.json())
         .then(data => {
             const company = data.company;
             const round = data.round;
+            const nowPostingList = data.nowPostingList;
+            const pastPostingList = data.pastPostingList;
+            const pageInfo = data.pageInfo;
 
             const industryId = company.industryId - 1;
             const industryName = data.industryList[industryId].industryName;
@@ -20,9 +33,9 @@ function detailView() {
 
             const companyTableBody = document.querySelector("#company-table tbody");
             const cHeader = document.querySelector("#c-header");
-
             cHeader.innerHTML = `${company.companyName}`;
 
+            companyTableBody.innerHTML = "";
             const companyHtml = `
                      <tr>
                         <th style="width: 130px">사업자등록번호</th>
@@ -53,18 +66,120 @@ function detailView() {
 
             postingTableBody.innerHTML = "";
 
-            const postingHtml = `
-                <tr>
-                    <td>2023.07.11 ~ 2023.07.12</td>
-                    <td>노예구함</td>
-                    <td>500명</td>
-                    <td>노예</td>
-                    <td>10년</td>
-                    <td>학력</td>
-                </tr>
-            `;
+            nowPostingList.forEach(nowPosting => {
+                const postingHtml = `
+                    <tr>
+                        <td>${nowPosting.startDate} ~ ${nowPosting.endDate}</td>
+                        <td><a href="#">${nowPosting.title}</a></td>
+                        <td>${nowPosting.hiringCount}</td>
+                        <td>${nowPosting.employmentType}</td>
+                        <td>${nowPosting.experienceLevel}</td>
+                        <td>${nowPosting.educationLevel}</td>
+                    </tr>
+                    `;
+                postingTableBody.insertAdjacentHTML('beforeend', postingHtml);
+            });
+
+            const pastPostingTableBody = document.querySelector("#past-posting-table tbody");
+
+            pastPostingTableBody.innerHTML = "";
+            pastPostingList.forEach(pastPosting => {
+                const postingHtml = `
+                    <tr>
+                        <td>${pastPosting.startDate} ~ ${pastPosting.endDate}</td>
+                        <td><a href="#">${pastPosting.title}</a></td>
+                        <td>${pastPosting.hiringCount}</td>
+                        <td>${pastPosting.employmentType}</td>
+                        <td>${pastPosting.experienceLevel}</td>
+                        <td>${pastPosting.educationLevel}</td>
+                    </tr>
+                `;
+                pastPostingTableBody.insertAdjacentHTML('beforeend', postingHtml)
+            });
+
+            const pageUl = document.querySelector("#page-ul");
+            pageUl.innerHTML = "";
+            createPagination(pageInfo, pageUl);
         })
         .catch(error => {
             console.error("Error:", error);
         });
+}
+
+function createPagination(pageInfo, pageUl) {
+
+    // 이전 페이지로
+    if (pageInfo.currentPageNum !== 1) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+
+        let icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-angle-left');
+
+        pageLinkItem.appendChild(icon);
+
+        pageLinkItem.onclick = (event) => {
+            pageValue = pageInfo.prevPageNum;
+            detailView(pageValue);
+            event.preventDefault();
+        };
+        pageItem.appendChild(pageLinkItem);
+        pageUl.appendChild(pageItem);
+    }
+
+    // 페이지 번호
+    for (let pageNum = pageInfo.leftPageNum; pageNum <= pageInfo.rightPageNum; pageNum++) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+        pageLinkItem.textContent = pageNum;
+
+        if (pageNum === pageInfo.currentPageNum) {
+            pageLinkItem.classList.add('active');
+        }
+
+        pageLinkItem.onclick = (event) => {
+            pageValue = pageNum;
+            detailView(pageValue);
+            event.preventDefault();
+        };
+
+        pageItem.appendChild(pageLinkItem);
+        pageUl.appendChild(pageItem);
+    }
+
+    // 다음 페이지로
+    if (pageInfo.currentPageNum !== pageInfo.lastPage) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+
+        let icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-angle-right');
+
+        pageLinkItem.appendChild(icon);
+
+        pageLinkItem.onclick = (event) => {
+            pageValue = pageInfo.nextPageNum;
+            detailView(pageValue);
+            event.preventDefault();
+        };
+        pageItem.appendChild(pageLinkItem);
+        pageUl.appendChild(pageItem);
+    }
 }

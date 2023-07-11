@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="/css/company.css">
     <my:font></my:font>
     <title>기업정보</title>
 </head>
@@ -48,7 +49,7 @@
             <caption class="caption-top"><h3>채용 공고</h3></caption>
             <thead class="table-dark">
             <tr>
-                <th style="width: 200px;">기간</th>
+                <th style="width: 220px;">기간</th>
                 <th>공고명</th>
                 <th style="width: 100px;">채용인원</th>
                 <th style="width: 100px;">고용형태</th>
@@ -57,30 +58,6 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>2023.07.11 ~ 2023.07.12</td>
-                <td>노예구함</td>
-                <td>500명</td>
-                <td>노예</td>
-                <td>10년</td>
-                <td>학력</td>
-            </tr>
-            <tr>
-                <td>2023-1203</td>
-                <td>노예구함</td>
-                <td>500명</td>
-                <td>노예</td>
-                <td>10년</td>
-                <td>학력</td>
-            </tr>
-            <tr>
-                <td>2023-1203</td>
-                <td>노예구함</td>
-                <td>500명</td>
-                <td>노예</td>
-                <td>10년</td>
-                <td>학력</td>
-            </tr>
             </tbody>
         </table>
     </div>
@@ -91,7 +68,7 @@
             <caption class="caption-top"><h3>지난 공고</h3></caption>
             <thead class="table-dark">
             <tr>
-                <th style="width: 200px;">기간</th>
+                <th style="width: 220px;">기간</th>
                 <th>공고명</th>
                 <th style="width: 100px;">채용인원</th>
                 <th style="width: 100px;">고용형태</th>
@@ -100,20 +77,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>2023.07.11 ~ 2023.07.12</td>
-                <td>노예구함</td>
-                <td>500명</td>
-                <td>노예</td>
-                <td>10년</td>
-                <td>학력</td>
-            </tr>
             </tbody>
         </table>
         <div class="row mt-2">
             <nav aria-label="Page navigation example">
                 <ul id="page-ul" class="pagination justify-content-center">
-                    <li>fsd</li>
                 </ul>
             </nav>
         </div>

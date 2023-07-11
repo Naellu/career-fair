@@ -37,8 +37,10 @@ public class ParticipatingCompanyControllerAPI {
     }
 
     @GetMapping("{companyId}")
-    public ResponseEntity<Map<String, Object>> detail(@PathVariable("companyId") Integer companyId) {
-        Map<String, Object> result = participatingCompanyService.getDetail(companyId);
+    public ResponseEntity<Map<String, Object>> detail(
+            @PathVariable("companyId") Integer companyId,
+            @RequestParam("page") Integer page) {
+        Map<String, Object> result = participatingCompanyService.getDetail(companyId, page);
         return ResponseEntity.ok(result);
     }
 
