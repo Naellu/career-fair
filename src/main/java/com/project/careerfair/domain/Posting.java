@@ -11,6 +11,7 @@ public class Posting {
 
     private Integer postingId;
     private String title;
+    private String memberId;
     private Integer hiringCount;
     private Integer spareCount;
     private String startDate;
@@ -29,5 +30,6 @@ public class Posting {
     private Integer companyId;
     private Integer round;
     private Integer industryId;
+    private Integer applicationCount;
 
 }

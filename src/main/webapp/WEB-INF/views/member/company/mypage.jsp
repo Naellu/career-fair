@@ -23,7 +23,7 @@
 
 마이페이지!!!!!!
 <a href="/user/recruiter/list" class="btn btn-primary">신청기록보기</a>
-<button onclick="location.href='/posting/list'">공고관리</button>
+<button onclick="location.href='/member/company/posting/list?memberId=${userId}'">공고관리</button>
 <c:url value="/note/list/receive" var="noteListURL">
     <c:param name="userId" value="${userId}"/>
 </c:url>
