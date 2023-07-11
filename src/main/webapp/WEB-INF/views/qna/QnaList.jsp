@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: user
-  Date: 2023-07-10
-  Time: 오후 2:02
+  Date: 2023-07-11
+  Time: 오후 2:20
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="java.util.*" %>
 
 <html>
@@ -26,18 +26,32 @@
 </head>
 <body>
 <my:navBar/>
+<div class="container-lg">
+<button type="button" class="btn btn-primary" onclick="location.href='/qna/add'">Q&A 작성</button>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>답변 여부</th>
+            <th>날짜</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${question}" var="question">
+<%--            <sec:authorize access="authentication.name eq #question.customerId or hasAuthority('admin')">--%>
+                <tr>
+                    <td>
+                        <a href="/qna/id/${question.id}">${question.title}</a>
+                    </td>
+                    <td>${question.isAnswered ? '답변 완료' : '미답변'}</td>
+                    <td>${question.created}</td>
+                </tr>
+<%--            </sec:authorize>--%>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 
-<sec:authentication property="name" var="userId" />
-<c:url value="/note/list/receive" var="noteListURL">
-    <c:param name="memberId" value="${userId}"/>
-</c:url>
-<button onclick="location.href='${noteListURL}'">쪽지</button>
-<div>입사지원 - 아직</div>
-<div>이력서 - 아직</div>
-<div>스크랩한 공고 - 아직</div>
-<sec:authorize access="isAuthenticated()">
-    <a href="/member/user/myInfo?id=<sec:authentication property="name" />">내 정보</a>
-</sec:authorize>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
