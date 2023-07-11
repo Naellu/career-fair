@@ -17,9 +17,11 @@ $("#companyName").on("change", function () {
     const companyId = $(this).children("option:selected").data('companyId');
     const round = $(this).children("option:selected").data('round');
     const industryId = $(this).children("option:selected").data('industryId');
+    const address = $(this).children("option:selected").data('address');
 
     $("#companyId").val(companyId);
     $("#round").val(round);
+    $("#address").val(address);
 
     $("#industryId option").each(function () {
         if ($(this).val() == industryId) {

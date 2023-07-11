@@ -25,7 +25,7 @@
     <form action="/member/company/posting/add" method="POST">
         <div class="mb-3">
             <input type="hidden" class="form-control" id="companyId" name="companyId" value="${companyList[0].companyId}" required>
-            <input type="hidden" name="userId" value="${userId}">
+            <input type="hidden" name="memberId" value="${userId}">
             <input type="hidden" class="form-control" id="round" name="round" value="${companyList[0].round}" required>
             <input type="hidden" class="form-control" id="status" name="status" value="채용중" required>
 
@@ -36,6 +36,7 @@
                             data-company-id="${company.companyId}"
                             data-round="${company.round}"
                             data-industry-id="${company.industryId}"
+                            data-address="${company.address}, ${company.detailAddress}"
                     >${status.index + 1}. ${company.companyName}</option>
                 </c:forEach>
             </select>

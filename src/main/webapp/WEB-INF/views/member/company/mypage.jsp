@@ -25,7 +25,7 @@
 <a href="/user/recruiter/list" class="btn btn-primary">신청기록보기</a>
 <button onclick="location.href='/member/company/posting/list?memberId=${userId}'">공고관리</button>
 <c:url value="/note/list/receive" var="noteListURL">
-    <c:param name="userId" value="${userId}"/>
+    <c:param name="memberId" value="${userId}"/>
 </c:url>
 <button onclick="location.href='${noteListURL}'">쪽지</button>
 <button>내정보</button>

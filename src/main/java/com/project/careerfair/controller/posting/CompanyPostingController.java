@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -19,8 +20,15 @@ public class CompanyPostingController {
     private final PostingServiceImpl service;
 
     @GetMapping("list")
-    public void list(String memberId){
+    public void list(
+            String memberId,
+            Model model,
+            @RequestParam(value="page", defaultValue = "1")Integer page
+    ){
 
+        Map<String,Object> resultMap = service.getPostingInfo(memberId, page);
+        model.addAttribute("postingList", resultMap.get("postingList"));
+        model.addAttribute("pageInfo", resultMap.get("pageInfo"));
     }
 
     @GetMapping("add")
@@ -35,11 +43,9 @@ public class CompanyPostingController {
 
     @PostMapping("add")
     public String addProcess(
-            Posting posting,
-            String userId
+            Posting posting
 
     ) {
-
-        return "redirect:/member/company/posting/list?memberId=" + userId;
+        return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
     }
 }
