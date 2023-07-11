@@ -13,9 +13,9 @@ public class Career {
     private String companyName;
     private String entryDate;
     private String resignationDate;
-    private String description;
+    private String task;
     private String position;
-    private String etc;
+    private String description;
 
     private Integer resumeId;
 }
