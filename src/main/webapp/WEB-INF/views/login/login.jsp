@@ -17,6 +17,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <%--    <my:font></my:font>--%>
     <title>Title</title>
+    <style>
+        .div-cloumn{
+            width: 2px;
+            height: 15px;
+            background-color: rgba(0,0,0,0.3);
+            margin: 0px 7px;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        #find-id{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div class="container-lg flex-grow-1">
@@ -32,6 +47,11 @@
                 </div>
                 <div class="col-lg-6">
                     <input class="btn btn-primary loginbutton" type="submit" value="로그인" />
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                    <span id="find-id" onclick="location.href='/members/useridfind'">아이디찾기</span>
+                    <div class="div-cloumn"></div>
+                    <a href="#"><span>회원가입</span></a>
                 </div>
             </form>
 

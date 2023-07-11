@@ -33,7 +33,7 @@ public class MemberController {
             memberService.signup(member);
             rttr.addFlashAttribute("", "회원가입이 완료되었습니다.");
             System.out.println("회원가입이 완료되었습니다.");
-            return "redirect:/members/login";
+            return "redirect:/login/login";
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("members", member);
@@ -53,7 +53,7 @@ public class MemberController {
             memberService.signup(member);
             rttr.addFlashAttribute("", "회원가입이 완료되었습니다.");
             System.out.println("회원가입이 완료되었습니다.");
-            return "redirect:/members/login";
+            return "redirect:/login/login";
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("members", member);
@@ -108,5 +108,21 @@ public class MemberController {
     public Map<String, Object> checkPhoneNum(@PathVariable("phoneNumber") String phoneNumber, Authentication authentication) {
 
         return memberService.checkPhoneNum(phoneNumber, authentication);
+    }
+
+    //id찾기
+    @GetMapping("useridfind")
+    public void findId() {
+
+    }
+
+    @PostMapping("findId")
+    @ResponseBody
+    public String find_id(String email, String name, Model model) {
+
+        String result = memberService.findId(email, name);
+        model.addAttribute("id", result);
+
+        return result;
     }
 }

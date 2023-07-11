@@ -7,12 +7,12 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MembersMapper {
-
-    @Select("""
-            SELECT * FROM TB_MEMBERS
-            WHERE member_id = #{id}
-            """)
-    @ResultMap("memberMap")
-    Members selectId(String id);
+// 머지할 때 충돌 생길거 같아서 마지막 쯤에 지울게요!!
+//    @Select("""
+//            SELECT * FROM TB_MEMBERS
+//            WHERE member_id = #{id}
+//            """)
+//    @ResultMap("memberMap")
+//    Members selectId(String id);
 
 }
