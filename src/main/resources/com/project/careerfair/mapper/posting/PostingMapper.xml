@@ -8,6 +8,7 @@
                id="postingMap">
         <id column="posting_id" property="postingId"/>
         <result column="company_id" property="companyId"/>
+        <result column="member_id" property="memberId"></result>
         <result column="round" property="round"/>
         <result column="title" property="title"/>
         <result column="industry_id" property="industryId"/>
@@ -25,6 +26,7 @@
         <result column="employment_type" property="employmentType"/>
         <result column="experience_level" property="experienceLevel"/>
         <result column="education_level" property="educationLevel"/>
+        <result column="application_count" property="applicationCount"></result>
     </resultMap>
 
     <select id="getNowPostingList" resultMap="postingMap">

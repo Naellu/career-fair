@@ -47,6 +47,9 @@ public class NoteServiceImp implements NoteService {
 
         Integer startIndex = currentPage * 10 - 10;
         List<Note> noteList = new ArrayList<>();
+        System.out.println(distinction);
+        System.out.println(userId);
+        System.out.println(startIndex);
         if (distinction.equals("receive")){
             noteList = mapper.getReceiveListByUserId(userId, startIndex);
         } else if(distinction.equals("send")){
