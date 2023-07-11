@@ -10,16 +10,17 @@ function enableSubmit() {
 
 // 이메일 인증 버튼 클릭 이벤트 처리
 $("#checkEmailBtn").click(function() {
-    // 인증하기 버튼을 클릭하면 인증번호 입력 칸과 확인 버튼을 나타내고, 인증하기 버튼은 숨김
-    $("#inputVerificationCode").removeClass("d-none");
+    // 인증하기 버튼을 클릭하면 인증번호 입력 칸과 확인 버튼을 나타내고, 인증하기 버튼은 숨김 ,다시하기 버튼이 출력
+    $("#inputVerificationCode").show();
     $("#verifyEmailBtn").show();
     $("#checkEmailBtn").hide();
+    $("#recheck-EmailBtn").show();
 
     var email = $("#inputEmail").val();
     if (email) {
         // 이메일 전송 요청
         $.ajax({
-            url: "/member/mail",
+            url: "/members/mail",
             method: "POST",
             data: {
                 email: email
@@ -28,7 +29,6 @@ $("#checkEmailBtn").click(function() {
                 // 이메일 전송 성공 시 처리
                 $("#inputEmail").prop("disabled", true);
                 $("#verifyEmailBtn").hide();
-                $("#inputVerificationCode").removeClass("d-none");
                 $("#verifyCodeBtn").show();
             },
             error: function() {
@@ -54,7 +54,7 @@ $("#verifyEmailBtn").click(function() {
     if (enteredCode) {
         // 이메일 전송 요청
         $.ajax({
-            url: "/member/mailCheck",
+            url: "/members/mailCheck",
             method: "POST",
             data: {
                 enteredCode: enteredCode
@@ -89,14 +89,17 @@ function findId_click(){
         data:{"name":name, "email":email} ,
         success:function(data){
             if(data == 0){
+                $('#find-div').show();
                 $('#id_value').text("회원 정보를 확인해주세요!");
                 $('#name').val('');
                 $('#email').val('');
+                console.log(data);
             } else {
-                $('#id_value').text(data);
+                $('#find-div').show();
+                $('#id_value').text('ID : ' + data);
                 $('#name').val('');
                 $('#email').val('');
-
+                console.log(data);
             }
         },
         error:function(){
@@ -105,22 +108,22 @@ function findId_click(){
     });
 };
 
-const modal = document.getElementById("modal")
-const btnModal = document.getElementById("find_id")
-
-btnModal.addEventListener("click", e => {
-    modal.style.display = "flex"
-})
-
-
-const closeBtn = modal.querySelector(".close-area")
-closeBtn.addEventListener("click", e => {
-    modal.style.display = "none"
-})
-
-modal.addEventListener("click", e => {
-    const evTarget = e.target
-    if(evTarget.classList.contains("modal-overlay")) {
-        modal.style.display = "none"
-    }
-})
+// const modal = document.getElementById("modal")
+// const btnModal = document.getElementById("find_id")
+//
+// btnModal.addEventListener("click", e => {
+//     modal.style.display = "flex"
+// })
+//
+//
+// const closeBtn = modal.querySelector(".close-area")
+// closeBtn.addEventListener("click", e => {
+//     modal.style.display = "none"
+// })
+//
+// modal.addEventListener("click", e => {
+//     const evTarget = e.target
+//     if(evTarget.classList.contains("modal-overlay")) {
+//         modal.style.display = "none"
+//     }
+// })
