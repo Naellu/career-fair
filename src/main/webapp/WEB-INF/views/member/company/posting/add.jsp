@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
@@ -14,18 +15,20 @@
 
 </head>
 <body onload="setDate()">
+<sec:authentication property="name" var="userId" />
 <my:navBar/>
 <my:font/>
 
 <div class="container mt-5">
     <h2>채용공고 등록</h2>
 
-    <form action="/posting/add" method="POST">
+    <form action="/member/company/posting/add" method="POST">
         <div class="mb-3">
-            <input type="hidden" class="form-control" id="companyId" name="companyId"
-                   value="${companyList[0].companyId}" required>
+            <input type="hidden" class="form-control" id="companyId" name="companyId" value="${companyList[0].companyId}" required>
+            <input type="hidden" name="userId" value="${userId}">
             <input type="hidden" class="form-control" id="round" name="round" value="${companyList[0].round}" required>
             <input type="hidden" class="form-control" id="status" name="status" value="채용중" required>
+
             <label for="companyName" class="form-label">회사 선택</label>
             <select class="form-control" name="companyName" id="companyName">
                 <c:forEach items="${companyList}" var="company" varStatus="status">
@@ -105,11 +108,12 @@
         </div>
         <div class="mb-3">
             <label for="experienceLevel" class="form-label">경력 요건</label>
-            <select class="form-control" id="experienceLevel" name="experienceLevel" required>
+            <select class="form-control" id="experienceLevel"name="experienceLevel" required>
                 <option value="무관" selected>무관</option>
                 <option value="신입">신입</option>
                 <option value="경력">경력</option>
             </select>
+
         </div>
         <div class="mb-3">
             <label for="educationLevel" class="form-label">학력 요건</label>
@@ -124,7 +128,7 @@
         <div class="row justify-content-end">
             <div class="col-md-6 text-right">
                 <button type="submit" class="btn btn-outline-primary">등록</button>
-                <button class="btn btn-outline-secondary" onclick="location.href='/posting/list'">뒤로가기</button>
+                <button class="btn btn-outline-secondary" onclick="location.href='/member/company/posting/list?userId=${userId}'">뒤로가기</button>
             </div>
         </div>
         <br>

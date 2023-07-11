@@ -15,9 +15,40 @@
 
 </head>
 <body>
-<h1>채용공고 목록</h1>
 <sec:authentication property="name" var="userId" />
-<button onclick="location.href='/posting/add?userId=${userId}'">공고등록</button>
+<my:navBar/>
+<my:font/>
+<h1>${param.userId}채용공고 목록</h1>
+
+
+<div class="mt-3">
+    <table id="posting-table" class="table table-bordered custom-div">
+        <caption class="caption-top">
+            <h3>채용 공고</h3>
+            <button onclick="location.href='/member/company/posting/add?userId=${userId}'">공고등록</button>
+        </caption>
+        <thead class="table-dark">
+        <tr>
+            <th style="width: 200px;">기간</th>
+            <th>공고명</th>
+            <th style="width: 100px;">채용인원</th>
+            <th style="width: 100px;">고용형태</th>
+            <th style="width: 100px;">경력</th>
+            <th style="width: 100px;">학력</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2023.07.11 ~ 2023.07.12</td>
+            <td>노예구함</td>
+            <td>500명</td>
+            <td>노예</td>
+            <td>10년</td>
+            <td>학력</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"
