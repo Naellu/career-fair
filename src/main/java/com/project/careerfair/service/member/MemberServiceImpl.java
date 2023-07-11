@@ -7,7 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
 
@@ -55,6 +54,7 @@ public class MemberServiceImpl implements MemberService{
         }
     }
 
+
     @Override
     public Map<String, Object> checkPhoneNum(String phoneNumber, Authentication authentication) {
         Members member = mapper.selectByPhoneNumber(phoneNumber);
@@ -82,4 +82,9 @@ public class MemberServiceImpl implements MemberService{
 
             return result;
         }
+    @Override
+    public Members get(String id) {
+        return mapper.selectByMemberId(id);
     }
+}
+

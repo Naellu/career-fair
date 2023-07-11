@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@Repository
 public class Members {
     private String id;
     private String password;
