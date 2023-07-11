@@ -33,11 +33,12 @@ public interface MemberMapper {
                   , #{isActive} 
                   , #{phoneNumber}
                   , #{email}
-                  , #{memberType}
+                  , #{authority[0]}
                   , #{address} 
                   , #{zipCode}
                   )       
             """)
+    @ResultMap("signMember")
     Integer signUpInsert(Members member);
 
     @Select("""

@@ -112,7 +112,7 @@
                 <h1 style="font-weight: 600;">기업 회원가입</h1>
             </div>
             <form method="post" id="signup-form">
-                <input type="text" name="memberType" value="company" style="display: none;"> <!--기업은 company로-->
+                <input type="text" name="authority" value="company" style="display: none;"> <!--기업은 company로-->
                 <div>
                     <div class="sign-column">
                         <span style="margin-right: 50px;">아이디 *</span>

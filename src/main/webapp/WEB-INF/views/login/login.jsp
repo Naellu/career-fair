@@ -19,7 +19,7 @@
     <title>Title</title>
     <style>
         .div-cloumn{
-            width: 2px;
+            width: 1.5px;
             height: 15px;
             background-color: rgba(0,0,0,0.3);
             margin: 0px 7px;
@@ -49,9 +49,10 @@
                     <input class="btn btn-primary loginbutton" type="submit" value="로그인" />
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+                    <a href="/members/signup"><span>회원가입</span></a>
+                    <div class="div-cloumn"></div>
                     <span id="find-id" onclick="location.href='/members/useridfind'">아이디찾기</span>
                     <div class="div-cloumn"></div>
-                    <a href="#"><span>회원가입</span></a>
                 </div>
             </form>
 
