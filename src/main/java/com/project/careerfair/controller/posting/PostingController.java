@@ -31,7 +31,7 @@ public class PostingController {
             Model model
     ){
         Map<String, Object> result = service.getCompanyInfo(userId);
-        model.addAttribute("company",result.get("company"));
+        model.addAttribute("companyList",result.get("companyList"));
         model.addAttribute("industryList", result.get("industryList"));
     }
 
@@ -39,6 +39,15 @@ public class PostingController {
     public void addProcess(
             Posting posting
     ) {
-
+        for (java.lang.reflect.Field field : posting.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try {
+                String fieldName = field.getName();
+                Object fieldValue = field.get(posting);
+                System.out.println(fieldName + ": " + fieldValue);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
