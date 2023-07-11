@@ -19,15 +19,15 @@ public class UserMyPageController {
     private final MemberService service;
 
     @GetMapping("user/mypage")
-    public String myPage() {
+    public String myPage(String id, Model model) {
         return "member/user/mypage";
     }
 
-    @GetMapping("user/myInfo/{id}")
-    public void myInfo(@PathVariable("id") String id, Model model) {
+    @GetMapping("user/myInfo")
+    public void myInfo(String id, Model model) {
 
         Members members = service.get(id);
-        System.out.println(members.getName());
+        System.out.println(id);
 
         model.addAttribute("members", members);
     }

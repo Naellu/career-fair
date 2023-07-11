@@ -90,7 +90,7 @@ public class MemberServiceImpl implements MemberService{
         }
     @Override
     public Members get(String id) {
-        return mapper.selectByMemberId(id);
+        return mapper2.selectId(id);
     }
 }
 
