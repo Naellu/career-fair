@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.careerfair.mapper.posting.PostingMapper">
-
     <!-- notice목록 불러오는 resultMap-->
     <resultMap type="com.project.careerfair.domain.Posting"
                id="postingMap">
@@ -28,6 +27,21 @@
         <result column="education_level" property="educationLevel"/>
     </resultMap>
 
+    <select id="getNowPostingList" resultMap="postingMap">
+        SELECT * FROM TB_POSTING
+        WHERE company_id = #{companyId} AND status = '채용중'
+    </select>
+
+    <select id="countAll" resultType="Integer">
+        SELECT COUNT(*) FROM TB_POSTING
+        WHERE company_id = #{companyId} AND status = '마감'
+    </select>
+
+    <select id="getPastPostingList" resultMap="postingMap">
+        SELECT * FROM TB_POSTING
+        WHERE company_id = #{companyId} AND status = '마감'
+        LIMIT #{startNum}, #{pageSize}
+    </select>
 </mapper>
 
 
