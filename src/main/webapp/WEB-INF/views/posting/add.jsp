@@ -14,18 +14,28 @@
 
 </head>
 <body onload="setDate()">
+<my:navBar/>
+<my:font/>
 
 <div class="container mt-5">
-    <h2>채용공고 등록 - ${company.companyName}</h2>
+    <h2>채용공고 등록</h2>
+
     <form action="/posting/add" method="POST">
         <div class="mb-3">
-            <label for="companyId" class="form-label">회사 ID</label>
-            <input type="text" class="form-control" id="companyId" name="companyId" value="${company.companyId}"
-                   required>
-        </div>
-        <div class="mb-3">
-            <label for="round" class="form-label">라운드</label>
-            <input type="text" class="form-control" id="round" name="round" value="${company.round}" required>
+            <input type="hidden" class="form-control" id="companyId" name="companyId"
+                   value="${companyList[0].companyId}" required>
+            <input type="hidden" class="form-control" id="round" name="round" value="${companyList[0].round}" required>
+            <input type="hidden" class="form-control" id="status" name="status" value="채용중" required>
+            <label for="companyName" class="form-label">회사 선택</label>
+            <select class="form-control" name="companyName" id="companyName">
+                <c:forEach items="${companyList}" var="company" varStatus="status">
+                    <option value="${company.companyName}"
+                            data-company-id="${company.companyId}"
+                            data-round="${company.round}"
+                            data-industry-id="${company.industryId}"
+                    >${status.index + 1}. ${company.companyName}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="mb-3">
             <label for="title" class="form-label">제목</label>
@@ -34,10 +44,9 @@
         <div class="mb-3">
             <label for="industryId" class="form-label">산업 ID</label>
             <select class="form-control" id="industryId" name="industryId" required>
-                <c:forEach items="${industryList}" var="industry">
-                    <option value="${industry.industryId}" ${company.industryId == industry.industryId} ?
-                    'selected' : ''} >
-                    ${industry.industryName}
+                <c:forEach items="${industryList}" var="industry" varStatus="status">
+                    <option value="${industry.industryId}">
+                            ${status.index+1}. ${industry.industryName}
                     </option>
                 </c:forEach>
             </select>
@@ -59,17 +68,15 @@
             <input type="date" class="form-control" id="endDate" name="endDate" min="" required>
         </div>
         <div class="mb-3">
-            <label for="status" class="form-label">상태</label>
-            <input type="text" class="form-control" id="status" name="status" value="채용중" required>
-        </div>
-        <div class="mb-3">
             <label for="address" class="form-label">주소</label>
             <input type="text" class="form-control" id="address" name="address"
-                   value="${company.address}, ${company.detailAddress}" required>
+                   value="${companyList[0].address}, ${companyList[0].detailAddress}" required>
         </div>
         <div class="mb-3">
             <label for="salary" class="form-label">급여</label>
-            <input type="text" class="form-control" id="salary" name="salary" required>
+            <input type="text" class="form-control" id="salary" maxlength="12" required>
+                <div id="salaryDetail" class="form-text"></div>
+                <input id="inputSalary" type="hidden" name="salary">
         </div>
         <div class="mb-3">
             <label for="preferences" class="form-label">우대사항</label>
@@ -90,7 +97,7 @@
         <div class="mb-3">
             <label for="employmentType" class="form-label">고용 형태</label>
             <select class="form-control" id="employmentType" name="employmentType" required>
-                <option value="정규직" selected >정규직</option>
+                <option value="정규직" selected>정규직</option>
                 <option value="계약직">계약직</option>
                 <option value="인턴">인턴</option>
             </select>
@@ -99,7 +106,7 @@
         <div class="mb-3">
             <label for="experienceLevel" class="form-label">경력 요건</label>
             <select class="form-control" id="experienceLevel" name="experienceLevel" required>
-                <option value="무관" selected >무관</option>
+                <option value="무관" selected>무관</option>
                 <option value="신입">신입</option>
                 <option value="경력">경력</option>
             </select>
@@ -107,14 +114,20 @@
         <div class="mb-3">
             <label for="educationLevel" class="form-label">학력 요건</label>
             <select class="form-control" id="educationLevel" name="educationLevel" required>
-                <option value="무관" selected >무관</option>
+                <option value="무관" selected>무관</option>
                 <option value="고졸이상">고졸이상</option>
                 <option value="초대졸이상">초대졸이상</option>
                 <option value="대졸이상">대졸이상</option>
                 <option value="대학원이상">대학원이상</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">등록</button>
+        <div class="row justify-content-end">
+            <div class="col-md-6 text-right">
+                <button type="submit" class="btn btn-outline-primary">등록</button>
+                <button class="btn btn-outline-secondary" onclick="location.href='/posting/list'">뒤로가기</button>
+            </div>
+        </div>
+        <br>
     </form>
 </div>
 
