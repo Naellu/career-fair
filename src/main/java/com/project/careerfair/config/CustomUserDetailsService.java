@@ -1,6 +1,7 @@
 package com.project.careerfair.config;
 
 import com.project.careerfair.domain.Members;
+import com.project.careerfair.mapper.members.MemberMapper;
 import com.project.careerfair.mapper.members.MembersMapper;
 import com.project.careerfair.service.members.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +19,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final MembersMapper mapper;
+    private final MemberMapper mapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Members members = mapper.selectId(username);
+        Members members = mapper.selectByMemberId(username);
 
         if (members == null) {
             throw new UsernameNotFoundException(username + "해당 회원 조회 불가");

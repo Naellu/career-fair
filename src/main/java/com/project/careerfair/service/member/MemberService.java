@@ -15,4 +15,6 @@ public interface MemberService {
     public Map<String, Object> checkPhoneNum(String phoneNumber, Authentication authentication);
 
     public Map<String, Object> checkMailId(String email, Authentication authentication);
+
+    public String findId(String email, String name);
 }

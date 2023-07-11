@@ -3,6 +3,7 @@ package com.project.careerfair.mapper.members;
 import com.project.careerfair.domain.Members;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
@@ -40,21 +41,10 @@ public interface MemberMapper {
     Integer signUpInsert(Members member);
 
     @Select("""
-            SELECT 
-                  member_id
-                , password
-                , name
-                , gender
-                , is_active
-                , phone_number
-                , email
-                , member_type
-                , address  
-                , zip_code
-            FROM
-            TB_MEMBERS
+           SELECT * FROM TB_MEMBERS
             WHERE member_id = #{id}
             """)
+    @ResultMap("memberMap")
     Members selectByMemberId(String id);
 
     @Select("""
@@ -72,6 +62,17 @@ public interface MemberMapper {
             WHERE email = #{email}
             """)
     Members selectByMailId(String email);
+
+    @Select("""
+            SELECT 
+            member_id
+            FROM
+            TB_MEMBERS
+            WHERE 
+            email = #{email}
+            AND name = #{name}
+            """)
+    String findId(String email, String name);
 
 /*    @Select("""
             SELECT

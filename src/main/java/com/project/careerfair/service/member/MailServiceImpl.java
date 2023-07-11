@@ -59,4 +59,5 @@ public class MailServiceImpl implements MailService {
             return false;
         }
     }
+
 }

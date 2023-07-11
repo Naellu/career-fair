@@ -67,4 +67,19 @@ public class MemberServiceImpl implements MemberService{
             return Map.of("available", member == null);
         }
         }
+
+    @Override
+    public String findId(String email, String name) {
+        String result = "";
+
+        try {
+            result = mapper.findId(email, name);
+
+            } catch (Exception e) {
+
+            e.printStackTrace();
+            }
+
+            return result;
+        }
     }
