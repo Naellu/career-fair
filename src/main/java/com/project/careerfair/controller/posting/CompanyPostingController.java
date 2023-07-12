@@ -31,6 +31,7 @@ public class CompanyPostingController {
         Map<String,Object> resultMap = service.getPostingInfo(memberId, page);
         model.addAttribute("postingList", resultMap.get("postingList"));
         model.addAttribute("pageInfo", resultMap.get("pageInfo"));
+        model.addAttribute("companyList", resultMap.get("companyList"));
     }
 
     @GetMapping("add")
