@@ -42,4 +42,20 @@ public class QnaServiceImpl implements QnaService{
         return question;
     }
 
+    @Override
+    public boolean remove(Integer id) {
+
+        int cnt = mapper.deleteById(id);
+
+        return cnt == 1;
+    }
+
+    @Override
+    public boolean modify(QnaQuestion question) {
+
+        int cnt = mapper.modify(question);
+
+        return cnt == 1;
+    }
+
 }

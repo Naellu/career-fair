@@ -29,4 +29,20 @@ public interface QnaMapper {
     @ResultMap("qnaMap")
     QnaQuestion selectById(Integer id);
 
+    @Delete("""
+            DELETE FROM TB_QNA
+            WHERE qna_id = #{id}
+            """)
+    @ResultMap("qnaMap")
+    int deleteById(Integer id);
+
+    @Update("""
+            UPDATE TB_QNA
+            SET
+                title = #{title},
+                content = #{content}
+            WHERE qna_id = #{id}
+            """)
+    int modify(QnaQuestion question);
+
 }

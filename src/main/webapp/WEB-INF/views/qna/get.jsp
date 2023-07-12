@@ -52,6 +52,15 @@
                         <textarea id="content" class="form-control" cols="90" rows="10" readonly>${question.content}</textarea>
                     </div>
 
+                    <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">삭제</button>
+
+                    <!-- 삭제 -->
+                    <div class="d-none">
+                        <form action="/qna/remove" method="post" id="removeForm">
+                            <input type="text" name="id" value="${question.id }" />
+                        </form>
+                    </div>
+
                     <div id="answerContainer">
                             <div class="mb-3" id="addAnswerContainer">
                                 <div class="input-group">
@@ -69,6 +78,22 @@
                     </div>
 
                     수정 삭제~
+
+                    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">삭제 하시겠습니까?</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                    <button type="submit" class="btn btn-danger" form="removeForm">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
