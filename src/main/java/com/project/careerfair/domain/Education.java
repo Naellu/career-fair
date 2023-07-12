@@ -10,6 +10,7 @@ import lombok.ToString;
 public class Education {
 
     private Integer educationId;
+    private String educationType;
     private String schoolName;
     private String major;
     private String entryDate;

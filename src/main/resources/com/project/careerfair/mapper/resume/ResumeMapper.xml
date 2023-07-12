@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.resume.ResumeMapper">
+
+    <!-- 빈 이력서 등록 -->
+    <insert id="createEmptyResume" useGeneratedKeys="true" keyProperty="resumeId"
+            parameterType="com.project.careerfair.domain.Resume">
+        INSERT INTO
+            TB_ONLINE_RESUME(member_id)
+        VALUES
+            (#{memberId})
+    </insert>
+
+    <update id="updateResume">
+        UPDATE
+            TB_ONLINE_RESUME
+        SET
+            title = #{resumeDto.title},
+            industry_id = #{resumeDto.industryId},
+            military = #{resumeDto.military},
+            intro = #{resumeDto.intro}
+        WHERE
+            resume_id = #{resumeId}
+    </update>
+
+    <!-- 경력 데이터 등록-->
+    <insert id="insertCareerByResumeId" useGeneratedKeys="true" keyProperty="career.careerId">
+        INSERT INTO TB_CAREER
+        (
+            resume_id,
+            company_name,
+            entry_date,
+            resignation_date,
+            task,
+            position,
+            description
+        )
+        VALUES
+        (
+            #{resumeId},
+            #{career.companyName},
+            #{career.entryDate},
+            #{career.resignationDate},
+            #{career.task},
+            #{career.position},
+            #{career.description}
+        )
+    </insert>
+
+    <!-- 학력 데이터 등록 -->
+    <insert id="insertEducationByResumeId" useGeneratedKeys="true" keyProperty="education.educationId">
+        INSERT INTO TB_EDUCATION
+        (
+            resume_id,
+            education_type,
+            school_name,
+            entry_date,
+            graduation_date,
+            major,
+            status
+        )
+        VALUES
+        (
+            #{resumeId},
+            #{education.educationType},
+            #{education.schoolName},
+            #{education.entryDate},
+            #{education.graduationDate},
+            #{education.major},
+            #{education.status}
+        )
+    </insert>
+
+    <!-- 자격증 데이터 등록 -->
+    <insert id="insertCertificationByResumeId" useGeneratedKeys="true" keyProperty="certification.certificationId">
+        INSERT INTO TB_CERTIFICATION
+        (
+            resume_id,
+            certification_name,
+            get_date,
+            organization
+        )
+        VALUES
+        (
+            #{resumeId},
+            #{certification.certificationName},
+            #{certification.getDate},
+            #{certification.organization}
+        )
+    </insert>
+
+
+    <!-- 희망근무지 데이터 등록 -->
+    <insert id="insertWorkAreaByResumeId" useGeneratedKeys="true" keyProperty="workArea.workAreaId">
+        INSERT INTO
+            TB_WORK_AREA (resume_id, hoped_work_area)
+        VALUES
+            (#{resumeId}, #{workArea.hopedWorkArea})
+    </insert>
+
+
+    <!-- 희망근무조건 데이터 등록 -->
+    <insert id="insertWorkConditionByResumeId" useGeneratedKeys="true" keyProperty="workCondition.workConditionId">
+        INSERT INTO
+            TB_WORK_CONDITION (resume_id, salary, employment_type)
+        VALUES
+            (#{resumeId}, #{workCondition.salary}, #{workCondition.employmentType})
+    </insert>
+
+
+</mapper>
