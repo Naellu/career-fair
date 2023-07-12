@@ -35,12 +35,17 @@ public class MypageController {
     }
 
     @GetMapping("resume")
-    public String resumeList() {
+    public String resumeList(Model model) {
+        // 이력서 데이터 가져오기
+        String memberId = "testUser12345";
+        List<Resume> resumeList = resumeService.findByMemberId(memberId);
+        // view에 데이터 전달
+        model.addAttribute("resumeList", resumeList);
         return "member/resume/list";
     }
 
     @GetMapping("resume/write")
-    public String showOnlineResume(Model model) {
+    public String showOnlineResume(Model model, Authentication authentication) {
         List<Industry> industryList = industryService.getIndustryList();
         model.addAttribute("industry", industryList);
         return "member/resume/write";

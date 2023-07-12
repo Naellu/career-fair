@@ -4,6 +4,24 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.careerfair.mapper.resume.ResumeMapper">
 
+    <resultMap id="resumeData" type="com.project.careerfair.domain.Resume">
+        <id column="resume_id" property="resumeId"/>
+        <result column="title" property="title" />
+        <result column="member_id" property="memberId" />
+    </resultMap>
+
+    <select id="findByMemberId" resultMap="resumeData">
+        SELECT
+            resume_id,
+            title,
+            member_id
+        FROM
+            TB_ONLINE_RESUME
+        WHERE
+            member_id = #{memberId}
+    </select>
+
+
     <!-- 빈 이력서 등록 -->
     <insert id="createEmptyResume" useGeneratedKeys="true" keyProperty="resumeId"
             parameterType="com.project.careerfair.domain.Resume">
@@ -13,6 +31,7 @@
             (#{memberId})
     </insert>
 
+    <!-- 이력서 기본 정보 등록 -->
     <update id="updateResume">
         UPDATE
             TB_ONLINE_RESUME

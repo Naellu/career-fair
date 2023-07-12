@@ -54,6 +54,11 @@ public class ResumeServiceImpl implements ResumeService {
         return resumeId;
     }
 
+    @Override
+    public List<Resume> findByMemberId(String memberId) {
+        return resumeMapper.findByMemberId(memberId);
+    }
+
     private <T> void insertData(List<T> items, Integer resumeId, BiFunctionWithReturn<Integer, T> inserter) {
         for (T item : items) {
             inserter.apply(resumeId, item);
