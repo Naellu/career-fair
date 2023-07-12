@@ -15,4 +15,7 @@ public interface QnaService {
 
     QnaQuestion getQuestion(Integer id);
 
+    boolean remove(Integer id);
+
+    boolean modify(QnaQuestion question);
 }
