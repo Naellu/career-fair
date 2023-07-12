@@ -1,6 +1,7 @@
 package com.project.careerfair.mapper.posting;
 
 import com.project.careerfair.domain.Posting;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
@@ -33,4 +34,28 @@ public interface PostingMapper {
             """)
     Integer countPostingBymemberId(String memberId);
 
+    @Select("""
+            SELECT * FROM TB_POSTING
+            WHERE posting_id = #{postingId}
+            """)
+    @ResultMap("postingMap")
+    Posting getPostDetailByPostingId(Integer postingId);
+
+    @Insert("""
+            INSERT INTO TB_POSTING(
+            company_id, member_id, round, title, 
+            industry_id, hiring_count, spare_count, 
+            start_date, end_date, status, address, salary, 
+            preferences, benefits, requirements, etc, 
+            employment_type, experience_level, education_level)
+            VALUES(
+            #{companyId}, #{memberId}, #{round}, #{title},      
+            #{industryId}, #{hiringCount}, #{spareCount},
+            #{startDate}, #{endDate}, #{status}, #{address}, #{salary},
+            #{preference}, #{benefit}, #{requirement}, #{etc},
+            #{employmentType}, #{experienceLevel}, #{educationLevel}
+            )
+            """)
+    @ResultMap("postingMap")
+    Integer addPosting(Posting posting);
 }

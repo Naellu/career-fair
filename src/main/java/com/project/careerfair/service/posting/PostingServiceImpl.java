@@ -70,4 +70,28 @@ public class PostingServiceImpl implements PostingService{
 
         return resultMap;
     }
+
+    @Override
+    public Map<String, Object> getPostDetailByPostingId(Integer postingId) {
+
+        Map<String, Object> postDetail = new HashMap<>();
+
+        Posting posting = postingMapper.getPostDetailByPostingId(postingId);
+        Company company = companyMapper.getDetail(posting.getCompanyId());
+
+        postDetail.put("post", posting);
+        postDetail.put("company", company);
+
+        return postDetail;
+    }
+
+    @Override
+    public Boolean addPosting(Posting posting) {
+
+
+        Integer check = postingMapper.addPosting(posting);
+
+
+        return check==1;
+    }
 }
