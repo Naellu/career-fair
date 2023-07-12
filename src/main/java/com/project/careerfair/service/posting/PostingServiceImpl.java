@@ -10,6 +10,7 @@ import com.project.careerfair.mapper.posting.PostingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,10 +65,40 @@ public class PostingServiceImpl implements PostingService{
         Integer startIndex = currentPage * 10 -10;
         List<Posting> postingList = postingMapper.getPostingInfoByMemberId(memberId,startIndex);
 
+        List<Company> companyList = new ArrayList<>();
+        for (Posting posting : postingList){
+            companyList.add(companyMapper.getDetail(posting.getCompanyId()));
+        }
+
         resultMap.put("postingList",postingList);
+        resultMap.put("companyList", companyList);
         resultMap.put("pageInfo", pageInfo);
 
 
         return resultMap;
+    }
+
+    @Override
+    public Map<String, Object> getPostDetailByPostingId(Integer postingId) {
+
+        Map<String, Object> postDetail = new HashMap<>();
+
+        Posting posting = postingMapper.getPostDetailByPostingId(postingId);
+        Company company = companyMapper.getDetail(posting.getCompanyId());
+
+        postDetail.put("post", posting);
+        postDetail.put("company", company);
+
+        return postDetail;
+    }
+
+    @Override
+    public Boolean addPosting(Posting posting) {
+
+
+        Integer check = postingMapper.addPosting(posting);
+
+
+        return check==1;
     }
 }

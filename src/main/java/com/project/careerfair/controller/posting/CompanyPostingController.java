@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -29,6 +31,7 @@ public class CompanyPostingController {
         Map<String,Object> resultMap = service.getPostingInfo(memberId, page);
         model.addAttribute("postingList", resultMap.get("postingList"));
         model.addAttribute("pageInfo", resultMap.get("pageInfo"));
+        model.addAttribute("companyList", resultMap.get("companyList"));
     }
 
     @GetMapping("add")
@@ -43,9 +46,32 @@ public class CompanyPostingController {
 
     @PostMapping("add")
     public String addProcess(
-            Posting posting
-
+            Posting posting,
+            RedirectAttributes rttr
     ) {
-        return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
+        Boolean ok = service.addPosting(posting);
+
+
+        if(ok){
+            rttr.addFlashAttribute("message","공지가 등록되었습니다.");
+            return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
+
+        } else{
+            rttr.addFlashAttribute("message", "공지가 등록되지 않았습니다.");
+            return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
+        }
+    }
+
+    @GetMapping("detail")
+    public void getDetail(
+            Integer postingId,
+            Model model
+    ){
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap = service.getPostDetailByPostingId(postingId);
+
+        model.addAttribute("post",resultMap.get("post"));
+        model.addAttribute("company", resultMap.get("company"));
+
     }
 }

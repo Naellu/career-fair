@@ -23,17 +23,23 @@
 <sec:authentication property="name" var="userId"/>
 <my:navBar/>
 <my:font/>
-<h1>채용공고 목록</h1>
-<h3>${pageInfo}</h3>
-<div class="mt-3">
+
+<c:if test="${not empty message}">
+    <script>alert('${message}')</script>
+</c:if>
+<div class="col mt-3">
+    <h1>채용공고 목록</h1>
     <table id="posting-table" class="table table-bordered custom-div">
         <caption class="caption-top">
-            <button class="btn btn-outline-primary" onclick="location.href='/member/company/posting/add?userId=${userId}'">공고등록</button>
+            <button class="btn btn-outline-primary"
+                    onclick="location.href='/member/company/posting/add?userId=${userId}'">공고등록
+            </button>
         </caption>
         <thead class="table-dark">
         <tr>
             <th style="width: 200px;">기간</th>
-            <th>공고명</th>
+            <th style="width: 800px">공고명</th>
+            <th style="width: 200px;">회사명</th>
             <th style="width: 100px;">고용형태</th>
             <th style="width: 100px;">경력</th>
             <th style="width: 100px;">학력</th>
@@ -43,10 +49,13 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${postingList}" var="posting">
+        <c:forEach items="${postingList}" var="posting" varStatus="status">
             <tr>
                 <td>${posting.startDate} ~ ${posting.endDate}</td>
-                <td>${posting.title} (${posting.postingId})</td>
+                <td><a href="/member/company/posting/detail?postingId=${posting.postingId}">
+                        ${posting.title} (${posting.postingId})
+                </a></td>
+                <td>${companyList[status.index].companyName}</td>
                 <td>${posting.employmentType}</td>
                 <td>${posting.experienceLevel}</td>
                 <td>${posting.educationLevel}</td>
@@ -58,7 +67,6 @@
         </tbody>
     </table>
 </div>
-
 <%--페이지네이션--%>
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
@@ -93,10 +101,10 @@
             </c:url>
             <c:choose>
                 <c:when test="${param.page == null}">
-                    <c:set var="page" value="1" />
+                    <c:set var="page" value="1"/>
                 </c:when>
                 <c:otherwise>
-                    <c:set var="page" value="${param.page}" />
+                    <c:set var="page" value="${param.page}"/>
                 </c:otherwise>
             </c:choose>
             <li class="page-item ${page eq pageNumber ? 'active' : ''}">

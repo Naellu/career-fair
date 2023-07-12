@@ -36,7 +36,6 @@ public class NoteController {
 
         Map<String, Object> result = service.getListByUserId(memberId, page, distinction);
 
-        System.out.println(result);
         model.addAllAttributes(result);
         return "note/list/receive";
     }
