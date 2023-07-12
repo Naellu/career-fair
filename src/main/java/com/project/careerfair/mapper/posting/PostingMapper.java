@@ -8,15 +8,16 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-import java.util.List;
-
 @Mapper
 public interface PostingMapper {
 
+    // 기업별 현재 포스팅 
     List<Posting> getNowPostingList(Integer companyId);
 
+    // 기업별 현재 포스팅 수
     Integer countAll(Integer companyId);
 
+    // 기업별 과거 포스팅
     List<Posting> getPastPostingList(Integer startNum, Integer pageSize, Integer companyId);
     @Select("""
             SELECT * FROM TB_POSTING
@@ -58,4 +59,7 @@ public interface PostingMapper {
             """)
     @ResultMap("postingMap")
     Integer addPosting(Posting posting);
+    
+    // 유저 채용공고 목록
+    List<Posting> getNowPostingsAll(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
 }

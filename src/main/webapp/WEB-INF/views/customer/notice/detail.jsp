@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -59,6 +60,7 @@
                 <a id="next" class="btn btn-secondary">다음글로 가기</a>
             </div>
 
+            <sec:authorize access="hasAuthority('admin')">
             <div>
                 <div>
                     <a class="btn btn-primary" href="/customer/notice/modify/${noticeId}">수정</a>
@@ -67,6 +69,7 @@
                     </button>
                 </div>
             </div>
+            </sec:authorize>
         </div>
     </div>
 </div>

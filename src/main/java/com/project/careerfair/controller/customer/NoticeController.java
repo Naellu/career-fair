@@ -5,6 +5,7 @@ import com.project.careerfair.service.customer.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class NoticeController {
     }
 
     @GetMapping("reg")
+    @PreAuthorize("hasAuthority('admin')")
     public String reg() {
         return "customer/notice/reg";
     }
@@ -38,6 +40,7 @@ public class NoticeController {
     }
 
     @GetMapping("/modify/{noticeId}")
+    @PreAuthorize("hasAuthority('admin')")
     public String modify(@PathVariable("noticeId") Integer noticeId) {
         return "customer/notice/modify";
     }

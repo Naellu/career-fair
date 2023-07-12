@@ -63,7 +63,7 @@ function roundList() {
 }
 
 function industryList() {
-    fetch(`/api/user/recruiter/industry`, {
+    fetch(`/api/company/industry`, {
         method: "GET",
     })
         .then(response => response.json())

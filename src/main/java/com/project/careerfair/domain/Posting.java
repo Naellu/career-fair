@@ -32,4 +32,6 @@ public class Posting {
     private Integer industryId;
     private Integer applicationCount;
 
+    private String companyName;
+
 }

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +15,13 @@ import java.util.Map;
 @Slf4j
 @RequestMapping("/api/admin/recruiter/")
 @RequiredArgsConstructor
+@PreAuthorize("hasAuthority('admin')")
 public class RecruiterControllerAPI {
 
     private final RecruiterService recruiterService;
 
     @GetMapping
-    public ResponseEntity<Map<String, Object>> getList(
+    public ResponseEntity<Map<String, Object>> getRecruiters(
             @RequestParam(value = "search", required = false) String search,
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "status", required = false) String status,
@@ -29,13 +31,13 @@ public class RecruiterControllerAPI {
     }
 
     @GetMapping("{companyId}")
-    public ResponseEntity<Map<String, Object>> detail(@PathVariable("companyId") Integer companyId) {
+    public ResponseEntity<Map<String, Object>> getRecruiterDetail(@PathVariable("companyId") Integer companyId) {
         Map<String, Object> result = recruiterService.getDetail(companyId);
         return ResponseEntity.ok(result);
     }
 
     @PatchMapping("{companyId}")
-    public ResponseEntity<Void> modify(
+    public ResponseEntity<Void> updateRecruiterStatus(
             @PathVariable("companyId") Integer companyId,
             @RequestBody Map<String, String> statusMap) {
         boolean ok = recruiterService.changeStatus(companyId, statusMap);
