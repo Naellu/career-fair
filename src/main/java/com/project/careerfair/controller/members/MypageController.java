@@ -6,6 +6,8 @@ import com.project.careerfair.service.industry.IndustryService;
 import com.project.careerfair.service.resume.ResumeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,33 +47,13 @@ public class MypageController {
     }
 
     @PostMapping("resume/write")
-    public void writeOnlineResume(@RequestBody ResumeDto resumeDto,
-                                  Authentication authentication) {
-
-        log.info("ResumeId IN CONTROLLER={}",resumeDto.getResumeId());
-
-        for (Career career : resumeDto.getCareers()) {
-            log.info("Career IN CONTROLLER={}",career);
+    public ResponseEntity<String> writeOnlineResume(@RequestBody ResumeDto resumeDto, Authentication authentication) {
+        try {
+            Integer resumeId = resumeService.insertResumeData(resumeDto, authentication);
+            return ResponseEntity.ok("성공적으로 등록되었습니다");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("데이터 입력 중 오류가 발생했습니다");
         }
-
-        for (Education education : resumeDto.getEducations()) {
-            log.info("Education IN CONTROLLER={}",education);
-        }
-
-        for (Certification certification : resumeDto.getCertifications()) {
-            log.info("certification IN CONTROLLER={}",certification);
-        }
-
-        for (WorkArea workArea : resumeDto.getWorkAreas()) {
-            log.info("workArea IN CONTROLLER={}",workArea);
-        }
-
-        log.info("workCondition IN CONTROLLER={}", resumeDto.getWorkCondition());
-        log.info("title IN CONTROLLER={}",resumeDto.getTitle());
-        log.info("military IN CONTROLLER={}",resumeDto.getMilitary());
-        log.info("intro IN CONTROLLER={}",resumeDto.getIntro());
-        log.info("industryId IN CONTROLLER={}",resumeDto.getIndustryId());
-
-        resumeService.insertResumeData(resumeDto, authentication);
     }
 }

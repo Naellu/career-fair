@@ -39,22 +39,28 @@
             <div class="form-group mb-3 memberInfoGroup inputDetailGroup">
                 <div class="row">
                     <div class="col">
-                        <input type="text" class="form-control" id="name" placeholder="이름">
+                        <label for="name">이름</label>
+                        <input type="text" class="form-control" id="name" placeholder="">
                     </div>
                     <div class="col">
-                        <input type="date" class="form-control" id="birth" placeholder="생년월일">
+                        <label for="birth">생년월일</label>
+                        <input type="date" class="form-control" id="birth" placeholder="">
                     </div>
                     <div class="col">
+                        <label for="gender">성별</label>
                         <select class="form-control" id="gender">
-                            <option selected disabled>성별</option>
+                            <option selected disabled></option>
                             <option>남성</option>
                             <option>여성</option>
                         </select>
                     </div>
                 </div>
-                <input type="text" class="form-control mt-2" id="phone" placeholder="전화번호">
-                <input type="email" class="form-control mt-2" id="email" placeholder="이메일">
-                <input type="text" class="form-control mt-2" id="address" placeholder="주소">
+                <label for="phone">전화번호</label>
+                <input type="text" class="form-control mt-2" id="phone" placeholder="">
+                <label for="email">이메일</label>
+                <input type="email" class="form-control mt-2" id="email" placeholder="">
+                <label for="address">주소</label>
+                <input type="text" class="form-control mt-2" id="address" placeholder="">
             </div>
         </div>
 
@@ -82,13 +88,16 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <input type="text" class="form-control position" id="position1" placeholder="직위">
+                            <label for="position1">직위</label>
+                            <input type="text" class="form-control position" id="position1" placeholder="">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control task" id="task1" placeholder="담당업무">
+                            <label for="task1">담당업무</label>
+                            <input type="text" class="form-control task" id="task1" placeholder="">
                         </div>
                     </div>
-                    <input type="text" class="form-control description" id="description1" placeholder="기타설명">
+                    <label for="description1">기타설명</label>
+                    <input type="text" class="form-control description" id="description1" placeholder="">
                 </div>
             </div>
             <div class="addBtnDiv">
@@ -104,8 +113,9 @@
                     <button class="deleteButton"><i class="fa-solid fa-xmark"></i></button>
                     <div class="row">
                         <div class="col">
+                            <label for="educationType">최종학력</label>
                             <select class="form-control educationType" id="educationType">
-                                <option selected disabled>최종학력</option>
+                                <option selected disabled></option>
                                 <option>고졸</option>
                                 <option>전문대졸</option>
                                 <option>대졸</option>
@@ -114,22 +124,27 @@
                             </select>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control schoolName" id="schoolName" placeholder="학교명">
+                            <label for="schoolName">학교명</label>
+                            <input type="text" class="form-control schoolName" id="schoolName" placeholder="">
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control enterDate" id="enterDate" placeholder="입학일">
+                            <label for="enterDate">입학일</label>
+                            <input type="date" class="form-control enterDate" id="enterDate" placeholder="">
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control gradDate" id="gradDate" placeholder="졸업일">
+                            <label for="gradDate">졸업일</label>
+                            <input type="date" class="form-control gradDate" id="gradDate" placeholder="">
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <input type="text" class="form-control major" id="major" placeholder="학과">
+                            <label for="major">학과</label>
+                            <input type="text" class="form-control major" id="major" placeholder="">
                         </div>
                         <div class="col">
+                            <label for="gradStatus">졸업상태</label>
                             <select class="form-control form-selected gradStatus" id="gradStatus">
-                                <option selected disabled>졸업 상태</option>
+                                <option selected disabled></option>
                                 <option>졸업</option>
                                 <option>휴학</option>
                                 <option>재학</option>
@@ -176,12 +191,15 @@
         <div id="desiredConditionContainer" class="inputContainer">
             <div class="form-group mb-3 desiredConditionGroup inputDetailGroup">
                 <div id="workAreaContainer">
-                    <input type="text" class="form-control desiredLocation" id="desiredLocation1" placeholder="근무지역">
+                    <label for="desiredLocation1">근무지역</label>
+                    <input type="text" class="form-control desiredLocation" id="desiredLocation1" placeholder="">
                 </div>
                 <button type="button" class="btn btn-dark mt-2 addBtnDiv" id="addWorkArea">근무지역 추가</button>
-                <input type="text" class="form-control desiredSalary" id="desiredSalary" placeholder="연봉">
+                <label for="desiredSalary">연봉</label>
+                <input type="text" class="form-control desiredSalary" id="desiredSalary" placeholder="">
+                <label for="employmentType">고용형태</label>
                 <select class="form-control" id="employmentType">
-                    <option selected disabled>고용형태</option>
+                    <option selected disabled></option>
                     <option>정규직</option>
                     <option>계약직</option>
                 </select>

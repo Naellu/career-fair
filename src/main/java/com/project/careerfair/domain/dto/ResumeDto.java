@@ -19,6 +19,8 @@ public class ResumeDto {
     private List<WorkArea> workAreas;
     private WorkCondition workCondition;
 
+    private String memberId;
+
     private String title;
     private String military;
     private String intro;

@@ -207,7 +207,7 @@ $("#submitResumeButton").click(function () {
 
     // 서버에 보낼 데이터
     let resume = {
-        resumeId: 1, // 테스트 resumeId
+        // resumeId: 1, // 테스트 resumeId
         careers: careers,
         educations: educations,
         certifications: certifications,
@@ -227,11 +227,13 @@ $("#submitResumeButton").click(function () {
         body: JSON.stringify(resume),
 
     })
-        .then(data => {
-            console.log("career data has been sent successfully");
+        .then(response => response.text())
+        .then(message => {
+            alert(message);
         })
         .catch(error => {
             console.log("career data send error", error);
+            alert(error.body);
         });
 
 });
