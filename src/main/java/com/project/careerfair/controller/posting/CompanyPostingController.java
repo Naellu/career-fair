@@ -32,6 +32,7 @@ public class CompanyPostingController {
         model.addAttribute("postingList", resultMap.get("postingList"));
         model.addAttribute("pageInfo", resultMap.get("pageInfo"));
         model.addAttribute("companyList", resultMap.get("companyList"));
+
     }
 
     @GetMapping("add")
@@ -72,6 +73,7 @@ public class CompanyPostingController {
 
         model.addAttribute("post",resultMap.get("post"));
         model.addAttribute("company", resultMap.get("company"));
+        model.addAttribute("industry", resultMap.get("industry"));
 
     }
 }

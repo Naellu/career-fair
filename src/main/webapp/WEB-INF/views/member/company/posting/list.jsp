@@ -37,7 +37,7 @@
         </caption>
         <thead class="table-dark">
         <tr>
-            <th style="width: 200px;">기간</th>
+            <th style="width: 400px;">기간</th>
             <th style="width: 800px">공고명</th>
             <th style="width: 200px;">회사명</th>
             <th style="width: 100px;">고용형태</th>
