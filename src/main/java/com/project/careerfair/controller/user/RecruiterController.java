@@ -4,6 +4,7 @@ import com.project.careerfair.service.admin.ExhibitionInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequestMapping("/user/recruiter/")
 @RequiredArgsConstructor
+@PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin')")
 public class RecruiterController {
 
     private final ExhibitionInfoService exhibitionInfoService;

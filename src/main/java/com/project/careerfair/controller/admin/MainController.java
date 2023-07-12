@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller("adminMainController")
 @RequestMapping("/admin")
+@PreAuthorize("hasAuthority('admin')")
 public class MainController {
 
     @GetMapping("/main")

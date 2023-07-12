@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class NoticeControllerAPI {
     private final NoticeService noticeService;
 
     @GetMapping
-    public ResponseEntity<Map<String, Object>> getList(
+    public ResponseEntity<Map<String, Object>> getNotices(
             @RequestParam(value = "search", required = false) String search,
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "page", defaultValue = "1") Integer page) {
@@ -37,7 +38,8 @@ public class NoticeControllerAPI {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, Object>> create(
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseEntity<Map<String, Object>> createNotice(
             Notice notice,
             @RequestParam(value = "files", required = false) MultipartFile[] files,
             Authentication authentication) {
@@ -59,13 +61,14 @@ public class NoticeControllerAPI {
     }
 
     @GetMapping("{noticeId}")
-    public ResponseEntity<Map<String, Object>> detail(@PathVariable("noticeId") Integer noticeId) {
+    public ResponseEntity<Map<String, Object>> getNotice(@PathVariable("noticeId") Integer noticeId) {
         Map<String, Object> result = noticeService.getDetail(noticeId);
         return ResponseEntity.ok(result);
     }
 
     @PostMapping("{noticeId}")
-    public ResponseEntity<Map<String, Object>> modify(
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseEntity<Map<String, Object>> modifyNotice(
             @PathVariable("noticeId") Integer noticeId,
             Notice notice,
             @RequestParam(value = "removeFiles", required = false) List<String> removeFileNames,
@@ -89,7 +92,8 @@ public class NoticeControllerAPI {
     }
 
     @DeleteMapping("{noticeId}")
-    public ResponseEntity<Map<String, Object>> delete(@PathVariable("noticeId") Integer noticeId) {
+    @PreAuthorize("hasAuthority('admin')")
+    public ResponseEntity<Map<String, Object>> deleteNotice(@PathVariable("noticeId") Integer noticeId) {
         boolean ok = noticeService.delete(noticeId);
 
         Map<String, Object> response = new HashMap<>();

@@ -13,6 +13,7 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="/css/company.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoMap}&libraries=services"></script>
     <my:font></my:font>
     <title>기업정보</title>
 </head>
@@ -39,9 +40,15 @@
         </table>
     </div>
 
-    <div class="mt-3">
-        다 음 지 도
-    </div>
+    <section>
+        <div class="container-lg mt-3"></div>
+        <div style="text-align: center">
+            <h3>기업 위치</h3>
+        </div>
+        <div class="mx-auto" style="width: 1000px; height: 400px; position: relative;">
+            <div id="map" style="width: 1000px; height: 400px;"></div>
+        </div>
+    </section>
 
     <%-- 현재 공고 --%>
     <div class="mt-3">

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ import java.util.Map;
 @RestController("userRecruiterControllerAPI ")
 @Slf4j
 @RequestMapping("/api/user/recruiter/")
+@PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin')")
 @RequiredArgsConstructor
 public class RecruiterControllerAPI {
 
@@ -35,7 +37,7 @@ public class RecruiterControllerAPI {
 
     // 참여기업신청하기
     @PostMapping
-    public ResponseEntity<Map<String, Object>> reg(
+    public ResponseEntity<Map<String, Object>> regCompany(
             Company company,
             @RequestParam("files") MultipartFile[] files,
             Authentication authentication) {
@@ -57,7 +59,7 @@ public class RecruiterControllerAPI {
 
     // 목록 불러오기
     @GetMapping
-    public ResponseEntity<Map<String, Object>> getList(
+    public ResponseEntity<Map<String, Object>> getCompanies(
             @RequestParam(value = "roundValue", required = false) String roundValue,
             Authentication authentication) {
         Map<String, Object> result = recruiterService.getList(roundValue, authentication.getName());
@@ -66,14 +68,14 @@ public class RecruiterControllerAPI {
 
     // 상세 불러오기
     @GetMapping("{companyId}")
-    public ResponseEntity<Map<String, Object>> detail(@PathVariable("companyId") Integer companyId) {
+    public ResponseEntity<Map<String, Object>> getCompany(@PathVariable("companyId") Integer companyId) {
         Map<String, Object> result = recruiterService.getDetail(companyId);
         return ResponseEntity.ok(result);
     }
 
 
     @PostMapping("{companyId}")
-    public ResponseEntity<Map<String, Object>> modify(
+    public ResponseEntity<Map<String, Object>> modifyCompany(
             @PathVariable("companyId") Integer companyId,
             Company company,
             @RequestParam(value = "removeFiles", required = false) List<String> removeFileNames,

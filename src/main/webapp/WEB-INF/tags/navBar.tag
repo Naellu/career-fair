@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="#">박람회 소개</a></li>
                 <li><a href="/company/list">참여기업</a></li>
-                <li><a href="#">채용공고</a></li>
+                <li><a href="/user/posting/list">채용공고</a></li>
                 <li><a href="/qna/QnaList">Q&A</a></li>
 
                 <li class="dropdown"><a href="#"><span>고객센터</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -50,22 +50,22 @@
                     <li><a href="/member/user/mypage">마이페이지</a></li>
                 </sec:authorize>
 
-                <sec:authorize access="hasAuthority('company') or hasAuthority('admin')">
+                <sec:authorize access="hasAuthority('recruiter') or hasAuthority('company') or hasAuthority('admin')">
                     <li><a href="/member/company/mypage">마이페이지</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">
                     <li><a href="/login/logout">로그아웃</a></li>
                 </sec:authorize>
-                <%--  <sec:authorize access="hasAuthority('admin')">--%>
+
+                <sec:authorize access="hasAuthority('admin')">
                 <li><a href="/admin/main">관리자</a></li>
-                <%--  </sec:authorize>--%>
+                </sec:authorize>
             </ul>
         </nav><!-- .navbar -->
 
         <%--        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>--%>
         <%--        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>--%>
-
     </div>
 </header>
 <!-- End Header -->
