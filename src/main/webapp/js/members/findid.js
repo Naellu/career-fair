@@ -10,14 +10,20 @@ function enableSubmit() {
 
 // 이메일 인증 버튼 클릭 이벤트 처리
 $("#checkEmailBtn").click(function() {
+
+
+    var email = $("#inputEmail").val();
+    // 이메일이 빈값인 경우 처리
+    if (!email) {
+        alert("이메일 주소를 입력해주세요.");
+        return; //이메일 비어있으면 함수 실행 중단
+    }
+
     // 인증하기 버튼을 클릭하면 인증번호 입력 칸과 확인 버튼을 나타내고, 인증하기 버튼은 숨김 ,다시하기 버튼이 출력
     $("#inputVerificationCode").show();
     $("#verifyEmailBtn").show();
     $("#checkEmailBtn").hide();
     $("#recheck-EmailBtn").show();
-
-    var email = $("#inputEmail").val();
-    if (email) {
         // 이메일 전송 요청
         $.ajax({
             url: "/members/mail",
@@ -35,7 +41,7 @@ $("#checkEmailBtn").click(function() {
                 // 에러 처리 로직 추가
             }
         });
-    }
+
 });
 
 // 확인 버튼 클릭 시 동작
@@ -51,7 +57,9 @@ $("#verifyEmailBtn").click(function() {
 // 확인 버튼 클릭 이벤트 처리
 $("#verifyEmailBtn").click(function() {
     var enteredCode = $("#verificationCode").val();
-    if (enteredCode) {
+    if (!enteredCode) {
+        return;
+    }
         // 이메일 전송 요청
         $.ajax({
             url: "/members/mailCheck",
@@ -75,7 +83,7 @@ $("#verifyEmailBtn").click(function() {
             }
 
         });
-    }
+
 });
 
 
@@ -93,13 +101,11 @@ function findId_click(){
                 $('#id_value').text("회원 정보를 확인해주세요!");
                 $('#name').val('');
                 $('#email').val('');
-                console.log(data);
             } else {
                 $('#find-div').show();
                 $('#id_value').text('ID : ' + data);
                 $('#name').val('');
                 $('#email').val('');
-                console.log(data);
             }
         },
         error:function(){
@@ -108,22 +114,37 @@ function findId_click(){
     });
 };
 
-// const modal = document.getElementById("modal")
-// const btnModal = document.getElementById("find_id")
-//
-// btnModal.addEventListener("click", e => {
-//     modal.style.display = "flex"
-// })
-//
-//
-// const closeBtn = modal.querySelector(".close-area")
-// closeBtn.addEventListener("click", e => {
-//     modal.style.display = "none"
-// })
-//
-// modal.addEventListener("click", e => {
-//     const evTarget = e.target
-//     if(evTarget.classList.contains("modal-overlay")) {
-//         modal.style.display = "none"
-//     }
-// })
+//이메일 유효성 검사
+function validateEmail(email) {
+    // 이메일 유효성 검사 정규식
+    var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    return emailRegex.test(email);
+}
+
+
+$("#checkEmailBtn").click(function() {
+    var email = $("#inputEmail").val();
+
+    if (!validateEmail(email)) {
+        // 이메일 유효성 검사 실패
+        alert("올바른 이메일 주소를 입력해주세요.");
+        return;
+    }
+    // 버튼 및 인증번호 입력란 처리
+    $("#recheck-EmailBtn").remove();
+    $("#inputVerificationCode").show();
+});
+
+// 인증 확인 버튼 클릭 이벤트 처리
+$("#verifyEmailBtn").click(function() {
+    var enteredCode = $("#verificationCode").val();
+    if (enteredCode) {
+        // 이메일 인증 로직 진행
+        // ...
+
+        // 인증번호 일치 시 처리
+        $("#inputVerificationCode").hide();
+        $("#verificationSuccessText").show();
+    }
+});
+

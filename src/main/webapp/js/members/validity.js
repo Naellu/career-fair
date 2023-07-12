@@ -305,10 +305,10 @@ $("#verifyEmailBtn").click(function() {
             },
             success: function(response) {
                 var authentication = response.authentication;
-                console.log("authentication => " + authentication);
 
                 if (authentication) {
                     // 인증번호 일치 시 회원 가입 진행
+                    console.log(data);
                     checkEmail = true;
                     enableSubmit();
 
