@@ -1,10 +1,7 @@
 package com.project.careerfair.mapper.posting;
 
 import com.project.careerfair.domain.Posting;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -62,4 +59,12 @@ public interface PostingMapper {
     
     // 유저 채용공고 목록
     List<Posting> getNowPostingsAll(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
+
+    @Delete("""
+            DELETE FROM TB_POSTING
+            WHERE
+            posting_id = #{postingId} AND
+            NOT (application_count != 0 && status = '채용중') 
+            """)
+    int deletePosting(Posting posting);
 }

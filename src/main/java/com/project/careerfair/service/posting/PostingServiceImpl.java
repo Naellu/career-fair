@@ -106,4 +106,10 @@ public class PostingServiceImpl implements PostingService{
 
         return check==1;
     }
+
+    @Override
+    public Boolean deletePosting(Posting posting) {
+
+        return postingMapper.deletePosting(posting) == 1;
+    }
 }

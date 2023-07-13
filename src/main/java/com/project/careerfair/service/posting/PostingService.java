@@ -12,4 +12,6 @@ public interface PostingService {
     Map<String, Object> getPostDetailByPostingId(Integer postingId);
 
     Boolean addPosting(Posting posting);
+
+    Boolean deletePosting(Posting posting);
 }

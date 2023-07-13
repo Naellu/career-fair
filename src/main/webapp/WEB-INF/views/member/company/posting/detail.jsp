@@ -60,10 +60,37 @@
                 </textarea>
             <div style="text-align: right;">
                 <button class="btn btn-outline-success">수정</button>
-                <button class="btn btn-outline-danger">삭제</button>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletePosting">삭제</button>
                 <button class="btn btn-outline-secondary" onclick="location.href='/member/company/posting/list?memberId=${post.memberId}'">목록</button>
             </div>
             <br>
+        </div>
+    </div>
+</div>
+
+<%--삭제 모달--%>
+<div class="d-none">
+    <form action="/member/company/posting/delete" method="post" id="deletePostingForm">
+        <input type="number" name="postingId" value="${post.postingId}">
+        <input type="number" name="applicationCount" value="${post.applicationCount}">
+        <input type="text" name="status" value="${post.status}">
+        <input type="text" name="memberId" value="${post.memberId}">
+    </form>
+</div>
+<div class="modal fade" id="deletePosting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deletePostingLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deletePostingLabel">삭제 확인</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                해당공고를 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-danger" form="deletePostingForm">삭제</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+            </div>
         </div>
     </div>
 </div>
