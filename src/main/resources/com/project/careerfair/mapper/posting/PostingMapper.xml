@@ -42,6 +42,7 @@
     <select id="getPastPostingList" resultMap="postingMap">
         SELECT * FROM TB_POSTING
         WHERE company_id = #{companyId} AND status = '마감'
+        ORDER BY posting_id DESC
         LIMIT #{startNum}, #{pageSize}
     </select>
 
@@ -106,7 +107,55 @@
                 </foreach>
             </if>
         </where>
-        LIMIT 0, 10
+        LIMIT #{startNum}, #{pageSize}
+    </select>
+
+
+    <select id="getNowPostingsCount" resultType="Integer">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT COUNT(*) FROM (SELECT * FROM VIEW_POSTING WHERE status = '채용중') c
+        <where>
+            <if test="type eq 'all'">
+                (company_name LIKE #{pattern} OR title LIKE #{pattern} OR address LIKE #{pattern})
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'title'">
+                OR title LIKE #{pattern}
+            </if>
+            <if test="type eq 'address'">
+                OR address LIKE #{pattern}
+            </if>
+            <if test="industrIds neq null">
+                AND
+                <foreach item="item" index="index" collection="industrIds"
+                         open="industry_id IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="experienceLevels neq null">
+                AND
+                <foreach item="item" index="index" collection="experienceLevels"
+                         open="experience_level IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="educationLevels neq null">
+                AND
+                <foreach item="item" index="index" collection="educationLevels"
+                         open="education_level IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="employmentTypes neq null">
+                AND
+                <foreach item="item" index="index" collection="employmentTypes"
+                         open="employment_type IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
     </select>
 </mapper>
 
