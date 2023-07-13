@@ -49,9 +49,11 @@
                     <input class="btn btn-primary loginbutton" type="submit" value="로그인" />
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
-                    <a href="/members/signup"><span>회원가입</span></a>
+                    <a href="/member/members/signup"><span>회원가입</span></a>
                     <div class="div-cloumn"></div>
-                    <span id="find-id" onclick="location.href='/members/useridfind'">아이디찾기</span>
+                    <a href="/member/members/cosignup"><span>기업 회원가입</span></a>
+                    <div class="div-cloumn"></div>
+                    <span id="find-id" onclick="location.href='/member/members/useridfind'">아이디찾기</span>
                     <div class="div-cloumn"></div>
                 </div>
             </form>

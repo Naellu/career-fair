@@ -36,11 +36,11 @@ $("#input-id").blur(function (){
         id = true;
         enableSubmit();
     }
-        if(id == true) {
-            $("#id-Confirm").show();
-        }else {
-            $("#id-Confirm").hide();
-        }
+    if(id == true) {
+        $("#id-Confirm").show();
+    }else {
+        $("#id-Confirm").hide();
+    }
 });
 
 //==============================아이디 중복검사 ==============================================
@@ -50,7 +50,7 @@ $("#id-Confirm").click(function() {
         alert("아이디를 입력해주세요.");
     } else {
         $.ajax({
-            url: "/members/checkId/" + member_id,
+            url: "/member/members/checkId/" + member_id,
             type: "get",
             success: function(data) {
                 if (data.available) {
@@ -183,7 +183,7 @@ function phone() {
 $("#checkPhoneNumBtn").click(function() {
     const userphoneNum = $("#totalphone-num").val();
     // 입력한 ID와 ajax 요청 보내서
-    $.ajax("/members/checkphoneNumber/" + userphoneNum, {
+    $.ajax("/member/members/checkphoneNumber/" + userphoneNum, {
         success: function(data) {
 
             if (data.available) {
@@ -226,7 +226,7 @@ function email() {
 $("#search-email").click(function() {
     const userEmail = $("#totalemail").val();
     // 입력한 ID와 ajax 요청 보내서
-    $.ajax("/members/searchMail", {
+    $.ajax("/member/members/searchMail", {
         method: "post",
         data: {
             email: userEmail
@@ -263,7 +263,7 @@ $("#checkEmailBtn").click(function() {
     if (email) {
         // 이메일 전송 요청
         $.ajax({
-            url: "/members/mail",
+            url: "/member/members/mail",
             method: "POST",
             data: {
                 email: email
@@ -298,7 +298,7 @@ $("#verifyEmailBtn").click(function() {
     if (enteredCode) {
         // 이메일 전송 요청
         $.ajax({
-            url: "/members/mailCheck",
+            url: "/member/members/mailCheck",
             method: "POST",
             data: {
                 enteredCode: enteredCode
@@ -325,7 +325,7 @@ $("#verifyEmailBtn").click(function() {
 //============================회원가입 동의사항================================================
 //팝업창 형태
 function agree1() {
-    window. open('/members/agree', '약관1', 'width=700px,height=500px,scrollbars=yes');
+    window. open('/member/members/agree', '약관1', 'width=700px,height=500px,scrollbars=yes');
 }
 
 //동의 여부 유효성
@@ -341,4 +341,3 @@ $(function(){
         }
     });
 });
-// 동의여부는 좀있다가 다시 수정

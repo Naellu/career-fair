@@ -28,7 +28,7 @@
     <c:param name="memberId" value="${userId}"/>
 </c:url>
 <button onclick="location.href='${noteListURL}'">쪽지</button>
-<button>내정보</button>
+<button onclick="location.href='/member/company/myInfo?id=<sec:authentication property="name" />'">내정보</button>
 <button>업종별이력서보기</button>
 
 

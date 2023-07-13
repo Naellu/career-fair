@@ -37,9 +37,14 @@
                     </ul>
                 </li>
 
-                <li><a href="#">회원가입</a></li>
-
-
+                <sec:authorize access="isAnonymous()">
+                <li class="dropdown"><a href="#">회원가입<i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <li><a href="/member/members/signup">구직자 회원가입</a></li>
+                        <li><a href="/member/members/cosignup">기업 회원가입</a></li>
+                    </ul>
+                </li>
+                </sec:authorize>
                 <sec:authorize access="isAnonymous()">
                     <li><a href="/login/login">로그인</a></li>
                 </sec:authorize>
@@ -47,11 +52,11 @@
                 <li><a href="/member/company/mypage">작업용기업마이페이지(삭제예정)</a></li>
 
                 <sec:authorize access="hasAuthority('user')">
-                    <li><a href="/member/user/mypage">마이페이지</a></li>
+                    <li><a href="/member/user/mypage?id=<sec:authentication property="name" />">마이페이지</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="hasAuthority('recruiter') or hasAuthority('company') or hasAuthority('admin')">
-                    <li><a href="/member/company/mypage">마이페이지</a></li>
+                    <li><a href="/member/company/mypage1?id=<sec:authentication property="name" />">마이페이지</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">

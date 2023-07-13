@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Map;
 
 @Controller
-@RequestMapping("members")
+@RequestMapping("member/members")
 @RequiredArgsConstructor
 public class MemberController {
 
