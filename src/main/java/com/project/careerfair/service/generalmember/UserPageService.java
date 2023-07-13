@@ -1,4 +1,4 @@
-package com.project.careerfair.service.member;
+package com.project.careerfair.service.generalmember;
 
 import com.project.careerfair.domain.Members;
 

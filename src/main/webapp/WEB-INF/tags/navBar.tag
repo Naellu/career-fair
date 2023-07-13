@@ -40,8 +40,8 @@
                 <sec:authorize access="isAnonymous()">
                 <li class="dropdown"><a href="#">회원가입<i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="/members/signup">구직자 회원가입</a></li>
-                        <li><a href="/members/cosignup">기업 회원가입</a></li>
+                        <li><a href="/member/members/signup">구직자 회원가입</a></li>
+                        <li><a href="/member/members/cosignup">기업 회원가입</a></li>
                     </ul>
                 </li>
                 </sec:authorize>
@@ -56,7 +56,7 @@
                 </sec:authorize>
 
                 <sec:authorize access="hasAuthority('recruiter') or hasAuthority('company') or hasAuthority('admin')">
-                    <li><a href="/member/company/mypage">마이페이지</a></li>
+                    <li><a href="/member/company/mypage1?id=<sec:authentication property="name" />">마이페이지</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">

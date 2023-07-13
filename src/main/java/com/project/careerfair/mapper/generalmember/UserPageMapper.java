@@ -1,4 +1,4 @@
-package com.project.careerfair.mapper.members;
+package com.project.careerfair.mapper.generalmember;
 
 import com.project.careerfair.domain.Members;
 import org.apache.ibatis.annotations.Mapper;
