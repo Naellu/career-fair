@@ -18,18 +18,50 @@ public interface PostingMapper {
     List<Posting> getPastPostingList(Integer startNum, Integer pageSize, Integer companyId);
 
     @Select("""
-            SELECT * FROM TB_POSTING
-            WHERE member_id = #{memberId}
-            ORDER BY posting_id DESC
-            LIMIT #{startIndex}, 10
+            <script>
+                SELECT * FROM TB_POSTING
+                <choose>
+                    <when test="status=='recruitment'">
+                        WHERE 
+                        member_id = #{memberId} AND        
+                        status = '채용중'
+                    </when>
+                    <when test="status=='deadline'">
+                        WHERE 
+                        member_id = #{memberId} AND        
+                        status = '마감'
+                    </when>
+                    <otherwise>
+                        WHERE member_id = #{memberId}
+                    </otherwise>
+                </choose>
+                ORDER BY posting_id DESC
+                LIMIT #{startIndex}, 10
+            </script>
             """)
     @ResultMap("postingMap")
     List<Posting> getPostingInfoByMemberId(String memberId, Integer startIndex, String status);
 
     @Select("""
+            <script>
             SELECT COUNT(*)
             FROM TB_POSTING
-            WHERE member_id = #{memberId}
+            <choose>
+                    <when test="status=='recruitment'">
+                        WHERE 
+                        member_id = #{memberId} AND        
+                        status = '채용중'
+                    </when>
+                    <when test="status=='deadline'">
+                        WHERE 
+                        member_id = #{memberId} AND        
+                        status = '마감'
+                    </when>
+                    <otherwise>
+                        WHERE member_id = #{memberId}
+                    </otherwise>
+                </choose>
+            </script>
             """)
     Integer countPostingBymemberId(String memberId, String status);
 
