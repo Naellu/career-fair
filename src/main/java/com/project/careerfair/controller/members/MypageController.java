@@ -11,10 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -42,6 +39,17 @@ public class MypageController {
         // view에 데이터 전달
         model.addAttribute("resumeList", resumeList);
         return "member/resume/list";
+    }
+
+    @GetMapping("resume/{resumeId}")
+    public String showDetail(@PathVariable Integer resumeId, Model model) {
+        // 이력서 상세 데이터 가져오기
+        ResumeDto resumeDetailData = resumeService.getResumeById(resumeId);
+        log.info("resumeDetailData IN CONTROLLER = {}", resumeDetailData);
+        // view에 상세 데이터 전달
+        model.addAttribute("resumeData", resumeDetailData);
+        log.info("model IN CONTROLLER = {}", model);
+        return "member/resume/detail";
     }
 
     @GetMapping("resume/write")

@@ -128,5 +128,71 @@
             (#{resumeId}, #{workCondition.salary}, #{workCondition.employmentType})
     </insert>
 
+    <resultMap id="ResumeDtoMap" type="com.project.careerfair.domain.dto.ResumeDto">
+        <id column="resume_id" property="resumeId" />
+        <result column="member_id" property="memberId"/>
+        <result column="title" property="title" />
+        <result column="military" property="military" />
+        <result column="intro" property="intro" />
+        <result column="industry_id" property="industryId" />
+
+        <association property="workCondition" javaType="com.project.careerfair.domain.WorkCondition">
+            <id column="work_condition_id" property="workConditionId"/>
+            <result column="salary" property="salary"/>
+            <result column="employment_type" property="employmentType"/>
+        </association>
+
+        <collection property="careers" ofType="com.project.careerfair.domain.Career">
+            <id column="career_id" property="careerId"/>
+            <result column="company_name" property="companyName"/>
+            <result column="entry_date" property="entryDate"/>
+            <result column="resignation_date" property="resignationDate"/>
+            <result column="task" property="task"/>
+            <result column="position" property="position"/>
+            <result column="description" property="description"/>
+        </collection>
+
+        <collection property="educations" ofType="com.project.careerfair.domain.Education">
+            <id column="education_id" property="educationId"/>
+            <result column="education_type" property="educationType"/>
+            <result column="school_name" property="schoolName"/>
+            <result column="major" property="major"/>
+            <result column="entry_date" property="entryDate"/>
+            <result column="graduation_date" property="graduationDate"/>
+            <result column="status" property="status"/>
+        </collection>
+
+        <collection property="certifications" ofType="com.project.careerfair.domain.Certification">
+            <id column="certification_id" property="certificationId"/>
+            <result column="certification_name" property="certificationName"/>
+            <result column="get_date" property="getDate"/>
+            <result column="organization" property="organization"/>
+        </collection>
+
+        <collection property="workAreas" ofType="com.project.careerfair.domain.WorkArea">
+            <id column="work_area_id" property="workAreaId"/>
+            <result column="hoped_work_area" property="hopedWorkArea"/>
+        </collection>
+    </resultMap>
+
+    <select id="getResumeById" resultMap="ResumeDtoMap">
+        SELECT
+            r.resume_id, r.member_id, r.title, r.military, r.intro, r.industry_id,
+            wc.work_condition_id, wc.salary, wc.employment_type,
+            ca.career_id, ca.company_name, ca.entry_date, ca.resignation_date, ca.task, ca.description, ca.position,
+            ed.education_id, ed.school_name, ed.major, ed.entry_date, ed.graduation_date, ed.education_type, ed.status,
+            crt.certification_id, crt.certification_name, crt.get_date, crt.organization,
+            wa.work_area_id, wa.hoped_work_area
+        FROM
+            TB_ONLINE_RESUME r
+            LEFT JOIN TB_CAREER ca ON r.resume_id = ca.resume_id
+            LEFT JOIN TB_EDUCATION ed ON r.resume_id = ed.resume_id
+            LEFT JOIN TB_CERTIFICATION crt ON r.resume_id = crt.resume_id
+            LEFT JOIN TB_WORK_AREA wa ON r.resume_id = wa.resume_id
+            LEFT JOIN TB_WORK_CONDITION wc ON r.resume_id = wc.resume_id
+        WHERE
+            r.resume_id = #{resumeId};
+    </select>
+
 
 </mapper>

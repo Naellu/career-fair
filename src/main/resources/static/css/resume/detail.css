@@ -1,0 +1,392 @@
+
+h4 {
+    margin-bottom: 13px;
+    font-size: 22px;
+    color: #000;
+}
+
+div {
+    display: block;
+}
+
+.resume-view-container {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+    padding-bottom: 75px;
+    text-align: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.resumeHeader {
+    overflow: hidden;
+    width: 100%;
+    height: 35px;
+    margin-bottom: 50px;
+    background-color: #fff;
+    /*border-bottom: 1px solid #ececec;*/
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.resume-subject {
+    margin-bottom: 24px;
+    font-size: 30px;
+    color: #000;
+    letter-spacing: -2px;
+    line-height: 1.4;
+}
+
+.list,
+.groupDetail {
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid #000;
+    background-color: #fff;
+}
+
+/* ----- 경력 ----- */
+
+.list.list-career > div.item {
+    min-height: 90px;
+}
+.list.list-career div.item {
+    padding-top: 21px;
+    padding-bottom: 17px;
+}
+
+.list div.item:first-child {
+    border-top: 0;
+}
+.list div.item {
+    overflow: hidden;
+    position: relative;
+    padding-left: 200px;
+    padding-right: 40px;
+    border-top: 1px solid #edeef0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.list .date {
+    position: absolute;
+    left: 38px;
+    top: 22px;
+    font-size: 14px;
+    color: #000;
+    letter-spacing: 0;
+}
+
+.list .date .term {
+    margin-bottom: 7px;
+    font-size: 14px;
+    color: #000;
+}
+
+.list .date .term-calculator {
+    font-size: 13px;
+    color: #3399ff;
+    letter-spacing: -1px;
+}
+
+
+.list .content-header {
+    margin-bottom: 8px;
+    font-size: 0;
+    line-height: 1.55;
+}
+
+.list .content-header .name {
+    position: relative;
+    top: -3px;
+    display: inline;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    vertical-align: top;
+    word-break: break-all;
+}
+
+.list.list-career .content-header .is-private {
+    display: inline;
+    margin-left: 2px;
+    font-size: 14px;
+    color: #000;
+    vertical-align: baseline;
+}
+
+.list.list-career .content-header .position {
+    display: inline;
+    margin-left: 11px;
+    font-size: 14px;
+    color: #666;
+    vertical-align: baseline;
+}
+
+.list .content-body {
+    font-size: 14px;
+    color: #000;
+    line-height: 2.3;
+}
+
+.list.list-career .content-body .description {
+    margin-bottom: 9px;
+}
+
+.list.list-career .info .item {
+    min-height: auto;
+    padding: 0 0 0 73px;
+    border-top: 0;
+}
+
+.list.list-career .info .label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 61px;
+    font-size: 14px;
+    color: #666;
+}
+
+.list.list-career .info .label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    height: 12px;
+    background-color: #ddd;
+    -webkit-transform: translateY(12px);
+    -moz-transform: translateY(12px);
+    -ms-transform: translateY(12px);
+    -o-transform: translateY(12px);
+    transform: translateY(12px);
+}
+
+.list.list-career .info .value {
+    font-size: 14px;
+    color: #666;
+}
+
+/*----------------------*/
+
+/*-------- 학력 ---------*/
+
+.list.list-education > div.item {
+    min-height: 90px;
+}
+.list.list-education div.item {
+    padding-top: 21px;
+    padding-bottom: 17px;
+}
+
+
+.list.list-education .content-header .name {
+    top: -2px;
+}
+
+.list.list-education div.item .line {
+    display: inline;
+    margin-left: 11px;
+    font-size: 14px;
+    color: #666;
+}
+
+.list.list-education .info .item {
+    min-height: auto;
+    margin-bottom: 7px;
+    padding: 0 0 0 73px;
+    border-top: 0;
+}
+
+.list.list-education .info .label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 61px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.list.list-education .info .label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    height: 12px;
+    background-color: #ddd;
+    -webkit-transform: translateY(8px);
+    -moz-transform: translateY(8px);
+    -ms-transform: translateY(8px);
+    -o-transform: translateY(8px);
+    transform: translateY(8px);
+}
+
+.list.list-education .info .value {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+/*----------------------*/
+
+/*------  자격증  -------*/
+.list div.item:first-child {
+    border-top: 0;
+}
+.list.list-certificate .item {
+    min-height: auto;
+    padding-top: 20px;
+    padding-bottom: 14px;
+}
+
+.list.list-certificate .date {
+    top: 21px;
+}
+
+.list .content-header .agency {
+    display: inline;
+    margin-left: 11px;
+    font-size: 14px;
+    color: #666;
+}
+
+.list div.item:first-child {
+    border-top: 0;
+}
+.list.list-certificate .item {
+    min-height: auto;
+    padding-top: 20px;
+    padding-bottom: 14px;
+}
+
+
+/*----------------------*/
+
+/*----- 희망근무조건 -----*/
+
+/* 테이블 */
+
+.table {
+    width: 100%;
+    border-top: 1px solid #000;
+    background-color: #fff;
+    /*-webkit-box-sizing: border-box;*/
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 0 none;
+}
+
+address, caption, em {
+    font-weight: normal;
+    font-style: normal;
+}
+
+caption {
+    display: table-caption;
+    text-align: -webkit-center;
+}
+
+.skip, .blind {
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+}
+
+tbody {
+    display: table-row-group;
+    /*vertical-align: middle;*/
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.table tr th:first-child {
+    border-left: 0;
+}
+
+.table-hopework th {
+    width: 149px;
+}
+.table th {
+    height: 51px;
+    text-align: center;
+    background-color: #fcfcfc;
+    border-left: 1px solid #edeef0;
+    border-right: 1px solid #edeef0;
+    border-bottom: 1px solid #edeef0;
+    font-size: 15px;
+    color: #000;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.table td {
+    padding: 0 18px;
+    border-bottom: 1px solid #edeef0;
+    font-size: 14px;
+    color: #000;
+    text-align: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+/**/
+
+
+.sign {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.sign .message {
+    margin-bottom: 13px;
+    font-size: 22px;
+    color: #000;
+}
+
+.sign .writer {
+    font-size: 14px;
+    color: #000;
+}
+
+.resume-view-container .warning {
+    padding-top: 21px;
+    text-align: center;
+}
+
+.resume-view-container .warning .description {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.8;
+}
+
+
+

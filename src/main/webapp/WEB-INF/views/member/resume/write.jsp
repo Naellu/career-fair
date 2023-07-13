@@ -213,7 +213,7 @@
             <div class="inputContainer">
                 <div class="inputDetailGroup">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="militaryService" id="unfulfilled" value="unfulfilled">
+                        <input class="form-check-input" type="radio" name="militaryService" id="unfulfilled" value="미필">
                         <label class="form-check-label" for="unfulfilled">미필</label>
                     </div>
                     <div class="form-check">
@@ -221,8 +221,8 @@
                         <label class="form-check-label" for="fulfilled">군필</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="militaryService" id="notApplicable" value="notApplicable">
-                        <label class="form-check-label" for="notApplicable">해당사항 없음</label>
+                        <input class="form-check-input" type="radio" name="militaryService" id="notApplicable" value="해당사항없음">
+                        <label class="form-check-label" for="notApplicable">해당사항없음</label>
                     </div>
                     <select class="form-select militaryRank" id="militaryRank">
                         <option selected disabled>병급 선택</option>

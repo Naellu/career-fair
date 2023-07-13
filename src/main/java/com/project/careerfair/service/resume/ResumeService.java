@@ -11,4 +11,6 @@ public interface ResumeService {
 
     List<Resume> findByMemberId(String memberId);
 
+    ResumeDto getResumeById(Integer resumeId);
+
 }

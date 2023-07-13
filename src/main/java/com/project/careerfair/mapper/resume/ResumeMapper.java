@@ -22,4 +22,6 @@ public interface ResumeMapper {
     Integer insertWorkAreaByResumeId(Integer resumeId, WorkArea workArea);
     Integer insertWorkConditionByResumeId(Integer resumeId, WorkCondition workCondition);
 
+    // -- 이력서 상세 -- //
+    ResumeDto getResumeById(Integer resumeId);
 }
