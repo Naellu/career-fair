@@ -2,10 +2,12 @@ package com.project.careerfair.service.posting;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
+import com.project.careerfair.domain.Members;
 import com.project.careerfair.domain.Posting;
 import com.project.careerfair.mapper.company.CompanyMapper;
 import com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper;
 import com.project.careerfair.mapper.industry.IndustryMapper;
+import com.project.careerfair.mapper.members.MemberMapper;
 import com.project.careerfair.mapper.posting.PostingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ public class PostingServiceImpl implements PostingService{
     private final ExhibitionInfoMapper ehMapper;
     private final IndustryMapper industryMapper;
     private final PostingMapper postingMapper;
+    private final MemberMapper memberMapper;
 
     @Override
     public Map<String, Object> getCompanyInfo(String userId) {
@@ -85,9 +88,11 @@ public class PostingServiceImpl implements PostingService{
 
         Posting posting = postingMapper.getPostDetailByPostingId(postingId);
         Company company = companyMapper.getDetail(posting.getCompanyId());
+        Industry industry = industryMapper.getIndustryList().get(posting.getIndustryId()-1);
 
         postDetail.put("post", posting);
         postDetail.put("company", company);
+        postDetail.put("industry",industry.getIndustryName());
 
         return postDetail;
     }
@@ -100,5 +105,11 @@ public class PostingServiceImpl implements PostingService{
 
 
         return check==1;
+    }
+
+    @Override
+    public Boolean deletePosting(Posting posting) {
+
+        return postingMapper.deletePosting(posting) == 1;
     }
 }

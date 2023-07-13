@@ -108,7 +108,7 @@ public class NoteController {
             rttr.addFlashAttribute("message", "쪽지가 삭제되지않았습니다.");
         }
         String userId = authentication.getName();
-        String redirectUrl = "/note/list/" + distinction + "?userId=" + userId;
+        String redirectUrl = "/note/list/" + distinction + "?memberId=" + userId;
         return "redirect:"+ redirectUrl;
 
 

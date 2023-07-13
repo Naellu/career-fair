@@ -26,48 +26,71 @@
 </head>
 <body>
 <my:navBar/>
-${post}
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <img src="[회사 로고 경로]" class="img-fluid rounded-circle mx-auto d-block" alt="회사 로고">
             <h2 class="text-center my-4">${company.companyName}</h2>
-            <p>[회사 소개]</p>
+
 
             <h4 class="my-4">${post.title}</h4>
-            <h5 class="my-3">근무 조건:</h5>
+            <h5 class="my-3">근무 조건</h5>
             <ul>
                 <li>근무지: ${company.address}</li>
                 <li>근무형태: ${post.employmentType}</li>
                 <li>급여: ${post.salary}</li>
-                <li>근무시간: [근무시간 정보]</li>
             </ul>
 
-            <h4 class="my-4">주요 업무:</h4>
-            <ul>
-                <li>[업무 내용 1]</li>
-                <li>[업무 내용 2]</li>
-                <li>[업무 내용 3]</li>
-            </ul>
+            <h4 class="my-4">주요 산업</h4>
+            <textarea style="resize: none" class="form-control-plaintext" cols="30" rows="5" readonly>${industry}
+            </textarea>
+
 
             <h4 class="my-4">자격 요건</h4>
-            <ul>
-                <input type="text" class="form-control-plaintext" value="${post.requirement}">
-                    ${post.requirement}
-            </ul>
+            <textarea style="resize: none" class="form-control-plaintext" cols="30" rows="5" readonly>${post.requirement}
+            </textarea>
 
-            <h4 class="my-4">우대 사항:</h4>
-            <ul>
-                <li>[우대 사항 1]</li>
-                <li>[우대 사항 2]</li>
-                <li>[우대 사항 3]</li>
-            </ul>
 
-            <h4 class="my-4">지원 방법:</h4>
-            <p>[지원 방법 설명]</p>
+            <h4 class="my-4">우대 사항</h4>
+            <textarea style="resize: none" class="form-control-plaintext" cols="30" rows="5" readonly>${post.preference}
+            </textarea>
+            <h4 class="my-4">기타 사항</h4>
+                <textarea style="resize: none" class="form-control-plaintext" cols="30" rows="5" readonly>${post.etc}
+                </textarea>
+            <div style="text-align: right;">
+                <button class="btn btn-outline-success">수정</button>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletePosting">삭제</button>
+                <button class="btn btn-outline-secondary" onclick="location.href='/member/company/posting/list?memberId=${post.memberId}'">목록</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
 
-            <h4 class="my-4">기타 사항:</h4>
-            <p>[기타 사항 설명]</p>
+<%--삭제 모달--%>
+<div class="d-none">
+    <form action="/member/company/posting/delete" method="post" id="deletePostingForm">
+        <input type="number" name="postingId" value="${post.postingId}">
+        <input type="number" name="applicationCount" value="${post.applicationCount}">
+        <input type="text" name="status" value="${post.status}">
+        <input type="text" name="memberId" value="${post.memberId}">
+    </form>
+</div>
+<div class="modal fade" id="deletePosting" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deletePostingLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deletePostingLabel">삭제 확인</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                해당공고를 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-danger" form="deletePostingForm">삭제</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+            </div>
         </div>
     </div>
 </div>
@@ -78,6 +101,7 @@ ${post}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/note/list.js"></script>
 
 </body>
 </html>

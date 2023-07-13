@@ -32,6 +32,7 @@ public class CompanyPostingController {
         model.addAttribute("postingList", resultMap.get("postingList"));
         model.addAttribute("pageInfo", resultMap.get("pageInfo"));
         model.addAttribute("companyList", resultMap.get("companyList"));
+
     }
 
     @GetMapping("add")
@@ -72,6 +73,29 @@ public class CompanyPostingController {
 
         model.addAttribute("post",resultMap.get("post"));
         model.addAttribute("company", resultMap.get("company"));
+        model.addAttribute("industry", resultMap.get("industry"));
+
+    }
+
+    @PostMapping("delete")
+    public String deletePosting(
+            Posting posting,
+            RedirectAttributes rttr
+    ){
+        Boolean ok;
+
+        if(posting.getStatus().equals("채용중") && posting.getApplicationCount() != 0){
+            rttr.addFlashAttribute("message", "지원자가 있는 채용중인 공고는 삭제할 수 없습니다.");
+        } else{
+
+            ok = service.deletePosting(posting);
+            if(ok){
+                rttr.addFlashAttribute("message", "공고가 삭제되었습니다.");
+            } else{
+                rttr.addFlashAttribute("message", "공고가 삭제되지 않았습니다.");
+            }
+        }
+        return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
 
     }
 }
