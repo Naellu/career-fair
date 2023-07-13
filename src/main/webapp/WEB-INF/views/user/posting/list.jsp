@@ -55,31 +55,20 @@
                             <div class="col border-secondary border-end">
                                 <h5>경력</h5>
                                 <div class="form-check">
-                                    <input ${param.experienceLevels eq '신입'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="experienceLevels"
-                                            type="checkbox"
-                                            value="신입">
+                                    <input class="form-check-input" name="experienceLevels" type="checkbox" value="신입">
                                     <label class="form-check-label">
                                         신입
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input ${param.experienceLevels eq '경력'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="experienceLevels"
-                                            type="checkbox"
-                                            value="경력">
+                                    <input class="form-check-input" name="experienceLevels" type="checkbox" value="경력">
                                     <label class="form-check-label">
                                         경력
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input ${param.experienceLevels eq '경력무관'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="experienceLevels"
-                                            type="checkbox"
-                                            value="경력무관">
+                                    <input class="form-check-input" name="experienceLevels" type="checkbox"
+                                           value="경력무관">
                                     <label class="form-check-label">
                                         경력무관
                                     </label>
@@ -88,51 +77,33 @@
                             <div class="col border-secondary border-end">
                                 <h5>학력</h5>
                                 <div class="form-check">
-                                    <input ${param.educationLevels eq '대학원이상'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="educationLevels"
-                                            type="checkbox"
-                                            value="대학원">
+                                    <input class="form-check-input" name="educationLevels" type="checkbox"
+                                           value="대학원이상">
                                     <label class="form-check-label">
                                         대학원이상
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input ${param.educationLevels eq '대졸이상'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="educationLevels"
-                                            type="checkbox"
-                                            value="학사">
+                                    <input class="form-check-input" name="educationLevels" type="checkbox" value="대졸이상">
                                     <label class="form-check-label">
-                                        대졸이상
+                                        대졸이상 ${param.educationLevels}
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input ${param.educationLevels eq '초대졸이상'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="educationLevels"
-                                            type="checkbox"
-                                            value="전문학사">
+                                    <input class="form-check-input" name="educationLevels" type="checkbox"
+                                           value="초대졸이상">
                                     <label class="form-check-label">
                                         초대졸이상
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input ${param.educationLevels eq '고졸이상'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="educationLevels"
-                                            type="checkbox"
-                                            value="고등학교">
+                                    <input class="form-check-input" name="educationLevels" type="checkbox" value="고졸이상">
                                     <label class="form-check-label">
                                         고졸이상
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input ${param.educationLevels eq '학력무관'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="educationLevels"
-                                            type="checkbox"
-                                            value="학력무관">
+                                    <input class="form-check-input" name="educationLevels" type="checkbox" value="학력무관">
                                     <label class="form-check-label">
                                         학력무관
                                     </label>
@@ -141,31 +112,19 @@
                             <div class="col">
                                 <h5>채용형태</h5>
                                 <div class="form-check">
-                                    <input ${param.employmentTypes eq '정규직'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="employmentTypes"
-                                            type="checkbox"
-                                            value="정규직">
+                                    <input class="form-check-input" name="employmentTypes" type="checkbox" value="정규직">
                                     <label class="form-check-label">
                                         정규직
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input ${param.employmentTypes eq '계약직'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="employmentTypes"
-                                            type="checkbox"
-                                            value="계약직">
+                                    <input class="form-check-input" name="employmentTypes" type="checkbox" value="계약직">
                                     <label class="form-check-label">
                                         계약직
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input ${param.employmentTypes eq '인턴'? 'checked' : ''}
-                                            class="form-check-input"
-                                            name="employmentTypes"
-                                            type="checkbox"
-                                            value="인턴">
+                                    <input class="form-check-input" name="employmentTypes" type="checkbox" value="인턴">
                                     <label class="form-check-label">
                                         인턴
                                     </label>
@@ -208,6 +167,15 @@
         <tbody>
         </tbody>
     </table>
+</div>
+
+<div class="container-lg">
+    <div class="row">
+        <nav aria-label="Page navigation example">
+            <ul id="page-ul" class="pagination justify-content-center">
+            </ul>
+        </nav>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

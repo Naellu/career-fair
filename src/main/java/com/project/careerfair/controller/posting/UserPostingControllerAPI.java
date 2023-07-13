@@ -26,9 +26,10 @@ public class UserPostingControllerAPI {
             @RequestParam(value = "educationLevels", required = false) String[] educationLevels,
             @RequestParam(value = "employmentTypes", required = false) String[] employmentTypes,
             @RequestParam(value = "type", required = false) String type,
-            @RequestParam(value = "search", defaultValue = "") String search) {
+            @RequestParam(value = "search", defaultValue = "") String search,
+            @RequestParam(value = "page", defaultValue = "1") Integer page) {
 
-        Map<String, Object> result = userPostingService.getPostings(industrIds, experienceLevels, educationLevels, employmentTypes, type, search);
+        Map<String, Object> result = userPostingService.getPostings(industrIds, experienceLevels, educationLevels, employmentTypes, type, search, page);
         return ResponseEntity.ok(result);
     }
 }

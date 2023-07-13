@@ -16,6 +16,7 @@ public interface PostingMapper {
 
     // 기업별 과거 포스팅
     List<Posting> getPastPostingList(Integer startNum, Integer pageSize, Integer companyId);
+
     @Select("""
             SELECT * FROM TB_POSTING
             WHERE member_id = #{memberId}
@@ -56,9 +57,6 @@ public interface PostingMapper {
             """)
     @ResultMap("postingMap")
     Integer addPosting(Posting posting);
-    
-    // 유저 채용공고 목록
-    List<Posting> getNowPostingsAll(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
 
     @Delete("""
             DELETE FROM TB_POSTING
@@ -67,4 +65,10 @@ public interface PostingMapper {
             NOT (application_count != 0 && status = '채용중') 
             """)
     int deletePosting(Posting posting);
+
+    // 유저 채용공고 목록
+    List<Posting> getNowPostingsAll(Integer pageSize, Integer startNum, Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
+
+    // 채용공고 목록 수
+    Integer getNowPostingsCount(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
 }
