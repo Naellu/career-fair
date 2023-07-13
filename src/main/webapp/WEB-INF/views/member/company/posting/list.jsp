@@ -29,6 +29,17 @@
 </c:if>
 <div class="col mt-3">
     <h1>채용공고 목록</h1>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/member/company/posting/list?memberId=${userId}&status=all">전체 공고</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/member/company/posting/list?memberId=${userId}&status=recruitment">채용중 공고</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/member/company/posting/list?memberId=${userId}&status=deadline">마감된 공고</a>
+        </li>
+    </ul>
     <table id="posting-table" class="table table-bordered custom-div">
         <caption class="caption-top">
             <button class="btn btn-outline-primary"
@@ -53,7 +64,7 @@
             <tr>
                 <td>${posting.startDate} ~ ${posting.endDate}</td>
                 <td><a href="/member/company/posting/detail?postingId=${posting.postingId}">
-                        ${posting.title} (${posting.postingId})
+                        ${posting.title}
                 </a></td>
                 <td>${companyList[status.index].companyName}</td>
                 <td>${posting.employmentType}</td>

@@ -5,6 +5,9 @@ function setDate() {
     const day = String(today.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
     $("#startDate").attr("min", formattedDate);
+    $("#endDate").attr("min", formattedDate);
+    $("#startDate").attr("value", formattedDate);
+    $("#endDate").attr("value", formattedDate);
 
 }
 
@@ -55,9 +58,6 @@ $("#salary").on("keyup", function () {
     salary = first + second + last;
 
     $("#salaryDetail").text(salary);
-
-    $("#inputSalary").val(salary);
-
 
 })
 

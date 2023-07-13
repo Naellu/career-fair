@@ -2,7 +2,6 @@ package com.project.careerfair.service.posting;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
-import com.project.careerfair.domain.Members;
 import com.project.careerfair.domain.Posting;
 import com.project.careerfair.mapper.company.CompanyMapper;
 import com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper;
@@ -43,10 +42,10 @@ public class PostingServiceImpl implements PostingService{
     }
 
     @Override
-    public Map<String, Object> getPostingInfo(String memberId, Integer currentPage) {
+    public Map<String, Object> getPostingInfo(String memberId, Integer currentPage, String status) {
         Map<String, Object> resultMap = new HashMap<>();
 
-        Integer postingCount = postingMapper.countPostingBymemberId(memberId);
+        Integer postingCount = postingMapper.countPostingBymemberId(memberId, status);
 
         Map<String, Object> pageInfo = new HashMap<>();
         pageInfo.put("page", currentPage);
@@ -66,7 +65,7 @@ public class PostingServiceImpl implements PostingService{
         pageInfo.put("next",next);
 
         Integer startIndex = currentPage * 10 -10;
-        List<Posting> postingList = postingMapper.getPostingInfoByMemberId(memberId,startIndex);
+        List<Posting> postingList = postingMapper.getPostingInfoByMemberId(memberId,startIndex, status);
 
         List<Company> companyList = new ArrayList<>();
         for (Posting posting : postingList){
@@ -88,11 +87,13 @@ public class PostingServiceImpl implements PostingService{
 
         Posting posting = postingMapper.getPostDetailByPostingId(postingId);
         Company company = companyMapper.getDetail(posting.getCompanyId());
+        List<Industry> industryList = industryMapper.getIndustryList();
         Industry industry = industryMapper.getIndustryList().get(posting.getIndustryId()-1);
 
         postDetail.put("post", posting);
         postDetail.put("company", company);
         postDetail.put("industry",industry.getIndustryName());
+        postDetail.put("industryList",industryList);
 
         return postDetail;
     }
@@ -111,5 +112,11 @@ public class PostingServiceImpl implements PostingService{
     public Boolean deletePosting(Posting posting) {
 
         return postingMapper.deletePosting(posting) == 1;
+    }
+
+    @Override
+    public Boolean modifyPosting(Posting posting) {
+
+        return postingMapper.modifyPosting(posting) == 1;
     }
 }

@@ -24,9 +24,11 @@
     <title>Title</title>
 
 </head>
-<body>
+<body onload="changeSalary(${post.salary})">
 <my:navBar/>
-
+<c:if test="${not empty message}">
+    <script>alert('${message}')</script>
+</c:if>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -34,13 +36,22 @@
             <h2 class="text-center my-4">${company.companyName}</h2>
 
 
-            <h4 class="my-4">${post.title}</h4>
+            <h4 class="my-4">${post.title} (${post.status})</h4>
+            <h5 class="my-3">모집기간 : ${post.startDate} ~ ${post.endDate}</h5>
+            <h5 class="my-3">채용인원 : ${post.hiringCount}</h5>
+            <h5 class="my-3">요구학력 : ${post.educationLevel}</h5>
+            <h5 class="my-3">요구경력 : ${post.experienceLevel}</h5>
             <h5 class="my-3">근무 조건</h5>
             <ul>
                 <li>근무지: ${company.address}</li>
                 <li>근무형태: ${post.employmentType}</li>
-                <li>급여: ${post.salary}</li>
+                <li id="salary">급여: </li>
             </ul>
+
+            <h4 class="my-4">복리후생</h4>
+            <textarea style="resize: none" class="form-control-plaintext" cols="30" rows="5" readonly>${post.benefit}
+            </textarea>
+
 
             <h4 class="my-4">주요 산업</h4>
             <textarea style="resize: none" class="form-control-plaintext" cols="30" rows="5" readonly>${industry}
@@ -59,9 +70,13 @@
                 <textarea style="resize: none" class="form-control-plaintext" cols="30" rows="5" readonly>${post.etc}
                 </textarea>
             <div style="text-align: right;">
-                <button class="btn btn-outline-success">수정</button>
+                <button class="btn btn-outline-success"
+                        onclick="location.href='/member/company/posting/modify?postingId=${post.postingId}'">
+                    수정</button>
                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletePosting">삭제</button>
-                <button class="btn btn-outline-secondary" onclick="location.href='/member/company/posting/list?memberId=${post.memberId}'">목록</button>
+                <button class="btn btn-outline-secondary"
+                        onclick="location.href='/member/company/posting/list?memberId=${post.memberId}'">
+                    목록</button>
             </div>
             <br>
         </div>
@@ -101,7 +116,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/note/list.js"></script>
 
+<script src="/js/posting/detail.js"></script>
 </body>
 </html>
