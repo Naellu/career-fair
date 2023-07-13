@@ -1,6 +1,6 @@
 package com.project.careerfair.service.resume;
 
-import com.project.careerfair.domain.*;
+import com.project.careerfair.domain.Resume;
 import com.project.careerfair.domain.dto.ResumeDto;
 import com.project.careerfair.mapper.resume.ResumeMapper;
 import com.project.careerfair.util.BiFunctionWithReturn;
