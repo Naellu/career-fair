@@ -82,9 +82,6 @@ public class MemberServiceImpl implements MemberService{
 
             return result;
         }
-    @Override
-    public Members get(String id) {
-        return mapper.selectByMemberId(id);
-    }
+
 }
 

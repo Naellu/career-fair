@@ -1,16 +1,18 @@
 package com.project.careerfair.controller.members;
 
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.service.member.MemberService;
+import com.project.careerfair.service.member.UserPageService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -18,33 +20,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("member/user")
 public class UserMyPageController {
 
-    private final MemberService service;
+    private final UserPageService userService;
 
     @GetMapping("mypage")
-    public String myPage() {
-        return "member/user/mypage";
+    @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
+    public void myPage(String id, Model model) {
+
+        Members member = userService.get(id);
+        model.addAttribute("member", member);
     }
 
     @GetMapping("myInfo")
+    @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
     public void myInfo(String id, Model model) {
 
-        Members members = service.get(id);
+        Members members = userService.get(id);
 
         model.addAttribute("members", members);
     }
 
     @GetMapping("modify")
-    @PreAuthorize("isAuthenticated()")
-    public String modifyForm() {
-        return null;
+    @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
+    public void modifyForm(String id , Model model) {
+        Members member = userService.get(id);
+        model.addAttribute("member",member);
     }
 
     @PostMapping("modify")
     @PreAuthorize("isAuthenticated()")
-    public String modify(String id, Model model) {
+    public String modify(Members member, RedirectAttributes rttr, String oldPassword) {
+        boolean ok = userService.modifyAccount(member, oldPassword);
+        if(ok) {
+            rttr.addFlashAttribute("message", "회원 정보가 수정되었습니다.");
+            return "redirect:/member/user/myInfo?id=" + member.getId();
+        }else {
+            rttr.addFlashAttribute("message", "회원 정보 수정중 오류가 발생하였습니다.");
+            return "redirect:/member/user/modify?id=" + member.getId();
+        }
 
+    }
+    @PostMapping("remove")
+    public String idRemove(Members member, RedirectAttributes rttr, HttpServletRequest request) throws ServletException {
 
-
-        return null;
+        boolean ok = userService.removeAccout(member);
+        if(ok) {
+            rttr.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
+            
+            //로그아웃
+            request.logout();
+            return "redirect:/login/login";
+        }else {
+            rttr.addFlashAttribute("message","회원 탈퇴 중 문제가 발생하였습니다.");
+            return "redirect:/member/user/myInfo?id=" + member.getId();
+        }
     }
 }
