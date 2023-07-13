@@ -51,7 +51,7 @@
                         <label for="content" class="form-label">내용</label>
                         <textarea id="content" class="form-control" cols="90" rows="10" readonly>${question.content}</textarea>
                     </div>
-
+                    <a class="btn btn-secondary" href="/qna/modify/${question.id }">수정</a>
                     <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">삭제</button>
 
                     <!-- 삭제 -->
@@ -76,8 +76,6 @@
 
                         </ul>
                     </div>
-
-                    수정 삭제~
 
                     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -107,6 +105,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="/js/qna/answer.js"></script>
 
 </body>
 </html>

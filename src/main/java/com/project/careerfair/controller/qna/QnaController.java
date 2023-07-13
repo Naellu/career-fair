@@ -85,7 +85,7 @@ public class QnaController {
     public String qnaModifyForm(@PathVariable ("id") Integer id, Model model) {
         model.addAttribute("question", service.getQuestion(id));
 
-        return "/qna/modify";
+        return "qna/modify";
     }
 
     @PostMapping("modify/{id}")
@@ -95,7 +95,7 @@ public class QnaController {
 
         if (ok) {
             rttr.addFlashAttribute("message", "게시물이 수정되었습니다.");
-            return "redirect:/qna/get/" + question.getId();
+            return "redirect:/qna/id/" + question.getId();
         } else {
             rttr.addFlashAttribute("message", "게시물이 수정되지 않았습니다.");
             return "redirect:/qna/modify/" + question.getId();
