@@ -25,10 +25,11 @@ public class CompanyPostingController {
     public void list(
             String memberId,
             Model model,
-            @RequestParam(value="page", defaultValue = "1")Integer page
+            @RequestParam(value="page", defaultValue = "1")Integer page,
+            @RequestParam(value="status", defaultValue="all") String status
     ){
 
-        Map<String,Object> resultMap = service.getPostingInfo(memberId, page);
+        Map<String,Object> resultMap = service.getPostingInfo(memberId, page, status);
         model.addAttribute("postingList", resultMap.get("postingList"));
         model.addAttribute("pageInfo", resultMap.get("pageInfo"));
         model.addAttribute("companyList", resultMap.get("companyList"));
@@ -97,5 +98,32 @@ public class CompanyPostingController {
         }
         return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
 
+    }
+
+
+    @GetMapping("modify")
+    public void modifyForm(
+            Integer postingId,
+            Model model
+    ) {
+        Map<String, Object> resultMap = service.getPostDetailByPostingId(postingId);
+
+        model.addAttribute("post",resultMap.get("post"));
+        model.addAttribute("industryList", resultMap.get("industryList"));
+    }
+
+    @PostMapping("modify")
+    public String modifyProcess(
+            Posting posting,
+            RedirectAttributes rttr
+    ){
+        Boolean ok = service.modifyPosting(posting);
+        if(ok){
+            rttr.addFlashAttribute("message", "공고가 수정되었습니다.");
+
+        } else{
+            rttr.addFlashAttribute("message", "공고가 수정되지 않았습니다.");
+        }
+        return "redirect:/member/company/posting/detail?postingId=" + posting.getPostingId();
     }
 }

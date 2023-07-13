@@ -18,20 +18,52 @@ public interface PostingMapper {
     List<Posting> getPastPostingList(Integer startNum, Integer pageSize, Integer companyId);
 
     @Select("""
-            SELECT * FROM TB_POSTING
-            WHERE member_id = #{memberId}
-            ORDER BY posting_id DESC
-            LIMIT #{startIndex}, 10
+            <script>
+                SELECT * FROM TB_POSTING
+                <choose>
+                    <when test="status=='recruitment'">
+                        WHERE 
+                        member_id = #{memberId} AND        
+                        status = '채용중'
+                    </when>
+                    <when test="status=='deadline'">
+                        WHERE 
+                        member_id = #{memberId} AND        
+                        status = '마감'
+                    </when>
+                    <otherwise>
+                        WHERE member_id = #{memberId}
+                    </otherwise>
+                </choose>
+                ORDER BY posting_id DESC
+                LIMIT #{startIndex}, 10
+            </script>
             """)
     @ResultMap("postingMap")
-    List<Posting> getPostingInfoByMemberId(String memberId, Integer startIndex);
+    List<Posting> getPostingInfoByMemberId(String memberId, Integer startIndex, String status);
 
     @Select("""
+            <script>
             SELECT COUNT(*)
             FROM TB_POSTING
-            WHERE member_id = #{memberId}
+            <choose>
+                    <when test="status=='recruitment'">
+                        WHERE 
+                        member_id = #{memberId} AND        
+                        status = '채용중'
+                    </when>
+                    <when test="status=='deadline'">
+                        WHERE 
+                        member_id = #{memberId} AND        
+                        status = '마감'
+                    </when>
+                    <otherwise>
+                        WHERE member_id = #{memberId}
+                    </otherwise>
+                </choose>
+            </script>
             """)
-    Integer countPostingBymemberId(String memberId);
+    Integer countPostingBymemberId(String memberId, String status);
 
     @Select("""
             SELECT * FROM TB_POSTING
@@ -58,6 +90,11 @@ public interface PostingMapper {
     @ResultMap("postingMap")
     Integer addPosting(Posting posting);
 
+
+    // 유저 채용공고 목록
+    List<Posting> getNowPostingsAll(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
+
+
     @Delete("""
             DELETE FROM TB_POSTING
             WHERE
@@ -66,9 +103,36 @@ public interface PostingMapper {
             """)
     int deletePosting(Posting posting);
 
+
     // 유저 채용공고 목록
     List<Posting> getNowPostingsAll(Integer pageSize, Integer startNum, Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
 
     // 채용공고 목록 수
     Integer getNowPostingsCount(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
+
+    @Update("""
+            UPDATE TB_POSTING
+            SET 
+                title = #{title},
+                status = #{status},
+                industry_id = #{industryId},
+                hiring_count = #{hiringCount}, 
+                spare_count = #{spareCount},
+                start_date = #{startDate},
+                end_date = #{endDate},
+                address = #{address},
+                salary = #{salary},
+                preferences = #{preference},
+                benefits = #{benefit},
+                requirements = #{requirement},
+                etc = #{etc},
+                employment_type = #{employmentType},
+                experience_level = #{experienceLevel},
+                education_level = #{educationLevel}
+            WHERE
+                posting_id = #{postingId}
+            """)
+    int modifyPosting(Posting posting);
+
+
 }

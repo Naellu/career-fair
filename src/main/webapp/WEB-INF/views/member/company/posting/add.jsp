@@ -78,9 +78,8 @@
         </div>
         <div class="mb-3">
             <label for="salary" class="form-label">급여</label>
-            <input type="text" class="form-control" id="salary" maxlength="12" required>
+            <input type="text" class="form-control" id="salary" maxlength="12" name="salary" required>
                 <div id="salaryDetail" class="form-text"></div>
-                <input id="inputSalary" type="hidden" name="salary">
         </div>
         <div class="mb-3">
             <label for="preferences" class="form-label">우대사항</label>
