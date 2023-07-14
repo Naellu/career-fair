@@ -32,7 +32,7 @@
 <my:cheader>
     채 용 공 고
 </my:cheader>
-<form action="#">
+<form method="GET">
     <div class="container-lg mt-3">
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">

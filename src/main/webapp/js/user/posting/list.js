@@ -42,7 +42,7 @@ function listView() {
                             <a href="/company/${posting.companyId}">${posting.companyName}</a>
                         </td>
                         <td style="vertical-align : middle;">
-                            <a href="#">
+                            <a href="/user/posting/${posting.postingId}">
                                 ${posting.title}
                                 <br>
                                 ${posting.experienceLevel} ${posting.employmentType} ${posting.educationLevel}

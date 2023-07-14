@@ -22,46 +22,46 @@
         <div class="col-12 col-md-8 col-lg-6">
             <h3>${round}회차 참여 신청</h3>
             <div class="mb-3">
-                <label for="input-company-name" class="form-label">기업이름</label>
+                <label for="input-company-name" class="form-label">기업이름 *</label>
                 <input id="input-company-name" type="text" class="form-control" name="company-name"
                        placeholder="기업이름을 입력해주세요."/>
             </div>
 
             <div class="mb-3">
-                <label for="input-registration-number" class="form-label">사업자등록번호</label>
+                <label for="input-registration-number" class="form-label">사업자등록번호 *</label>
                 <div class="form-text">- 포함 입력</div>
                 <input id="input-registration-number" type="text" class="form-control" name="registration-number"
                        placeholder="사업자등록번호를 입력해주세요"/>
             </div>
 
             <div class="mb-3">
-                <label for="input-number-of-employees" class="form-label">사원수</label>
+                <label for="input-number-of-employees" class="form-label">사원수 *</label>
                 <input id="input-number-of-employees" type="number" class="form-control" name="number-of-employees"/>
             </div>
 
             <div class="mb-3">
-                <label for="input-establishment-date" class="form-label">설립일</label>
+                <label for="input-establishment-date" class="form-label">설립일 *</label>
                 <input id="input-establishment-date" type="date" class="form-control" name="establishment-date"/>
             </div>
 
             <div class="mb-3">
-                <label for="input-revenue" class="form-label">매출액</label>
+                <label for="input-revenue" class="form-label">매출액 *</label>
                 <input id="input-revenue" type="number" class="form-control" name="revenue"/>
             </div>
 
             <div class="mb-3">
-                <label for="input-ceo-name" class="form-label">대표자명</label>
+                <label for="input-ceo-name" class="form-label">대표자명 *</label>
                 <input id="input-ceo-name" type="text" class="form-control" name="ceo-name"/>
             </div>
 
             <div class="mb-3">
-                <label for="input-industry-id" class="form-label">업종</label>
+                <label for="input-industry-id" class="form-label">업종 *</label>
                 <select name="input-industry-id" class="form-select" id="input-industry-id">
                 </select>
             </div>
 
             <div class="mb-3">
-                <label for="input-address" class="form-label">주소</label>
+                <label for="input-address" class="form-label">주소 *</label>
                 <div class="col-sm-6 mb-1">
                     <div class="input-group">
                         <input type="text" id="post-code" class="form-control input-sm" placeholder="우편번호" readonly>
@@ -73,13 +73,14 @@
             </div>
 
             <div class="mb-3">
-                <label for="form-file" class="form-label">첨부 파일</label>
+                <label for="form-file" class="form-label">첨부 파일 *</label>
                 <input class="form-control" name="files" type="file" id="form-file" multiple>
                 <div class="form-text">총 10MB, 하나의 파일을 1MB를 초과할 수 없습니다.</div>
             </div>
 
             <div>
-                <div class="form-text">정보가 충분하지 않을 시 신청이 보류되거나 반려될 수 있습니다.</div>
+                <div class="form-text">정보가 충분하지 않을 시 신청이 보류되거나 반려될 수 있습니다. <br>
+                * 표시는 필수로 입력해야합니다.</div>
                 <button id="submit-btn" class="btn btn-primary" disabled>신청</button>
             </div>
         </div>
@@ -97,3 +98,85 @@
 <script src="/js/user/recruiter/reg.js"></script>
 </body>
 </html>
+
+<%--
+<form:form modelAttribute="company" method="post" action="/api/user/recruiter/"
+           enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="input-company-name" class="form-label">기업이름 *</label>
+        <form:input id="input-company-name" path="companyName" type="text" class="form-control"
+                    name="companyName"
+                    placeholder="기업이름을 입력해주세요."/>
+        <form:errors path="companyName" cssClass="error"/>
+    </div>
+
+    <div class="mb-3">
+        <label for="input-registration-number" class="form-label">사업자등록번호 *</label>
+        <div class="form-text">- 포함 입력</div>
+        <form:input id="input-registration-number" path="registrationNumber" type="text" class="form-control"
+                    name="registrationNumber"
+                    placeholder="사업자등록번호를 입력해주세요"/>
+    </div>
+
+    <div class="mb-3">
+        <label for="input-number-of-employees" class="form-label">사원수 *</label>
+        <form:input id="input-number-of-employees" path="numberOfEmployees" type="number" class="form-control"
+                    name="numberOfEmployees"/>
+        <form:errors path="numberOfEmployees" cssClass="error"/>
+    </div>
+
+    <div class="mb-3">
+        <label for="input-establishment-date" class="form-label">설립일 *</label>
+        <form:input id="input-establishment-date" path="establishmentDate" type="date" class="form-control"
+                    name="establishmentDate"/>
+        <form:errors path="establishmentDate" cssClass="error"/>
+    </div>
+
+    <div class="mb-3">
+        <label for="input-revenue" class="form-label">매출액 *</label>
+        <form:input id="input-revenue" path="revenue" type="number" class="form-control" name="revenue"/>
+        <form:errors path="revenue" cssClass="error"/>
+    </div>
+
+    <div class="mb-3">
+        <label for="input-ceo-name" class="form-label">대표자명 *</label>
+        <form:input id="input-ceo-name" path="ceoName" type="text" class="form-control" name="ceoName"/>
+        <form:errors path="ceoName" cssClass="error"/>
+    </div>
+
+    <div class="mb-3">
+        <label for="input-industry-id" class="form-label">업종 *</label>
+        <form:select path="industryId" name="industryId" class="form-select" id="input-industry-id">
+        </form:select>
+    </div>
+
+    <div class="mb-3">
+        <label for="input-address" class="form-label">주소 *</label>
+        <div class="col-sm-6 mb-1">
+            <div class="input-group">
+                <input type="text" id="post-code" name="postalCode" class="form-control input-sm"
+                       placeholder="우편번호" readonly>
+                <button class="btn btn-outline-secondary" name="address" type="button" id="search-address-btn">
+                    주소검색
+                </button>
+            </div>
+        </div>
+        <input id="input-address" type="text" class="form-control mb-1" readonly placeholder="도로명 주소"/>
+        <form:input path="detailAddress" name="detailAddress" id="input-detail-address" type="text"
+                    class="form-control mb-1" placeholder="상세주소"/>
+    </div>
+
+    <div class="mb-3">
+        <label for="form-file" class="form-label">첨부 파일 *</label>
+        <input class="form-control" name="files" type="file" id="form-file" multiple>
+        <div class="form-text">총 10MB, 하나의 파일을 1MB를 초과할 수 없습니다.</div>
+    </div>
+
+    <div>
+        <div class="form-text">정보가 충분하지 않을 시 신청이 보류되거나 반려될 수 있습니다. <br>
+            * 표시는 필수로 입력해야합니다.
+        </div>
+        <button id="submit-btn" type="submit" class="btn btn-primary">신청</button>
+    </div>
+    </div>
+</form:form>--%>

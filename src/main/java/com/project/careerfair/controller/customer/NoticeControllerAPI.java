@@ -47,12 +47,10 @@ public class NoticeControllerAPI {
             boolean ok = noticeService.create(notice, files, authentication);
             Map<String, Object> response = new HashMap<>();
             if (ok) {
-                // 생성이 성공한 경우에는 적절한 응답을 반환
-                response.put("message", "등록되었습니다.");
+                // 생성 성공
                 return ResponseEntity.ok(response);
             } else {
-                // 생성이 실패한 경우에는 적절한 응답을 반환
-                response.put("message", "등록에 실패하였습니다.");
+                // 생성 실패
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
             }
         } catch (Exception e) {
@@ -78,12 +76,10 @@ public class NoticeControllerAPI {
             boolean ok = noticeService.modify(notice, files, removeFileNames,authentication);
             Map<String, Object> response = new HashMap<>();
             if (ok) {
-                // 수정이 성공한 경우에는 적절한 응답을 반환
-                response.put("message", "수정되었습니다.");
+                // 수정 성공
                 return ResponseEntity.ok(response);
             } else {
-                // 수정이 실패한 경우에는 적절한 응답을 반환
-                response.put("message", "수정에실패하였습니다.");
+                // 수정 실패
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
             }
         } catch (IOException e) {
@@ -98,12 +94,10 @@ public class NoticeControllerAPI {
 
         Map<String, Object> response = new HashMap<>();
         if (ok) {
-            // 삭제가 성공한 경우에는 적절한 응답을 반환
-            response.put("message", "삭제되었습니다.");
+            // 삭제 성공
             return ResponseEntity.ok(response);
         } else {
-            // 삭제가 실패한 경우에는 적절한 응답을 반환
-            response.put("message", "삭제에 실패하였습니다.");
+            // 삭제 실패
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }

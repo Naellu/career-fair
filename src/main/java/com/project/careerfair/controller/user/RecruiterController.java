@@ -1,5 +1,6 @@
 package com.project.careerfair.controller.user;
 
+import com.project.careerfair.domain.Company;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ public class RecruiterController {
     public String reg(Model model) {
         Integer round = exhibitionInfoService.getCurrentRound();
         model.addAttribute("round", round);
+        model.addAttribute("company", new Company());
         return "user/recruiter/reg";
     }
 

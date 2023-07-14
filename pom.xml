@@ -19,7 +19,15 @@
 	</properties>
 	<dependencies>
 
-		<!-- aws s3 -->
+        <!-- bean 검증 -->
+        <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+        <!-- aws s3 -->
 		<!-- <https://mvnrepository.com/artifact/software.amazon.awssdk/s3> -->
 		<dependency>
 			<groupId>software.amazon.awssdk</groupId>
