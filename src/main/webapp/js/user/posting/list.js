@@ -3,7 +3,7 @@ listView();
 function listView() {
     const queryParams = new URLSearchParams(window.location.search);
 
-    fetch(`/api/user/posting?${queryParams}`)
+    fetch(`/api/user/posting/?${queryParams}`)
         .then(response => response.json())
         .then(data => {
             const postingList = data.postingList;

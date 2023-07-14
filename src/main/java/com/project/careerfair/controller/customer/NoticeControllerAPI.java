@@ -43,8 +43,10 @@ public class NoticeControllerAPI {
             Notice notice,
             @RequestParam(value = "files", required = false) MultipartFile[] files,
             Authentication authentication) {
+
         try {
             boolean ok = noticeService.create(notice, files, authentication);
+
             Map<String, Object> response = new HashMap<>();
             if (ok) {
                 // 생성 성공
@@ -73,7 +75,7 @@ public class NoticeControllerAPI {
             @RequestParam(value = "files", required = false) MultipartFile[] files,
             Authentication authentication) {
         try {
-            boolean ok = noticeService.modify(notice, files, removeFileNames,authentication);
+            boolean ok = noticeService.modify(notice, files, removeFileNames, authentication);
             Map<String, Object> response = new HashMap<>();
             if (ok) {
                 // 수정 성공

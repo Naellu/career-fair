@@ -5,6 +5,8 @@ import com.project.careerfair.mapper.notice.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -112,6 +114,10 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean create(Notice notice, MultipartFile[] files, Authentication authentication) throws IOException {
+
+        if (authentication == null) {
+            notice.setMemberId("admin0");
+        }
         notice.setMemberId(authentication.getName());
         // 공지사항 등록
         int cnt = noticeMapper.insert(notice);

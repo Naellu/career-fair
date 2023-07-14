@@ -1,7 +1,7 @@
 package com.project.careerfair.controller.posting;
 
 import com.project.careerfair.domain.Posting;
-import com.project.careerfair.service.posting.PostingServiceImpl;
+import com.project.careerfair.service.posting.PostingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CompanyPostingController {
 
-    private final PostingServiceImpl service;
+    private final PostingService service;
 
     @GetMapping("list")
     public void list(

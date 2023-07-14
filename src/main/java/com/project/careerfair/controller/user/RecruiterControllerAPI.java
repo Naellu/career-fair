@@ -45,13 +45,17 @@ public class RecruiterControllerAPI {
             @RequestParam("files") MultipartFile[] files,
             Authentication authentication) {
         boolean ok = false;
+        Map<String, Object> response = new HashMap<>();
+
+        if (authentication == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+
         try {
             ok = recruiterService.create(company, files, authentication);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        Map<String, Object> response = new HashMap<>();
 
         if (ok) {
             return ResponseEntity.ok(response);

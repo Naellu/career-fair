@@ -34,4 +34,5 @@ public class Posting {
 
     private String companyName;
 
+    private Boolean scraped;
 }

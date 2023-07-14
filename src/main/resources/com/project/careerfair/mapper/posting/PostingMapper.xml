@@ -122,7 +122,6 @@
         LIMIT #{startNum}, #{pageSize}
     </select>
 
-
     <select id="getNowPostingsCount" resultType="Integer">
         <bind name="pattern" value="'%' + search + '%'"/>
         SELECT COUNT(*) FROM (SELECT * FROM VIEW_POSTING WHERE status = '채용중') c
@@ -168,6 +167,10 @@
                 </foreach>
             </if>
         </where>
+    </select>
+
+    <select id="getPostViewDetailByPostingId" resultMap="postingViewMap">
+        SELECT * FROM VIEW_POSTING WHERE posting_id = #{postingId}
     </select>
 </mapper>
 

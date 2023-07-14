@@ -1,10 +1,9 @@
 CREATE VIEW VIEW_POSTING
 AS
-SELECT p.posting_id, p.company_id, c.company_name ,p.title, 
-p.industry_id, p.end_date, p.address, p.status,
-p.employment_type, p.experience_level, p.education_level 
+SELECT p.*, c.company_name
 FROM TB_POSTING p JOIN TB_COMPANIES c
 ON p.company_id = c.company_id;
+
 
 SELECT * FROM VIEW_POSTING;
 

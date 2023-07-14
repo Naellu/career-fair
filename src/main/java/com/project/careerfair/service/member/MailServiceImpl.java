@@ -2,6 +2,7 @@ package com.project.careerfair.service.member;
 
 import com.project.careerfair.mapper.members.MemberMapper;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.*;
 import org.springframework.mail.javamail.*;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Random;
 
+@Slf4j
 @Service
 public class MailServiceImpl implements MailService {
     @Autowired
@@ -37,6 +39,8 @@ public class MailServiceImpl implements MailService {
 
         Random random = new Random();
         int randomNum = random.nextInt(900000) + 100000;
+
+        log.info("randomNum: {}" , randomNum);
 
         simpleMessage.setSubject("xx박람회 회원 인증메일입니다.");
         simpleMessage.setText("안녕하세요! xx박람회 입니다!\n" + "본인 확인 인증 번호를 보내드립니다.\n" + "\n" + "인증 번호 : " + randomNum +"\n"

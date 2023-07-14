@@ -90,11 +90,6 @@ public interface PostingMapper {
     @ResultMap("postingMap")
     Integer addPosting(Posting posting);
 
-
-    // 유저 채용공고 목록
-    List<Posting> getNowPostingsAll(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
-
-
     @Delete("""
             DELETE FROM TB_POSTING
             WHERE
@@ -102,7 +97,6 @@ public interface PostingMapper {
             NOT (application_count != 0 && status = '채용중') 
             """)
     int deletePosting(Posting posting);
-
 
     // 유저 채용공고 목록
     List<Posting> getNowPostingsAll(Integer pageSize, Integer startNum, Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
@@ -134,5 +128,5 @@ public interface PostingMapper {
             """)
     int modifyPosting(Posting posting);
 
-
+    Posting getPostViewDetailByPostingId(Integer postingId);
 }

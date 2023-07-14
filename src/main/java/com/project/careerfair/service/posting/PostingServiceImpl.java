@@ -8,6 +8,7 @@ import com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper;
 import com.project.careerfair.mapper.industry.IndustryMapper;
 import com.project.careerfair.mapper.members.MemberMapper;
 import com.project.careerfair.mapper.posting.PostingMapper;
+import com.project.careerfair.mapper.scrap.ScrapMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class PostingServiceImpl implements PostingService{
     private final IndustryMapper industryMapper;
     private final PostingMapper postingMapper;
     private final MemberMapper memberMapper;
+    private final ScrapMapper scrapMapper;
 
     @Override
     public Map<String, Object> getCompanyInfo(String userId) {
@@ -110,6 +112,9 @@ public class PostingServiceImpl implements PostingService{
 
     @Override
     public Boolean deletePosting(Posting posting) {
+        
+        //좋아요 삭제
+        scrapMapper.deleteByPostingId(posting);
 
         return postingMapper.deletePosting(posting) == 1;
     }
