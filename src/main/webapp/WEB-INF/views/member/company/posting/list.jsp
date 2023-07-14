@@ -48,7 +48,7 @@
         </li>
     </ul>
     <table id="posting-table" class="table table-bordered custom-div">
-        <caption class="caption-top">
+        <caption class="caption-top">g
             <button class="btn btn-outline-primary"
                     onclick="location.href='/member/company/posting/add?userId=${userId}'">공고등록
             </button>
