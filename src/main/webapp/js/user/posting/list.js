@@ -3,7 +3,7 @@ listView();
 function listView() {
     const queryParams = new URLSearchParams(window.location.search);
 
-    fetch(`/api/user/posting?${queryParams}`)
+    fetch(`/api/user/posting/?${queryParams}`)
         .then(response => response.json())
         .then(data => {
             const postingList = data.postingList;
@@ -42,7 +42,7 @@ function listView() {
                             <a href="/company/${posting.companyId}">${posting.companyName}</a>
                         </td>
                         <td style="vertical-align : middle;">
-                            <a href="#">
+                            <a href="/user/posting/${posting.postingId}">
                                 ${posting.title}
                                 <br>
                                 ${posting.experienceLevel} ${posting.employmentType} ${posting.educationLevel}

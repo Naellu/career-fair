@@ -1,9 +1,11 @@
 package com.project.careerfair.controller.note;
 
 import com.project.careerfair.domain.Note;
+import com.project.careerfair.service.Note.NoteService;
 import com.project.careerfair.service.Note.NoteServiceImp;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -21,9 +23,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/note")
 @RequiredArgsConstructor
+@Slf4j
 public class NoteController {
 
-    private final NoteServiceImp service;
+    private final NoteService service;
 
     @GetMapping("/list/receive")
     public String getReceiveList(
@@ -70,7 +73,7 @@ public class NoteController {
     public void writeNoteForm(
             Note note
     ) {
-
+        log.info("{}", note);
     }
 
     @PostMapping("write")
@@ -109,7 +112,7 @@ public class NoteController {
         }
         String userId = authentication.getName();
         String redirectUrl = "/note/list/" + distinction + "?memberId=" + userId;
-        return "redirect:"+ redirectUrl;
+        return "redirect:" + redirectUrl;
 
 
     }

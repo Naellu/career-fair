@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,6 +45,42 @@ public class RecruiterControllerAPI {
             @RequestParam("files") MultipartFile[] files,
             Authentication authentication) {
         boolean ok = false;
+        Map<String, Object> response = new HashMap<>();
+
+        if (authentication == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+
+        try {
+            ok = recruiterService.create(company, files, authentication);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (ok) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+   /* @PostMapping
+    public ResponseEntity<Map<String, Object>> regCompany(
+            @Validated @ModelAttribute("company") Company company,
+            BindingResult bindingResult,
+            @RequestParam("files") MultipartFile[] files,
+            Authentication authentication) {
+
+        if (bindingResult.hasErrors()) {
+            // 오류가 있는 경우
+            Map<String, Object> errors = new HashMap<>();
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                errors.put(error.getField(), error.getDefaultMessage());
+            }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+        }
+
+        boolean ok = false;
         try {
             ok = recruiterService.create(company, files, authentication);
         } catch (IOException e) {
@@ -55,7 +94,7 @@ public class RecruiterControllerAPI {
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
-    }
+    }*/
 
     // 목록 불러오기
     @GetMapping
