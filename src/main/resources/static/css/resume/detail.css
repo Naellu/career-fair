@@ -9,6 +9,20 @@ div {
     display: block;
 }
 
+.resumeTitleDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  /* 수직 정렬 */
+}
+
+.resume-subject {
+    text-align: left;
+}
+
+#getResumeUpdate {
+    text-align: right;
+}
+
 .resume-view-container {
     position: relative;
     width: 940px;

@@ -71,7 +71,12 @@ a, a:link, a:visited {
     text-decoration: none;
 }
 
-
+.form-head,
+#resume-list-td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  /* 수직 정렬 */
+}
 
 #resumeWrittenBtn {
     padding: 9px 20px 7px;

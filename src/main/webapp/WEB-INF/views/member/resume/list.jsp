@@ -28,8 +28,8 @@
   <div class="container-lg">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8">
-            <h3 id="resumeHeader">이력서 관리</h3>
-            <div class="btnBx">
+            <div class="btnBx form-head">
+                <h3 id="resumeHeader">이력서 목록</h3>
                 <a id="resumeWrittenBtn" href="/member/resume/write" class="wrBtn">이력서 작성</a>
             </div>
         <table class="table">
@@ -40,7 +40,7 @@
                       <div class="listSortArea">
                           <div class="col col01">이력서 제목</div>
                           <div class="col col02">이력서 관리</div>
-                        </div>
+                      </div>
                   </div>
               </th>
           </tr>
@@ -48,8 +48,12 @@
           <tbody class="resumeLists">
             <c:forEach items="${resumeList}" var="resume">
                 <tr>
-                    <td>
+                    <td id="resume-list-td">
                         <a id="resume_${resume.resumeId}" href="/member/resume/${resume.resumeId}">${resume.title}</a>
+                        <div>
+                            <a id="updateBtn" href="/member/resume/${resume.resumeId}/update">수정</a>
+                            <a id="deleteBtn" href="/member/resume/${resume.resumeId}/delete">삭제</a>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

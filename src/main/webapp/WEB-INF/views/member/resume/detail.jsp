@@ -32,8 +32,9 @@
     <div class="resumeHeader"></div>
 
     <!-- 이력서 제목 -->
-    <div class="form-group mb-3">
+    <div class="form-group mb-3 resumeTitleDiv">
         <div class="resume-subject">${resumeData.title}</div>
+        <button type="submit" class="btn btn-outline-dark" id="getResumeUpdate" value="${resumeData.resumeId}">수정</button>
     </div>
 
 
@@ -220,7 +221,7 @@
     <div class="sign">
         <div class="message">위의 모든 기재사항은 사실과 다름없음을 확인합니다.</div>
 
-        <div class="writer">작성자 : memberId</div> <%-- 회원id 들어가야함 --%>
+        <div class="writer">작성자 : ${memberId}</div> <%-- 회원id 들어가야함 --%>
         <div class="warning">
             <%-- description에 이력서 last_updated 들어가야함 --%>
             <div class="description">이 이력서는 2023년 07월 13일 (목)에 최종 수정된 이력서 입니다.
@@ -240,6 +241,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="/js/member/resume/detail.js"></script>
 
 </body>
 </html>

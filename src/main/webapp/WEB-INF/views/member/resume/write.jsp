@@ -113,7 +113,7 @@
                     <button class="deleteButton"><i class="fa-solid fa-xmark"></i></button>
                     <div class="row">
                         <div class="col">
-                            <label for="educationType">최종학력</label>
+                            <label for="educationType">학력</label>
                             <select class="form-control educationType" id="educationType">
                                 <option selected disabled></option>
                                 <option>고졸</option>

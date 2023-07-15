@@ -8,6 +8,10 @@
         <id column="resume_id" property="resumeId"/>
         <result column="title" property="title" />
         <result column="member_id" property="memberId" />
+        <result column="military" property="military" />
+        <result column="intro" property="intro" />
+        <result column="industry_id" property="industryId" />
+        <result column="created" property="created" />
     </resultMap>
 
     <select id="findByMemberId" resultMap="resumeData">
@@ -21,6 +25,12 @@
             member_id = #{memberId}
     </select>
 
+    <select id="checkResumeByMemberId" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM TB_ONLINE_RESUME
+        WHERE member_id = #{memberId} AND resume_id = #{resumeId}
+    </select>
+
 
     <!-- 빈 이력서 등록 -->
     <insert id="createEmptyResume" useGeneratedKeys="true" keyProperty="resumeId"
@@ -32,7 +42,7 @@
     </insert>
 
     <!-- 이력서 기본 정보 등록 -->
-    <update id="updateResume">
+    <update id="insertResumeBasics">
         UPDATE
             TB_ONLINE_RESUME
         SET
@@ -194,5 +204,77 @@
             r.resume_id = #{resumeId};
     </select>
 
+    <!-- 이력서 수정 쿼리들 -->
+
+    <update id="updateResumeBasics">
+        UPDATE
+            TB_ONLINE_RESUME
+        SET
+            title = #{title},
+            industry_id = #{industryId},
+            military = #{military},
+            intro = #{intro},
+            last_updated = DATE_FORMAT(NOW(), '%Y-%m-%d')
+        WHERE
+            resume_id = #{resumeId} AND member_id = #{memberId}
+    </update>
+
+    <update id="updateCareerByResumeId">
+        UPDATE
+            TB_CAREER
+        SET
+            company_name = #{companyName},
+            entry_date = #{entryDate},
+            resignation_date = #{resignationDate},
+            task = #{task},
+            position = #{position},
+            description = #{description}
+        WHERE
+            resume_id = #{resumeId} AND career_id = #{careerId}
+    </update>
+
+    <update id="updateEducationByResumeId">
+        UPDATE
+            TB_EDUCATION
+        SET
+            education_type = #{educationType},
+            school_name = #{schoolName},
+            entry_date = #{entryDate},
+            graduation_date = #{graduationDate},
+            major = #{major},
+            status = #{status}
+        WHERE
+            resume_id = #{resumeId} AND education_id = #{educationId}
+    </update>
+
+    <update id="updateCertificationByResumeId">
+        UPDATE
+            TB_CERTIFICATION
+        SET
+            certification_name = #{certificationName},
+            get_date = #{getDate},
+            organization = #{organization}
+        WHERE
+            resume_id = #{resumeId} AND certification_id = #{certificationId}
+    </update>
+
+    <update id="updateWorkAreaByResumeId">
+        UPDATE
+            TB_WORK_AREA
+        SET
+            hoped_work_area = #{hopedWorkArea}
+        WHERE
+            resume_id = #{resumeId} AND work_area_id = #{workAreaId}
+    </update>
+
+    <update id="updateWorkConditionByResumeId">
+        UPDATE
+            TB_WORK_CONDITION
+        SET
+            salary = #{salary},
+            employment_type = #{employmentType}
+        WHERE
+            resume_id = #{resumeId} AND work_condition_id = #{workConditionId}
+    </update>
 
 </mapper>
