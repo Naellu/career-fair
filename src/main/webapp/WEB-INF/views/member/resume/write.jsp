@@ -18,7 +18,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/resume.css">
+    <link rel="stylesheet" href="/css/resume/resume.css">
     <my:font></my:font>
 </head>
 <body>
@@ -113,7 +113,7 @@
                     <button class="deleteButton"><i class="fa-solid fa-xmark"></i></button>
                     <div class="row">
                         <div class="col">
-                            <label for="educationType">최종학력</label>
+                            <label for="educationType">학력</label>
                             <select class="form-control educationType" id="educationType">
                                 <option selected disabled></option>
                                 <option>고졸</option>
@@ -213,7 +213,7 @@
             <div class="inputContainer">
                 <div class="inputDetailGroup">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="militaryService" id="unfulfilled" value="unfulfilled">
+                        <input class="form-check-input" type="radio" name="militaryService" id="unfulfilled" value="미필">
                         <label class="form-check-label" for="unfulfilled">미필</label>
                     </div>
                     <div class="form-check">
@@ -221,8 +221,8 @@
                         <label class="form-check-label" for="fulfilled">군필</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="militaryService" id="notApplicable" value="notApplicable">
-                        <label class="form-check-label" for="notApplicable">해당사항 없음</label>
+                        <input class="form-check-input" type="radio" name="militaryService" id="notApplicable" value="해당사항없음">
+                        <label class="form-check-label" for="notApplicable">해당사항없음</label>
                     </div>
                     <select class="form-select militaryRank" id="militaryRank">
                         <option selected disabled>병급 선택</option>

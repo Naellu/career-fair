@@ -230,6 +230,7 @@ $("#submitResumeButton").click(function () {
         .then(response => response.text())
         .then(message => {
             alert(message);
+            window.location.href = "/member/resume";
         })
         .catch(error => {
             console.log("career data send error", error);

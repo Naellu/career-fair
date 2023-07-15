@@ -13,6 +13,7 @@ public class Resume {
     private String title;
     private String military;
     private String intro;
+    private String created;
 
     private String memberId;
     private Integer industryId;
