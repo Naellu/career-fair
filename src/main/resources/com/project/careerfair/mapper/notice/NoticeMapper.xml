@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.notice.NoticeMapper">
+
+    <!-- notice목록 불러오는 resultMap-->
+    <resultMap type="com.project.careerfair.domain.Notice"
+               id="noticeMap">
+        <id column="notice_id" property="noticeId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="created" property="created"/>
+        <result column="member_id" property="memberId"/>
+        <result column="hit" property="hit"/>
+        <result column="modifier_id" property="modifierId"/>
+        <result column="modified" property="modified"/>
+    </resultMap>
+
+    <select id="getNoticeList" resultMap="noticeMap">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT * FROM TB_NOTICE
+        <where>
+            <if test="type eq 'all'">
+                (title LIKE #{pattern} OR content LIKE #{pattern} OR member_id LIKE #{pattern})
+            </if>
+            <if test="type eq 'title'">
+                OR title LIKE #{pattern}
+            </if>
+            <if test="type eq 'content'">
+                OR content LIKE #{pattern}
+            </if>
+            <if test="type eq 'writer'">
+                OR modifier_id LIKE #{pattern}
+            </if>
+        </where>
+        ORDER BY modified DESC LIMIT #{startNum}, #{pageSize}
+    </select>
+
+    <select id="countAll" resultType="Integer">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT COUNT(notice_id) FROM TB_NOTICE
+        <where>
+            <if test="type eq 'all'">
+                (title LIKE #{pattern} OR content LIKE #{pattern} OR member_id LIKE #{pattern})
+            </if>
+            <if test="type eq 'title'">
+                OR title LIKE #{pattern}
+            </if>
+            <if test="type eq 'content'">
+                OR content LIKE #{pattern}
+            </if>
+            <if test="type eq 'writer'">
+                OR modifier_id LIKE #{pattern}
+            </if>
+        </where>
+    </select>
+
+    <!-- notice상세 불러오는 resultMap-->
+    <resultMap type="com.project.careerfair.domain.Notice"
+               id="noticeViewMap">
+        <id column="notice_id" property="noticeId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="created" property="created"/>
+        <result column="member_id" property="memberId"/>
+        <result column="hit" property="hit"/>
+        <result column="modifier_id" property="modifierId"/>
+        <result column="modified" property="modified"/>
+        <collection property="fileName" ofType="string">
+            <result column="file_name"/>
+        </collection>
+    </resultMap>
+
+    <!-- 상세보기 -->
+    <select id="getDetail" resultMap="noticeViewMap">
+        SELECT * FROM VIEW_NOTICE WHERE notice_id = #{noticeId}
+    </select>
+
+    <!-- 이전글 -->
+    <select id="getPrevNotice" resultType="Integer">
+        SELECT notice_id FROM TB_NOTICE
+        WHERE modified &lt; #{modified}
+        ORDER BY modified DESC
+        LIMIT 1;
+    </select>
+
+    <!-- 다음글 -->
+    <select id="getNextNotice" resultType="Integer">
+        SELECT notice_id
+        FROM TB_NOTICE
+        WHERE modified &gt; #{modified}
+        ORDER BY modified ASC
+        LIMIT 1;
+    </select>
+
+    <!-- 첫번째글 -->
+    <select id="getFirstNotice" resultType="Integer">
+        SELECT notice_id FROM TB_NOTICE ORDER BY modified ASC LIMIT 1;
+    </select>
+
+    <!-- 마지막글 -->
+    <select id="getLastNotice" resultType="Integer">
+        SELECT notice_id FROM TB_NOTICE ORDER BY modified DESC LIMIT 1;
+    </select>
+
+    <!-- 공지 등록 -->
+    <insert id="insert" useGeneratedKeys="true"
+            keyProperty="noticeId">
+        INSERT INTO TB_NOTICE (title, content, member_id, modifier_id )
+        VALUES (#{title}, #{content}, #{memberId}, #{memberId})
+    </insert>
+
+    <!-- 공지 수정 -->
+    <update id="update">
+        UPDATE TB_NOTICE SET
+        title = #{title},
+        content = #{content},
+        modifier_id = #{modifierId},
+        modified = NOW()
+        WHERE
+        notice_id =
+        #{noticeId}
+    </update>
+
+    <!-- 공지 삭제 -->
+    <delete id="deleteById">
+        DELETE FROM TB_NOTICE WHERE notice_id = #{noticeId}
+    </delete>
+
+    <!-- 파일관련 -->
+    <!-- 파일 등록 -->
+    <insert id="insertFileName">
+        INSERT INTO TB_FILES (notice_id, file_name)
+        VALUES (#{noticeId}, #{originalFilename})
+    </insert>
+
+    <!-- 특정공지의 특정사진 삭제 -->
+    <delete id="deleteFileNameByNoticeIdAndFileName">
+        DELETE FROM TB_FILES
+        WHERE notice_id = #{noticeId}
+        AND file_name = #{fileName}
+    </delete>
+
+    <!-- 공지id로 파일 목록 불러오기 -->
+    <select id="selectFileNamesByNoticeId" resultType="String"
+            parameterType="java.lang.Integer">
+        SELECT file_name
+        FROM
+        TB_FILES
+        WHERE notice_id =
+        #{noticeId}
+    </select>
+
+    <!-- 공지id로 파일 삭제 -->
+    <delete id="deleteFileNameByNoticeId">
+        DELETE FROM TB_FILES
+        WHERE notice_id =
+        #{noticeId}
+    </delete>
+
+    <!-- 조회수 증가 -->
+    <update id="hitUp">
+        UPDATE TB_NOTICE
+        SET hit = hit + 1
+        WHERE notice_id = #{noticeId}
+    </update>
+</mapper>
+
+

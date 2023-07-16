@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.industry.IndustryMapper">
+
+    <!-- industry resultMap-->
+    <resultMap type="com.project.careerfair.domain.Industry"
+               id="industryMap">
+        <id column="industry_id" property="industryId"/>
+        <result column="industry_name" property="industryName"/>
+    </resultMap>
+
+    <select id="getIndustryList" resultMap="industryMap">
+        SELECT * FROM TB_INDUSTRIES
+    </select>
+</mapper>
+
+

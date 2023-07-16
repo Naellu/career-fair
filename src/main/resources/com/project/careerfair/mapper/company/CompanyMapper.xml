@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.company.CompanyMapper">
+
+    <!-- 기업 추가 -->
+    <insert id="insert" useGeneratedKeys="true"
+            keyProperty="companyId">
+        INSERT INTO TB_COMPANIES
+        (round, member_id, company_name, registration_number,
+        number_of_employees, establishment_date, revenue,
+        postal_code, address, detail_address,
+        ceo_name, industry_id, status)
+        VALUES (#{round}, #{memberId}, #{companyName}, #{registrationNumber},
+        #{numberOfEmployees}, #{establishmentDate}, #{revenue},
+        #{postalCode}, #{address}, #{detailAddress},
+        #{ceoName}, #{industryId}, #{status})
+    </insert>
+
+    <!-- 파일 삽입 -->
+    <insert id="insertFileName">
+        INSERT INTO TB_FILES (company_id, file_name)
+        VALUES (#{companyId}, #{originalFilename})
+    </insert>
+
+    <resultMap type="com.project.careerfair.domain.Company"
+               id="companyMap">
+        <id column="round" property="round"/>
+        <result column="company_id" property="companyId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="company_name" property="companyName"/>
+        <result column="registration_number" property="registrationNumber"/>
+        <result column="number_of_employees" property="numberOfEmployees"/>
+        <result column="establishment_date" property="establishmentDate"/>
+        <result column="revenue" property="revenue"/>
+        <result column="postal_code" property="postalCode"/>
+        <result column="address" property="address"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="ceo_name" property="ceoName"/>
+        <result column="industry_id" property="industryId"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="getList" resultMap="companyMap">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT * FROM TB_COMPANIES
+        <where>
+            <if test="type eq 'all'">
+                (member_id LIKE #{pattern}
+                OR company_name LIKE #{pattern}
+                OR registration_number LIKE #{pattern}
+                )
+            </if>
+            <if test="type eq 'memberId'">
+                OR member_id LIKE #{pattern}
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'registrationNumber'">
+                OR registration_number LIKE #{pattern}
+            </if>
+            <if test="(status eq 'all') or (status eq '') ">
+            </if>
+            <if test="status neq 'all'">
+                AND status LIKE #{status}
+            </if>
+        </where>
+        ORDER BY company_id DESC
+        LIMIT #{startNum}, #{pageSize}
+    </select>
+
+    <select id="countAll" resultType="Integer">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT
+        count(company_id) FROM TB_COMPANIES
+        <where>
+            <if test="type eq 'all'">
+                (member_id LIKE #{pattern}
+                OR company_name LIKE #{pattern}
+                OR registration_number LIKE #{pattern}
+                )
+            </if>
+            <if test="type eq 'memberId'">
+                OR member_id LIKE #{pattern}
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'registrationNumber'">
+                OR registration_number LIKE #{pattern}
+            </if>
+            <if test="(status eq 'all') or (status eq '') ">
+            </if>
+            <if test="status neq 'all'">
+                AND status LIKE #{status}
+            </if>
+        </where>
+    </select>
+
+    <!-- 사진 포함 맵 -->
+    <resultMap type="com.project.careerfair.domain.Company"
+               id="companyViewMap">
+        <id column="round" property="round"/>
+        <result column="company_id" property="companyId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="company_name" property="companyName"/>
+        <result column="registration_number" property="registrationNumber"/>
+        <result column="number_of_employees" property="numberOfEmployees"/>
+        <result column="establishment_date" property="establishmentDate"/>
+        <result column="revenue" property="revenue"/>
+        <result column="postal_code" property="postalCode"/>
+        <result column="address" property="address"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="ceo_name" property="ceoName"/>
+        <result column="industry_id" property="industryId"/>
+        <result column="status" property="status"/>
+        <collection property="fileName" ofType="string">
+            <result column="file_name"/>
+        </collection>
+    </resultMap>
+
+    <!-- 상세보기 -->
+    <select id="getDetail" resultMap="companyViewMap">
+        SELECT * FROM VIEW_COMPANY WHERE company_id = #{companyId}
+    </select>
+
+    <update id="changeStatus">
+        UPDATE TB_COMPANIES t
+        JOIN TB_MEMBERS m ON t.member_id = m.member_id
+        SET t.status = #{statusValue}, m.member_type = 'company'
+        WHERE t.company_id = #{companyId}
+    </update>
+
+    <update id="changeStatusWithMemberType">
+        UPDATE TB_COMPANIES t
+        JOIN TB_MEMBERS m ON t.member_id = m.member_id
+        SET t.status = #{statusValue}, m.member_type = 'recruiter'
+        WHERE t.company_id = #{companyId}
+    </update>
+
+    <select id="getListByName" resultMap="companyMap">
+        SELECT * FROM TB_COMPANIES
+        <where>
+            <if test="roundValue eq 'all'">
+                member_id = #{memberId}
+            </if>
+            <if test="roundValue eq 'now'">
+                member_id = #{memberId} and round = #{round}
+            </if>
+            <if test="roundValue eq 'past'">
+                member_id = #{memberId} and round &lt; #{round}
+            </if>
+        </where>
+        ORDER BY company_id DESC
+    </select>
+
+    <!-- 특정 회사의 특정 파일 삭제 -->
+    <delete id="deleteFileNameByCompanyIdAndFileName">
+        DELETE FROM TB_FILES
+        WHERE company_id = #{companyId}
+        AND file_name = #{fileName}
+    </delete>
+
+    <!-- 업데이트 쿼리 -->
+    <update id="update">
+        UPDATE TB_COMPANIES SET
+        company_name = #{companyName},
+        registration_number = #{registrationNumber},
+        number_of_employees = #{numberOfEmployees},
+        establishment_date = #{establishmentDate},
+        revenue = #{revenue},
+        ceo_name = #{ceoName},
+        postal_code = #{postalCode},
+        address = #{address},
+        detail_address = #{detailAddress},
+        industry_id = #{industryId}
+        WHERE company_id = #{companyId};
+    </update>
+
+    <!-- 신청 삭제 -->
+    <delete id="deleteById">
+        DELETE FROM TB_COMPANIES WHERE company_id = #{companyId}
+    </delete>
+
+    <!-- 기업id로 파일 목록 불러오기 -->
+    <select id="selectFileNamesByCompanyId" resultType="String"
+            parameterType="java.lang.Integer">
+        SELECT file_name
+        FROM
+        TB_FILES
+        WHERE company_id =
+        #{companyId}
+    </select>
+
+    <!-- 기업id로 파일 삭제 -->
+    <delete id="deleteFileNameByCompanyId">
+        DELETE FROM TB_FILES
+        WHERE company_id =
+        #{companyId}
+    </delete>
+
+    <!-- 회차별 승인 기업 목록 -->
+    <select id="getApprovedList" resultMap="companyMap">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT * FROM (SELECT * FROM TB_COMPANIES  WHERE status = 'approved' and round = #{roundValue}) c
+        <where>
+            <if test="type eq 'all'">
+                (company_name LIKE #{pattern}
+                OR address LIKE #{pattern}
+                )
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'address'">
+                OR address LIKE #{pattern}
+            </if>
+            <if test="industryId neq null">
+                and industry_id = #{industryId}
+            </if>
+        </where>
+        LIMIT #{startNum}, #{pageSize}
+    </select>
+
+    <!-- 승인 기업 총 개수 -->
+    <select id="countApprovedList">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT COUNT(*) FROM (SELECT * FROM TB_COMPANIES  WHERE status = 'approved' and round = #{roundValue}) c
+        <where>
+            <if test="type eq 'all'">
+                (company_name LIKE #{pattern}
+                OR address LIKE #{pattern}
+                )
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'address'">
+                OR address LIKE #{pattern}
+            </if>
+            <if test="industryId neq null">
+                and industry_id = #{industryId}
+            </if>
+        </where>
+    </select>
+</mapper>

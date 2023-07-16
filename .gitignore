@@ -1,4 +1,4 @@
-custom.properties
+job-private.properties
 
 HELP.md
 target/
@@ -34,3 +34,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/custom.properties

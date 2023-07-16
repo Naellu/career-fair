@@ -1,0 +1,9 @@
+.custom-div a {
+    text-decoration: none;
+    color: black;
+}
+
+.custom-div a:hover {
+    color: #00b6a1;
+    text-decoration: none;
+}

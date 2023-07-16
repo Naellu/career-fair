@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.posting.PostingMapper">
+    <!-- posting목록 불러오는 resultMap-->
+    <resultMap type="com.project.careerfair.domain.Posting"
+               id="postingMap">
+        <id column="posting_id" property="postingId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="round" property="round"/>
+        <result column="title" property="title"/>
+        <result column="industry_id" property="industryId"/>
+        <result column="hiring_count" property="hiringCount"/>
+        <result column="spare_count" property="spareCount"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="status" property="status"/>
+        <result column="address" property="address"/>
+        <result column="salary" property="salary"/>
+        <result column="preferences" property="preference"/>
+        <result column="benefits" property="benefit"/>
+        <result column="requirements" property="requirement"/>
+        <result column="etc" property="etc"/>
+        <result column="employment_type" property="employmentType"/>
+        <result column="experience_level" property="experienceLevel"/>
+        <result column="education_level" property="educationLevel"/>
+        <result column="application_count" property="applicationCount"/>
+    </resultMap>
+
+    <select id="getNowPostingList" resultMap="postingMap">
+        SELECT * FROM TB_POSTING
+        WHERE company_id = #{companyId} AND status = '채용중'
+    </select>
+
+    <select id="countAll" resultType="Integer">
+        SELECT COUNT(*) FROM TB_POSTING
+        WHERE company_id = #{companyId} AND status = '마감'
+    </select>
+
+    <select id="getPastPostingList" resultMap="postingMap">
+        SELECT * FROM TB_POSTING
+        WHERE company_id = #{companyId} AND status = '마감'
+        ORDER BY posting_id DESC
+        LIMIT #{startNum}, #{pageSize}
+    </select>
+
+    <!-- posting목록 with companyName resultMap-->
+    <resultMap type="com.project.careerfair.domain.Posting"
+               id="postingViewMap">
+        <id column="posting_id" property="postingId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="round" property="round"/>
+        <result column="company_name" property="companyName"/>
+        <result column="title" property="title"/>
+        <result column="industry_id" property="industryId"/>
+        <result column="hiring_count" property="hiringCount"/>
+        <result column="spare_count" property="spareCount"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="address" property="address"/>
+        <result column="status" property="status"/>
+        <result column="salary" property="salary"/>
+        <result column="preferences" property="preference"/>
+        <result column="benefits" property="benefit"/>
+        <result column="requirements" property="requirement"/>
+        <result column="etc" property="etc"/>
+        <result column="employment_type" property="employmentType"/>
+        <result column="experience_level" property="experienceLevel"/>
+        <result column="education_level" property="educationLevel"/>
+        <result column="hiring_count" property="hiringCount"/>
+        <result column="application_count" property="applicationCount"/>
+    </resultMap>
+
+    <select id="getNowPostingsAll" resultMap="postingViewMap">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT * FROM (SELECT * FROM VIEW_POSTING WHERE status = '채용중') c
+        <where>
+            <if test="type eq 'all'">
+                (company_name LIKE #{pattern} OR title LIKE #{pattern} OR address LIKE #{pattern})
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'title'">
+                OR title LIKE #{pattern}
+            </if>
+            <if test="type eq 'address'">
+                OR address LIKE #{pattern}
+            </if>
+            <if test="industrIds neq null">
+                AND
+                <foreach item="item" index="index" collection="industrIds"
+                         open="industry_id IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="experienceLevels neq null">
+                AND
+                <foreach item="item" index="index" collection="experienceLevels"
+                         open="experience_level IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="educationLevels neq null">
+                AND
+                <foreach item="item" index="index" collection="educationLevels"
+                         open="education_level IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="employmentTypes neq null">
+                AND
+                <foreach item="item" index="index" collection="employmentTypes"
+                         open="employment_type IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        LIMIT #{startNum}, #{pageSize}
+    </select>
+
+    <select id="getNowPostingsCount" resultType="Integer">
+        <bind name="pattern" value="'%' + search + '%'"/>
+        SELECT COUNT(*) FROM (SELECT * FROM VIEW_POSTING WHERE status = '채용중') c
+        <where>
+            <if test="type eq 'all'">
+                (company_name LIKE #{pattern} OR title LIKE #{pattern} OR address LIKE #{pattern})
+            </if>
+            <if test="type eq 'companyName'">
+                OR company_name LIKE #{pattern}
+            </if>
+            <if test="type eq 'title'">
+                OR title LIKE #{pattern}
+            </if>
+            <if test="type eq 'address'">
+                OR address LIKE #{pattern}
+            </if>
+            <if test="industrIds neq null">
+                AND
+                <foreach item="item" index="index" collection="industrIds"
+                         open="industry_id IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="experienceLevels neq null">
+                AND
+                <foreach item="item" index="index" collection="experienceLevels"
+                         open="experience_level IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="educationLevels neq null">
+                AND
+                <foreach item="item" index="index" collection="educationLevels"
+                         open="education_level IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="employmentTypes neq null">
+                AND
+                <foreach item="item" index="index" collection="employmentTypes"
+                         open="employment_type IN (" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getPostViewDetailByPostingId" resultMap="postingViewMap">
+        SELECT * FROM VIEW_POSTING WHERE posting_id = #{postingId}
+    </select>
+</mapper>
+
+

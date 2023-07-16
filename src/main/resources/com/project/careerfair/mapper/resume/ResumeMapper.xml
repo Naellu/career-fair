@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.resume.ResumeMapper">
+
+    <resultMap id="resumeData" type="com.project.careerfair.domain.Resume">
+        <id column="resume_id" property="resumeId"/>
+        <result column="title" property="title" />
+        <result column="member_id" property="memberId" />
+        <result column="military" property="military" />
+        <result column="intro" property="intro" />
+        <result column="industry_id" property="industryId" />
+        <result column="created" property="created" />
+    </resultMap>
+
+    <select id="findByMemberId" resultMap="resumeData">
+        SELECT
+            resume_id,
+            title,
+            member_id
+        FROM
+            TB_ONLINE_RESUME
+        WHERE
+            member_id = #{memberId}
+    </select>
+
+    <select id="checkResumeByMemberId" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM TB_ONLINE_RESUME
+        WHERE member_id = #{memberId} AND resume_id = #{resumeId}
+    </select>
+
+
+    <!-- 빈 이력서 등록 -->
+    <insert id="createEmptyResume" useGeneratedKeys="true" keyProperty="resumeId"
+            parameterType="com.project.careerfair.domain.Resume">
+        INSERT INTO
+            TB_ONLINE_RESUME(member_id)
+        VALUES
+            (#{memberId})
+    </insert>
+
+    <!-- 이력서 기본 정보 등록 -->
+    <update id="insertResumeBasics">
+        UPDATE
+            TB_ONLINE_RESUME
+        SET
+            title = #{resumeDto.title},
+            industry_id = #{resumeDto.industryId},
+            military = #{resumeDto.military},
+            intro = #{resumeDto.intro}
+        WHERE
+            resume_id = #{resumeId}
+    </update>
+
+    <!-- 경력 데이터 등록-->
+    <insert id="insertCareerByResumeId" useGeneratedKeys="true" keyProperty="career.careerId">
+        INSERT INTO TB_CAREER
+        (
+            resume_id,
+            company_name,
+            entry_date,
+            resignation_date,
+            task,
+            position,
+            description
+        )
+        VALUES
+        (
+            #{resumeId},
+            #{career.companyName},
+            #{career.entryDate},
+            #{career.resignationDate},
+            #{career.task},
+            #{career.position},
+            #{career.description}
+        )
+    </insert>
+
+    <!-- 학력 데이터 등록 -->
+    <insert id="insertEducationByResumeId" useGeneratedKeys="true" keyProperty="education.educationId">
+        INSERT INTO TB_EDUCATION
+        (
+            resume_id,
+            education_type,
+            school_name,
+            entry_date,
+            graduation_date,
+            major,
+            status
+        )
+        VALUES
+        (
+            #{resumeId},
+            #{education.educationType},
+            #{education.schoolName},
+            #{education.entryDate},
+            #{education.graduationDate},
+            #{education.major},
+            #{education.status}
+        )
+    </insert>
+
+    <!-- 자격증 데이터 등록 -->
+    <insert id="insertCertificationByResumeId" useGeneratedKeys="true" keyProperty="certification.certificationId">
+        INSERT INTO TB_CERTIFICATION
+        (
+            resume_id,
+            certification_name,
+            get_date,
+            organization
+        )
+        VALUES
+        (
+            #{resumeId},
+            #{certification.certificationName},
+            #{certification.getDate},
+            #{certification.organization}
+        )
+    </insert>
+
+
+    <!-- 희망근무지 데이터 등록 -->
+    <insert id="insertWorkAreaByResumeId" useGeneratedKeys="true" keyProperty="workArea.workAreaId">
+        INSERT INTO
+            TB_WORK_AREA (resume_id, hoped_work_area)
+        VALUES
+            (#{resumeId}, #{workArea.hopedWorkArea})
+    </insert>
+
+
+    <!-- 희망근무조건 데이터 등록 -->
+    <insert id="insertWorkConditionByResumeId" useGeneratedKeys="true" keyProperty="workCondition.workConditionId">
+        INSERT INTO
+            TB_WORK_CONDITION (resume_id, salary, employment_type)
+        VALUES
+            (#{resumeId}, #{workCondition.salary}, #{workCondition.employmentType})
+    </insert>
+
+    <resultMap id="ResumeDtoMap" type="com.project.careerfair.domain.dto.ResumeDto">
+        <id column="resume_id" property="resumeId" />
+        <result column="member_id" property="memberId"/>
+        <result column="title" property="title" />
+        <result column="military" property="military" />
+        <result column="intro" property="intro" />
+        <result column="industry_id" property="industryId" />
+
+        <association property="workCondition" javaType="com.project.careerfair.domain.WorkCondition">
+            <id column="work_condition_id" property="workConditionId"/>
+            <result column="salary" property="salary"/>
+            <result column="employment_type" property="employmentType"/>
+        </association>
+
+        <collection property="careers" ofType="com.project.careerfair.domain.Career">
+            <id column="career_id" property="careerId"/>
+            <result column="company_name" property="companyName"/>
+            <result column="entry_date" property="entryDate"/>
+            <result column="resignation_date" property="resignationDate"/>
+            <result column="task" property="task"/>
+            <result column="position" property="position"/>
+            <result column="description" property="description"/>
+        </collection>
+
+        <collection property="educations" ofType="com.project.careerfair.domain.Education">
+            <id column="education_id" property="educationId"/>
+            <result column="education_type" property="educationType"/>
+            <result column="school_name" property="schoolName"/>
+            <result column="major" property="major"/>
+            <result column="entry_date" property="entryDate"/>
+            <result column="graduation_date" property="graduationDate"/>
+            <result column="status" property="status"/>
+        </collection>
+
+        <collection property="certifications" ofType="com.project.careerfair.domain.Certification">
+            <id column="certification_id" property="certificationId"/>
+            <result column="certification_name" property="certificationName"/>
+            <result column="get_date" property="getDate"/>
+            <result column="organization" property="organization"/>
+        </collection>
+
+        <collection property="workAreas" ofType="com.project.careerfair.domain.WorkArea">
+            <id column="work_area_id" property="workAreaId"/>
+            <result column="hoped_work_area" property="hopedWorkArea"/>
+        </collection>
+    </resultMap>
+
+    <select id="getResumeById" resultMap="ResumeDtoMap">
+        SELECT
+            r.resume_id, r.member_id, r.title, r.military, r.intro, r.industry_id,
+            wc.work_condition_id, wc.salary, wc.employment_type,
+            ca.career_id, ca.company_name, ca.entry_date, ca.resignation_date, ca.task, ca.description, ca.position,
+            ed.education_id, ed.school_name, ed.major, ed.entry_date, ed.graduation_date, ed.education_type, ed.status,
+            crt.certification_id, crt.certification_name, crt.get_date, crt.organization,
+            wa.work_area_id, wa.hoped_work_area
+        FROM
+            TB_ONLINE_RESUME r
+            LEFT JOIN TB_CAREER ca ON r.resume_id = ca.resume_id
+            LEFT JOIN TB_EDUCATION ed ON r.resume_id = ed.resume_id
+            LEFT JOIN TB_CERTIFICATION crt ON r.resume_id = crt.resume_id
+            LEFT JOIN TB_WORK_AREA wa ON r.resume_id = wa.resume_id
+            LEFT JOIN TB_WORK_CONDITION wc ON r.resume_id = wc.resume_id
+        WHERE
+            r.resume_id = #{resumeId};
+    </select>
+
+    <!-- 이력서 수정 쿼리들 -->
+
+    <update id="updateResumeBasics">
+        UPDATE
+            TB_ONLINE_RESUME
+        SET
+            title = #{title},
+            industry_id = #{industryId},
+            military = #{military},
+            intro = #{intro},
+            last_updated = DATE_FORMAT(NOW(), '%Y-%m-%d')
+        WHERE
+            resume_id = #{resumeId} AND member_id = #{memberId}
+    </update>
+
+    <update id="updateCareerByResumeId">
+        UPDATE
+            TB_CAREER
+        SET
+            company_name = #{companyName},
+            entry_date = #{entryDate},
+            resignation_date = #{resignationDate},
+            task = #{task},
+            position = #{position},
+            description = #{description}
+        WHERE
+            resume_id = #{resumeId} AND career_id = #{careerId}
+    </update>
+
+    <update id="updateEducationByResumeId">
+        UPDATE
+            TB_EDUCATION
+        SET
+            education_type = #{educationType},
+            school_name = #{schoolName},
+            entry_date = #{entryDate},
+            graduation_date = #{graduationDate},
+            major = #{major},
+            status = #{status}
+        WHERE
+            resume_id = #{resumeId} AND education_id = #{educationId}
+    </update>
+
+    <update id="updateCertificationByResumeId">
+        UPDATE
+            TB_CERTIFICATION
+        SET
+            certification_name = #{certificationName},
+            get_date = #{getDate},
+            organization = #{organization}
+        WHERE
+            resume_id = #{resumeId} AND certification_id = #{certificationId}
+    </update>
+
+    <update id="updateWorkAreaByResumeId">
+        UPDATE
+            TB_WORK_AREA
+        SET
+            hoped_work_area = #{hopedWorkArea}
+        WHERE
+            resume_id = #{resumeId} AND work_area_id = #{workAreaId}
+    </update>
+
+    <update id="updateWorkConditionByResumeId">
+        UPDATE
+            TB_WORK_CONDITION
+        SET
+            salary = #{salary},
+            employment_type = #{employmentType}
+        WHERE
+            resume_id = #{resumeId} AND work_condition_id = #{workConditionId}
+    </update>
+
+    <!-- 이력서 삭제 -->
+    <delete id="deleteResumeById">
+        <!-- 이력서 테이블에서 삭제 -->
+        DELETE FROM TB_ONLINE_RESUME WHERE resume_id = #{resumeId}
+    </delete>
+
+    <!-- 관련 테이블 내 데이터 삭제 -->
+    <delete id="deleteCareerByResumeId">
+        DELETE FROM TB_CAREER WHERE resume_id = #{resumeId}
+    </delete>
+
+    <delete id="deleteEducationByResumeId">
+        DELETE FROM TB_EDUCATION WHERE resume_id = #{resumeId}
+    </delete>
+
+    <delete id="deleteCertificationByResumeId">
+        DELETE FROM TB_CERTIFICATION WHERE resume_id = #{resumeId}
+    </delete>
+
+    <delete id="deleteWorkAreaByResumeId">
+        DELETE FROM TB_WORK_AREA WHERE resume_id = #{resumeId}
+    </delete>
+
+    <delete id="deleteWorkConditionByResumeId">
+        DELETE FROM TB_WORK_CONDITION WHERE resume_id = #{resumeId}
+    </delete>
+
+
+</mapper>
