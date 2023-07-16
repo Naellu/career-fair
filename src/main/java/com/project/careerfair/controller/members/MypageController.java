@@ -34,13 +34,10 @@ public class MypageController {
     // 이력서 목록 가져오기
     @GetMapping("resume")
     public String resumeList(Model model, Authentication authentication) {
-//        String memberId = "testUser12345";
         String memberId = authentication.getName();
-        log.info("memberId IN CONTROLLER={}",memberId);
         List<Resume> resumeList = resumeService.findByMemberId(memberId);
         // view에 데이터 전달
         model.addAttribute("resumeList", resumeList);
-        log.info("model IN CONTROLLER={}",model);
         return "member/resume/list";
     }
 
@@ -74,7 +71,7 @@ public class MypageController {
 
     // 이력서 수정 데이터 가져오기
     @GetMapping("resume/{resumeId}/update")
-    public String update(@PathVariable Integer resumeId, Model model, Authentication authentication) {
+    public String showUpdateOnlineResume(@PathVariable Integer resumeId, Model model, Authentication authentication) {
         ResumeDto resumeDetailData = resumeService.getResumeById(resumeId);
         List<Industry> industryList = industryService.getIndustryList();
         model.addAttribute("resumeUpdateData", resumeDetailData);
@@ -82,11 +79,10 @@ public class MypageController {
         return "member/resume/update";
     }
 
-    @PutMapping("resume/{resumeId}/update")
-    public ResponseEntity<String> update(@RequestBody ResumeDto resumeDto,
+    @PutMapping("resume/{resumeId}")
+    public ResponseEntity<String> updateResume(@RequestBody ResumeDto resumeDto,
                                          @PathVariable Integer resumeId,
                                          Authentication authentication) {
-//        String memberId = "testUser12345";
         String memberId = authentication.getName();
 
         // resumeId를 memberId가 가지고 있는게 맞는지 확인
@@ -99,5 +95,18 @@ public class MypageController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이력서 정보가 없습니다");
         }
 
+    }
+
+    @DeleteMapping("resume/{resumeId}")
+    public ResponseEntity<String> deleteOnlineResume(@PathVariable Integer resumeId, Authentication authentication) {
+
+        String memberId = authentication.getName();
+
+        if (resumeService.checkResumeByMemberId(memberId, resumeId) == 1) {
+            Integer checkDeleteStatus = resumeService.deleteResume(resumeId);
+            return ResponseEntity.ok("이력서를 정상적으로 삭제하였습니다");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("비정상적인 삭제 요청입니다");
+        }
     }
 }

@@ -23,12 +23,10 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    // 개선 예정
     public Integer insertResumeData(ResumeDto resumeDto, String memberId) {
 
         // 빈 이력서 생성
         Resume resume = new Resume();
-//        String memberId = authentication.getName();
         resume.setMemberId(memberId);
 
         resumeMapper.createEmptyResume(resume);
@@ -83,6 +81,17 @@ public class ResumeServiceImpl implements ResumeService {
         resumeMapper.updateWorkConditionByResumeId(resumeDto.getWorkCondition());
 
         return resumeDto.getResumeId();
+    }
+
+    @Override
+    public Integer deleteResume(Integer resumeId) {
+        resumeMapper.deleteCareerByResumeId(resumeId);
+        resumeMapper.deleteEducationByResumeId(resumeId);
+        resumeMapper.deleteCertificationByResumeId(resumeId);
+        resumeMapper.deleteWorkAreaByResumeId(resumeId);
+        resumeMapper.deleteWorkConditionByResumeId(resumeId);
+
+        return resumeMapper.deleteResumeById(resumeId);
     }
 
     private <T> void insertData(List<T> items, Integer resumeId, BiFunctionWithReturn<Integer, T> inserter) {

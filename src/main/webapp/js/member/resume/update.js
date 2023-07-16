@@ -155,7 +155,8 @@ $('#updateResumeBtn').click(function () {
         industryId: industryId
     }
 
-    fetch("/member/resume/" + resumeId + "/update", {
+    // fetch("/member/resume/" + resumeId + "/update", {
+    fetch("/member/resume/" + resumeId, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
