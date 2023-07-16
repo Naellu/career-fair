@@ -17,4 +17,6 @@ public interface ResumeService {
 
     Integer updateResumeData(ResumeDto resumeDto);
 
+    Integer deleteResume(Integer resumeId);
+
 }

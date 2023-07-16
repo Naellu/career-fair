@@ -36,4 +36,15 @@ public interface ResumeMapper {
     Integer updateCertificationByResumeId(Certification certification);
     Integer updateWorkAreaByResumeId(WorkArea workArea);
     Integer updateWorkConditionByResumeId(WorkCondition workCondition);
+
+
+    // -- 이력서 삭제 -- //
+    Integer deleteResumeById(Integer resumeId);
+
+    Integer deleteCareerByResumeId(Integer resumeId);
+    Integer deleteEducationByResumeId(Integer resumeId);
+    Integer deleteCertificationByResumeId(Integer resumeId);
+    Integer deleteWorkAreaByResumeId(Integer resumeId);
+    Integer deleteWorkConditionByResumeId(Integer resumeId);
+
 }

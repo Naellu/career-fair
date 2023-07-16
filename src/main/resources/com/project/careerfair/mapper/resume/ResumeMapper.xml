@@ -277,4 +277,32 @@
             resume_id = #{resumeId} AND work_condition_id = #{workConditionId}
     </update>
 
+    <!-- 이력서 삭제 -->
+    <delete id="deleteResumeById">
+        <!-- 이력서 테이블에서 삭제 -->
+        DELETE FROM TB_ONLINE_RESUME WHERE resume_id = #{resumeId}
+    </delete>
+
+    <!-- 관련 테이블 내 데이터 삭제 -->
+    <delete id="deleteCareerByResumeId">
+        DELETE FROM TB_CAREER WHERE resume_id = #{resumeId}
+    </delete>
+
+    <delete id="deleteEducationByResumeId">
+        DELETE FROM TB_EDUCATION WHERE resume_id = #{resumeId}
+    </delete>
+
+    <delete id="deleteCertificationByResumeId">
+        DELETE FROM TB_CERTIFICATION WHERE resume_id = #{resumeId}
+    </delete>
+
+    <delete id="deleteWorkAreaByResumeId">
+        DELETE FROM TB_WORK_AREA WHERE resume_id = #{resumeId}
+    </delete>
+
+    <delete id="deleteWorkConditionByResumeId">
+        DELETE FROM TB_WORK_CONDITION WHERE resume_id = #{resumeId}
+    </delete>
+
+
 </mapper>

@@ -176,11 +176,11 @@ $("#submitResumeButton").click(function () {
     let workAreas = [];
     $(".desiredLocation").each(function() {
         let workArea = $(this).val();
-        if(workArea) {  // 입력이 비어있지 않은 경우에만 추가
+        // if(workArea) {  // 입력이 비어있지 않은 경우에만 추가
             workAreas.push({
                 "hopedWorkArea": workArea
             });
-        }
+        // }
     });
 
     // 희망 근무조건

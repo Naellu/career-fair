@@ -51,8 +51,8 @@
                     <td id="resume-list-td">
                         <a id="resume_${resume.resumeId}" href="/member/resume/${resume.resumeId}">${resume.title}</a>
                         <div>
-                            <a id="updateBtn" href="/member/resume/${resume.resumeId}/update">수정</a>
-                            <a id="deleteBtn" href="/member/resume/${resume.resumeId}/delete">삭제</a>
+                            <a class="updateBtn" id="updateBtn_${resume.resumeId}" href="/member/resume/${resume.resumeId}/update">수정</a>
+                            <a class="deleteBtn" id="deleteBtn_${resume.resumeId}" href="#">삭제</a>
                         </div>
                     </td>
                 </tr>
