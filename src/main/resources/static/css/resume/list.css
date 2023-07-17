@@ -1,41 +1,41 @@
-.table thead tr th .tableList {
-    position: relative;
-}
+/*.table thead tr th .tableList {*/
+/*    position: relative;*/
+/*}*/
 
-.table thead tr th .tableList .listSortArea {
-    font-size: 12px;
-    color: #666;
-    letter-spacing: -1px;
-    text-align: left;
-    padding: 0;
-    margin: 0;
-    display: table;
-    table-layout: fixed;
-    padding-left: 10px;
-    width: 100%;
-    height: 40px;
-    background-color: #f2f4f7;
-    border-top: 1px solid #9aa2b2;
-    box-sizing: border-box;
-}
+/*.table thead tr th .tableList .listSortArea {*/
+/*    font-size: 12px;*/
+/*    color: #666;*/
+/*    letter-spacing: -1px;*/
+/*    text-align: left;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    display: table;*/
+/*    table-layout: fixed;*/
+/*    padding-left: 10px;*/
+/*    width: 100%;*/
+/*    height: 40px;*/
+/*    background-color: #f2f4f7;*/
+/*    border-top: 1px solid #9aa2b2;*/
+/*    box-sizing: border-box;*/
+/*}*/
 
-.table thead tr th .tableList .col01 {
-    width: 68%;
-}
+/*.table thead tr th .tableList .col01 {*/
+/*    width: 68%;*/
+/*}*/
 
-.table thead tr th .tableList .col02 {
-    width: 32%;
-    padding-right: 20px;
-    text-align: right;
-}
+/*.table thead tr th .tableList .col02 {*/
+/*    width: 32%;*/
+/*    padding-right: 20px;*/
+/*    text-align: right;*/
+/*}*/
 
-.table thead tr th .tableList .listSortArea .col {
-    display: table-cell;
-    font-size: 12px;
-    color: #333;
-    text-align: center;
-    vertical-align: middle;
-}
+/*.table thead tr th .tableList .listSortArea .col {*/
+/*    display: table-cell;*/
+/*    font-size: 12px;*/
+/*    color: #333;*/
+/*    text-align: center;*/
+/*    vertical-align: middle;*/
+/*}*/
 
 .wrBtn {
     position: relative;
@@ -56,14 +56,16 @@
 
 .btnBx {
     position: relative;
-    /*top: 15px;*/
-    /*right: 10px;*/
+    top: 15px;
+    right: 10px;
 }
 
 .wrBtn, a.wrBtn {
-    border: 1px solid #39f!important;
-    background: #39f!important;
-    color: #fff!important;
+    /*border: 1px solid #39f!important;*/
+    /*background: #39f!important;*/
+    background: #f8edd5!important;
+    /*color: #fff!important;*/
+    color: #252525!important;
 }
 
 a, a:link, a:visited {
@@ -71,8 +73,9 @@ a, a:link, a:visited {
     text-decoration: none;
 }
 
-.form-head,
-#resume-list-td {
+.form-head
+/*#resume-list-td */
+{
     display: flex;
     justify-content: space-between;
     align-items: center;  /* 수직 정렬 */
@@ -82,11 +85,395 @@ a, a:link, a:visited {
     padding: 9px 20px 7px;
 }
 
-/*-----*/
+/*-- 수정 전 css ---*/
 
 /*#resumeHeader {*/
 /*    text-align: center;*/
 /*    font-weight: 800;*/
 /*}*/
+
+.content {
+    /*float: inherit;*/
+    /*width: 1000px;*/
+}
+
+
+.contWrap {
+    position: relative;
+    padding: 0 39px 39px;
+    background: #fff;
+    /*border: 1px solid #dce1eb;*/
+}
+
+.hdWrap {
+    position: relative;
+    padding: 42px 0 17px;
+}
+
+.hdWrap .hd_1 {
+    font-size: 36px;
+}
+.hdWrap .hd_1, .hdWrap .hd_side {
+    display: inline-block;
+    margin-bottom: 0;
+    color: #000;
+    letter-spacing: -2px;
+}
+
+/*.hopeWorking {*/
+/*    z-index: 5000;*/
+/*    position: relative;*/
+/*    margin-bottom: 14px;*/
+/*    height: 60px;*/
+/*}*/
+
+.ResumeMngCont .tableList {
+    position: relative;
+}
+
+.tableList .listSortArea {
+    display: table;
+    table-layout: fixed;
+    padding-left: 10px;
+    width: 100%;
+    height: 40px;
+    /*background-color: #f2f4f7;*/
+    background-color: #323232;
+    border-top: 1px solid #9aa2b2;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ResumeMngCont .tableList .col01 {
+    width: 68%;
+}
+
+.tableList .listSortArea .col {
+    display: table-cell;
+    font-size: 12px;
+    /*color: #333;*/
+    color: #f3f3f3;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ResumeMngCont .tableList .listSortArea .col02 {
+    padding-right: 68px;
+}
+.ResumeMngCont .tableList .col02 {
+    width: 32%;
+    padding-right: 20px;
+    text-align: right;
+}
+
+div {
+    display: block;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.mtuList>ul>li {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    padding-left: 9px;
+    width: 100%;
+    border: 1px solid;
+    border-color: #fff #fff #e5eaef;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+.ResumeMngCont .tableList .mtuList .col01 {
+    text-align: left;
+}
+
+.ResumeMngCont .tableList .col01 {
+    width: 68%;
+}
+.mtuList .col {
+    display: table-cell;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: middle;
+    padding: 20px 0;
+    font-size: 13px;
+    text-align: center;
+}
+
+.ResumeMngCont .tit {
+    margin-bottom: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 96%;
+}
+
+.ResumeMngCont .tit .badge {
+    margin: 2px 5px 0 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    vertical-align: middle;
+}
+
+.badge_box_point {
+    background: #39f;
+    border-color: #39f;
+    color: #fff;
+}
+
+.badge {
+    display: inline-block;
+    margin: 0 3px 0 0;
+    padding: 0.3em 0.3em 0;
+    height: 17px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #39f;
+    font-family: Dotum,"\B3CB\C6C0",sans-serif;
+    font-size: 11px;
+    color: #39f;
+    line-height: 1;
+}
+
+em {
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ResumeMngCont .chk .tit a {
+    font-weight: bold;
+    color: #252525;
+}
+
+.ResumeMngCont .tit a {
+    font-size: 16px;
+    color: #000;
+    word-break: break-all;
+    vertical-align: middle;
+}
+a, a:link, a:visited {
+    color: #999;
+    text-decoration: none;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.ResumeMngCont .date {
+    display: inline-block;
+    letter-spacing: -.5px;
+}
+
+.mtuList .date {
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 0;
+}
+
+.ResumeMngCont .positionOffer {
+    display: inline-block;
+    font-size: 12px;
+    color: #999;
+}
+
+.ResumeMngCont .positionOffer:before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 11px;
+    margin: -2px 4px 0 5px;
+    background: #ccc;
+    vertical-align: middle;
+}
+
+.ResumeMngCont .positionOffer .btnPositionOffer {
+    margin-top: -2px;
+    color: #ff5858;
+    letter-spacing: -1px;
+}
+
+button {
+    overflow: visible;
+    background: transparent;
+    cursor: pointer;
+}
+
+input, select, button {
+    vertical-align: middle;
+}
+
+form, fieldset, iframe, button {
+    border: 0 none;
+}
+
+table, th, td, input, button {
+    font-size: 12px;
+}
+
+.ResumeMngCont .positionOffer .btnPositionOffer span {
+    position: relative;
+}
+
+.ResumeMngCont .tableList .col02 {
+    width: 32%;
+    padding-right: 20px;
+    text-align: right;
+}
+
+.ResumeMngCont .btnCell {
+    display: inline-block;
+    position: relative;
+}
+
+.ResumeMngCont .btnCell .btnTopBooth {
+    width: 130px;
+    border-color: #39f;
+    color: #39f;
+}
+
+.ResumeMngCont .btnCell .btn {
+    padding: 5px 10px 7px;
+    min-width: 48px;
+    border: 1px solid #c0c4cf;
+    font-size: 12px;
+}
+.mtuList .btn {
+    color: #333;
+}
+a, a:link, a:visited {
+    color: #999;
+    text-decoration: none;
+}
+.btn {
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+    display: inline-block;
+    padding: 6px 10px 8px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: normal;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ResumeMngCont .btnCell + .btnCell {
+    margin-left: 5px;
+}
+
+.mtuMoreMenu {
+    position: relative;
+}
+
+.mtuSpImg, .mtuSpImgBefore:before, .mtuSpImgAfter:after {
+    display: inline-block;
+    /*background-image: url(/content/images/ver_1/mtu/mtu_spr.png?v=2020071400);*/
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.btnMore:before {
+    content: "";
+    width: 13px;
+    height: 3px;
+    background-position: -190px -81px;
+    vertical-align: middle;
+}
+
+.skip, .blind {
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+}
+
+element.style {
+    display: block;
+}
+
+.mtuLyWrap {
+    /*display: none;*/
+    z-index: 9000;
+}
+
+.lyMoreMenu {
+    position: absolute;
+    top: 29px;
+    right: 0;
+    width: 163px;
+    background: #fff;
+    border: 1px solid #565d79;
+    font-size: 13px;
+}
+
+.mtuMoreMenu .lyMoreMenu .lyCnt {
+    padding: 20px 0;
+}
+
+ul ul {
+    list-style-type: circle;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+li {
+    list-style: none;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.mtuMoreMenu .lyMoreMenu .lyCnt a {
+    display: block;
+    padding: 5px 20px;
+    color: #333;
+    text-align: left;
+}
+/*a, a:link, a:visited {*/
+/*    color: #999;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*a:-webkit-any-link {*/
+/*    color: -webkit-link;*/
+/*    cursor: pointer;*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*.lyMoreMenu .tplBtnTy {*/
+/*    position: absolute;*/
+/*    top: 5px;*/
+/*    right: 5px;*/
+/*}*/
+
 
 
