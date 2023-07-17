@@ -9,4 +9,5 @@ public interface UserPageService {
     public boolean modifyAccount(Members member, String oldPassword);
 
     public boolean removeAccout(Members member);
+
 }

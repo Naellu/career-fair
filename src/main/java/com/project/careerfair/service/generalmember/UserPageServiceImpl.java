@@ -43,7 +43,7 @@ public class UserPageServiceImpl implements UserPageService {
         }
         return cnt == 1;
     }
-
+    @Override
     public boolean removeAccout(Members member) {
         Members oldMember = userMapper.selectById(member.getId());
 
@@ -58,4 +58,5 @@ public class UserPageServiceImpl implements UserPageService {
         }
         return cnt == 1;
     }
+
 }

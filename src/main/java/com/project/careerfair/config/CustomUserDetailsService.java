@@ -3,6 +3,7 @@ package com.project.careerfair.config;
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.mapper.members.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

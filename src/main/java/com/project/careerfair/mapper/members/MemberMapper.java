@@ -1,10 +1,7 @@
 package com.project.careerfair.mapper.members;
 
 import com.project.careerfair.domain.Members;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface MemberMapper {
@@ -74,6 +71,26 @@ public interface MemberMapper {
             AND name = #{name}
             """)
     String findId(String email, String name);
+
+    @Select("""
+            SELECT member_id
+            FROM TB_MEMBERS
+            WHERE 
+            member_id = #{id}
+            AND
+            email = #{email}
+            """)
+    String checkUser(String id, String email);
+
+    @Update("""
+            UPDATE TB_MEMBERS
+            SET password = #{password}
+            WHERE 
+            member_id = #{id} 
+            AND 
+            email = #{email}
+            """)
+    Integer updatePw(String id, String email, String password);
 
 /*    @Select("""
             SELECT

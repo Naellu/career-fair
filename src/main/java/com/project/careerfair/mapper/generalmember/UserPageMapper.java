@@ -40,4 +40,5 @@ public interface UserPageMapper {
             member_id = #{id}
             """)
     int deleteById(String id, Integer isActive);
+
 }

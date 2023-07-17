@@ -31,7 +31,7 @@
     }
     .mypage-container-myinfo {
         justify-content: flex-end;
-        margin-right: 80px;
+        margin-right: 135px;
     }
     .mypage-container-d{
         display: flex;

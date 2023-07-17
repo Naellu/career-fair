@@ -64,4 +64,35 @@ public class MailServiceImpl implements MailService {
         }
     }
 
+    @Override
+    public boolean createPw(String id, String email, HttpSession session) {
+        ArrayList<String> toUserList = new ArrayList<>();
+
+        String ok = memberMapper.checkUser(id, email);
+
+        int cnt = 0;
+        toUserList.add(email);
+
+        int toUserSize = toUserList.size();
+
+        SimpleMailMessage simpleMessage = new SimpleMailMessage();
+
+        simpleMessage.setTo((String[]) toUserList.toArray(new String[toUserSize]));
+
+        Random random = new Random();
+        int randomNumber = random.nextInt(900000) + 100000;
+        String validity = String.valueOf(randomNumber);
+
+        String password = passwordEncoder.encode(validity);
+
+        cnt = memberMapper.updatePw(id,email,password);
+
+        session.setAttribute("authenticatedNum", password);
+        simpleMessage.setSubject("xx박람회 인증메일입니다.");
+        simpleMessage.setText("안녕하세요. xx박람회 입니다 임시 비밀번호를 보내드립니다.\n" + "\n" + "임시 비밀번호\n" + "++++++++++\n"
+                + randomNumber + "\n++++++++++");
+
+        javaMailSender.send(simpleMessage);
+        return cnt == 1;
+    }
 }

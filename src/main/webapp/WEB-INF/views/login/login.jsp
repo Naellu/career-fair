@@ -55,6 +55,7 @@
                     <div class="div-cloumn"></div>
                     <span id="find-id" onclick="location.href='/member/members/useridfind'">아이디찾기</span>
                     <div class="div-cloumn"></div>
+                    <span id="find-id" onclick="location.href='/member/members/sendPw'">비밀번호 찾기</span>
                 </div>
             </form>
 
