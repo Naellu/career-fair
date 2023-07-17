@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface QnaAnswerService {
-    List<QnaAnswer> list(Integer questionId, Authentication authentication);
+    List<QnaAnswer> list(Integer qnaId, Authentication authentication);
 
     Map<String, Object> add(QnaAnswer answer);
 

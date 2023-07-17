@@ -7,7 +7,7 @@
 
     <resultMap type="com.project.careerfair.domain.QnaAnswer" id="answerMap">
         <id property="id" column="answer_id"></id>
-        <result property="qnaId" column="qnaId"></result>
+        <result property="qnaId" column="qna_id"></result>
         <result property="content" column="content"></result>
         <result property="created" column="created"></result>
         <result property="memberId" column="member_id"></result>

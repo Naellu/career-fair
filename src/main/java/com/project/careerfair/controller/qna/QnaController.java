@@ -77,7 +77,7 @@ public class QnaController {
                 return "redirect:/qna/QnaList";
             } else {
                 rttr.addFlashAttribute("message", "게시물이 삭제되지 않았습니다.");
-                return "redirect:/qna/get/" + id;
+                return "redirect:/qna/QnaList";
             }
     }
 

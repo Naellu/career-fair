@@ -15,22 +15,37 @@ public interface QnaAnswerMapper {
 			ORDER BY answer_id
 			""")
     @ResultMap("answerMap")
-    List<QnaAnswer> selectAllByQuestionId(Integer questionId);
+    List<QnaAnswer> selectAllByQuestionId(Integer qnaId);
 
-    @Insert("""
+	@Insert("""
 			INSERT INTO TB_QNA_ANSWER (qna_id, content, member_id)
 			VALUES (#{qnaId}, #{content}, #{memberId})
 			""")
-    @ResultMap("answerMap")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    Integer insert(QnaAnswer answer);
+	@Options(useGeneratedKeys = true, keyProperty = "id")
+	@ResultMap("answerMap")
+	Integer insert(QnaAnswer answer);
 
-    @Select("""
+
+	@Select("""
 			SELECT *
 			FROM TB_QNA_ANSWER
 			WHERE answer_id = #{id}
 			""")
     @ResultMap("answerMap")
     QnaAnswer selectById(Integer id);
+
+	@Update("""
+            UPDATE TB_QNA
+            SET is_answered = TRUE
+            WHERE qna_id = #{qnaId}
+            """)
+	void updateQuestionAnswered(Integer qnaId);
+
+	@Delete("""
+			DELETE FROM TB_QNA_ANSWER
+			WHERE qna_id = #{qnaId}
+			""")
+	@ResultMap("answerMap")
+	int deleteById(Integer qnaId);
 
 }

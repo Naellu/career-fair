@@ -61,22 +61,6 @@
                         </form>
                     </div>
 
-                    <div id="answerContainer">
-                            <div class="mb-3" id="addAnswerContainer">
-                                <div class="input-group">
-                                    <div class="form-floating">
-                                        <textarea style="height: 97px" placeholder="답변을 남겨주세요" class="form-control" id="answerTextArea"></textarea>
-                                        <label for="answerTextArea">답변을 남겨주세요</label>
-                                    </div>
-                                    <button class="btn btn-outline-primary" id="sendAnswerBtn"><i class="fa-regular fa-paper-plane"></i></button>
-                                </div>
-                            </div>
-
-                        <ul class="list-group" id="answerListContainer">
-
-                        </ul>
-                    </div>
-
                     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -92,6 +76,23 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="answerContainer">
+                        <div class="mb-3" id="addAnswerContainer">
+                            <div class="input-group">
+                                <div class="form-floating">
+                                    <textarea style="height: 97px" placeholder="답변을 남겨주세요" class="form-control" id="answerTextArea"></textarea>
+                                    <label for="answerTextArea">답변을 남겨주세요</label>
+                                </div>
+                                <button class="btn btn-outline-primary" id="sendAnswerBtn"><i class="fa-regular fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+
+                        <ul class="list-group" id="answerListContainer">
+
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

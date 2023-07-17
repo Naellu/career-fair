@@ -18,9 +18,9 @@ public class QnaAnswerController {
     private final QnaAnswerService service;
 
     @GetMapping("list")
-    public List<QnaAnswer> list(@RequestParam("question") Integer questionId, Authentication authentication) {
+    public List<QnaAnswer> list(@RequestParam("question") Integer qnaId, Authentication authentication) {
 
-        return service.list(questionId, authentication);
+        return service.list(qnaId, authentication);
     }
 
     @PostMapping("add")
