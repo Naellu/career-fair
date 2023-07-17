@@ -141,7 +141,6 @@ applicationBtn.addEventListener("click", function () {
     const titleInput = document.querySelector("#title");
     const title = titleInput.innerHTML;
 
-    console.log(title);
     fetch(`/api/user/posting/application/${postingId}`)
         .then(response => response.json())
         .then(data => {

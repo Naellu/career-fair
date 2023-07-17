@@ -157,7 +157,9 @@ public class UserPostingServiceImpl implements UserPostingService {
         // 입사 지원 넣기
         Integer cnt = jobApplicationMapper.apply(jobApplication);
 
-        fileToS3(jobApplication, files);
+        if (files != null){
+            fileToS3(jobApplication, files);
+        }
 
         log.info("{}", cnt == 1);
         return Map.of("status", cnt == 1);

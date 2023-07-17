@@ -50,9 +50,7 @@ function listView() {
                                 업종 : ${industryList[posting.industryId - 1].industryName}
                             </a>
                         </td>
-                        <td style="text-align : center; width: 200px">
-                            <a href="#"><div class="badge rounded-pill text-bg-danger mt-1">즉시지원</div></a>
-                            <br/>
+                        <td style="text-align : center; width: 200px; vertical-align : middle;">
                             마감일
                             <br/>
                             ~ ${posting.endDate}

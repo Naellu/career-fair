@@ -37,7 +37,7 @@
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne"
                             aria-expanded="true"
                             aria-controls="collapseOne">
@@ -45,7 +45,7 @@
                     </button>
                 </h2>
 
-                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <div class="row">
                             <div class="col border-secondary border-end">
