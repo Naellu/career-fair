@@ -109,4 +109,5 @@ public class MypageController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("비정상적인 삭제 요청입니다");
         }
     }
+
 }
