@@ -25,33 +25,31 @@
 </head>
 <body>
 <my:navBar/>
+<div class="container">
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>지원공고명</th>
-        <th>공고상태</th>
-        <th>지원일자</th>
-        <th>지원상태</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>공고 1</td>
-        <td>진행 중</td>
-        <td>2023-07-18</td>
-        <td>지원 완료</td>
-    </tr>
-    <tr>
-        <td>공고 2</td>
-        <td>마감</td>
-        <td>2023-07-19</td>
-        <td>미지원</td>
-    </tr>
-    <!-- 여기에 추가적인 데이터를 반복문 등을 사용하여 동적으로 생성할 수 있습니다. -->
-    </tbody>
-</table>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>지원공고명</th>
+            <th>공고상태</th>
+            <th>지원일자</th>
+            <th>지원상태</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${applyList}" var="apply" varStatus="status">
+            <tr>
+                <td> <a href="/member/user/apply/detail?applicationId=${apply.applicationId}">${post[status.index].title}</a></td>
+                <td>${post[status.index].status}</td>
+                <td>${apply.applicationDate}</td>
+                <td>${apply.applicationStatus}</td>
 
+            </tr>
+        </c:forEach>
+
+        </tbody>
+    </table>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

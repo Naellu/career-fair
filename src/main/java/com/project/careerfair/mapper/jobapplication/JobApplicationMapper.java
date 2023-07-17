@@ -19,4 +19,11 @@ public interface JobApplicationMapper {
             """)
     @ResultMap("applyResultMap")
     List<JobApplication> getApplyList(String memberId);
+
+    @Select("""
+            SELECT * FROM TB_JOB_APPLICATION
+            WHERE application_id = #{applicationId}
+            """)
+    @ResultMap("applyResultMap")
+    JobApplication getApplyInfo(Integer applicationId);
 }

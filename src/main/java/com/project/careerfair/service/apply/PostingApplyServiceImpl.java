@@ -28,7 +28,20 @@ public class PostingApplyServiceImpl implements PostingApplyService{
         for (JobApplication apply : applyList){
             postingDetails.add(postingMapper.getPostViewDetailByPostingId(apply.getPostingId()));
         }
+        reusltMap.put("applyList", applyList);
+        reusltMap.put("post", postingDetails);
 
         return reusltMap;
+    }
+
+    @Override
+    public Map<String, Object> getApplyInfo(Integer applicationId) {
+        Map<String, Object> result = new HashMap<>();
+        JobApplication application = jobApplicationMapper.getApplyInfo(applicationId);
+        result.put("application", application);
+        result.put("posting", postingMapper.getPostDetailByPostingId(application.getPostingId()));
+
+
+        return result;
     }
 }

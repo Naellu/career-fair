@@ -4,6 +4,7 @@ import com.project.careerfair.domain.*;
 import com.project.careerfair.domain.dto.ResumeDto;
 import com.project.careerfair.service.apply.PostingApplyService;
 import com.project.careerfair.service.industry.IndustryService;
+import com.project.careerfair.service.posting.PostingService;
 import com.project.careerfair.service.resume.ResumeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ public class MypageController {
     private final IndustryService industryService;
     private final ResumeService resumeService;
     private final PostingApplyService postingApplyService;
+    private final PostingService postingService;
 
     @GetMapping("company/mypage")
     public String myPage() {
@@ -121,6 +123,19 @@ public class MypageController {
         String memberId = authentication.getName();
         Map<String, Object> resultMap = postingApplyService.getApplyList(memberId);
 
-        model.addAttribute("applyList", resultMap);
+        model.addAttribute("applyList", resultMap.get("applyList"));
+        model.addAttribute("post", resultMap.get("post"));
+    }
+
+    @GetMapping("user/apply/detail")
+    public void applyDetail(
+            Integer applicationId,
+            Model model
+    ) {
+        Map<String,Object> result = postingApplyService.getApplyInfo(applicationId);
+
+        model.addAttribute("application", result.get("application"));
+        model.addAttribute("posting", result.get("posting"));
     }
 }
+
