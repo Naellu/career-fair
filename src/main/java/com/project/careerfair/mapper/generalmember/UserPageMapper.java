@@ -41,12 +41,4 @@ public interface UserPageMapper {
             """)
     int deleteById(String id, Integer isActive);
 
-
-    @Select("""
-            SELECT COUNT(*) FROM
-            TB_MEMBERS
-            WHERE member_id = #{id}
-            AND is_active = #{isActive}
-            """)
-    Members selectByActiveMember(String id, Integer isActive);
 }

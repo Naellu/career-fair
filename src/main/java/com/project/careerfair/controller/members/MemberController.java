@@ -125,4 +125,15 @@ public class MemberController {
 
         return result;
     }
+
+    //비번찾기
+    @GetMapping("sendPw")
+    public void sendPw(){
+
+    }
+
+    @PostMapping("sendPw")
+    public void sendUserPw (String id, String email, HttpSession session){
+        boolean result = mailService.createPw(id,email,session);
+    }
 }

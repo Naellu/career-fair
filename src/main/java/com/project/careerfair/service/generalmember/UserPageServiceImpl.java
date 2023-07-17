@@ -59,9 +59,4 @@ public class UserPageServiceImpl implements UserPageService {
         return cnt == 1;
     }
 
-    @Override
-    public boolean findActive(String id, Integer isActive) {
-        Members activeMember = userMapper.selectByActiveMember(id, isActive);
-        return activeMember != null;
-    }
 }

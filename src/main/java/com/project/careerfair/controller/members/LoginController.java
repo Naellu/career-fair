@@ -4,7 +4,9 @@ import com.project.careerfair.domain.Members;
 import com.project.careerfair.service.generalmember.UserPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,16 +25,9 @@ public class LoginController {
 
     }
     @PostMapping("login")
-    @PreAuthorize("isAuthenticated() and @customSecurityCheck.checkIsActive(authentication,#id)")
-    public String loginProcess(RedirectAttributes rttr, Members member) {
-        boolean isActive = userService.findActive(member.getId(), 1);
-
-        if (!isActive) {
-            rttr.addFlashAttribute("message", "아이디가 비활성화 상태입니다.");
-            return "redirect:/activationPage";
-        }
-
+    public String loginProcess() {
         return "redirect:/";
     }
+
 
 }

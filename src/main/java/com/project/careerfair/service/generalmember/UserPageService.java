@@ -10,5 +10,4 @@ public interface UserPageService {
 
     public boolean removeAccout(Members member);
 
-    public boolean findActive(String id, Integer isActive);
 }

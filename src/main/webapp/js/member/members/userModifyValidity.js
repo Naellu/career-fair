@@ -143,15 +143,6 @@ $("#checkEmailBtn").click(function() {
     }
 });
 
-// 확인 버튼 클릭 시 동작
-$("#verifyEmailBtn").click(function() {
-    // 인증 확인 버튼을 클릭하면 인증번호 입력 칸과 확인 버튼을 숨기고, 인증 완료 메시지를 나타냄
-    //    $("#inputVerificationCode").hide();
-    //    $("#verifyEmailBtn").hide();
-
-    $("#verificationSuccessText").show();
-});
-
 
 // 확인 버튼 클릭 이벤트 처리
 $("#verifyEmailBtn").click(function() {
@@ -171,6 +162,7 @@ $("#verifyEmailBtn").click(function() {
                 if (authentication) {
                     // 인증번호 일치 시 회원 가입 진행
                     checkEmail = true;
+                    $("#verificationSuccessText").show();
                     modiEnableSubmit();
 
                     alert("인증이 완료되었습니다. 회원 가입을 진행합니다.");
