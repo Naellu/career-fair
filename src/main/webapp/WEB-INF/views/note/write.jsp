@@ -27,8 +27,8 @@
             <div class="col-sm-12">
                 <label for="recipientId" class="form-label">받는사람</label>
                 <input type="text" class="form-control" name = "recipientId" id="recipientId" value="${note.recipientId}">
-                <div id="checkRecipient" class="form-text">
-                </div>
+                <div id="checkRecipient" class="form-text d-none text-primary"><i class="fa-solid fa-check"></i> 발송가능한 ID입니다.</div>
+                <div id="denyRecipient" class="form-text d-none text-warning"><i class="fa-solid fa-triangle-exclamation"></i> 존재하지않는 ID입니다.</div>
             </div>
         </div>
         <br>

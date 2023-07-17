@@ -4,12 +4,12 @@ function checkRecipientId (){
         method:"get",
         success:function (result){
             if(!result.available){
-                $("#checkRecipient").text("발송가능한 ID입니다.");
-                $("#checkRecipient").data('check',true);
+                $("#checkRecipient").removeClass("d-none");
+                $("#denyRecipient").addClass("d-none");
                 $("#sendBtn").removeAttr("disabled");
             } else{
-                $("#checkRecipient").text("없는 ID 입니다.")
-                $("#checkRecipient").data('check',false);
+                $("#checkRecipient").addClass("d-none");
+                $("#denyRecipient").removeClass("d-none");
                 $("#sendBtn").attr("disabled","disabled");
             }
         }
