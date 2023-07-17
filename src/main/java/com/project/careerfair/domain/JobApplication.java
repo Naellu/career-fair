@@ -15,4 +15,7 @@ public class JobApplication {
     private Integer postingId;
     private String memberId;
 
+    private String experience;
+    private String education;
+    private Integer age;
 }

@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserPostingController {
 
     @GetMapping("list")
-    public String list(){
+    public String list() {
         return "user/posting/list";
     }
 
     @GetMapping("{postingId}")
-    public String detail(@PathVariable Integer postingId){
+    public String detail(@PathVariable Integer postingId) {
         return "user/posting/detail";
     }
 
-
-
-
+    @GetMapping("/application")
+    public String application() {
+        return "user/posting/application";
+    }
 }

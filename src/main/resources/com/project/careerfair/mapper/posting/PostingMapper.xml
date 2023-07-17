@@ -172,6 +172,11 @@
     <select id="getPostViewDetailByPostingId" resultMap="postingViewMap">
         SELECT * FROM VIEW_POSTING WHERE posting_id = #{postingId}
     </select>
+
+    <update id="updateCount">
+        UPDATE TB_POSTING SET application_count = application_count + 1
+        WHERE posting_id = #{postingId}
+    </update>
 </mapper>
 
 

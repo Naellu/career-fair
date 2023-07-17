@@ -40,4 +40,10 @@ foreign key (round) references TB_EXHIBITION_INFO (round);
 SELECT count(*) FROM TB_POSTING
 WHERE company_id = 1 AND status = '마감';
 
+SELECT * FROM TB_POSTING
+WHERE company_id = 1 AND status = '마감' ORDER BY posting_id DESC;
+
 DELETE FROM TB_POSTING WHERE member_id IS NULL;
+
+SELECT count(*) FROM TB_POSTING
+WHERE status = '채용중';
