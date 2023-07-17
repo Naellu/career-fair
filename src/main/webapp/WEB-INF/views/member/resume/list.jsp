@@ -77,9 +77,9 @@
                                   </div>
                                   <div class="col col02">
 
-                                      <div class="btnCell"><a class="btn btnTopBooth " href="/User/ResumeBuy">테스트 text</a></div>
+                                      <div class="btnCell"><a class="btn btnTopBooth" href="/member/resume/${resume.resumeId}/update">수정</a></div>
 
-                                      <div class="btnCell"><a class="btn" href="/member/resume/${resume.resumeId}/update">수정</a></div>
+                                      <div class="btnCell"><a class="btn deleteBtn" id="delete_${resume.resumeId}" href="#">삭제</a></div>
 
                                   </div>
                               </li>

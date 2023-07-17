@@ -25,26 +25,6 @@ $(document).ready(function () {
                 console.log(error);
             })
         }
-
-
-        // DELETE 요청을 보냄
-        // fetch(url, {
-        //     method: "DELETE",
-        // })
-        // .then(response => {
-        //     if(response.ok){
-        //         return response.text();
-        //     }
-        //     throw new Error('Delete request failed.');
-        // })
-        // .then(data => {
-        //     alert(data);
-        //     location.reload();
-        // })
-        // .catch((error) => {
-        //     console.error('Error:', error);
-        // });
-
     });
 
 });
