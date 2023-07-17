@@ -1,5 +1,6 @@
 package com.project.careerfair.mapper.qna;
 
+import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
 import org.apache.ibatis.annotations.*;
 
@@ -44,5 +45,12 @@ public interface QnaMapper {
             WHERE qna_id = #{id}
             """)
     int modify(QnaQuestion question);
+
+    @Select("""
+        SELECT COUNT(*) AS answerCount
+        FROM TB_QNA_ANSWER
+        WHERE qna_id = #{id};
+        """)
+    int selectAnswerCount(Integer id);
 
 }

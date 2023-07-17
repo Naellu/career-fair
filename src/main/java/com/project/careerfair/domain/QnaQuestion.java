@@ -12,4 +12,6 @@ public class QnaQuestion {
     private String memberId;
     private LocalDateTime created;
     public Boolean isAnswered;
+
+    private Integer answerCount;
 }

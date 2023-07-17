@@ -36,10 +36,12 @@ public class QnaAnswerServiceImpl implements QnaAnswerService{
     }
 
     @Override
-    public Map<String, Object> add(QnaAnswer answer) {
+    public Map<String, Object> add(QnaAnswer answer, Authentication authentication) {
 
+        answer.setMemberId(authentication.getName());
         var res = new HashMap<String, Object>();
         mapper.updateQuestionAnswered(answer.getQnaId());
+        answer.setIsWriter(true);
         int cnt = mapper.insert(answer);
         if (cnt == 1) {
             res.put("message", "답변이 등록되었습니다.");
@@ -54,5 +56,19 @@ public class QnaAnswerServiceImpl implements QnaAnswerService{
     public QnaAnswer get(Integer id) {
 
         return mapper.selectById(id);
+    }
+
+    @Override
+    public Map<String, Object> remove(Integer id) {
+        var res = new HashMap<String, Object>();
+
+        int cnt = mapper.deleteById(id);
+        if (cnt == 1) {
+            res.put("message", "답변이 삭제되었습니다.");
+        } else {
+            res.put("message", "답변이 삭제되지 않았습니다.");
+        }
+
+        return res;
     }
 }

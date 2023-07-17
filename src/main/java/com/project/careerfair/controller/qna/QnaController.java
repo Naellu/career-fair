@@ -1,5 +1,6 @@
 package com.project.careerfair.controller.qna;
 
+import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
 import com.project.careerfair.service.qna.QnaService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,19 @@ public class QnaController {
 
     @GetMapping("QnaList")
     public String qnaList(Model model) {
-
         List<QnaQuestion> list = service.readQuestion();
-        model.addAttribute("question", list);
+        List<QnaQuestion> updatedList = new ArrayList<>();
 
+        for (QnaQuestion question : list) {
+            QnaQuestion questionWithAnswerCount = service.getAnswerCount(question.getId());
+//            updatedList.add(question);
+            updatedList.add(questionWithAnswerCount);
+        }
+
+        model.addAttribute("question", updatedList);
         return "qna/QnaList";
     }
+
 
     @GetMapping("/id/{id}")
     public String qnaGet(@PathVariable("id") Integer id, Model model) {

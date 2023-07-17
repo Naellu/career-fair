@@ -32,21 +32,23 @@
         <thead>
         <tr>
             <th>제목</th>
+            <th>댓글 개수</th>
             <th>답변 여부</th>
             <th>날짜</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${question}" var="question">
-<%--            <sec:authorize access="authentication.name eq #question.customerId or hasAuthority('admin')">--%>
                 <tr>
+<%--            <sec:authorize access="authentication.name eq #question.customerId or hasAuthority('admin')">--%>
                     <td>
                         <a href="/qna/id/${question.id}">${question.title}</a>
                     </td>
+                    <td>${question.answerCount}개</td>
                     <td>${question.isAnswered ? '답변 완료' : '미답변'}</td>
                     <td>${question.created}</td>
-                </tr>
 <%--            </sec:authorize>--%>
+                </tr>
         </c:forEach>
         </tbody>
     </table>

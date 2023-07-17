@@ -27,6 +27,15 @@
 <body>
 <my:navBar/>
 
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
 <div class="container-lg">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
@@ -99,7 +108,6 @@
     </div>
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
@@ -108,6 +116,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="/js/qna/answer.js"></script>
+
+
 
 </body>
 </html>

@@ -11,5 +11,6 @@
         <result property="content" column="content"></result>
         <result property="created" column="created"></result>
         <result property="memberId" column="member_id"></result>
+        <result property="answerCount" column="answer_count"></result>
     </resultMap>
 </mapper>

@@ -25,8 +25,14 @@ public class QnaAnswerController {
 
     @PostMapping("add")
     public ResponseEntity<Map<String, Object>> add (
-            @RequestBody QnaAnswer answer) {
-        Map<String, Object> res = service.add(answer);
+            @RequestBody QnaAnswer answer, Authentication authentication) {
+
+        if (authentication == null) {
+            return ResponseEntity.status(403).build();
+        }
+        Map<String, Object> res = service.add(answer, authentication);
+
+
 
         return ResponseEntity.ok().body(res);
     }
@@ -34,6 +40,14 @@ public class QnaAnswerController {
     @GetMapping("id/{id}")
     public QnaAnswer get(@PathVariable("id") Integer id) {
         return service.get(id);
+    }
+
+    @DeleteMapping("id{id}")
+    public ResponseEntity<Map<String, Object>> remove(
+            @PathVariable("id") Integer id) {
+        Map<String, Object> res = service.remove(id);
+
+        return ResponseEntity.ok().body(res);
     }
 
 }

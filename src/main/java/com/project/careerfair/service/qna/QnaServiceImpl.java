@@ -1,5 +1,6 @@
 package com.project.careerfair.service.qna;
 
+import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
 import com.project.careerfair.mapper.qna.QnaAnswerMapper;
 import com.project.careerfair.mapper.qna.QnaMapper;
@@ -60,6 +61,14 @@ public class QnaServiceImpl implements QnaService{
         int cnt = mapper.modify(question);
 
         return cnt == 1;
+    }
+
+    @Override
+    public QnaQuestion getAnswerCount(Integer id) {
+       QnaQuestion question = mapper.selectById(id);
+       Integer answerCount = mapper.selectAnswerCount(id);
+       question.setAnswerCount(answerCount != null ? answerCount : 0);
+        return question;
     }
 
 }
