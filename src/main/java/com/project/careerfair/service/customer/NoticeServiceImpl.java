@@ -201,14 +201,10 @@ public class NoticeServiceImpl implements NoticeService {
         // 파일 삭제
         String objectKey = "career_fair/notice/" + noticeId + "/" + fileName;
 
-        System.out.println("objectKey = " + objectKey);
-        
         DeleteObjectRequest dor = DeleteObjectRequest.builder()
                 .bucket(bucketName)
                 .key(objectKey)
                 .build();
-        System.out.println("DeleteObjectRequest = " + dor);
-        System.out.println("bucketName = " + bucketName);
         s3.deleteObject(dor);
     }
 }

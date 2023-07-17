@@ -129,4 +129,7 @@ public interface PostingMapper {
     int modifyPosting(Posting posting);
 
     Posting getPostViewDetailByPostingId(Integer postingId);
+
+    // 입사지원시 지원자수 증가
+    void updateCount(Integer postingId);
 }

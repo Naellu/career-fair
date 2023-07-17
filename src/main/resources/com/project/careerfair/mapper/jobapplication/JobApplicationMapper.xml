@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.jobapplication.JobApplicationMapper">
+
+    <!-- 입사지원 resultMap-->
+    <resultMap type="com.project.careerfair.domain.JobApplication"
+               id="scrapMap">
+        <id column="application_id" property="applicationId"/>
+        <result column="posting_id" property="postingId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="application_date" property="applicationDate"/>
+        <result column="age" property="age"/>
+        <result column="experience" property="experience"/>
+        <result column="education" property="education"/>
+    </resultMap>
+
+    <insert id="apply" useGeneratedKeys="true"
+            keyProperty="applicationId">
+        INSERT INTO TB_JOB_APPLICATION
+        (posting_id, member_id, application_status, age, experience, education)
+        VALUES
+        (#{postingId}, #{memberId}, '심사중', #{age}, #{experience}, #{education})
+    </insert>
+
+    <!-- 파일 추가 -->
+    <insert id="insertFileName">
+        INSERT INTO TB_FILES (application_id, file_name)
+        VALUES (#{applicationId}, #{originalFilename})
+    </insert>
+
+</mapper>

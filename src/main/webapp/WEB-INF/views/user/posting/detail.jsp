@@ -77,10 +77,8 @@
             </textarea>
             </div>
 
-            <div style="text-align: center;">
-                <input type="hidden" id="spare_count">
-                <input type="hidden" id="application_count">
-                <button class="btn btn-outline-success"><i class="fa-regular fa-paper-plane"></i> 입사지원하기</button>
+            <div style="text-align: center;" class="mb-5">
+                <button id="application-btn" class="btn btn-outline-success"><i class="fa-regular fa-paper-plane"></i> 입사지원하기</button>
                 <button id="wish-btn"></button>
                 <button id="note-btn" class="btn btn-outline-primary"><i class="fa-regular fa-envelope"></i> 쪽지로 문의하기
                 </button>

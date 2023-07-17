@@ -23,11 +23,6 @@ function detailView() {
             const benefits = document.querySelector("#benefits");
             const period = document.querySelector("#period");
             const etc = document.querySelector("#etc");
-            const applicationCount = document.querySelector("#application_count");
-            const spareCount = document.querySelector("#spare_count");
-
-            spareCount.value = posting.spareCount;
-            applicationCount.value = posting.applicationCount;
 
             const industryId = posting.industryId - 1;
             const industryName = data.industryList[industryId].industryName;
@@ -104,7 +99,7 @@ function detailView() {
 
         })
         .catch(error => {
-            console.error("Error:", error);
+            alert("문제가 발생했습니다. 관리자에게 문의해주세요");
         });
 }
 
@@ -120,13 +115,7 @@ function wish() {
     fetch(`/scrap/${postingId}`, {
         method: "POST"
     })
-        .then(response => {
-            if (response.status === 403) {
-                toastBody.innerHTML = "로그인 후 이용해주세요!";
-                toastBootstrap.show();
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             const scraped = data.scraped;
             const wishBtn = document.querySelector("#wish-btn");
@@ -139,6 +128,40 @@ function wish() {
             }
         })
         .catch(error => {
-            console.error("Error:", error);
+            toastBody.innerHTML = "로그인 후 이용해주세요!";
+            toastBootstrap.show();
         });
 }
+
+const applicationBtn = document.querySelector("#application-btn");
+
+applicationBtn.addEventListener("click", function () {
+    const url = window.location.href;
+    const postingId = url.substring(url.lastIndexOf("/") + 1);
+    const titleInput = document.querySelector("#title");
+    const title = titleInput.innerHTML;
+
+    console.log(title);
+    fetch(`/api/user/posting/application/${postingId}`)
+        .then(response => response.json())
+        .then(data => {
+            let dateCheck = data.dateCheck;
+            let countCheck = data.countCheck;
+
+            if (dateCheck && countCheck) {
+                const Url = `/user/posting/application?postingId=${postingId}&title=${title}`
+                window.open(Url, '_blank', 'width=1000,height=700');
+            } else if (dateCheck !== true) {
+                toastBody.innerHTML = "입사 지원 가능 날짜가 지났습니다!!";
+                toastBootstrap.show();
+            } else if (countCheck !== true) {
+                toastBody.innerHTML = "지원가능한 수가 초과하였습니다!!";
+                toastBootstrap.show();
+            }
+        })
+        .catch(error => {
+            toastBody.innerHTML = "로그인 후 이용해주세요!";
+            toastBootstrap.show();
+        });
+
+});
