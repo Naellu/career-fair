@@ -31,7 +31,7 @@
     <h1>채용공고 목록</h1>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link ${(param.status eq 'all') or empty param.status ? 'active' : ''}"
+            <a class="nav-link ${(param.status eq 'all') or empty param.    status ? 'active' : ''}"
                aria-current="page"
                href="/member/company/posting/list?memberId=${userId}&status=all">
                 전체 공고</a>

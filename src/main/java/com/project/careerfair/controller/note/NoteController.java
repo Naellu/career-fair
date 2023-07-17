@@ -23,7 +23,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/note")
 @RequiredArgsConstructor
-@Slf4j
 public class NoteController {
 
     private final NoteService service;
@@ -73,7 +72,7 @@ public class NoteController {
     public void writeNoteForm(
             Note note
     ) {
-        log.info("{}", note);
+
     }
 
     @PostMapping("write")
@@ -81,6 +80,7 @@ public class NoteController {
             Note note,
             HttpServletResponse response
     ) {
+        System.out.println(note);
         service.writeNote(note);
 
         // 클라이언트에게 닫기 요청을 보냄

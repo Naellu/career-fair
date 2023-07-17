@@ -9,7 +9,7 @@ import java.util.List;
 public interface NoteMapper {
 
     @Select("""
-             SELECT note_id, recipient_id, title, content, created
+            SELECT note_id, recipient_id, title, content, created
             FROM TB_NOTE
             WHERE sender_id = #{userId}
             ORDER BY note_id DESC
@@ -19,7 +19,7 @@ public interface NoteMapper {
     List<Note> getSendListByUserId(String userId, Integer startIndex);
 
     @Select("""
-            SELECT note_id, sender_id, title, content, created
+            SELECT note_id, sender_id, title, content, created, status
             FROM TB_NOTE
             WHERE recipient_id = #{userId}
             ORDER BY note_id DESC
@@ -71,4 +71,10 @@ public interface NoteMapper {
             """))
     Integer deleteNoteByNoteId(Integer noteId);
 
+    @Update("""
+            UPDATE TB_NOTE
+            SET status = true
+            WHERE note_id = #{noteId}
+            """)
+    void readNote(Integer noteId);
 }
