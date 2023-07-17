@@ -60,9 +60,18 @@
                         <c:param name="noteId" value="${note.noteId}"/>
                         <c:param name="distinction" value="receive"/>
                     </c:url>
-                    <a href="#" onclick="openNoteWindow('${noteDetailURL}')" style="color: #222222">
-                            ${note.title}
-                    </a>
+                    <c:choose>
+                        <c:when test="${note.status}">
+                            <a href="#" onclick="openNoteWindow('${noteDetailURL}')" style="color: #222222">
+                                    ${note.title}
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="#" onclick="openNoteWindow('${noteDetailURL}')" style="color: #222222; font-weight: bold">
+                                    ${note.title}
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
                 </td>
                 <td>${fn:replace(note.created, 'T', ' ')}</td>
                 <td>

@@ -31,7 +31,7 @@
     <h1>채용공고 목록</h1>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link ${param.status eq 'all' ? 'active' : ''}"
+            <a class="nav-link ${(param.status eq 'all') or empty param.    status ? 'active' : ''}"
                aria-current="page"
                href="/member/company/posting/list?memberId=${userId}&status=all">
                 전체 공고</a>
@@ -48,7 +48,7 @@
         </li>
     </ul>
     <table id="posting-table" class="table table-bordered custom-div">
-        <caption class="caption-top">
+        <caption class="caption-top">g
             <button class="btn btn-outline-primary"
                     onclick="location.href='/member/company/posting/add?userId=${userId}'">공고등록
             </button>

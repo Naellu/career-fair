@@ -19,7 +19,7 @@
     </style>
 
 </head>
-<body>
+<body onload="checkRecipientId()">
 <my:font/>
 <div class="container">
     <form action="/note/write" method="post">
@@ -27,8 +27,11 @@
             <div class="col-sm-12">
                 <label for="recipientId" class="form-label">받는사람</label>
                 <input type="text" class="form-control" name = "recipientId" id="recipientId" value="${note.recipientId}">
+                <div id="checkRecipient" class="form-text">
+                </div>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
@@ -49,7 +52,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 text-right">
-                <button type="submit" class="btn btn-outline-primary">전송</button>
+                <button type="submit" id="sendBtn" class="btn btn-outline-primary">전송</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="window.close()">닫기</button>
             </div>
         </div>
@@ -59,6 +62,9 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="/js/note/write.js"></script>
 
 </body>
 </html>

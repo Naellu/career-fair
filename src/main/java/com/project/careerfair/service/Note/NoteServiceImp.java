@@ -63,12 +63,18 @@ public class NoteServiceImp implements NoteService {
 
     @Override
     public Note getNoteDetail(Integer noteId) {
+        mapper.readNote(noteId);
 
         return mapper.getNoteDetailByNoteId(noteId);
     }
 
     @Override
     public void writeNote(Note note) {
+
+        if(note.getTitle().equals("")){
+            note.setTitle("[제목없음]");
+        }
+
         mapper.writeNote(note);
     }
 
