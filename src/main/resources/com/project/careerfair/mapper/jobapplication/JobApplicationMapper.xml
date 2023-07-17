@@ -16,6 +16,18 @@
         <result column="education" property="education"/>
     </resultMap>
 
+    <resultMap type="com.project.careerfair.domain.JobApplication"
+               id="applyResultMap">
+        <id column="application_id" property="applicationId"/>
+        <result column="posting_id" property="postingId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="application_date" property="applicationDate"/>
+        <result column="application_status" property="applicationStatus"/>
+        <result column="age" property="age"/>
+        <result column="experience" property="experience"/>
+        <result column="education" property="education"/>
+    </resultMap>
+
     <insert id="apply" useGeneratedKeys="true"
             keyProperty="applicationId">
         INSERT INTO TB_JOB_APPLICATION

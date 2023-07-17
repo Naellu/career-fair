@@ -82,7 +82,7 @@
         <div class="mypage-column mypage-column-b">건</div>
 
         <div class="mypage-column mypage-column-t">입사지원</div>
-        <div class="mypage-column"><a href="/apply/list/${userId}"></a>지원목록</div>
+        <div class="mypage-column">  - 아직</div>
         <div class="mypage-column mypage-column-b"></div>
     </div>
     <div class="mypage-container-d">

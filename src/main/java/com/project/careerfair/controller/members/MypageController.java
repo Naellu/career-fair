@@ -2,6 +2,7 @@ package com.project.careerfair.controller.members;
 
 import com.project.careerfair.domain.*;
 import com.project.careerfair.domain.dto.ResumeDto;
+import com.project.careerfair.service.apply.PostingApplyService;
 import com.project.careerfair.service.industry.IndustryService;
 import com.project.careerfair.service.resume.ResumeService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 @Controller
@@ -24,6 +26,7 @@ public class MypageController {
 
     private final IndustryService industryService;
     private final ResumeService resumeService;
+    private final PostingApplyService postingApplyService;
 
     @GetMapping("company/mypage")
     public String myPage() {
@@ -110,4 +113,14 @@ public class MypageController {
         }
     }
 
+    @GetMapping("user/apply/list")
+    public void applyList(
+            Authentication authentication,
+            Model model
+    ){
+        String memberId = authentication.getName();
+        Map<String, Object> resultMap = postingApplyService.getApplyList(memberId);
+
+        model.addAttribute("applyList", resultMap);
+    }
 }
