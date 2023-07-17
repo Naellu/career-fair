@@ -12,13 +12,16 @@
         <result column="intro" property="intro" />
         <result column="industry_id" property="industryId" />
         <result column="created" property="created" />
+        <result column="last_updated" property="lastUpdated" />
     </resultMap>
 
     <select id="findByMemberId" resultMap="resumeData">
         SELECT
             resume_id,
             title,
-            member_id
+            member_id,
+            created,
+            last_updated
         FROM
             TB_ONLINE_RESUME
         WHERE

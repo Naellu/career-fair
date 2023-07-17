@@ -14,6 +14,7 @@ public class Resume {
     private String military;
     private String intro;
     private String created;
+    private String lastUpdated;
 
     private String memberId;
     private Integer industryId;

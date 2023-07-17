@@ -27,44 +27,72 @@
 
   <div class="container-lg">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-8">
-            <div class="btnBx form-head">
-                <h3 id="resumeHeader">이력서 목록</h3>
-                <a id="resumeWrittenBtn" href="/member/resume/write" class="wrBtn">이력서 작성</a>
-            </div>
-        <table class="table">
-          <thead>
-          <tr>
-              <th>
-                  <div class="tableList">
+        <div class="col-12 col-md-8">
+          <div class="contWrap ResumeMngCont">
+
+              <div class="form-head">
+                  <div class="hdWrap">
+                      <h2 class="hd_1">이력서 목록</h2>
+                      <%--              <a class="hd_side" href="/User/ResumeMng/File">첨부파일 관리</a>--%>
+                  </div>
+
+                  <div class="btnBx">
+                      <a id="resumeWrittenBtn" href="/member/resume/write" class="btn btnBl mtuSpImgBefore wrBtn">
+                          <span>이력서 등록</span>
+                      </a>
+                  </div>
+              </div>
+
+              <div class="tableList">
+                  <div clas="">
                       <div class="listSortArea">
                           <div class="col col01">이력서 제목</div>
                           <div class="col col02">이력서 관리</div>
                       </div>
+                      <div class="mtuList">
+                        <c:forEach items="${resumeList}" var="resume">
+                          <ul>
+                              <li class="chk">
+                                  <div class="col col01">
+                                      <div class="tit">
+                                          <a href="/member/resume/${resume.resumeId}">${resume.title}</a>
+                                      </div>
+<%--                                      <div class="date">2023-553215</div>--%>
+                                      <div class="date">
+                                          <c:choose>
+                                              <c:when test="${not empty resume.lastUpdated}">
+                                                  ${resume.lastUpdated}
+                                              </c:when>
+                                              <c:otherwise>
+                                                  ${resume.created}
+                                              </c:otherwise>
+                                          </c:choose>
+                                      </div>
+
+                                      <div class="positionOffer">
+<%--                                          <button type="button" class="btnPositionOffer dev-btn-open-setting" aria-haspopup="dialog" title="포지션 제안 설정">--%>
+<%--                                              <span>포지션 제안 받지 않는 중 (2023.07.02 16:40~)</span>--%>
+<%--                                          </button>--%>
+                                      </div>
+                                  </div>
+                                  <div class="col col02">
+
+                                      <div class="btnCell"><a class="btn btnTopBooth " href="/User/ResumeBuy">테스트 text</a></div>
+
+                                      <div class="btnCell"><a class="btn" href="/member/resume/${resume.resumeId}/update">수정</a></div>
+
+                                  </div>
+                              </li>
+                          </ul>
+                        </c:forEach>
+                      </div>
                   </div>
-              </th>
-          </tr>
-          </thead>
-          <tbody class="resumeLists">
-            <c:forEach items="${resumeList}" var="resume">
-                <tr>
-                    <td id="resume-list-td">
-                        <a id="resume_${resume.resumeId}" href="/member/resume/${resume.resumeId}">${resume.title}</a>
-                        <div>
-                            <a class="updateBtn" id="updateBtn_${resume.resumeId}" href="/member/resume/${resume.resumeId}/update">수정</a>
-                            <a class="deleteBtn" id="deleteBtn_${resume.resumeId}" href="#">삭제</a>
-                        </div>
-                    </td>
-                </tr>
-            </c:forEach>
 
-          </tbody>
-        </table>
-
-      </div>
+              </div>
+            </div>
+        </div>
     </div>
   </div>
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

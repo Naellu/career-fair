@@ -34,7 +34,10 @@
     <!-- 이력서 제목 -->
     <div class="form-group mb-3 resumeTitleDiv">
         <div class="resume-subject">${resumeData.title}</div>
-        <button type="submit" class="btn btn-outline-dark" id="getResumeUpdate" value="${resumeData.resumeId}">수정</button>
+        <div>
+            <button type="submit" class="btn btn-outline-dark" id="getResumeUpdate" value="${resumeData.resumeId}">수정</button>
+            <a href="/member/resume" id="moveToList">목록</a>
+        </div>
     </div>
 
 
