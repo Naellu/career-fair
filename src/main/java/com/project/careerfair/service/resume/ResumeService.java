@@ -5,6 +5,7 @@ import com.project.careerfair.domain.dto.ResumeDto;
 import org.springframework.security.core.Authentication;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ResumeService {
     Integer insertResumeData(ResumeDto resumeDto, String memberId);
@@ -18,5 +19,7 @@ public interface ResumeService {
     Integer updateResumeData(ResumeDto resumeDto);
 
     Integer deleteResume(Integer resumeId);
+
+    Map<String, Object> findAllByIndustry(Integer page, Integer[] industries);
 
 }

@@ -307,5 +307,33 @@
         DELETE FROM TB_WORK_CONDITION WHERE resume_id = #{resumeId}
     </delete>
 
+    <select id="countResumeByIndustry">
+        SELECT COUNT(*)
+        FROM TB_ONLINE_RESUME
+        <where>
+            <if test="industries neq null">
+                industry_id IN
+                <foreach item="item" index="index" collection="industries" open="(" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findAllByIndustry" resultMap="resumeData">
+        SELECT *
+        FROM TB_ONLINE_RESUME tr
+        <where>
+            <if test="industries neq null">
+                AND tr.industry_id IN
+                <foreach item="item" index="index" collection="industries" open="(" separator="," close=")" nullable="true">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY tr.resume_id
+        LIMIT #{startIndex}, #{rowPerPage}
+    </select>
+
 
 </mapper>

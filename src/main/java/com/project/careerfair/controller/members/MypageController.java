@@ -115,6 +115,18 @@ public class MypageController {
         }
     }
 
+    @GetMapping("resume/scout")
+    public String scoutList(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                            @RequestParam(value = "industry", required = false) Integer[] industries,
+                            Model model) {
+        Map<String, Object> resumeOfIndustryAndPage = resumeService.findAllByIndustry(page, industries);
+        List<Industry> industryList = industryService.getIndustryList();
+
+        model.addAttribute("industryList", industryList);
+        model.addAllAttributes(resumeOfIndustryAndPage);
+        return "member/resume/scout";
+    }
+
     @GetMapping("user/apply/list")
     public void applyList(
             Authentication authentication,
