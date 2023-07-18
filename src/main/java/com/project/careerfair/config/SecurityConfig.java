@@ -26,7 +26,8 @@ public class SecurityConfig {
         http.csrf().disable();
 
         http.formLogin()
-                .loginPage("/login/login");
+                .loginPage("/login/login")
+                .failureUrl("/login/loginfailure");
 
         http.logout()
                 .logoutUrl("/login/logout")

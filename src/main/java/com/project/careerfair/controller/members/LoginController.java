@@ -1,5 +1,6 @@
 package com.project.careerfair.controller.members;
 
+import com.project.careerfair.config.CustomUserDetailsService;
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.service.generalmember.UserPageService;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +22,15 @@ public class LoginController {
     private final UserPageService userService;
 
     @GetMapping("login")
+    @PreAuthorize("isAnonymous()")
     public void loginForm() {
 
     }
-    @PostMapping("login")
-    public String loginProcess() {
-        return "redirect:/";
-    }
 
+    @GetMapping("loginfailure")
+//    @PreAuthorize("(isAuthenticated() and (authentication.name eq #id))") 권한을 어떻게 줘야할지 모르겠음
+    public void loginFailForm(){
+
+    }
 
 }
