@@ -1,11 +1,13 @@
 package com.project.careerfair.controller.members;
 
-import com.project.careerfair.domain.*;
+import com.project.careerfair.domain.Industry;
+import com.project.careerfair.domain.Resume;
 import com.project.careerfair.domain.dto.ResumeDto;
 import com.project.careerfair.service.apply.PostingApplyService;
 import com.project.careerfair.service.industry.IndustryService;
 import com.project.careerfair.service.posting.PostingService;
 import com.project.careerfair.service.resume.ResumeService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,9 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 @Controller
 @Slf4j
@@ -86,8 +89,8 @@ public class MypageController {
 
     @PutMapping("resume/{resumeId}")
     public ResponseEntity<String> updateResume(@RequestBody ResumeDto resumeDto,
-                                         @PathVariable Integer resumeId,
-                                         Authentication authentication) {
+                                               @PathVariable Integer resumeId,
+                                               Authentication authentication) {
         String memberId = authentication.getName();
 
         // resumeId를 memberId가 가지고 있는게 맞는지 확인
@@ -131,7 +134,7 @@ public class MypageController {
     public void applyList(
             Authentication authentication,
             Model model
-    ){
+    ) {
         String memberId = authentication.getName();
         Map<String, Object> resultMap = postingApplyService.getApplyList(memberId);
 
@@ -144,10 +147,68 @@ public class MypageController {
             Integer applicationId,
             Model model
     ) {
-        Map<String,Object> result = postingApplyService.getApplyInfo(applicationId);
+        Map<String, Object> result = postingApplyService.getApplyInfo(applicationId);
 
         model.addAttribute("application", result.get("application"));
         model.addAttribute("posting", result.get("posting"));
+        model.addAttribute("fileNames", result.get("fileNames"));
+    }
+
+    /*
+        @GetMapping("user/apply/modify")
+        public void applyModify(
+                Integer applicationId,
+                Model model
+        ){
+            Map<String,Object> result = postingApplyService.getApplyInfo(applicationId);
+            model.addAllAttributes(result);
+
+        }
+
+        @PostMapping("user/apply/modify")
+        public String applyModifyProcess(
+                MultipartFile[] addFiles,
+                @RequestParam("removeFiles") List<String> removeFiles,
+                JobApplication application,
+                RedirectAttributes rttr
+        ) {
+
+
+            return "redirect:/member/user/apply/detail?applicationId="+ application.getApplicationId();
+        }
+        */
+    @PostMapping("user/apply/cancel")
+    public void applyCancel(
+            HttpServletResponse response,
+            Integer applicationId
+    ) {
+        Boolean ok = postingApplyService.applyCancel(applicationId);
+
+        if(ok) {
+
+            // 클라이언트에게 닫기 요청을 보냄
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out;
+            try {
+                out = response.getWriter();
+                out.println("<script>alert('지원이 취소되었습니다.');window.close();</script>");
+                out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out;
+            try {
+                out = response.getWriter();
+                out.println("<script>alert('다시 시도해주세요');window.close();</script>");
+                out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }
 

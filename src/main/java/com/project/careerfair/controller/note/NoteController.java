@@ -80,7 +80,6 @@ public class NoteController {
             Note note,
             HttpServletResponse response
     ) {
-        System.out.println(note);
         service.writeNote(note);
 
         // 클라이언트에게 닫기 요청을 보냄

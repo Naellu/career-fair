@@ -25,12 +25,14 @@
 </head>
 <body>
 <my:navBar/>
+
 <div class="container">
 
     <table class="table">
         <thead>
         <tr>
             <th>지원공고명</th>
+            <th>회차정보</th>
             <th>공고상태</th>
             <th>지원일자</th>
             <th>지원상태</th>
@@ -39,7 +41,10 @@
         <tbody>
         <c:forEach items="${applyList}" var="apply" varStatus="status">
             <tr>
-                <td> <a href="/member/user/apply/detail?applicationId=${apply.applicationId}">${post[status.index].title}</a></td>
+                <td><a href="#"
+                       onclick="window.open('/member/user/apply/detail?applicationId=${apply.applicationId}','_blank', 'width=800,height=700' )">
+                        ${post[status.index].title}</a></td>
+                <td>${post[status.index].round}회차</td>
                 <td>${post[status.index].status}</td>
                 <td>${apply.applicationDate}</td>
                 <td>${apply.applicationStatus}</td>
