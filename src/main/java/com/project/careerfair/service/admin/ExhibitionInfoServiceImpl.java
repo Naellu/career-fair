@@ -15,6 +15,7 @@ import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -35,12 +36,12 @@ public class ExhibitionInfoServiceImpl implements ExhibitionInfoService {
     }
 
     @Override
-    public ExhibitionInfo getCurrentInfo() {
+    public Map<String, Object> getCurrentInfo() {
         Integer round = exhibitionInfoMapper.getCurrentRound();
 
         ExhibitionInfo exhibitionInfo = exhibitionInfoMapper.getCurrentInfo(round);
 
-        return exhibitionInfo;
+        return Map.of("exhibitionInfo", exhibitionInfo);
     }
 
     @Override

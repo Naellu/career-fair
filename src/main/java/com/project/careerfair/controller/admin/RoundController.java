@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/round")
@@ -30,7 +31,7 @@ public class RoundController {
 
     @GetMapping
     public String round(Model model) {
-        ExhibitionInfo exhibitionInfo = exhibitionInfoService.getCurrentInfo();
+        Map<String, Object> exhibitionInfo = exhibitionInfoService.getCurrentInfo();
 
         model.addAttribute("exhibitionInfo", exhibitionInfo);
 
@@ -66,14 +67,14 @@ public class RoundController {
         // 검증에 성공한 경우 처리 로직 실행
         // 여기 까지 오면 exhibitionInfo 객체는 검증이 통과된 상태이다.
         Boolean ok = false;
-        
+
         try {
             // 등록하기
             ok = exhibitionInfoService.reg(exhibitionInfo, files);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        
+
         // 채용담당자 권한을 company로 전부 변경하기
 
         // 공고 전체 마감
