@@ -14,7 +14,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -148,6 +150,28 @@ public class MypageController {
 
         model.addAttribute("application", result.get("application"));
         model.addAttribute("posting", result.get("posting"));
+        model.addAttribute("fileNames", result.get("fileNames"));
+    }
+
+    @GetMapping("user/apply/modify")
+    public void applyModify(
+            Integer applicationId,
+            Model model
+    ){
+        Map<String,Object> result = postingApplyService.getApplyInfo(applicationId);
+        model.addAllAttributes(result);
+
+    }
+
+    @PostMapping("user/apply/modify")
+    public void applyModifyProcess(
+            MultipartFile[] addFiles,
+            @RequestParam("removeFiles") List<String> removeFiles,
+            JobApplication application
+    ) {
+        System.out.println(application);
+        System.out.println(Arrays.asList(addFiles));
+        System.out.println(removeFiles);
     }
 }
 
