@@ -4,6 +4,7 @@ import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.service.qna.QnaAnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,7 @@ public class QnaAnswerController {
     }
 
     @PostMapping("add")
+    @PreAuthorize("hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')")
     public ResponseEntity<Map<String, Object>> add (
             @RequestBody QnaAnswer answer, Authentication authentication) {
 
@@ -42,7 +44,8 @@ public class QnaAnswerController {
         return service.get(id);
     }
 
-    @DeleteMapping("id{id}")
+    @DeleteMapping("id/{id}")
+    @PreAuthorize("hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter') and @customSecurityChecker.checkQnaAnswerWriter(authentication, #id)")
     public ResponseEntity<Map<String, Object>> remove(
             @PathVariable("id") Integer id) {
         Map<String, Object> res = service.remove(id);

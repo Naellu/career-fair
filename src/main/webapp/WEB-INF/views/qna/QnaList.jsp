@@ -27,7 +27,9 @@
 <body>
 <my:navBar/>
 <div class="container-lg">
-<button type="button" class="btn btn-primary" onclick="location.href='/qna/add'">Q&A 작성</button>
+    <sec:authorize access="isAuthenticated()">
+        <button type="button" class="btn btn-primary" onclick="location.href='/qna/add'">Q&A 작성</button>
+    </sec:authorize>
     <table class="table">
         <thead>
         <tr>

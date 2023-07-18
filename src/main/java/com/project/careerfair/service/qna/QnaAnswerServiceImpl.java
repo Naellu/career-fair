@@ -3,6 +3,7 @@ package com.project.careerfair.service.qna;
 import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.mapper.qna.QnaAnswerMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -23,17 +24,20 @@ public class QnaAnswerServiceImpl implements QnaAnswerService{
         if (authentication != null) {
             for (QnaAnswer answer : answers) {
                 answer.setIsWriter(authentication.getAuthorities().stream()
-                        .anyMatch(auth -> auth.getAuthority().equals("company")));
+                        .anyMatch(auth -> {
+                            String authority = auth.getAuthority();
+                            String username = authentication.getName();
 
-                answer.setIsWriter(authentication.getAuthorities().stream()
-                        .anyMatch(auth -> auth.getAuthority().equals("recruiter")));
-
-                answer.setIsWriter(authentication.getAuthorities().stream()
-                        .anyMatch(auth -> auth.getAuthority().equals("admin")));
+                            return (authority.equalsIgnoreCase("company")
+                                    || authority.equalsIgnoreCase("recruiter")
+                                    || authority.equalsIgnoreCase("admin"))
+                                    && username.equalsIgnoreCase(answer.getMemberId());
+                        }));
             }
         }
         return answers;
     }
+
 
     @Override
     public Map<String, Object> add(QnaAnswer answer, Authentication authentication) {
@@ -41,7 +45,7 @@ public class QnaAnswerServiceImpl implements QnaAnswerService{
         answer.setMemberId(authentication.getName());
         var res = new HashMap<String, Object>();
         mapper.updateQuestionAnswered(answer.getQnaId());
-        answer.setIsWriter(true);
+
         int cnt = mapper.insert(answer);
         if (cnt == 1) {
             res.put("message", "답변이 등록되었습니다.");
@@ -59,6 +63,7 @@ public class QnaAnswerServiceImpl implements QnaAnswerService{
     }
 
     @Override
+
     public Map<String, Object> remove(Integer id) {
         var res = new HashMap<String, Object>();
 

@@ -60,8 +60,10 @@
                         <label for="content" class="form-label">내용</label>
                         <textarea id="content" class="form-control" cols="90" rows="10" readonly>${question.content}</textarea>
                     </div>
-                    <a class="btn btn-secondary" href="/qna/modify/${question.id }">수정</a>
-                    <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">삭제</button>
+                    <sec:authorize access="authentication.name eq #question.memberId">
+                        <a class="btn btn-secondary" href="/qna/modify/${question.id }">수정</a>
+                        <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">삭제</button>
+                    </sec:authorize>
 
                     <!-- 삭제 -->
                     <div class="d-none">
@@ -86,6 +88,7 @@
                         </div>
                     </div>
 
+                    <sec:authorize access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
                     <div id="answerContainer">
                         <div class="mb-3" id="addAnswerContainer">
                             <div class="input-group">
@@ -101,12 +104,54 @@
 
                         </ul>
                     </div>
-
+                    </sec:authorize>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<sec:authorize access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
+    <!-- 댓글 삭제 Modal -->
+    <div class="modal fade" id="deleteAnswerConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">답변 삭제 확인</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">삭제 하시겠습니까?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button id="deleteAnswerModalButton" data-bs-dismiss="modal" type="submit" class="btn btn-danger">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- 댓글 수정 모달 --%>
+    <div class="modal fade" id="answerUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">답변 수정</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="updateAnswerContainer">
+                        <input type="hidden" id="answerUpdateIdInput" />
+                        <textarea class="form-control" id="answerUpdateTextArea"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" id="updateAnswerBtn" data-bs-dismiss="modal">수정</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</sec:authorize>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

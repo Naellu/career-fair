@@ -50,12 +50,14 @@ public class QnaController {
     }
 
     @GetMapping("add")
+    @PreAuthorize("isAuthenticated()")
     public String qnaWriteForm() {
 
         return "qna/add";
     }
 
     @PostMapping("add")
+    @PreAuthorize("isAuthenticated()")
     public String qnaWrite(QnaQuestion question, RedirectAttributes rttr) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -76,6 +78,7 @@ public class QnaController {
     }
 
     @PostMapping("remove")
+    @PreAuthorize("isAuthenticated() and @customSecurityChecker.checkQnaWriter(authentication, #id)")
     public String qnaRemove(Integer id, RedirectAttributes rttr) {
 
             boolean ok = service.remove(id);
@@ -90,6 +93,7 @@ public class QnaController {
     }
 
     @GetMapping("modify/{id}")
+    @PreAuthorize("isAuthenticated() and @customSecurityChecker.checkQnaWriter(authentication, #id)")
     public String qnaModifyForm(@PathVariable ("id") Integer id, Model model) {
         model.addAttribute("question", service.getQuestion(id));
 
