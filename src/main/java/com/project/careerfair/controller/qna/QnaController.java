@@ -1,5 +1,6 @@
 package com.project.careerfair.controller.qna;
 
+import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
 import com.project.careerfair.service.qna.QnaService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,19 @@ public class QnaController {
 
     @GetMapping("QnaList")
     public String qnaList(Model model) {
-
         List<QnaQuestion> list = service.readQuestion();
-        model.addAttribute("question", list);
+        List<QnaQuestion> updatedList = new ArrayList<>();
 
+        for (QnaQuestion question : list) {
+            QnaQuestion questionWithAnswerCount = service.getAnswerCount(question.getId());
+//            updatedList.add(question);
+            updatedList.add(questionWithAnswerCount);
+        }
+
+        model.addAttribute("question", updatedList);
         return "qna/QnaList";
     }
+
 
     @GetMapping("/id/{id}")
     public String qnaGet(@PathVariable("id") Integer id, Model model) {
@@ -42,12 +50,14 @@ public class QnaController {
     }
 
     @GetMapping("add")
+    @PreAuthorize("isAuthenticated()")
     public String qnaWriteForm() {
 
         return "qna/add";
     }
 
     @PostMapping("add")
+    @PreAuthorize("isAuthenticated()")
     public String qnaWrite(QnaQuestion question, RedirectAttributes rttr) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -68,6 +78,7 @@ public class QnaController {
     }
 
     @PostMapping("remove")
+    @PreAuthorize("isAuthenticated() and @customSecurityChecker.checkQnaWriter(authentication, #id)")
     public String qnaRemove(Integer id, RedirectAttributes rttr) {
 
             boolean ok = service.remove(id);
@@ -77,11 +88,12 @@ public class QnaController {
                 return "redirect:/qna/QnaList";
             } else {
                 rttr.addFlashAttribute("message", "게시물이 삭제되지 않았습니다.");
-                return "redirect:/qna/get/" + id;
+                return "redirect:/qna/QnaList";
             }
     }
 
     @GetMapping("modify/{id}")
+    @PreAuthorize("isAuthenticated() and @customSecurityChecker.checkQnaWriter(authentication, #id)")
     public String qnaModifyForm(@PathVariable ("id") Integer id, Model model) {
         model.addAttribute("question", service.getQuestion(id));
 

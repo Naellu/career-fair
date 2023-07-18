@@ -1,6 +1,8 @@
 package com.project.careerfair.service.qna;
 
+import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
+import com.project.careerfair.mapper.qna.QnaAnswerMapper;
 import com.project.careerfair.mapper.qna.QnaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.Map;
 public class QnaServiceImpl implements QnaService{
 
     private final QnaMapper mapper;
+
+    private final QnaAnswerMapper answerMapper;
 
     @Override
     public Boolean addQuestion(QnaQuestion question) {
@@ -45,9 +49,10 @@ public class QnaServiceImpl implements QnaService{
     @Override
     public boolean remove(Integer id) {
 
+        int cnt2 = answerMapper.deleteById(id);
         int cnt = mapper.deleteById(id);
 
-        return cnt == 1;
+        return cnt == 1 && cnt2 == 1;
     }
 
     @Override
@@ -56,6 +61,14 @@ public class QnaServiceImpl implements QnaService{
         int cnt = mapper.modify(question);
 
         return cnt == 1;
+    }
+
+    @Override
+    public QnaQuestion getAnswerCount(Integer id) {
+       QnaQuestion question = mapper.selectById(id);
+       Integer answerCount = mapper.selectAnswerCount(id);
+       question.setAnswerCount(answerCount != null ? answerCount : 0);
+        return question;
     }
 
 }

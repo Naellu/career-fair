@@ -1,5 +1,6 @@
 package com.project.careerfair.service.qna;
 
+import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
 
 
@@ -18,4 +19,7 @@ public interface QnaService {
     boolean remove(Integer id);
 
     boolean modify(QnaQuestion question);
+
+    QnaQuestion getAnswerCount(Integer questionId);
+
 }

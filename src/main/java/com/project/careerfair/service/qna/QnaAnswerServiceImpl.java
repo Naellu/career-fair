@@ -3,6 +3,7 @@ package com.project.careerfair.service.qna;
 import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.mapper.qna.QnaAnswerMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -17,27 +18,33 @@ public class QnaAnswerServiceImpl implements QnaAnswerService{
     private final QnaAnswerMapper mapper;
 
     @Override
-    public List<QnaAnswer> list(Integer questionId, Authentication authentication) {
-        List<QnaAnswer> answers = mapper.selectAllByQuestionId(questionId);
+    public List<QnaAnswer> list(Integer qnaId, Authentication authentication) {
+        List<QnaAnswer> answers = mapper.selectAllByQuestionId(qnaId);
+
         if (authentication != null) {
             for (QnaAnswer answer : answers) {
                 answer.setIsWriter(authentication.getAuthorities().stream()
-                        .anyMatch(auth -> auth.getAuthority().equals("company")));
+                        .anyMatch(auth -> {
+                            String authority = auth.getAuthority();
+                            String username = authentication.getName();
 
-                answer.setIsWriter(authentication.getAuthorities().stream()
-                        .anyMatch(auth -> auth.getAuthority().equals("recruiter")));
-
-                answer.setIsWriter(authentication.getAuthorities().stream()
-                        .anyMatch(auth -> auth.getAuthority().equals("admin")));
+                            return (authority.equalsIgnoreCase("company")
+                                    || authority.equalsIgnoreCase("recruiter")
+                                    || authority.equalsIgnoreCase("admin"))
+                                    && username.equalsIgnoreCase(answer.getMemberId());
+                        }));
             }
         }
         return answers;
     }
 
-    @Override
-    public Map<String, Object> add(QnaAnswer answer) {
 
+    @Override
+    public Map<String, Object> add(QnaAnswer answer, Authentication authentication) {
+
+        answer.setMemberId(authentication.getName());
         var res = new HashMap<String, Object>();
+        mapper.updateQuestionAnswered(answer.getQnaId());
 
         int cnt = mapper.insert(answer);
         if (cnt == 1) {
@@ -46,8 +53,6 @@ public class QnaAnswerServiceImpl implements QnaAnswerService{
             res.put("message", "답변이 등록되지 않았습니다.");
         }
 
-
-
         return res;
     }
 
@@ -55,5 +60,20 @@ public class QnaAnswerServiceImpl implements QnaAnswerService{
     public QnaAnswer get(Integer id) {
 
         return mapper.selectById(id);
+    }
+
+    @Override
+
+    public Map<String, Object> remove(Integer id) {
+        var res = new HashMap<String, Object>();
+
+        int cnt = mapper.deleteById(id);
+        if (cnt == 1) {
+            res.put("message", "답변이 삭제되었습니다.");
+        } else {
+            res.put("message", "답변이 삭제되지 않았습니다.");
+        }
+
+        return res;
     }
 }

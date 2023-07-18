@@ -27,6 +27,15 @@
 <body>
 <my:navBar/>
 
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
 <div class="container-lg">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
@@ -51,30 +60,16 @@
                         <label for="content" class="form-label">내용</label>
                         <textarea id="content" class="form-control" cols="90" rows="10" readonly>${question.content}</textarea>
                     </div>
-                    <a class="btn btn-secondary" href="/qna/modify/${question.id }">수정</a>
-                    <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">삭제</button>
+                    <sec:authorize access="authentication.name eq #question.memberId">
+                        <a class="btn btn-secondary" href="/qna/modify/${question.id }">수정</a>
+                        <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">삭제</button>
+                    </sec:authorize>
 
                     <!-- 삭제 -->
                     <div class="d-none">
                         <form action="/qna/remove" method="post" id="removeForm">
                             <input type="text" name="id" value="${question.id }" />
                         </form>
-                    </div>
-
-                    <div id="answerContainer">
-                            <div class="mb-3" id="addAnswerContainer">
-                                <div class="input-group">
-                                    <div class="form-floating">
-                                        <textarea style="height: 97px" placeholder="답변을 남겨주세요" class="form-control" id="answerTextArea"></textarea>
-                                        <label for="answerTextArea">답변을 남겨주세요</label>
-                                    </div>
-                                    <button class="btn btn-outline-primary" id="sendAnswerBtn"><i class="fa-regular fa-paper-plane"></i></button>
-                                </div>
-                            </div>
-
-                        <ul class="list-group" id="answerListContainer">
-
-                        </ul>
                     </div>
 
                     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -92,12 +87,71 @@
                             </div>
                         </div>
                     </div>
+
+                    <sec:authorize access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
+                    <div id="answerContainer">
+                        <div class="mb-3" id="addAnswerContainer">
+                            <div class="input-group">
+                                <div class="form-floating">
+                                    <textarea style="height: 97px" placeholder="답변을 남겨주세요" class="form-control" id="answerTextArea"></textarea>
+                                    <label for="answerTextArea">답변을 남겨주세요</label>
+                                </div>
+                                <button class="btn btn-outline-primary" id="sendAnswerBtn"><i class="fa-regular fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+
+                        <ul class="list-group" id="answerListContainer">
+
+                        </ul>
+                    </div>
+                    </sec:authorize>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
+<sec:authorize access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
+    <!-- 댓글 삭제 Modal -->
+    <div class="modal fade" id="deleteAnswerConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">답변 삭제 확인</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">삭제 하시겠습니까?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button id="deleteAnswerModalButton" data-bs-dismiss="modal" type="submit" class="btn btn-danger">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- 댓글 수정 모달 --%>
+    <div class="modal fade" id="answerUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">답변 수정</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="updateAnswerContainer">
+                        <input type="hidden" id="answerUpdateIdInput" />
+                        <textarea class="form-control" id="answerUpdateTextArea"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" id="updateAnswerBtn" data-bs-dismiss="modal">수정</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</sec:authorize>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -107,6 +161,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="/js/qna/answer.js"></script>
+
+
 
 </body>
 </html>
