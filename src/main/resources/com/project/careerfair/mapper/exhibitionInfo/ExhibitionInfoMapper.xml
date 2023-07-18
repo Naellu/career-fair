@@ -14,12 +14,36 @@
         <result column="start_date" property="startDate"/>
         <result column="end_date" property="endDate"/>
         <result column="etc" property="etc"/>
+        <result column="bus" property="bus"/>
+        <result column="subway" property="subway"/>
+        <collection property="fileName" ofType="string">
+            <result column="file_name"/>
+        </collection>
     </resultMap>
 
     <select id="getCurrentRound" resultType="Integer">
-        SELECT MAX(round) FROM TB_EXHIBITION_INFO;
+        SELECT MAX(round) FROM TB_EXHIBITION_INFO
     </select>
 
+    <select id="getCurrentInfo" resultMap="ExhibitionInfoMap">
+        SELECT ei.*, f.file_name
+        FROM TB_EXHIBITION_INFO ei
+        LEFT JOIN TB_FILES f ON ei.round = f.round
+        WHERE ei.round = #{round}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO TB_EXHIBITION_INFO (round, location, manager_email, organizer, start_date, end_date, etc, bus,
+        subway)
+        VALUES (#{round}, #{location}, #{managerEmail}, #{organizer}, #{startDate}, #{endDate}, #{etc}, #{bus},
+        #{subway})
+    </insert>
+
+    <!-- 파일이름 등록 -->
+    <insert id="insertFileName">
+        INSERT INTO TB_FILES (round, file_name)
+        VALUES (#{round}, #{originalFilename})
+    </insert>
 
 </mapper>
 

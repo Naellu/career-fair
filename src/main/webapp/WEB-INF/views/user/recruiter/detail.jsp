@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<my:adminNavBar/>
+<my:navBar/>
 
 
 <div class="container-lg">

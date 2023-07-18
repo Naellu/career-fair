@@ -9,13 +9,13 @@ import java.util.List;
 public interface PostingMapper {
 
     // 기업별 현재 포스팅 
-    List<Posting> getNowPostingList(Integer companyId);
+    List<Posting> getNowPostingList(Integer companyId, Integer round);
 
     // 기업별 현재 포스팅 수
-    Integer countAll(Integer companyId);
+    Integer countAll(Integer companyId, Integer round);
 
     // 기업별 과거 포스팅
-    List<Posting> getPastPostingList(Integer startNum, Integer pageSize, Integer companyId);
+    List<Posting> getPastPostingList(Integer startNum, Integer pageSize, Integer companyId, Integer round);
 
     @Select("""
             <script>
@@ -99,10 +99,10 @@ public interface PostingMapper {
     int deletePosting(Posting posting);
 
     // 유저 채용공고 목록
-    List<Posting> getNowPostingsAll(Integer pageSize, Integer startNum, Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
+    List<Posting> getNowPostingsAll(Integer pageSize, Integer startNum, Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search, Integer round);
 
     // 채용공고 목록 수
-    Integer getNowPostingsCount(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search);
+    Integer getNowPostingsCount(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search, Integer round);
 
     @Update("""
             UPDATE TB_POSTING

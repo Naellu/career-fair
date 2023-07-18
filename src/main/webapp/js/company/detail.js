@@ -70,7 +70,7 @@ function detailView(pageValue) {
                 const postingHtml = `
                     <tr>
                         <td>${nowPosting.startDate} ~ ${nowPosting.endDate}</td>
-                        <td><a href="#">${nowPosting.title}</a></td>
+                        <td><a href="/user/posting/${nowPosting.postingId}">${nowPosting.title}</a></td>
                         <td>${nowPosting.hiringCount}</td>
                         <td>${nowPosting.employmentType}</td>
                         <td>${nowPosting.experienceLevel}</td>

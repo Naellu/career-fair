@@ -4,6 +4,7 @@ import com.project.careerfair.domain.*;
 import com.project.careerfair.mapper.jobapplication.JobApplicationMapper;
 import com.project.careerfair.mapper.posting.PostingMapper;
 import com.project.careerfair.mapper.scrap.ScrapMapper;
+import com.project.careerfair.service.admin.ExhibitionInfoService;
 import com.project.careerfair.service.industry.IndustryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,14 +46,19 @@ public class UserPostingServiceImpl implements UserPostingService {
 
     private final JobApplicationMapper jobApplicationMapper;
 
+    private final ExhibitionInfoService exhibitionInfoService;
+
     @Override
     public Map<String, Object> getPostings(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search, Integer page) {
+        // 회차
+        Integer round = exhibitionInfoService.getCurrentRound();
+
         //페이징 시작
         Integer pageSize = 10; //10 20 30
         Integer startNum = (page - 1) * pageSize; //0 10 20
 
         // 총개수
-        Integer count = postingMapper.getNowPostingsCount(industrIds, experienceLevels, educationLevels, employmentTypes, type, search);
+        Integer count = postingMapper.getNowPostingsCount(industrIds, experienceLevels, educationLevels, employmentTypes, type, search, round);
 
         // 최종페이지
         Integer lastPage = (count - 1) / pageSize + 1;
@@ -80,7 +86,7 @@ public class UserPostingServiceImpl implements UserPostingService {
         pageInfo.put("nextPageNum", nextPageNum);
         pageInfo.put("count", count);
 
-        List<Posting> postingList = postingMapper.getNowPostingsAll(pageSize, startNum, industrIds, experienceLevels, educationLevels, employmentTypes, type, search);
+        List<Posting> postingList = postingMapper.getNowPostingsAll(pageSize, startNum, industrIds, experienceLevels, educationLevels, employmentTypes, type, search, round);
 
         List<Industry> industryList = industryService.getIndustryList();
 
@@ -108,7 +114,6 @@ public class UserPostingServiceImpl implements UserPostingService {
             }
             senderId = authentication.getName();
         }
-
 
         return Map.of("posting", posting, "industryList", industryList, "senderId", senderId);
     }
@@ -157,7 +162,7 @@ public class UserPostingServiceImpl implements UserPostingService {
         // 입사 지원 넣기
         Integer cnt = jobApplicationMapper.apply(jobApplication);
 
-        if (files != null){
+        if (files != null) {
             fileToS3(jobApplication, files);
         }
 
