@@ -1,0 +1,11 @@
+/*.center-screen {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    height: 100vh;*/
+/*    text-align: center;*/
+/*}*/
+
+.accordion {
+    max-width: 300px;
+}

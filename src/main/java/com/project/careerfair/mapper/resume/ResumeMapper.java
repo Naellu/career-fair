@@ -47,4 +47,9 @@ public interface ResumeMapper {
     Integer deleteWorkAreaByResumeId(Integer resumeId);
     Integer deleteWorkConditionByResumeId(Integer resumeId);
 
+
+    // -- 업종별 이력서, 페이지네이션 -- //
+    Integer countResumeByIndustry(Integer[] industries);
+
+    List<Resume> findAllByIndustry(Integer startIndex, Integer rowPerPage, Integer[] industries);
 }
