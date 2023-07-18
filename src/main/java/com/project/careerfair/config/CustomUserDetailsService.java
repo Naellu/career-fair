@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         if (members == null) {
             throw new UsernameNotFoundException(username + "해당 회원 조회 불가");
+        }
+
+        //탈퇴회원 로그인 못하게 막아줌
+        if (members.getIsActive() == 0) {
+            throw new DisabledException(username + "사용자가 비활성화되었습니다.");
         }
 
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();

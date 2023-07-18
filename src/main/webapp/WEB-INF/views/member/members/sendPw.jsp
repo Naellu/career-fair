@@ -126,7 +126,7 @@
             <div class="mb-3">
                 <label style="margin-bottom: 10px;">Email</label>
                 <div class="" id="EmailBtn">
-                    <input class="sign-input" type="email" id="inputEmail" name="email" placeholder="이메일을 입력해주세요!" required>
+                    <input class="sign-input" type="email" id="inputEmail" name="email" placeholder="이메일을 입력해주세요." required>
                     <button class="check-button" type="button" id="checkEmailBtn">인증하기</button>
                 </div>
             </div>
@@ -135,7 +135,7 @@
             <!-- 인증번호 입력 칸 -->
             <div style="display: none;" id="inputVerificationCode">
                 <p class="">
-                    <input type="text" class="sign-input" id="verificationCode" name="verificationCode" placeholder="인증번호를 입력하세요" />
+                    <input type="text" class="sign-input" id="verificationCode" name="verificationCode" placeholder="인증번호를 입력해주세요." />
                     <button class="check-button" type="button" id="verifyEmailBtn" style="display: none;">확인</button>
                 </p>
             </div>
