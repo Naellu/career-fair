@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
-<%@ page import="java.util.*" %>
+
 
 <html>
 <head>
@@ -36,6 +36,7 @@
             <label for="title" class="form-label">공고명</label>
             <input type="text" class="form-control" id="title" value="${posting.title}" readonly>
             <input type="hidden" class="form-control" name="postingId" id="posting-id" value="${posting.postingId}">
+            <input type="hidden" name="applicationId" value="${application.applicationId}">
         </div>
     </div>
     <br>

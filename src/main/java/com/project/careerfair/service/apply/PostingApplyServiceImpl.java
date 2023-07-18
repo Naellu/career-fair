@@ -6,21 +6,26 @@ import com.project.careerfair.mapper.files.FileMapper;
 import com.project.careerfair.mapper.jobapplication.JobApplicationMapper;
 import com.project.careerfair.mapper.posting.PostingMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(rollbackFor = Exception.class)
 public class PostingApplyServiceImpl implements PostingApplyService{
 
     private final JobApplicationMapper jobApplicationMapper;
     private final PostingMapper postingMapper;
     private final FileMapper fileMapper;
+
+    private final S3Client s3;
+    @Value("${aws.s3.bucketName}")
+    private String bucketName;
     @Override
     public Map<String, Object> getApplyList(String memberId) {
         Map<String, Object> reusltMap = new HashMap<>();
@@ -48,5 +53,29 @@ public class PostingApplyServiceImpl implements PostingApplyService{
         result.put("fileNames", fileNames);
 
         return result;
+    }
+
+    @Override
+    public Boolean applyCancel(Integer applicationId) {
+
+        List<String> fileNames = fileMapper.getFileNamesByApplicationId(applicationId);
+
+        for (String fileName : fileNames){
+            String dirKey = "career_fair/jobApplication/" + applicationId;
+            String fileKey = dirKey + "/" + fileName;
+
+            DeleteObjectRequest dor = DeleteObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(fileKey)
+                    .build();
+
+            s3.deleteObject(dor);
+
+            fileMapper.deleteFileByFileName(fileName);
+        }
+
+        Integer check = jobApplicationMapper.cancelApplyByApplicationId(applicationId);
+
+        return check == 1;
     }
 }

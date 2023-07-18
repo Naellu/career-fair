@@ -19,11 +19,9 @@
 <body onload="defaultSet()">
 
 <div class="container mt-5">
-    <h1>입 사 지 원</h1>
     <div class="row">
         <div class="col-sm-12">
-            <label for="title" class="form-label">공고명</label>
-            <input type="text" class="form-control" id="title" value="${posting.title}" readonly>
+            <h1><input type="text" class="form-control-plaintext" id="title" value="${posting.title} - ${application.applicationStatus}" readonly></h1>
             <input type="hidden" class="form-control" name="postingId" id="posting-id" value="${posting.postingId}" readonly>
         </div>
     </div>
@@ -80,14 +78,46 @@
     <br>
     <div class="row">
         <div class="col-sm-12 text-right">
-            <button id="modifyBtn" type="button" class="btn btn-outline-primary"
-                    onclick="location.href='/member/user/apply/modify?applicationId=${application.applicationId}'">수정</button>
-            <button id="deleteBtn" type="button" class="btn btn-outline-danger">삭제</button>
+            <button id="deleteBtn" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#cancelApplyConfirmModal">지원취소</button>
             <button id="close-btn" type="button" class="btn btn-outline-secondary"
-            onclick="location.href='/member/user/apply/list'">목록으로</button>
+            onclick="window.close()">닫기</button>
         </div>
     </div>
 </div>
+
+
+<%--삭제 모달--%>
+<div class="d-none">
+    <form action="/member/user/apply/cancel" method="post"
+          id="applyCancelForm">
+        <input type="text" id="applyCancel" name="applicationId" value="${application.applicationId}"/>
+        <input type="hidden" name="removeFiles" value="${fileNames}">
+    </form>
+</div>
+
+<div class="modal fade" id="cancelApplyConfirmModal" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fs-5" id="exampleModalLabel">취소 확인</h3>
+                <button type="button" class="btn-outline-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">지원을 취소하시겠습니까??</div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-danger"
+                        form="applyCancelForm">삭제
+                </button>
+                <button type="button" class="btn btn-outline-secondary"
+                        data-bs-dismiss="modal">닫기
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
