@@ -31,17 +31,17 @@
 
     <select id="getNowPostingList" resultMap="postingMap">
         SELECT * FROM TB_POSTING
-        WHERE company_id = #{companyId} AND status = '채용중'
+        WHERE company_id = #{companyId} AND status = '채용중' AND round = #{round}
     </select>
 
     <select id="countAll" resultType="Integer">
         SELECT COUNT(*) FROM TB_POSTING
-        WHERE company_id = #{companyId} AND status = '마감'
+        WHERE company_id = #{companyId} AND (status = '마감' OR round &lt; #{round})
     </select>
 
     <select id="getPastPostingList" resultMap="postingMap">
         SELECT * FROM TB_POSTING
-        WHERE company_id = #{companyId} AND status = '마감'
+        WHERE company_id = #{companyId} AND (status = '마감' OR round &lt; #{round})
         ORDER BY posting_id DESC
         LIMIT #{startNum}, #{pageSize}
     </select>
@@ -76,7 +76,7 @@
 
     <select id="getNowPostingsAll" resultMap="postingViewMap">
         <bind name="pattern" value="'%' + search + '%'"/>
-        SELECT * FROM (SELECT * FROM VIEW_POSTING WHERE status = '채용중') c
+        SELECT * FROM (SELECT * FROM VIEW_POSTING WHERE status = '채용중' AND round = #{round}) c
         <where>
             <if test="type eq 'all'">
                 (company_name LIKE #{pattern} OR title LIKE #{pattern} OR address LIKE #{pattern})
@@ -124,7 +124,7 @@
 
     <select id="getNowPostingsCount" resultType="Integer">
         <bind name="pattern" value="'%' + search + '%'"/>
-        SELECT COUNT(*) FROM (SELECT * FROM VIEW_POSTING WHERE status = '채용중') c
+        SELECT COUNT(*) FROM (SELECT * FROM VIEW_POSTING WHERE status = '채용중' AND round = #{round} ) c
         <where>
             <if test="type eq 'all'">
                 (company_name LIKE #{pattern} OR title LIKE #{pattern} OR address LIKE #{pattern})

@@ -170,7 +170,7 @@ searchBtn.addEventListener("click", function () {
 const pageBtn = document.querySelector("#page-btn");
 pageBtn.addEventListener("click", function () {
 
-    if (count < pageValue)  {
+    if (count < pageValue) {
         alert("목록이 더 없습니다.");
     } else {
         pageValue = parseInt(pageValue) + 8;

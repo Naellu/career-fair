@@ -40,12 +40,9 @@ public class ParticipatingCompanyServiceImpl implements ParticipatingCompanyServ
         // 산업 목록
         List<Industry> industryList = industryService.getIndustryList();
 
-        // 회차
-        Integer round = exhibitionInfoService.getCurrentRound();
-
         List<Company> companyList = companyMapper.getApprovedList(startNum, pageSize, search, type, industryId, roundValue);
 
-        return Map.of("companyList", companyList, "industryList", industryList, "round", round, "count", count);
+        return Map.of("companyList", companyList, "industryList", industryList, "count", count);
     }
 
     @Override
@@ -59,14 +56,14 @@ public class ParticipatingCompanyServiceImpl implements ParticipatingCompanyServ
         // 회차
         Integer round = exhibitionInfoService.getCurrentRound();
 
-        List<Posting> nowPostingList = postingMapper.getNowPostingList(companyId);
+        List<Posting> nowPostingList = postingMapper.getNowPostingList(companyId, round);
 
         Integer pageSize = 5; // 5개씩
         Integer startNum = (page - 1) * pageSize; // 0 6 11
 
         //페이지네이션 정보
         //총 지난 공고 개수
-        Integer count = postingMapper.countAll(companyId);
+        Integer count = postingMapper.countAll(companyId, round);
 
         // 마지막 페이지 번호
         // 총 글개수 -1 / pageSize + 1
@@ -94,7 +91,7 @@ public class ParticipatingCompanyServiceImpl implements ParticipatingCompanyServ
         pageInfo.put("prevPageNum", prevPageNum);
         pageInfo.put("nextPageNum", nextPageNum);
 
-        List<Posting> pastPostingList = postingMapper.getPastPostingList(startNum, pageSize, companyId);
+        List<Posting> pastPostingList = postingMapper.getPastPostingList(startNum, pageSize, companyId, round);
 
         return Map.of("company", company,
                 "industryList", industryList,

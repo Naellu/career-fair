@@ -33,7 +33,7 @@
         INSERT INTO TB_JOB_APPLICATION
         (posting_id, member_id, application_status, age, experience, education)
         VALUES
-        (#{postingId}, #{memberId}, '심사중', #{age}, #{experience}, #{education})
+        (#{postingId}, #{memberId}, '지원완료', #{age}, #{experience}, #{education})
     </insert>
 
     <!-- 파일 추가 -->
@@ -41,5 +41,4 @@
         INSERT INTO TB_FILES (application_id, file_name)
         VALUES (#{applicationId}, #{originalFilename})
     </insert>
-
 </mapper>

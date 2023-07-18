@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class PostingServiceImpl implements PostingService{
+public class PostingServiceImpl implements PostingService {
 
     private final CompanyMapper companyMapper;
     private final ExhibitionInfoMapper ehMapper;
@@ -52,29 +52,29 @@ public class PostingServiceImpl implements PostingService{
         Map<String, Object> pageInfo = new HashMap<>();
         pageInfo.put("page", currentPage);
 
-        Integer last = postingCount/10 + 1;
+        Integer last = postingCount / 10 + 1;
         pageInfo.put("last", last);
 
-        Integer begin = 1 + (currentPage-1) / 10 * 10;
+        Integer begin = 1 + (currentPage - 1) / 10 * 10;
         Integer end = Math.min(begin + 9, last);
 
         pageInfo.put("begin", begin);
         pageInfo.put("end", end);
 
-        Integer previous = Math.max(1, (currentPage-1) / 10 * 10);
-        Integer next = Math.min(last, (currentPage-1) / 10 * 10 +11);
-        pageInfo.put("previous",previous);
-        pageInfo.put("next",next);
+        Integer previous = Math.max(1, (currentPage - 1) / 10 * 10);
+        Integer next = Math.min(last, (currentPage - 1) / 10 * 10 + 11);
+        pageInfo.put("previous", previous);
+        pageInfo.put("next", next);
 
-        Integer startIndex = currentPage * 10 -10;
-        List<Posting> postingList = postingMapper.getPostingInfoByMemberId(memberId,startIndex, status);
+        Integer startIndex = currentPage * 10 - 10;
+        List<Posting> postingList = postingMapper.getPostingInfoByMemberId(memberId, startIndex, status);
 
         List<Company> companyList = new ArrayList<>();
-        for (Posting posting : postingList){
+        for (Posting posting : postingList) {
             companyList.add(companyMapper.getDetail(posting.getCompanyId()));
         }
 
-        resultMap.put("postingList",postingList);
+        resultMap.put("postingList", postingList);
         resultMap.put("companyList", companyList);
         resultMap.put("pageInfo", pageInfo);
 
@@ -90,12 +90,12 @@ public class PostingServiceImpl implements PostingService{
         Posting posting = postingMapper.getPostDetailByPostingId(postingId);
         Company company = companyMapper.getDetail(posting.getCompanyId());
         List<Industry> industryList = industryMapper.getIndustryList();
-        Industry industry = industryMapper.getIndustryList().get(posting.getIndustryId()-1);
+        Industry industry = industryMapper.getIndustryList().get(posting.getIndustryId() - 1);
 
         postDetail.put("post", posting);
         postDetail.put("company", company);
-        postDetail.put("industry",industry.getIndustryName());
-        postDetail.put("industryList",industryList);
+        postDetail.put("industry", industry.getIndustryName());
+        postDetail.put("industryList", industryList);
 
         return postDetail;
     }
@@ -107,12 +107,12 @@ public class PostingServiceImpl implements PostingService{
         Integer check = postingMapper.addPosting(posting);
 
 
-        return check==1;
+        return check == 1;
     }
 
     @Override
     public Boolean deletePosting(Posting posting) {
-        
+
         //좋아요 삭제
         scrapMapper.deleteByPostingId(posting);
 

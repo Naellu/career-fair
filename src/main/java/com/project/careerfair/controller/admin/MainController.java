@@ -6,13 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller("adminMainController")
-@RequestMapping("/admin")
+@RequestMapping("/admin/")
 @PreAuthorize("hasAuthority('admin')")
 public class MainController {
 
-    @GetMapping("/main")
+    @GetMapping("main")
     public String main() {
         return "admin/main";
     }
+
+
 }
 
