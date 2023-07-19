@@ -58,7 +58,11 @@
                 </form>
             </td>
             <sec:authentication property="name" var="userId" />
-            <td><a href="/note/write?senderId=${userId}" onclick="openNoteWindow(this.href); return false;" class="btn btn-primary">쪽지 쓰기</a></td>
+            <td>
+                <button onclick="openNoteWindow('/note/write?senderId=${userId}&recipientId=${list.memberId}');" class="btn btn-primary">쪽지 쓰기</button>
+            </td>
+
+
         </tr>
     </c:forEach>
     </tbody>
