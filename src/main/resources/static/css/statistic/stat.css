@@ -1,0 +1,18 @@
+
+#chart-container {
+    display: flex;
+}
+
+.chart-wrap {
+    width: 600px;
+    height: 300px;
+}
+
+.memberCnt-chart-wrap {
+    width: 1000px;
+}
+
+.industry-member-graph {
+    margin-top: 20px;
+    padding-top: 10px;
+}
