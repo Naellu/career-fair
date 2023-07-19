@@ -1,5 +1,7 @@
 package com.project.careerfair.service.scrap;
 
+import com.project.careerfair.domain.Scrap;
+import com.project.careerfair.domain.ScrapInfo;
 import com.project.careerfair.mapper.scrap.ScrapMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -31,5 +35,24 @@ public class ScrapServiceImpl implements ScrapService {
         }
 
         return Map.of("scraped", insertCnt == 1);
+    }
+
+    @Override
+    public Map<String, Object> getScrapList(String memberId) {
+
+        Map<String , Object> result = new HashMap<>();
+
+        List<ScrapInfo> scrapList = scrapMapper.getListByMemberId(memberId);
+
+        result.put("scrapList", scrapList);
+
+        return result;
+    }
+
+    @Override
+    public boolean cancelScrap(Integer scrapId) {
+        Integer check = scrapMapper.cancelScrapByScrapId(scrapId);
+
+        return check==1;
     }
 }

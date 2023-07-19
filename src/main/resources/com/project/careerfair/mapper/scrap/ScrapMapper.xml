@@ -12,6 +12,18 @@
         <result column="member_id" property="memberId"/>
     </resultMap>
 
+    <resultMap type="com.project.careerfair.domain.ScrapInfo"
+               id="scrapInfo">
+        <id column="scrap_id" property="scrapId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="posting_id" property="postingId"/>
+        <result column="company_name" property="companyName"/>
+        <result column="hiring_count" property="hiringCount"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="application_count" property="applicationCount"/>
+    </resultMap>
+
     <!-- 스크랩 체크 -->
     <select id="scrapCheck" resultMap="scrapMap">
         SELECT * FROM TB_SCRAP
