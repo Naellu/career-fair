@@ -35,10 +35,13 @@ public class ExhibitionInfo {
     private String endDate;
 
     private String etc;
-    
+
     private String bus;
 
     private String subway;
+
+    @NotBlank(message = "공백은 허용되지 않습니다.")
+    private String title;
 
     private List<String> fileName;
 }

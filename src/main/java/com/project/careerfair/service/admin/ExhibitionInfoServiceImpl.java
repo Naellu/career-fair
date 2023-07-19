@@ -1,6 +1,5 @@
 package com.project.careerfair.service.admin;
 
-import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.ExhibitionInfo;
 import com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +14,7 @@ import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -29,21 +29,23 @@ public class ExhibitionInfoServiceImpl implements ExhibitionInfoService {
 
     private final S3Client s3;
 
-
+    // 현재회차 번호 얻기
     @Override
     public Integer getCurrentRound() {
         return exhibitionInfoMapper.getCurrentRound();
     }
 
+    // 현재회차 정보 얻기
     @Override
-    public Map<String, Object> getCurrentInfo() {
+    public ExhibitionInfo getCurrentInfo() {
         Integer round = exhibitionInfoMapper.getCurrentRound();
 
         ExhibitionInfo exhibitionInfo = exhibitionInfoMapper.getCurrentInfo(round);
 
-        return Map.of("exhibitionInfo", exhibitionInfo);
+        return exhibitionInfo;
     }
 
+    // 회차 등록하기
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean reg(ExhibitionInfo exhibitionInfo, MultipartFile[] files) throws IOException {

@@ -31,10 +31,8 @@ public class RoundController {
 
     @GetMapping
     public String round(Model model) {
-        Map<String, Object> exhibitionInfo = exhibitionInfoService.getCurrentInfo();
-
+        ExhibitionInfo exhibitionInfo = exhibitionInfoService.getCurrentInfo();
         model.addAttribute("exhibitionInfo", exhibitionInfo);
-
         return "admin/round/now";
     }
 

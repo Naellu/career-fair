@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: LG
-  Date: 2023-07-17
-  Time: 오전 1:00
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -20,22 +13,14 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <my:font></my:font>
-    <title>Title</title>
+    <title>$Title$</title>
 
 </head>
 <body>
 <my:navBar/>
-<sec:authorize access="isAuthenticated()">
-<form action="/login/loginfailure" method="post">
-    <div>
-      <div style="display: flex; justify-content: center; text-align: center;">
-        <div style="display: flex; justify-content: center; margin: 60px 30px;">
-          <h3 style="width: 55%;">해당 회원은 탈퇴한 회원입니다 계정을 복구 하시겠습니까?</h3>
-        </div>
-      </div>
-    </div>
-</form>
-</sec:authorize>
+
+권한없어 돌아가~
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>

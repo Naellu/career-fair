@@ -3,7 +3,6 @@ package com.project.careerfair.config;
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.mapper.members.MemberMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username + "해당 회원 조회 불가");
         }
 
-        //탈퇴회원 로그인 못하게 막아줌
-        if (members.getIsActive() == 0) {
-            throw new DisabledException(username + "사용자가 비활성화되었습니다.");
-        }
+        boolean isActive = members.getIsActive() == 1;
 
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
 
@@ -42,6 +37,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         UserDetails user = User.builder()
                 .username(members.getId())
+                .disabled(!isActive)
                 .password(members.getPassword())
                 .authorities(List.of())
                 .authorities(members.getAuthority().stream().map(SimpleGrantedAuthority::new).toList())
@@ -49,4 +45,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return user;
     }
+
+
 }

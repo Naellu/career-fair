@@ -74,13 +74,10 @@
                 <input id="etc" type="text" class="form-control" value="${exhibitionInfo.etc}"/>
             </div>
 
-            <input type="hidden" id="file-name" value="${exhibitionInfo.fileName}">
-            <input type="hidden" id="bucketUrl" value="${bucketUrl}">
-
             <div class="mb-3">
-                <label for="etc" class="form-label">파일목록</label>
+                <label class="form-label">파일목록</label>
                 <c:forEach items="${exhibitionInfo.fileName}" var="fileName">
-                    <a class="form-control" href="${bucketUrl}/exhibitionInfo/${exhibitionInfo.round}/${fileName}">${fileName}</a>
+                    <a class="form-control" href="${bucketUrl}/exhibitionInfo/1/${fileName}" download="${fileName}">${fileName}</a>
                 </c:forEach>
             </div>
 

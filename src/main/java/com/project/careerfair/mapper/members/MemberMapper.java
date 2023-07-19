@@ -92,6 +92,8 @@ public interface MemberMapper {
             """)
     Integer updatePw(String id, String email, String password);
 
+    void active(Object memberId);
+
 /*    @Select("""
             SELECT
             FROM MEMBERS

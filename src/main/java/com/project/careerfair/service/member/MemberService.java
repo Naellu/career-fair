@@ -1,9 +1,8 @@
 package com.project.careerfair.service.member;
 
 import com.project.careerfair.domain.Members;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
 
@@ -19,4 +18,8 @@ public interface MemberService {
 
     public String findId(String email, String name);
 
+    // 이메일 체크
+    Map<String, Object> checkEmail(String email);
+
+    Map<String, Object> active(Map<String, Object> map, HttpSession session);
 }
