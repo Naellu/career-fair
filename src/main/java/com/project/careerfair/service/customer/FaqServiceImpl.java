@@ -17,8 +17,12 @@ public class FaqServiceImpl implements FaqService {
 
     @Override
     public List<Faq> findAll() {
-        log.info("faq IN SERVICE={}",faqMapper.findAll());
         return faqMapper.findAll();
+    }
+
+    @Override
+    public Integer addNewFAQ(Faq faq) {
+        return faqMapper.writeNewFAQ(faq);
     }
 
 }

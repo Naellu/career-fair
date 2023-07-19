@@ -8,4 +8,6 @@ public interface FaqService {
 
     List<Faq> findAll();
 
+    Integer addNewFAQ(Faq faq);
+
 }
