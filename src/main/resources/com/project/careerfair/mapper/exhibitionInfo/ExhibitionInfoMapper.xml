@@ -35,9 +35,9 @@
 
     <insert id="insert">
         INSERT INTO TB_EXHIBITION_INFO (round, location, manager_email, organizer, start_date, end_date, etc, bus,
-        subway)
+        subway, title)
         VALUES (#{round}, #{location}, #{managerEmail}, #{organizer}, #{startDate}, #{endDate}, #{etc}, #{bus},
-        #{subway})
+        #{subway}, #{title})
     </insert>
 
     <!-- 파일이름 등록 -->
