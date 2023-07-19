@@ -38,6 +38,11 @@
             </div>
 
             <div class="mb-3">
+                <label for="title" class="form-label">박람회 타이틀</label>
+                <input id="title" type="text" class="form-control" value="${exhibitionInfo.title}" readonly/>
+            </div>
+
+            <div class="mb-3">
                 <label for="email" class="form-label">담당자 이메일</label>
                 <input id="email" type="email" class="form-control" value="${exhibitionInfo.managerEmail}"/>
             </div>
@@ -77,7 +82,8 @@
             <div class="mb-3">
                 <label class="form-label">파일목록</label>
                 <c:forEach items="${exhibitionInfo.fileName}" var="fileName">
-                    <a class="form-control" href="${bucketUrl}/exhibitionInfo/1/${fileName}" download="${fileName}">${fileName}</a>
+                    <a class="form-control" href="${bucketUrl}/exhibitionInfo/${exhibitionInfo.round}/${fileName}"
+                       download="${fileName}">${fileName}</a>
                 </c:forEach>
             </div>
 

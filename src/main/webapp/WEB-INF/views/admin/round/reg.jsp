@@ -45,6 +45,12 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="title" class="form-label">박람회 타이틀</label>
+                    <form:input path="title" id="title" type="text" class="form-control"/>
+                    <form:errors path="title" cssClass="field-error"/>
+                </div>
+
+                <div class="mb-3">
                     <label for="email" class="form-label">담당자 이메일</label>
                     <form:input path="managerEmail" id="email" type="email" class="form-control"/>
                     <form:errors path="managerEmail" cssClass="field-error"/>
@@ -94,7 +100,7 @@
 
                 <div class="mb-3">
                     <label for="etc" class="form-label">기타</label>
-                    <form:input path="etc" type="text" class="form-control"/>
+                    <form:textarea path="etc" type="text" class="form-control" rows="5"/>
                     <form:errors path="etc" cssClass="field-error"/>
                 </div>
 
