@@ -71,8 +71,8 @@
     <div class="mypage-container">
       <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t"><span>쪽지함</span></div>
-        <div class="mypage-column"><span>새로온 쪽지</span></div>
-        <div class="mypage-column mypage-column-b"><span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">건</span></div>
+        <%--<div class="mypage-column"><span>새로온 쪽지</span></div>--%>
+        <div class="mypage-column mypage-column-b"><span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">쪽지보기</span></div>
       </div>
       <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t">입사지원</div>
@@ -88,7 +88,7 @@
     </div>
     <div class="mypage-container-d">
       <div class="mypage-column mypage-column-t">스크랩한 공고</div>
-      <div class="mypage-column"><a href="/member/user/scrap/list">목록보기</a></div>
+      <div class="mypage-column"><a href="/member/user/scrap/listxx">목록보기</a></div>
       <div class="mypage-column mypage-column-b"></div>
     </div>
     </div>
