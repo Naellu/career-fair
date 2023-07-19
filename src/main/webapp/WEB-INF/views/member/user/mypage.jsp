@@ -57,9 +57,7 @@
 <my:navBar/>
 
     <sec:authentication property="name" var="userId" />
-    <c:url value="/note/list/receive" var="noteListURL">
-        <c:param name="memberId" value="${userId}"/>
-    </c:url>
+
     <div class="mypage-container">
       <h1>${members.name}님의 마이페이지</h1>
     </div>
@@ -71,8 +69,20 @@
     <div class="mypage-container">
       <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t"><span>쪽지함</span></div>
-        <%--<div class="mypage-column"><span>새로온 쪽지</span></div>--%>
-        <div class="mypage-column mypage-column-b"><span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">쪽지보기</span></div>
+        <div class="mypage-column mypage-column-b">
+            <c:url value="/note/list/receive" var="noteListURL">
+                <c:param name="memberId" value="${userId}"/>
+            </c:url>
+            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">받은쪽지함</span>
+            <c:url value="/note/list/send" var="noteListURL">
+                <c:param name="memberId" value="${userId}"/>
+            </c:url> <br>
+            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">보낸쪽지함</span>
+            <c:url value="/note/list/unread" var="noteListURL">
+                <c:param name="memberId" value="${userId}"/>
+            </c:url> <br>
+            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">안읽은쪽지함[${unreadNote}]</span>
+        </div>
       </div>
       <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t">입사지원</div>

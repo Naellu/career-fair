@@ -7,7 +7,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>받은 쪽지함</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -18,54 +19,63 @@
 <my:navBar/>
 <my:font/>
 <sec:authentication property="name" var="userId" />
+
+
 <br>
 <c:if test="${not empty message }">
     <div class="container">
-
         <div class="alert alert-success" role="alert">
                 ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            <button type="button" class="btn-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
         </div>
-
     </div>
+
 </c:if>
 <div class="container">
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link active" href="/note/list/receive?memberId=${userId}" style="color: #222222">받은 쪽지함</a>
         </li>
-        <li class="nav-item" style="background-color:#f8f3ed">
+        <li class="nav-item">
             <a class="nav-link" href="/note/list/send?memberId=${userId}" style="color: #222222">보낸 쪽지함</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"  style="background-color:#f8f3ed">
             <a class="nav-link" href="/note/list/unread?memberId=${userId}" style="color: #222222">안읽은 쪽지함</a>
         </li>
         <li class="nav-item ml-auto"> <!-- 오른쪽 정렬 -->
             <button class="btn btn-primary" onclick="openNoteWindow('/note/write?senderId=${userId}')">쪽지쓰기</button>
         </li>
     </ul>
-    <table class="table">
+    <table class="table" style="">
         <thead>
         <tr>
-            <th>받은 사람</th>
+            <th>보낸 사람</th>
             <th>제목</th>
-            <th>보낸 시간</th>
+            <th>받은 시간</th>
             <th>삭제</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${noteList}" var="note" varStatus="status">
-
             <tr>
-                <td>${note.recipientId}</td>
+                <td>${note.senderId}</td>
                 <td>
                     <c:url value="/note/detail" var="noteDetailURL">
                         <c:param name="noteId" value="${note.noteId}"/>
-                        <c:param name="distinction" value="send"/>
+                        <c:param name="distinction" value="unread"/>
                     </c:url>
-                    <a href="#" onclick="openNoteWindow('${noteDetailURL}')" style="color: #222222">
-                            ${note.title}
-                    </a>
+                    <c:choose>
+                        <c:when test="${note.status}">
+                            <a href="#" onclick="openNoteWindow('${noteDetailURL}')" style="color: #222222">
+                                    ${note.title}
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="#" onclick="openNoteWindow('${noteDetailURL}')" style="color: #222222; font-weight: bold">
+                                    ${note.title}
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
                 </td>
                 <td>${fn:replace(note.created, 'T', ' ')}</td>
                 <td>
@@ -91,7 +101,7 @@
         <c:if test="${pageInfo.begin != 1}">
 
             <%--맨앞으로--%>
-            <c:url value="/note/list/send" var="pageLink">
+            <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="1"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -100,7 +110,7 @@
             </li>
 
             <%-- 앞으로 --%>
-            <c:url value="/note/list/send" var="pageLink">
+            <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="${pageInfo.previous }"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -111,7 +121,7 @@
         </c:if>
 
         <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
-            <c:url value="/note/list/send" var="pageLink">
+            <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="${pageNumber }"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -132,7 +142,7 @@
         <c:if test="${pageInfo.end != pageInfo.last}">
 
             <%-- 뒤로--%>
-            <c:url value="/note/list/send" var="pageLink">
+            <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="${pageInfo.next }"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -141,7 +151,7 @@
             </li>
 
             <%--맨 뒤로--%>
-            <c:url value="/note/list/send" var="pageLink">
+            <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="${pageInfo.last }"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -158,7 +168,7 @@
     <form action="/note/delete" method="post"
           id="deleteNoteForm">
         <input type="text" id="deleteNoteById" name="noteId" value=""/>
-        <input type="hidden" name="distinction" value="send">
+        <input type="hidden" name="distinction" value="unread">
     </form>
 </div>
 
@@ -184,6 +194,8 @@
     </div>
 </div>
 
+
+<!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"
         integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w=="
@@ -192,3 +204,4 @@
 
 </body>
 </html>
+

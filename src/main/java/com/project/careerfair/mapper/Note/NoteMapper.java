@@ -9,6 +9,18 @@ import java.util.List;
 public interface NoteMapper {
 
     @Select("""
+            SELECT note_id, sender_id, title, content, created
+            FROM TB_NOTE
+            WHERE 
+            recipient_id = #{userId} AND
+            status = false            
+            ORDER BY note_id DESC
+            LIMIT #{startIndex} , 10
+            """)
+    @ResultMap("noteList")
+    List<Note> getUnreadListByUserId(String userId, Integer startIndex);
+
+    @Select("""
             SELECT note_id, recipient_id, title, content, created
             FROM TB_NOTE
             WHERE sender_id = #{userId}
@@ -28,6 +40,15 @@ public interface NoteMapper {
     @ResultMap("noteList")
     List<Note> getReceiveListByUserId(String userId, Integer startIndex);
 
+    @Select("""
+            SELECT COUNT(*)
+            FROM TB_NOTE
+            WHERE 
+            status = false 
+            AND
+            recipient_id = #{userId}
+            """)
+    Integer countUnreadListByUserId(String userId);
     @Select("""
             SELECT COUNT(*)
             FROM TB_NOTE
@@ -77,4 +98,7 @@ public interface NoteMapper {
             WHERE note_id = #{noteId}
             """)
     void readNote(Integer noteId);
+
+
+
 }

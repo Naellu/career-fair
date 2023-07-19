@@ -25,6 +25,8 @@ public class NoteServiceImp implements NoteService {
             noteCount = mapper.countReceiveListByUserId(userId);
         } else if (distinction.equals("send")){
             noteCount = mapper.countSendListByUserId(userId);
+        } else if (distinction.equals("unread")){
+            noteCount = mapper.countUnreadListByUserId(userId);
         }
 
 
@@ -52,6 +54,8 @@ public class NoteServiceImp implements NoteService {
             noteList = mapper.getReceiveListByUserId(userId, startIndex);
         } else if(distinction.equals("send")){
             noteList = mapper.getSendListByUserId(userId, startIndex);
+        } else if(distinction.equals("unread")){
+            noteList = mapper.getUnreadListByUserId(userId, startIndex);
         }
 
 
