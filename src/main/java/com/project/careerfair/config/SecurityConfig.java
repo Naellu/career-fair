@@ -1,8 +1,12 @@
 package com.project.careerfair.config;
 
+import jakarta.websocket.Session;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,12 +31,30 @@ public class SecurityConfig {
 
         http.formLogin()
                 .loginPage("/login/login")
-                .failureUrl("/login/loginfailure");
+                .failureHandler((request, response, exception) -> {
+
+                    String errorMessage = null;
+                    int sessionTimeoutInMinutes = 1;
+                    if (exception instanceof DisabledException) {
+                        // 잠긴 계정의 경우 실패 처리 로직 구현
+                        // 시간설정 오래 있을 필요조차 없음.
+                        response.sendRedirect("/login/locked");
+                    } else if (exception instanceof BadCredentialsException) {
+                        errorMessage = "아이디 또는 비밀번호가 잘못되었습니다.";
+                        request.getSession().setMaxInactiveInterval(sessionTimeoutInMinutes);
+                        request.getSession().setAttribute("message", errorMessage);
+                        response.sendRedirect("/login/login");
+                    } else {
+                        errorMessage = "로그인에 실패하였습니다. 다시 시도해주세요.";
+                        request.getSession().setMaxInactiveInterval(sessionTimeoutInMinutes);
+                        request.getSession().setAttribute("message", errorMessage);
+                        response.sendRedirect("/login/login");
+                    }
+                });
 
         http.logout()
                 .logoutUrl("/login/logout")
                 .logoutSuccessUrl("/");
-
 
 
 //        http.csrf().disable().cors().disable()

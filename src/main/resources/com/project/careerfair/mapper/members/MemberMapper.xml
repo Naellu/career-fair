@@ -35,4 +35,8 @@
             <result column="member_type"></result>
         </collection>
     </resultMap>
+
+    <update id="active">
+        UPDATE TB_MEMBERS SET is_active = 1 WHERE member_id = #{memberId}
+    </update>
 </mapper>

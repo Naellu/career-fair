@@ -16,21 +16,19 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("login")
+@RequestMapping("/login")
 public class LoginController {
 
     private final UserPageService userService;
 
-    @GetMapping("login")
+    @GetMapping("/login")
     @PreAuthorize("isAnonymous()")
     public void loginForm() {
 
     }
 
-    @GetMapping("loginfailure")
-//    @PreAuthorize("(isAuthenticated() and (authentication.name eq #id))") 권한을 어떻게 줘야할지 모르겠음
-    public void loginFailForm(){
-
+    @GetMapping("/locked")
+    public String loginLockedForm() {
+        return "login/locked";
     }
-
 }

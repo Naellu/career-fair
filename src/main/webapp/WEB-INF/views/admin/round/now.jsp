@@ -47,7 +47,6 @@
                 <input id="organizer" type="text" class="form-control" value="${exhibitionInfo.organizer}"/>
             </div>
 
-
             <div class="mb-3">
                 <label for="start-date" class="form-label">개최기간</label>
                 <input id="start-date" type="text" class="form-control"
@@ -75,12 +74,12 @@
                 <input id="etc" type="text" class="form-control" value="${exhibitionInfo.etc}"/>
             </div>
 
-            <c:if test="${not empty exhibitionInfo.fileName}">
-                <div class="mb-3">
-                    <label for="logo" class="form-label">로고</label>
-                    <img id="logo" src="${bucketUrl}/exhibitionInfo/${exhibitionInfo.round}/logo.png" alt="사진없음">
-                </div>
-            </c:if>
+            <div class="mb-3">
+                <label class="form-label">파일목록</label>
+                <c:forEach items="${exhibitionInfo.fileName}" var="fileName">
+                    <a class="form-control" href="${bucketUrl}/exhibitionInfo/1/${fileName}" download="${fileName}">${fileName}</a>
+                </c:forEach>
+            </div>
 
             <div>
                 <a href="/admin/round/reg" class="btn btn-primary">새 회차 등록</a>
@@ -97,5 +96,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/admin/round/now.js"></script>
 </body>
 </html>

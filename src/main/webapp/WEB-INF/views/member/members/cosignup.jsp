@@ -123,7 +123,7 @@
                 <div>
                     <div class="sign-column">
                         <span style="margin-right: 50px;">아이디 *</span>
-                        <input type="text" class="sign-input" id="input-id" name="id" value="${members.id}" maxlength="20" placeholder="영문 또는 영문 숫자 조합으로 8~20자">
+                        <input type="text" class="sign-input" id="input-id" name="id" value="${members.id}" maxlength="20" placeholder="영문 또는 영문 숫자 조합으로 6~20자">
                         <input class="check-button" type="button" id="id-Confirm" value="중복확인">
                         <div style="margin-left: 120px;" id="idcheck-blank"></div>
                     </div>

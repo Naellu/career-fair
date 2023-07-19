@@ -16,6 +16,7 @@
         <result column="etc" property="etc"/>
         <result column="bus" property="bus"/>
         <result column="subway" property="subway"/>
+        <result column="title" property="title"/>
         <collection property="fileName" ofType="string">
             <result column="file_name"/>
         </collection>

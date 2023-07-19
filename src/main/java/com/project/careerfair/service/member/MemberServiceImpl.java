@@ -2,6 +2,8 @@ package com.project.careerfair.service.member;
 
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.mapper.members.MemberMapper;
+import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,7 +14,8 @@ import java.util.Map;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class MemberServiceImpl implements MemberService{
+@Slf4j
+public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -24,8 +27,8 @@ public class MemberServiceImpl implements MemberService{
     public boolean signup(Members member) {
         //비밀번호 암호화
         String encryption = member.getPassword();
-        if(encryption.length() > 50) {
-            encryption = encryption.substring(0,50);
+        if (encryption.length() > 50) {
+            encryption = encryption.substring(0, 50);
         }
         String encryptedPassword = passwordEncoder.encode(encryption);
         member.setPassword(encryptedPassword);
@@ -39,18 +42,18 @@ public class MemberServiceImpl implements MemberService{
     public Map<String, Object> checkId(String id) {
         Members member = mapper.selectByMemberId(id);
         boolean available = (member == null);
-        return Map.of("available",member == null);
+        return Map.of("available", member == null);
     }
 
     @Override
     public Map<String, Object> checkMailId(String email, Authentication authentication) {
         Members member = mapper.selectByMailId(email);
-        if(authentication != null) {
+        if (authentication != null) {
             Members exMember = mapper.selectByMemberId(authentication.getName());
 
             return Map.of("available", member == null || exMember.getEmail().equals(email));
-        }else {
-            return Map.of("available" , member == null);
+        } else {
+            return Map.of("available", member == null);
         }
     }
 
@@ -58,7 +61,7 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Map<String, Object> checkPhoneNum(String phoneNumber, Authentication authentication) {
         Members member = mapper.selectByPhoneNumber(phoneNumber);
-        if(authentication != null) {
+        if (authentication != null) {
             Members exMember = mapper.selectByMemberId(authentication.getName());
 
             return Map.of("available", member == null || exMember.getPhoneNumber().equals(phoneNumber));
@@ -66,7 +69,7 @@ public class MemberServiceImpl implements MemberService{
 
             return Map.of("available", member == null);
         }
-        }
+    }
 
     @Override
     public String findId(String email, String name) {
@@ -75,13 +78,44 @@ public class MemberServiceImpl implements MemberService{
         try {
             result = mapper.findId(email, name);
 
-            } catch (Exception e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
-            }
-
-            return result;
         }
+
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> checkEmail(String memberId) {
+
+        Members checkMember = mapper.selectByMemberId(memberId);
+
+        if (checkMember == null) {
+            return Map.of("status", "notFound");
+        } else {
+            String email = checkMember.getEmail();
+            return Map.of("status", "found", "email", email);
+        }
+    }
+
+    // 비활성화 아이디 해제
+    @Override
+    public Map<String, Object> active(Map<String, Object> map, HttpSession session) {
+        String inputAutoCode_ = (String) map.get("inputAuthCode");
+        Integer inputAutoCode = Integer.parseInt(inputAutoCode_);
+
+        Object memberId = map.get("memberId");
+        Integer authCode = (Integer) session.getAttribute("authenticatedNum");
+
+        if (authCode.equals(inputAutoCode)) {
+            mapper.active(memberId);
+            return Map.of("message", "success");
+        } else {
+            return Map.of("message", "fail");
+        }
+    }
+
 
 }
 
