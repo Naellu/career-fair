@@ -25,8 +25,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
             integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <link rel="stylesheet" href="/css/statistic/stat.css">
     <my:font></my:font>
+
     <title>통계</title>
 
 </head>
@@ -34,8 +35,40 @@
 <my:navBar/>
 
 <div>
-    <canvas id="postingChart"></canvas>
+    <div id="chart-container">
+        <div class="chart-wrap">
+            <div class="">
+                <h3>마감기한 공고 개수</h3>
+            </div>
+            <canvas id="postingChart"></canvas>
+        </div>
+
+        <div class="chart-wrap">
+            <div class="">
+                <h3>산업 종류 당 나이별 지원자 수</h3>
+                <select id="industrySelect">
+                    <!-- 여기에 option들이 동적으로 채워질 것입니다. -->
+                </select>
+            </div>
+            <canvas id="industryAgeGroupChart"></canvas>
+        </div>
+
+        <div class="chart-wrap">
+            <div class="">
+                <h3>산업 종류 별 채용공고 수</h3>
+            </div>
+            <canvas id="industryAllPostingChart"></canvas>
+        </div>
+    </div>
+
+    <div class="memberCnt-chart-wrap">
+        <div class="industry-member-graph">
+            <h3>산업 종류 별 지원자 수</h3>
+            <canvas id="industryAllMemberChart"></canvas>
+        </div>
+    </div>
 </div>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.js" integrity="sha512-CMF3tQtjOoOJoOKlsS7/2loJlkyctwzSoDK/S40iAB+MqWSaf50uObGQSk5Ny/gfRhRCjNLvoxuCvdnERU4WGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -48,4 +48,61 @@
         ORDER BY end_date;
     </select>
 
+    <resultMap id="countOfIndustryMap" type="com.project.careerfair.domain.dto.statistic.IndustryCount">
+        <result column="industryName" property="industryName" />
+        <result column="count" property="count" />
+    </resultMap>
+
+    <!-- 업종 별 게시된 채용공고 수 -->
+    <select id="getAllPostingByIndustry" resultMap="countOfIndustryMap">
+        SELECT TI.industry_name as industryName, COUNT(TP.industry_id) as count
+        FROM TB_INDUSTRIES TI
+        LEFT JOIN TB_POSTING TP ON TP.industry_id = TI.industry_id
+        LEFT JOIN TB_EXHIBITION_INFO TEI on TP.round = TEI.round
+        GROUP BY TI.industry_name;
+    </select>
+
+    <!-- 업종 별 지원자 수 -->
+    <select id="getAllApplicantsByIndustry" resultMap="countOfIndustryMap">
+        SELECT TI.industry_name as industryName, COUNT(TJA.member_id) as count
+        FROM TB_INDUSTRIES TI
+        LEFT JOIN TB_POSTING TP ON TP.industry_id = TI.industry_id
+        LEFT JOIN TB_JOB_APPLICATION TJA ON TJA.posting_id = TP.posting_id
+        GROUP BY TI.industry_name;
+    </select>
+
+    <resultMap id="IndustryAgeGroupResultMap" type="com.project.careerfair.domain.dto.statistic.IndustryAgeGroupDto">
+        <result property="industryName" column="industry_name"/>
+        <result property="ageGroup" column="age_group"/>
+        <result property="applicantCount" column="applicant_count"/>
+    </resultMap>
+
+    <!-- 업종 별 공고에 지원한 지원자의 나이대 -->
+    <select id="getIndustryAgeGroupData">
+        SELECT
+            TI.industry_name AS industryName,
+            ages.age_group AS ageGroup,
+            COALESCE(COUNT(TJA.age), 0) AS applicantCount
+        FROM
+            (SELECT * FROM TB_INDUSTRIES) TI
+                CROSS JOIN
+            (SELECT '20대' AS age_group UNION SELECT '30대' UNION SELECT '40대' UNION SELECT '50대' UNION SELECT '60대 이상') ages
+                LEFT JOIN
+            TB_POSTING TP ON TI.industry_id = TP.industry_id
+                LEFT JOIN
+            TB_JOB_APPLICATION TJA ON TP.posting_id = TJA.posting_id
+            AND (
+                    (ages.age_group = '20대' AND TJA.age BETWEEN 20 AND 29) OR
+                    (ages.age_group = '30대' AND TJA.age BETWEEN 30 AND 39) OR
+                    (ages.age_group = '40대' AND TJA.age BETWEEN 40 AND 49) OR
+                    (ages.age_group = '50대' AND TJA.age BETWEEN 50 AND 59) OR
+                    (ages.age_group = '60대 이상' AND TJA.age >= 60)
+                )
+        GROUP BY
+        TI.industry_name, ages.age_group
+        ORDER BY
+        TI.industry_name, ages.age_group;
+    </select>
+
+
 </mapper>

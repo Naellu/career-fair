@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/stat")
 public class StatisticController {
 
-    @GetMapping
+    @GetMapping("")
     public String showGraph() {
-        return "admin/statistic/testStat";
+        return "admin/statistic/stat";
     }
 
 }
