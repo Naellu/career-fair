@@ -52,7 +52,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 text-right">
-                <button type="submit" id="sendBtn" class="btn btn-outline-primary">전송</button>
+                <button type="submit" id="sendBtn" class="btn btn-outline-primary" disabled>전송</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="window.close()">닫기</button>
             </div>
         </div>

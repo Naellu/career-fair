@@ -43,6 +43,7 @@
             <li class="nav-item ml-auto"> <!-- 오른쪽 정렬 -->
                 <button class="btn btn-primary" onclick="openNoteWindow('/note/write?senderId=${userId}')">쪽지쓰기</button>
             </li>
+
         </ul>
     <table class="table" style="">
         <thead>
