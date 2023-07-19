@@ -7,9 +7,11 @@ import com.project.careerfair.service.apply.PostingApplyService;
 import com.project.careerfair.service.industry.IndustryService;
 import com.project.careerfair.service.posting.PostingService;
 import com.project.careerfair.service.resume.ResumeService;
+import com.project.careerfair.service.scrap.ScrapService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +34,8 @@ public class MypageController {
     private final IndustryService industryService;
     private final ResumeService resumeService;
     private final PostingApplyService postingApplyService;
-    private final PostingService postingService;
+//  private final PostingService postingService;
+    private final ScrapService scrapService;
 
     @GetMapping("company/mypage")
     public String myPage() {
@@ -207,6 +211,45 @@ public class MypageController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @GetMapping("/user/scrap/list")
+    public void getScrapList(
+            Authentication authentication,
+            Model model
+    ){
+        String memberId = authentication.getName();
+
+        Map<String, Object> result = new HashMap<>();
+        result = scrapService.getScrapList(memberId);
+
+        model.addAllAttributes(result);
+
+    }
+
+    @PostMapping("/user/scrap/cancel")
+    public void cancelScrap(
+            Integer scrapId,
+            HttpServletResponse response
+
+    ){
+        boolean ok = scrapService.cancelScrap(scrapId);
+
+
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out;
+        try {
+            out = response.getWriter();
+            if(ok) {
+                out.println("<script>alert('스크랩이 취소되었습니다');");
+            } else{
+                out.println("<script>alert('다시 시도해주세요');");
+            }
+            out.println("window.location.href='/member/user/scrap/list';</script>");
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
