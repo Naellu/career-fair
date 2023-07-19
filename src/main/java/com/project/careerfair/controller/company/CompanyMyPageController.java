@@ -38,6 +38,7 @@ public class CompanyMyPageController {
         model.addAttribute("members", members);
     }
 
+    //회원 정보 수정
     @GetMapping("modify")
     @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
     public void coModifyForm(String id , Model model) {
@@ -59,6 +60,7 @@ public class CompanyMyPageController {
 
     }
 
+    //탈퇴
     @PostMapping("remove")
     public String coIdRemove(Members member, RedirectAttributes rttr, HttpServletRequest request) throws ServletException {
 

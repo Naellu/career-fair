@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.careerfair.mapper.company.RecruitManageMapper">
+
+    <resultMap type="com.project.careerfair.domain.Members" id="recruitMap">
+        <id property="id" column="member_id"></id>
+        <result property="password" column="password"></result>
+        <result property="name" column="name"></result>
+        <result property="gender" column="gender"></result>
+        <result property="isActive" column="is_active"></result>
+        <result property="phoneNumber" column="phone_number"></result>
+        <result property="email" column="email"></result>
+        <result property="address" column="address"></result>
+        <result property="zipCode" column="zipCode"></result>
+        <collection property="authority" ofType="string">
+            <result column="member_type"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap type="com.project.careerfair.domain.Posting" id="postingMap">
+        <id property="id" column="posting_id"></id>
+        <result property="companyId" column="company_id"></result>
+        <result property="member_id" column="memberId"></result>
+        <result property="title" column="title"></result>
+        <result property="hiringCount" column="hiring_count"></result>
+        <result property="spareCount" column="spareCount"></result>
+        <result property="startDate" column="is_active"></result>
+        <result property="endDate" column="phone_number"></result>
+        <result property="status" column="email"></result>
+        <result property="address" column="address"></result>
+        <result property="salary" column="zipCode"></result>
+        <result property="preference" column="zipCode"></result>
+        <result property="benefit" column="zipCode"></result>
+        <result property="requirement" column="zipCode"></result>
+        <result property="etc" column="zipCode"></result>
+        <result property="employmentType" column="zipCode"></result>
+        <result property="experienceLevel" column="zipCode"></result>
+        <result property="educationLevel" column="zipCode"></result>
+        <result property="applicationCount" column="zipCode"></result>
+    </resultMap>
+
+</mapper>

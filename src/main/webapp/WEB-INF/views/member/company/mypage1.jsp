@@ -39,7 +39,7 @@
             align-items: center;
             flex-direction: column;
             justify-content: center;
-            margin: 0px 25px;
+            margin: 0px 40px;
             background-color: #fafafa;
             width: 280px;
             height: 320px;
@@ -79,22 +79,7 @@
     <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t"><button onclick="location.href='/member/company/posting/list?memberId=${userId}'">채용공고 관리</button></div>
         <div class="mypage-column">  현재 게시한 공고</div>
-        <div class="mypage-column mypage-column-b">건</div>
-
-        <div class="mypage-column mypage-column-t">입사지원</div>
-        <div class="mypage-column">  - 아직</div>
-        <div class="mypage-column mypage-column-b"></div>
-    </div>
-    <div class="mypage-container-d">
-        <div class="mypage-column mypage-column-t">이력서</div>
-        <div class="mypage-column">  - 아직</div>
-        <div class="mypage-column mypage-column-b"></div>
-    </div>
-    <div class="mypage-container-d">
-        <div class="mypage-column mypage-column-t">스크랩한 공고 - 아직</div>
-        <div class="mypage-column">  - 아직</div>
-        <div class="mypage-column mypage-column-b"></div>
-
+        <div class="mypage-column mypage-column-b"><span onclick="location.href='/member/company/manage/recruitmanage?id=<sec:authentication property="name" />'">건</span></div>
     </div>
 </div>
 
