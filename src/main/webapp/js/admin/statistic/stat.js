@@ -1,57 +1,42 @@
-let statistics = JSON.parse($('#statistics').val());
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('/api/vi/stat/data')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // data 변수에는 /stat/data 엔드포인트에서 반환한 데이터가 들어있습니다.
+            // 이 데이터를 사용하여 차트를 그립니다.
+            let dates = data.map(function(item) {
+                return item.endDate;
+            });
 
-// $.get('/stat', function(statistics) {
+            let counts = data.map(function(item) {
+                return item.count;
+            });
 
-console.log(statistics);
-
-let dates = statistics.map((item) => {
-    return item.endDate;
+            // jQuery와 Chart.js를 이용한 차트 그리기
+            let ctx = $('#postingChart');
+            let chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: '공고 수',
+                        data: counts,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 });
-
-let counts = statistics.map((item) => {
-    return item.count;
-});
-
-let ctx = document.getElementById('postingChart').getContext('2d');
-let chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: dates,
-        datasets: [{
-            label: '공고 수',
-            data: counts,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-
-
-// const ctx = document.getElementById('myChart');
-//
-// new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: '# of Votes',
-//             data: [12, 14, 3, 5, 2, 3],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
