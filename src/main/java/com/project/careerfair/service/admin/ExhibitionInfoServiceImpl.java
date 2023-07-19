@@ -55,6 +55,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionInfoService {
             fileToS3(exhibitionInfo, files);
         }
 
+        // 채용담당자 권한을 company로 전부 변경하기
+
         return cnt == 1;
     }
 

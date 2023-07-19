@@ -23,14 +23,18 @@ public class RecruiterServiceImpl implements RecruiterService {
 
     private final IndustryService industryService;
 
+    private final ExhibitionInfoService exhibitionInfoService;
+
     @Override
     public Map<String, Object> getList(String search, String type, Integer page, String status) {
+        Integer round = exhibitionInfoService.getCurrentRound();
+
         Integer pageSize = 10; // 10개씩
         Integer startNum = (page - 1) * pageSize; // 0 10 20
 
         //페이지네이션 정보
         //총 글 개수
-        Integer count = companyMapper.countAll(type, search, status);
+        Integer count = companyMapper.countAll(type, search, status,round);
 
         // 마지막 페이지 번호
         // 총 글개수 -1 / pageSize + 1
@@ -59,7 +63,7 @@ public class RecruiterServiceImpl implements RecruiterService {
         pageInfo.put("prevPageNum", prevPageNum);
         pageInfo.put("nextPageNum", nextPageNum);
 
-        List<Company> companyList = companyMapper.getList(startNum, pageSize, search, type, status);
+        List<Company> companyList = companyMapper.getList(startNum, pageSize, search, type, status, round);
 
         return Map.of("pageInfo", pageInfo, "companyList", companyList);
     }

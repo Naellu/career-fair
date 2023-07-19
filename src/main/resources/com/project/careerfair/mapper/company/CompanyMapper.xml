@@ -44,7 +44,7 @@
 
     <select id="getList" resultMap="companyMap">
         <bind name="pattern" value="'%' + search + '%'"/>
-        SELECT * FROM TB_COMPANIES
+        SELECT * FROM (SELECT * FROM TB_COMPANIES WHERE round = #{round}) c
         <where>
             <if test="type eq 'all'">
                 (member_id LIKE #{pattern}
@@ -74,7 +74,7 @@
     <select id="countAll" resultType="Integer">
         <bind name="pattern" value="'%' + search + '%'"/>
         SELECT
-        count(company_id) FROM TB_COMPANIES
+        count(company_id) FROM (SELECT * FROM TB_COMPANIES WHERE round = #{round}) c
         <where>
             <if test="type eq 'all'">
                 (member_id LIKE #{pattern}
@@ -204,7 +204,7 @@
     <!-- 회차별 승인 기업 목록 -->
     <select id="getApprovedList" resultMap="companyMap">
         <bind name="pattern" value="'%' + search + '%'"/>
-        SELECT * FROM (SELECT * FROM TB_COMPANIES  WHERE status = 'approved' and round = #{roundValue}) c
+        SELECT * FROM (SELECT * FROM TB_COMPANIES WHERE status = 'approved' and round = #{roundValue}) c
         <where>
             <if test="type eq 'all'">
                 (company_name LIKE #{pattern}
@@ -227,7 +227,7 @@
     <!-- 승인 기업 총 개수 -->
     <select id="countApprovedList">
         <bind name="pattern" value="'%' + search + '%'"/>
-        SELECT COUNT(*) FROM (SELECT * FROM TB_COMPANIES  WHERE status = 'approved' and round = #{roundValue}) c
+        SELECT COUNT(*) FROM (SELECT * FROM TB_COMPANIES WHERE status = 'approved' and round = #{roundValue}) c
         <where>
             <if test="type eq 'all'">
                 (company_name LIKE #{pattern}

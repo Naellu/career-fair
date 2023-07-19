@@ -15,10 +15,10 @@ public interface CompanyMapper {
     void insertFileName(Integer companyId, String originalFilename);
 
     // 참여기업 목록
-    List<Company> getList(Integer startNum, Integer pageSize, String search, String type, String status);
+    List<Company> getList(Integer startNum, Integer pageSize, String search, String type, String status, Integer round);
 
     // 참여 기업 목록 개수
-    Integer countAll(String type, String search, String status);
+    Integer countAll(String type, String search, String status, Integer round);
 
     // 참여기업 상세
     Company getDetail(Integer companyId);
