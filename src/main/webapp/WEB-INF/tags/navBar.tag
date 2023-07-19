@@ -27,7 +27,7 @@
                 <li><a href="/user/posting/list">채용공고</a></li>
                 <li><a href="/qna/QnaList">Q&A</a></li>
 
-                <li class="dropdown"><a href="#"><span>고객센터</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <li class="dropdown"><a href="/customer/notice/list"><span>고객센터</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         <%--                        <li><a href="#">Drop Down 1</a></li>--%>
                         <%--                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>--%>

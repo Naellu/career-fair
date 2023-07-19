@@ -73,10 +73,6 @@ public class RoundController {
             throw new RuntimeException(e);
         }
 
-        // 채용담당자 권한을 company로 전부 변경하기
-
-        // 공고 전체 마감
-
         // 필요한 작업을 수행한 후 다른 페이지로 리다이렉트
         if (ok) {
             rttr.addFlashAttribute("message", "등록이 완료되었습니다.");

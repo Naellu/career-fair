@@ -119,6 +119,7 @@
                 </foreach>
             </if>
         </where>
+        ORDER BY posting_id DESC
         LIMIT #{startNum}, #{pageSize}
     </select>
 
