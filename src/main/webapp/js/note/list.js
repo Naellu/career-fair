@@ -1,6 +1,6 @@
 function openNoteWindow(Url) {
 
-    window.open(Url, '_blank', 'width=600,height=400');
+    window.open(Url, '_blank', 'width=600,height=450');
 }
 
 function writeNote(writeNoteURL){
