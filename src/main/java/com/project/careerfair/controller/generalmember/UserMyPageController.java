@@ -28,6 +28,9 @@ public class UserMyPageController {
 
         Members member = userService.get(id);
         model.addAttribute("members", member);
+
+        Integer unreadNoteCount = userService.getUnreadNoteCount(id);
+        model.addAttribute("unreadNote", unreadNoteCount);
     }
 
     @GetMapping("myInfo")

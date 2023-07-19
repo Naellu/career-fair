@@ -57,6 +57,22 @@ public class NoteController {
         model.addAllAttributes(result);
     }
 
+    @GetMapping("/list/unread")
+    public void getUnreadList(
+            String memberId,
+            Model model,
+            @RequestParam(value = "page", defaultValue = "1") Integer page
+
+    ) {
+
+        String distinction = "unread";
+
+        Map<String, Object> result = service.getListByUserId(memberId, page, distinction);
+
+        model.addAllAttributes(result);
+    }
+
+
     @GetMapping("detail")
     public void getNoteDetail(
             Model model,

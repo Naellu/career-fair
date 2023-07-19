@@ -10,4 +10,5 @@ public interface UserPageService {
 
     public boolean removeAccout(Members member);
 
+    Integer getUnreadNoteCount(String memberId);
 }

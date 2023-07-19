@@ -1,6 +1,7 @@
 package com.project.careerfair.service.generalmember;
 
 import com.project.careerfair.domain.Members;
+import com.project.careerfair.mapper.Note.NoteMapper;
 import com.project.careerfair.mapper.generalmember.UserPageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,6 +15,9 @@ public class UserPageServiceImpl implements UserPageService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private NoteMapper noteMapper;
 
     @Override
     public Members get(String id) {
@@ -57,6 +61,12 @@ public class UserPageServiceImpl implements UserPageService {
         cnt = userMapper.deleteById(member.getId(), 0);
         }
         return cnt == 1;
+    }
+
+    @Override
+    public Integer getUnreadNoteCount(String memberId) {
+
+        return noteMapper.countUnreadListByUserId(memberId);
     }
 
 }

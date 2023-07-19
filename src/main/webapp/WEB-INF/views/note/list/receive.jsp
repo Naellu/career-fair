@@ -37,6 +37,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/note/list/send?memberId=${userId}" style="color: #222222">보낸 쪽지함</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/note/list/unread?memberId=${userId}" style="color: #222222">안읽은 쪽지함</a>
+            </li>
             <li class="nav-item ml-auto"> <!-- 오른쪽 정렬 -->
                 <button class="btn btn-primary" onclick="openNoteWindow('/note/write?senderId=${userId}')">쪽지쓰기</button>
             </li>
