@@ -57,6 +57,7 @@
         <tr>
             <th style="width: 400px;">기간</th>
             <th style="width: 800px">공고명</th>
+            <th style="width: 200px">지원자 상세보기</th>
             <th style="width: 100px;">회차정보</th>
             <th style="width: 200px;">회사명</th>
             <th style="width: 100px;">고용형태</th>
@@ -74,6 +75,7 @@
                 <td><a href="/member/company/posting/detail?postingId=${posting.postingId}">
                         ${posting.title}
                 </a></td>
+                <td><button onclick="location.href='/jobApplication/list?postingId=${posting.postingId}'">보기</button></td>
                 <td>${posting.round}회차</td>
                 <td>${companyList[status.index].companyName}</td>
                 <td>${posting.employmentType}</td>
