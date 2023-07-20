@@ -24,7 +24,7 @@ import java.util.Map;
 @RestController("userRecruiterControllerAPI ")
 @Slf4j
 @RequestMapping("/api/user/recruiter/")
-@PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin')")
+@PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin') or hasAuthority('company')")
 @RequiredArgsConstructor
 public class RecruiterControllerAPI {
 
