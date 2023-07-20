@@ -58,7 +58,7 @@ public class ParticipatingCompanyServiceImpl implements ParticipatingCompanyServ
 
         List<Posting> nowPostingList = postingMapper.getNowPostingList(companyId, round);
 
-        Integer pageSize = 5; // 5개씩
+        Integer pageSize = 10; // 5개씩
         Integer startNum = (page - 1) * pageSize; // 0 6 11
 
         //페이지네이션 정보

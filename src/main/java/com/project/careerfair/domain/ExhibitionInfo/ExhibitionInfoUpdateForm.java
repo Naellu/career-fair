@@ -1,7 +1,6 @@
-package com.project.careerfair.domain;
+package com.project.careerfair.domain.ExhibitionInfo;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class ExhibitionInfoUpdate {
+public class ExhibitionInfoUpdateForm {
 
     private Integer round;
 
@@ -33,8 +32,13 @@ public class ExhibitionInfoUpdate {
     private String endDate;
 
     private String etc;
-    
+
     private String bus;
 
     private String subway;
+
+    @NotBlank(message = "공백은 허용되지 않습니다.")
+    private String title;
+
+    private List<String> fileName;
 }

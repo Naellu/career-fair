@@ -148,6 +148,32 @@ function detailView(pageValue) {
 
 function createPagination(pageInfo, pageUl) {
 
+    // 첫 페이지로
+    if (pageInfo.currentPageNum !== 1) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+
+        let icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-angles-left');
+
+        pageLinkItem.appendChild(icon);
+
+        pageLinkItem.onclick = (event) => {
+            pageValue = 1;
+            detailView(pageValue);
+            event.preventDefault();
+        };
+        pageItem.appendChild(pageLinkItem);
+        pageUl.appendChild(pageItem);
+    }
+
+
     // 이전 페이지로
     if (pageInfo.currentPageNum !== 1) {
         let pageItem = document.createElement('li');
@@ -216,6 +242,31 @@ function createPagination(pageInfo, pageUl) {
 
         pageLinkItem.onclick = (event) => {
             pageValue = pageInfo.nextPageNum;
+            detailView(pageValue);
+            event.preventDefault();
+        };
+        pageItem.appendChild(pageLinkItem);
+        pageUl.appendChild(pageItem);
+    }
+
+    // 마지막 페이지로
+    if (pageInfo.currentPageNum !== pageInfo.lastPage) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+
+        let icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-angles-right');
+
+        pageLinkItem.appendChild(icon);
+
+        pageLinkItem.onclick = (event) => {
+            pageValue = pageInfo.lastPage;
             detailView(pageValue);
             event.preventDefault();
         };
