@@ -27,14 +27,21 @@
 
 <my:navBar/>
 
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="text-center">
-            <h3>글자수 계산기</h3>
-            <textarea id="textInputArea" rows="10" cols="30"></textarea>
-            <p>총 글자수 : <span id="totalCount">0</span> / 500</p>
-            <p>공백 제외 글자수 : <span id="nonBlankCount">0</span></p>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-10">
+            <div class="container-md mx-auto">
+
+                <my:toolsHeader />
+
+                <h3>글자수 계산기</h3>
+                <textarea id="textInputArea" rows="15" cols="80"></textarea>
+                <p>총 글자수 : <span id="totalCount">0</span> / 500</p>
+                <p>공백 제외 글자수 : <span id="nonBlankCount">0</span></p>
+            </div>
         </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

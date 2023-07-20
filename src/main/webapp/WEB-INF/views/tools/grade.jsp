@@ -26,10 +26,12 @@
 <body>
 <my:navBar/>
 
-<article class="artBx first dev-calculator">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-10">
             <div class="container-md mx-auto">
+
+                <my:toolsHeader />
+
                 <div class="row">
                     <h2 class="hd">학점 계산기</h2>
                     <div class="col-md-7">
@@ -115,7 +117,6 @@
             </div>
         </div>
     </div>
-</article>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
