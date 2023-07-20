@@ -41,7 +41,7 @@
     <c:forEach items="${postingList}" var="list" varStatus="status">
         <tr>
             <td>${list.memberId}</td>
-            <td><button onclick="location.href='/jobApplication/get?memberId=${list.memberId}'">상세 보기</button></td>
+            <td><button onclick="location.href='/jobApplication/get?memberId=${list.memberId}&applicationId=${list.applicationId}&postingId=${list.postingId}'">상세 보기</button></td>
             <td>
                 <form id="updateForm${status.index}" action="/jobApplication/update" method="post">
                     <input type="hidden" name="memberId" value="${list.memberId}">

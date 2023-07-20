@@ -41,27 +41,15 @@ public class JobApplicationServiceImpl implements JobApplicationService{
     }
 
     @Override
-    public List<Files> getFileDetails(Integer applicationId) {
+    public List<String> getFileDetails(Integer applicationId) {
 
-        List<Files> list = mapper.getFileDetails(applicationId);
-        return list;
+        List<String> files = mapper.getFileDetails(applicationId);
+        return files;
     }
     @Override
     public void updateStatus(String memberId, Integer applicationId, String applicationStatus, Integer postingId) {
 
         mapper.updateStatus(memberId, applicationId, applicationStatus, postingId);
-    }
-
-    @Override
-    public JobApplication redirectList(Integer postingId) {
-        JobApplication ja = mapper.redirectList(postingId);
-        return ja;
-    }
-
-    @Override
-    public ResponseEntity<byte[]> getObject(String fileName) throws IOException {
-//        S3Object o = amazonS3.getObject(new GetObjectRequest(bucket, fileName));
-        return null;
     }
 
 }

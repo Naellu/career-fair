@@ -14,11 +14,8 @@ public interface JobApplicationService {
 
     List<Members> getDetails(String memberId);
 
-    List<Files> getFileDetails(Integer applicationId);
-
-    ResponseEntity<byte[]> getObject(String fileName) throws IOException;
+    List<String> getFileDetails(Integer applicationId);
 
     void updateStatus(String memberId, Integer applicationId, String applicationStatus, Integer postingId);
 
-    JobApplication redirectList(Integer postingId);
 }

@@ -23,39 +23,106 @@
     <my:font></my:font>
     <title>Title</title>
 
+    <style>
+        .container-lg {
+            margin-top: 80px;
+        }
+    </style>
+
+    <style>
+        /* 추가된 CSS 스타일 */
+        .member-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
 </head>
 <body>
 <my:navBar/>
 
-<table id="table" class="table table-bordered custom-div">
-    <thead class="table-dark">
-    <tr>
-        <th style="width: 400px;">지원자 아이디</th>
-        <th style="width: 400px;">지원자 이름</th>
-        <th style="width: 400px;">지원자 성별</th>
-        <th style="width: 400px;">지원자 전화번호</th>
-        <th style="width: 400px;">지원자 주소</th>
-        <th style="width: 400px;">지원자 첨부 파일 확인</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${memberDetail}" var="member" varStatus="memberStatus">
-        <tr>
-            <td>${member.id}</td>
-            <td>${member.name}</td>
-            <td>${member.gender}</td>
-            <td>${member.phoneNumber}</td>
-            <td>${member.address}</td>
-            <td>
-                <c:forEach items="${fileList}" var="file">
-                        <a href="/jobApplication/fileDownload/${file.fileName}" target="_blank">다운로드</a>
-                </c:forEach>
-            </td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
 
+<div class="container-lg">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <c:forEach items="${memberDetail}" var="member" varStatus="memberStatus">
+                <div class="card mb-4">
+                    <div class="card-body d-flex justify-content-between">
+                        <h2 class="card-title">지원자 정보</h2>
+                        <button onclick="location.href='/jobApplication/list?postingId=${postingId}'" class="btn btn-primary">목록 가기</button>
+                    </div>
+                    <div class="card-body">
+                        <hr>
+                        <p class="card-text"><strong>지원자 아이디:</strong> ${member.id}</p>
+                        <hr>
+                        <p class="card-text"><strong>지원자 이름:</strong> ${member.name}</p>
+                        <hr>
+                        <p class="card-text"><strong>지원자 성별:</strong> ${member.gender}</p>
+                        <hr>
+                        <p class="card-text"><strong>지원자 전화번호:</strong> ${member.phoneNumber}</p>
+                        <hr>
+                        <p class="card-text"><strong>지원자 주소:</strong> ${member.address}</p>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">지원자 첨부 파일:</h5>
+                        <c:choose>
+                            <c:when test="${not empty fileApplicationId}">
+                                <c:forEach items="${fileName}" var="file">
+                                    <p class="card-text">
+                                        <a href="${bucketUrl}/jobApplication/${fileApplicationId}/${file}"
+                                           target="_blank">${file}</a>
+                                    </p>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <p class="card-text">파일 없음</p>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
+
+
+<%--<table id="table" class="table table-bordered custom-div">--%>
+<%--    <thead class="table-dark">--%>
+<%--    <tr>--%>
+<%--        <th style="width: 400px;">지원자 아이디</th>--%>
+<%--        <th style="width: 400px;">지원자 이름</th>--%>
+<%--        <th style="width: 400px;">지원자 성별</th>--%>
+<%--        <th style="width: 400px;">지원자 전화번호</th>--%>
+<%--        <th style="width: 400px;">지원자 주소</th>--%>
+<%--        <th style="width: 400px;">지원자 첨부 파일 확인</th>--%>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
+<%--    <c:forEach items="${memberDetail}" var="member" varStatus="memberStatus">--%>
+<%--        <tr>--%>
+<%--            <td>${member.id}</td>--%>
+<%--            <td>${member.name}</td>--%>
+<%--            <td>${member.gender}</td>--%>
+<%--            <td>${member.phoneNumber}</td>--%>
+<%--            <td>${member.address}</td>--%>
+<%--    </c:forEach>--%>
+<%--            <td>--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${not empty fileApplicationId}">--%>
+<%--                        <c:forEach items="${fileName}" var="file">--%>
+<%--                            <a href="${bucketUrl}/jobApplication/${fileApplicationId}/${file}">${file}</a>--%>
+<%--                        </c:forEach>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <div>파일 없음</div>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
+<%--            </td>--%>
+<%--        </tr>--%>
+<%--    </tbody>--%>
+<%--</table>--%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
