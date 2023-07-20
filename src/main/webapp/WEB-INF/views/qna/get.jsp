@@ -99,12 +99,12 @@
                                 <button class="btn btn-outline-primary" id="sendAnswerBtn"><i class="fa-regular fa-paper-plane"></i></button>
                             </div>
                         </div>
+                    </sec:authorize>
 
                         <ul class="list-group" id="answerListContainer">
 
                         </ul>
                     </div>
-                    </sec:authorize>
                 </div>
             </div>
         </div>

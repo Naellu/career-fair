@@ -1,22 +1,16 @@
 package com.project.careerfair.controller.jobApplication;
 
-import com.project.careerfair.domain.Files;
 import com.project.careerfair.domain.JobApplication;
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.domain.Resume;
 import com.project.careerfair.service.jobApplication.JobApplicationService;
-import com.project.careerfair.service.posting.PostingService;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import software.amazon.awssdk.services.s3.S3Client;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,6 +18,11 @@ import java.util.Map;
 public class JobApplicationController {
 
     private final JobApplicationService service;
+
+    private final S3Client amazonS3;
+
+    @Value("${aws.s3.bucketName}")
+    private String bucketName;
 
     // 포스팅 id에 지원한 지원자들 보여주기
     @GetMapping("list")
@@ -34,10 +33,19 @@ public class JobApplicationController {
 
     // 포스팅 id에 지원한 지원자들의 정보 보기 및 지원 상태 변경, 쪽지 보내기
     @GetMapping("get")
-    public void getDetails(@RequestParam("memberId") String memberId, Model model) {
+    public void getDetails(@RequestParam("memberId") String memberId, Model model,
+                           @RequestParam("applicationId") Integer applicationId,
+                           @RequestParam("postingId") Integer postingId) {
         List<Members> memberList = service.getDetails(memberId);
-
         model.addAttribute("memberDetail", memberList);
+        model.addAttribute("fileApplicationId", applicationId);
+        model.addAttribute("postingId", postingId);
+        List<String> files = service.getFileDetails(applicationId);
+
+        model.addAttribute("fileName", files);
+
+//        Integer applicationId = service.getApplicationIdByMemberId(memberId);
+//        model.addAttribute("fileApplicationId", applicationId);
     }
 
     // 지원자 상태 변경
@@ -51,18 +59,35 @@ public class JobApplicationController {
         return "redirect:/jobApplication/list?postingId=" + postingId;
     }
 
-
-
-    @GetMapping("fileDetail/{applicationId}")
-    public void getFileDetail(@PathVariable("applicationId") Integer applicationId, Model model) {
-        List<Files> fileList = service.getFileDetails(applicationId);
-
-        model.addAttribute("fileList", fileList);
-    }
-
-    @GetMapping("/fileDownload/{fileName}")
-    public ResponseEntity<byte[]> download(@PathVariable String fileName) throws IOException {
-        return service.getObject(fileName);
-    }
+//    @GetMapping("fileDetail/{applicationId}")
+//    public void getFileDetail(@PathVariable("applicationId") Integer applicationId, Model model) {
+//        model.addAttribute("applicationId", applicationId);
+//
+//
+////        return "redirect:/jobApplication/fileDownload/" + files.getFileName();
+//    }
+//
+//    @GetMapping("/fileDownload/{fileName}")
+//    public ResponseEntity<InputStreamResource> downloadFile(@PathVariable String fileName) {
+//        GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+//                .bucket(bucketName)
+//                .key(fileName)
+//                .build();
+//
+//        try {
+//            ResponseBytes responseBytes = amazonS3.getObjectAsBytes(getObjectRequest);
+//
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.setContentDispositionFormData("attachment", fileName);
+//            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+//
+//            return ResponseEntity.ok()
+//                    .headers(headers)
+//                    .body(new InputStreamResource(responseBytes.asInputStream()));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
 }

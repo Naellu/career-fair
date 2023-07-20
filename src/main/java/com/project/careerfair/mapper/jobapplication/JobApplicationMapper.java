@@ -57,17 +57,11 @@ public interface JobApplicationMapper {
 
     @Select("""
             SELECT
-                    file_id fileId,
-                    file_name fileName,
-                    notice_id noticeId,
-                    round,
-                    company_id companyId,
-                    posting_id postingId,
-                    application_id applicationId
+                    file_name fileName
             FROM TB_FILES
             WHERE application_id = #{applicationId}
             """)
-    List<Files> getFileDetails(Integer applicationId);
+    List<String> getFileDetails(Integer applicationId);
 
     @Update("""
             UPDATE TB_JOB_APPLICATION
@@ -78,11 +72,4 @@ public interface JobApplicationMapper {
             """)
     Integer updateStatus (String memberId, Integer applicationId, String applicationStatus, Integer postingId);
 
-    @Select("""
-            SELECT * FROM TB_JOB_APPLICATION
-            WHERE posting_id = #{postingId}
-            ORDER BY application_id DESC
-            """)
-    @ResultMap("applyResultMap")
-    JobApplication redirectList(Integer postingId);
 }
