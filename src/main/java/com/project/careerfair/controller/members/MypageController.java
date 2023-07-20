@@ -144,6 +144,7 @@ public class MypageController {
 
         model.addAttribute("applyList", resultMap.get("applyList"));
         model.addAttribute("post", resultMap.get("post"));
+        model.addAttribute("company", resultMap.get("companyList"));
     }
 
     @GetMapping("user/apply/detail")
