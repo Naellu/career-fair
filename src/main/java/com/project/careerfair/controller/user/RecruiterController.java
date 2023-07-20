@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequestMapping("/user/recruiter/")
 @RequiredArgsConstructor
-@PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin')")
+@PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin') or hasAuthority('company')")
 public class RecruiterController {
 
     private final ExhibitionInfoService exhibitionInfoService;

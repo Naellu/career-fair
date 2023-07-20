@@ -1,7 +1,9 @@
 package com.project.careerfair.service.apply;
 
+import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.JobApplication;
 import com.project.careerfair.domain.Posting;
+import com.project.careerfair.mapper.company.CompanyMapper;
 import com.project.careerfair.mapper.files.FileMapper;
 import com.project.careerfair.mapper.jobapplication.JobApplicationMapper;
 import com.project.careerfair.mapper.posting.PostingMapper;
@@ -22,24 +24,29 @@ public class PostingApplyServiceImpl implements PostingApplyService{
     private final JobApplicationMapper jobApplicationMapper;
     private final PostingMapper postingMapper;
     private final FileMapper fileMapper;
+    private final CompanyMapper companyMapper;
 
     private final S3Client s3;
     @Value("${aws.s3.bucketName}")
     private String bucketName;
     @Override
     public Map<String, Object> getApplyList(String memberId) {
-        Map<String, Object> reusltMap = new HashMap<>();
+        Map<String, Object> resultMap = new HashMap<>();
 
         List<JobApplication> applyList = jobApplicationMapper.getApplyList(memberId);
         List<Posting> postingDetails = new ArrayList<>();
+        List<Company> companyList = new ArrayList<>();
 
         for (JobApplication apply : applyList){
-            postingDetails.add(postingMapper.getPostViewDetailByPostingId(apply.getPostingId()));
+            Posting posting = postingMapper.getPostViewDetailByPostingId(apply.getPostingId());
+            postingDetails.add(posting);
+            companyList.add(companyMapper.getDetail(posting.getCompanyId()));
         }
-        reusltMap.put("applyList", applyList);
-        reusltMap.put("post", postingDetails);
+        resultMap.put("applyList", applyList);
+        resultMap.put("post", postingDetails);
+        resultMap.put("companyList",companyList);
 
-        return reusltMap;
+        return resultMap;
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.project.careerfair.service.scrap;
 
+import com.project.careerfair.domain.Posting;
 import com.project.careerfair.domain.Scrap;
 import com.project.careerfair.domain.ScrapInfo;
+import com.project.careerfair.mapper.posting.PostingMapper;
 import com.project.careerfair.mapper.scrap.ScrapMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ScrapServiceImpl implements ScrapService {
     private final ScrapMapper scrapMapper;
+    private final PostingMapper postingMapper;
     
     // 스크랩 누르기
     @Override
@@ -43,8 +47,15 @@ public class ScrapServiceImpl implements ScrapService {
         Map<String , Object> result = new HashMap<>();
 
         List<ScrapInfo> scrapList = scrapMapper.getListByMemberId(memberId);
-
         result.put("scrapList", scrapList);
+
+        List<Posting> postingList = new ArrayList<>();
+
+        for (ScrapInfo scrapInfo : scrapList){
+            postingList.add(postingMapper.getPostDetailByPostingId(scrapInfo.getPostingId()));
+        }
+
+        result.put("postingList", postingList);
 
         return result;
     }
