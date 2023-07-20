@@ -44,11 +44,13 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${scrapList}" var="scrap">
+        <c:forEach items="${scrapList}" var="scrap" varStatus="status">
             <tr>
                 <td>${scrap.round}회차</td>
                 <td>${scrap.companyName}</td>
-                <td>${scrap.title}</td>
+                <td>
+                    <a href="/user/posting/${postingList[status.index].postingId}">${scrap.title}</a>
+                </td>
                 <td>${scrap.startDate} ~ ${scrap.endDate}</td>
                 <td>${scrap.hiringCount}</td>
                 <td>${scrap.status}</td>
