@@ -89,7 +89,7 @@
 
             <div>
                 <a href="/admin/round/reg" class="btn btn-primary">새 회차 등록</a>
-                <a href="/admin/round/modify" class="btn btn-primary">현재 회차 수정</a>
+                <a href="/admin/round/update" class="btn btn-primary">현재 회차 수정</a>
                 <button class="btn btn-primary">지난 회차 목록</button>
             </div>
         </div>

@@ -1,6 +1,6 @@
 package com.project.careerfair.service.admin;
 
-import com.project.careerfair.domain.ExhibitionInfo;
+import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo;
 import com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Slf4j
@@ -60,6 +60,33 @@ public class ExhibitionInfoServiceImpl implements ExhibitionInfoService {
         return cnt == 1;
     }
 
+    // 회차 수정
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean update(ExhibitionInfo exhibitionInfo,
+                          List<String> removeFileNames,
+                          MultipartFile[] files) throws IOException {
+        Integer round = exhibitionInfo.getRound();
+        // 파일 삭제
+        if (removeFileNames != null && !removeFileNames.isEmpty()) {
+            for (String fileName : removeFileNames) {
+                removeFromS3(round, fileName);
+
+                // FileName 테이블의 데이터 삭제
+                exhibitionInfoMapper.deleteFileNameByRoundAndFileName(round, fileName);
+            }
+        }
+
+        if (files != null) {
+            fileToS3(exhibitionInfo, files);
+        }
+
+        // 박람회 정보 update
+        Integer cnt = exhibitionInfoMapper.update(exhibitionInfo);
+
+        return cnt == 1;
+    }
+
     // 파일 등록 메소드
     public void fileToS3(ExhibitionInfo exhibitionInfo, MultipartFile[] files) throws IOException {
         // 파일등록
@@ -82,5 +109,17 @@ public class ExhibitionInfoServiceImpl implements ExhibitionInfoService {
                 exhibitionInfoMapper.insertFileName(exhibitionInfo.getRound(), file.getOriginalFilename());
             }
         }
+    }
+
+    // 파일 삭제 메소드
+    public void removeFromS3(Integer round, String fileName) {
+        // 파일 삭제
+        String objectKey = "career_fair/exhibitionInfo/" + round + "/" + fileName;
+
+        DeleteObjectRequest dor = DeleteObjectRequest.builder()
+                .bucket(bucketName)
+                .key(objectKey)
+                .build();
+        s3.deleteObject(dor);
     }
 }

@@ -1,12 +1,11 @@
 package com.project.careerfair.service.member;
 
-import com.project.careerfair.domain.ExhibitionInfo;
+import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo;
 import com.project.careerfair.mapper.members.MemberMapper;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.*;
 import org.springframework.mail.javamail.*;
 import org.springframework.security.crypto.password.PasswordEncoder;

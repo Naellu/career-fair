@@ -5,7 +5,7 @@
 <mapper namespace="com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper">
 
     <!-- 관람회목록 불러오는 resultMap-->
-    <resultMap type="com.project.careerfair.domain.ExhibitionInfo"
+    <resultMap type="com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo"
                id="ExhibitionInfoMap">
         <result column="round" property="round"/>
         <result column="location" property="location"/>
@@ -34,8 +34,8 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO TB_EXHIBITION_INFO (round, location, manager_email, organizer, start_date, end_date, etc, bus,
-        subway, title)
+        INSERT INTO TB_EXHIBITION_INFO
+        (round, location, manager_email, organizer, start_date, end_date, etc, bus, subway, title)
         VALUES (#{round}, #{location}, #{managerEmail}, #{organizer}, #{startDate}, #{endDate}, #{etc}, #{bus},
         #{subway}, #{title})
     </insert>
@@ -46,6 +46,26 @@
         VALUES (#{round}, #{originalFilename})
     </insert>
 
+    <!-- 특정회차로 파일 삭제하기 -->
+    <delete id="deleteFileNameByRoundAndFileName">
+        DELETE FROM TB_FILES
+        WHERE round = #{round} AND file_name = #{fileName}
+    </delete>
+
+    <!-- 회차 테이블 업데이트 -->
+    <update id="update">
+        UPDATE TB_EXHIBITION_INFO SET
+        location = #{location},
+        manager_email = #{managerEmail},
+        organizer = #{organizer},
+        start_date = #{startDate},
+        end_date = #{endDate},
+        etc = #{etc},
+        bus = #{bus},
+        subway = #{subway},
+        title = #{title}
+        WHERE round = #{round}
+    </update>
 </mapper>
 
 
