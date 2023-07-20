@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/css/navBar.css">
 <sec:authentication property="name" var="userId"/>
 
-<header id="header" class="header d-flex align-items-center">
+<header id="header" class="header d-flex align-items-center sticked">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -72,13 +72,12 @@
                     <li><a href="/admin/main">관리자</a></li>
                 </sec:authorize>
             </ul>
-        </nav><!-- .navbar -->
 
-        <%--        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>--%>
-        <%--        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>--%>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        </nav><!-- .navbar -->
     </div>
 </header>
-<!-- End Header -->
 <!-- End Header -->
 
 
