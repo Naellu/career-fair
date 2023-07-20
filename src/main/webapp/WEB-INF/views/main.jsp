@@ -85,7 +85,7 @@
                     <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
                         <div class="icon-box">
                             <div class="icon"><i class="bi bi-command"></i></div>
-                            <h4 class="title"><a href="/tools" class="stretched-link">취업성공툴</a></h4>
+                            <h4 class="title"><a href="/tools/count" class="stretched-link">취업성공툴</a></h4>
                         </div>
                     </div><!--End Icon Box -->
 

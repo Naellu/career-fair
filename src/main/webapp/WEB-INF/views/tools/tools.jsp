@@ -20,18 +20,28 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <my:font></my:font>
-    <title>Title</title>
+    <title>취업성공툴</title>
 
 </head>
 <body>
 <my:navBar/>
 
-<div class="pageTab">
-    <div class="tabArea">
-        <ul class="tabs col06">
-            <li class=""><a href="/tools/count"><span class="tx">글자수 세기</span></a></li>
-            <li class=""><a href="/tools/grade"><span class="tx">학점 계산기</span></a></li>
-        </ul>
+<div id="wrap">
+    <div id="container">
+        <div class="gjContainer svcuSubTool" id="secSvcu">
+            <h2 class="gjTit">취업 성공 툴</h2>
+            <div class="pageTab">
+                <div class="tabArea">
+                    <ul class="tabs col06">
+                        <li class=""><a href="/tools/count"><span class="tx">글자수 세기</span></a></li>
+                        <li class=""><a href="/tools/grade"><span class="tx">학점 계산기</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gjContent">
+
+            </div>
+        </div>
     </div>
 </div>
 
