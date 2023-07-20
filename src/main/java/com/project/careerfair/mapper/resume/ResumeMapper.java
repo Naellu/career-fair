@@ -12,6 +12,8 @@ public interface ResumeMapper {
     // -- 이력서 목록 -- //
     List<Resume> findByMemberId(String memberId);
 
+    // -- 회원 인적사항 조회 -- //
+    Members getMemberInfoByMemberId(Integer resumeId, String memberId);
 
     // -- 이력서 등록 -- //
     Integer createEmptyResume(Resume resume);

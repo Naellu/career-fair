@@ -17,6 +17,7 @@
                 <li><a href="#">Q&A</a></li>
                 <li><a href="/customer/notice/list">공지사항</a></li>
                 <li><a href="/admin/round">회차관리</a></li>
+                <li><a href="/stat">통계</a></li>
 
                 <sec:authorize access="isAnonymous()">
                     <li><a href="/login/login">로그인</a></li>
