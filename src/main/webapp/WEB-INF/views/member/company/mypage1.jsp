@@ -77,7 +77,7 @@
         <div class="mypage-column mypage-column-b"><span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">건</span></div>
     </div>
     <div class="mypage-container-d">
-        <div class="mypage-column mypage-column-t">채용공고 관리</div>
+        <div class="mypage-column mypage-column-t"><button onclick="location.href='/member/company/posting/list?memberId=${userId}'">채용공고 관리</button></div>
         <div class="mypage-column">  현재 게시한 공고</div>
         <div class="mypage-column mypage-column-b">건</div>
 
