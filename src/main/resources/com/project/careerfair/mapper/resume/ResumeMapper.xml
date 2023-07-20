@@ -34,6 +34,28 @@
         WHERE member_id = #{memberId} AND resume_id = #{resumeId}
     </select>
 
+    <resultMap id="memberInfoMap" type="com.project.careerfair.domain.Members">
+        <id column="member_id" property="id" />
+        <result column="name" property="name" />
+        <result column="gender" property="gender" />
+        <result column="phone_number" property="phoneNumber" />
+        <result column="email" property="email" />
+        <result column="address" property="address" />
+    </resultMap>
+
+    <select id="getMemberInfoByMemberId" resultMap="memberInfoMap">
+        SELECT
+            name,
+            gender,
+            phone_number,
+            email,
+            address
+        FROM
+            TB_MEMBERS tm
+        LEFT JOIN TB_ONLINE_RESUME tr ON tm.member_id = tr.member_id
+        WHERE tm.member_id = #{memberId} AND tr.resume_id = #{resumeId}
+    </select>
+
 
     <!-- 빈 이력서 등록 -->
     <insert id="createEmptyResume" useGeneratedKeys="true" keyProperty="resumeId"
@@ -148,6 +170,8 @@
         <result column="military" property="military" />
         <result column="intro" property="intro" />
         <result column="industry_id" property="industryId" />
+        <result column="created" property="created" />
+        <result column="last_updated" property="lastUpdated" />
 
         <association property="workCondition" javaType="com.project.careerfair.domain.WorkCondition">
             <id column="work_condition_id" property="workConditionId"/>
@@ -190,7 +214,7 @@
 
     <select id="getResumeById" resultMap="ResumeDtoMap">
         SELECT
-            r.resume_id, r.member_id, r.title, r.military, r.intro, r.industry_id,
+            r.resume_id, r.member_id, r.title, r.military, r.intro, r.industry_id, r.created, r.last_updated,
             wc.work_condition_id, wc.salary, wc.employment_type,
             ca.career_id, ca.company_name, ca.entry_date, ca.resignation_date, ca.task, ca.description, ca.position,
             ed.education_id, ed.school_name, ed.major, ed.entry_date, ed.graduation_date, ed.education_type, ed.status,

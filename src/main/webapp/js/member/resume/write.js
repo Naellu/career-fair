@@ -131,6 +131,9 @@ $("#addWorkArea").click(function() {
 // 이력서 제출 등록
 $("#submitResumeButton").click(function () {
 
+
+
+
     // 경력
     let careers = [];
     $('.careerGroup').each(function () {

@@ -35,9 +35,43 @@
     <div class="form-group mb-3 resumeTitleDiv">
         <div class="resume-subject">${resumeData.title}</div>
         <div>
-            <button type="submit" class="btn btn-outline-dark" id="getResumeUpdate" value="${resumeData.resumeId}">수정</button>
+<%--            <button type="submit" class="btn btn-outline-dark" id="getResumeUpdate" value="${resumeData.resumeId}">수정</button>--%>
+            <a href="/member/resume/${resumeData.resumeId}/update" id="updateResume" class="pr-5">수정</a>
             <a href="/member/resume" id="moveToList">목록</a>
         </div>
+    </div>
+
+    <%--  인적사항  --%>
+    <div class="base profile">
+        <div class="container">
+            <div class="info-container">
+                <div class="info-general">
+                    <div class="item name">${memberInfo.name}</div>
+                    <div class="item sex">${memberInfo.gender}</div>
+<%--                    <div class="item year">1998년 </div>--%>
+<%--                    <div class="item age">(만 25세)</div>--%>
+                </div>
+                <div class="info-detail">
+                    <div class="item">
+                        <div class="label">휴대폰</div>
+                        <div class="value">${memberInfo.phoneNumber}</div>
+                    </div>
+                    <div class="item">
+                        <div class="label">Email</div>
+                        <div class="value">
+                            <a href="mailto:${memberInfo.email}">${memberInfo.email}</a>
+                        </div>
+                    </div>
+                    <div class="item item-full">
+                        <div class="label">주소</div>
+                        <div class="value">${memberInfo.address}</div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -224,12 +258,15 @@
     <div class="sign">
         <div class="message">위의 모든 기재사항은 사실과 다름없음을 확인합니다.</div>
 
-        <div class="writer">작성자 : ${memberId}</div> <%-- 회원id 들어가야함 --%>
+        <div class="writer">작성자 : ${memberInfo.name}</div>
         <div class="warning">
-            <%-- description에 이력서 last_updated 들어가야함 --%>
-            <div class="description">이 이력서는 2023년 07월 13일 (목)에 최종 수정된 이력서 입니다.
+            <div class="description">이 이력서는
+                <span id="last-updated">
+                    ${empty resumeData.lastUpdated ? resumeData.created : resumeData.lastUpdated}
+                </span>
+                에 최종 수정된 이력서 입니다.
                 <br>위조된 문서를 등록하여 취업활동에 이용 시 법적 책임을 지게 될 수 있습니다.
-                <br>NNNNN은/는 구직자가 등록 한 문서에 대해 보증하거나 별도의 책임을 지지 않으며
+                <br>중앙 취업 박람회은/는 구직자가 등록 한 문서에 대해 보증하거나 별도의 책임을 지지 않으며
                 <br>첨부된 문서를 신뢰하여 발생한 법적 분쟁에 책임을 지지 않습니다.
                 <br>또한 구인/구직 목적 외  다른 목적으로 이용시 이력서 삭제 혹은 비공개 조치가 될 수 있습니다.
             </div>
@@ -244,7 +281,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 <script src="/js/member/resume/detail.js"></script>
 
 </body>

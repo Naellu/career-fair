@@ -25,6 +25,7 @@ public class ResumeDto {
     private String military;
     private String intro;
     private Integer industryId;
-
+    private String created;
+    private String lastUpdated;
 
 }

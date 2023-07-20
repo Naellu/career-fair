@@ -1,5 +1,6 @@
 package com.project.careerfair.service.resume;
 
+import com.project.careerfair.domain.Members;
 import com.project.careerfair.domain.Resume;
 import com.project.careerfair.domain.dto.ResumeDto;
 import org.springframework.security.core.Authentication;
@@ -21,5 +22,7 @@ public interface ResumeService {
     Integer deleteResume(Integer resumeId);
 
     Map<String, Object> findAllByIndustry(Integer page, Integer[] industries);
+
+    Members getMemberInfoByMemberId(Integer resumeId, String memberId);
 
 }

@@ -1,5 +1,6 @@
 package com.project.careerfair.service.resume;
 
+import com.project.careerfair.domain.Members;
 import com.project.careerfair.domain.Resume;
 import com.project.careerfair.domain.dto.ResumeDto;
 import com.project.careerfair.mapper.resume.ResumeMapper;
@@ -130,6 +131,11 @@ public class ResumeServiceImpl implements ResumeService {
 
         return Map.of("pageInfo", pageInfo,
                 "resumeList", resumeOfIndustry);
+    }
+
+    @Override
+    public Members getMemberInfoByMemberId(Integer resumeId, String memberId) {
+        return resumeMapper.getMemberInfoByMemberId(resumeId, memberId);
     }
 
     private <T> void insertData(List<T> items, Integer resumeId, BiFunctionWithReturn<Integer, T> inserter) {

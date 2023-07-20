@@ -1,6 +1,7 @@
 package com.project.careerfair.controller.members;
 
 import com.project.careerfair.domain.Industry;
+import com.project.careerfair.domain.Members;
 import com.project.careerfair.domain.Resume;
 import com.project.careerfair.domain.dto.ResumeDto;
 import com.project.careerfair.service.apply.PostingApplyService;
@@ -58,8 +59,11 @@ public class MypageController {
     public String showDetail(@PathVariable Integer resumeId, Model model, Authentication authentication) {
         ResumeDto resumeDetailData = resumeService.getResumeById(resumeId);
         // view에 상세 데이터 전달
+//      resumeId랑 memberId로 인적사항 정보 가져오기
+        Members memberInfo = resumeService.getMemberInfoByMemberId(resumeDetailData.getResumeId(), resumeDetailData.getMemberId());
         model.addAttribute("resumeData", resumeDetailData);
         model.addAttribute("memberId", authentication.getName());
+        model.addAttribute("memberInfo", memberInfo);
         return "member/resume/detail";
     }
 
