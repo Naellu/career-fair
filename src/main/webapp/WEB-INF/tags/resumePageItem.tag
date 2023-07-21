@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ attribute name="pageNum" %>
 
-<c:url value="/member/resume/scout" var="pageLink">
+<c:url value="/resume/scout" var="pageLink">
     <c:param name="page" value="${pageNum }" />
     <c:if test="${not empty param.industry }">
         <c:forEach items="${paramValues.industry}" var="industry">

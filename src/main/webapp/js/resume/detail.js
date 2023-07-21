@@ -1,5 +1,5 @@
 
 $('#getResumeUpdate').click(function () {
     let resumeId = $(this).val();
-    window.location.href = "/member/resume/" + resumeId + "/update";
+    window.location.href = "/resume/" + resumeId + "/update";
 });

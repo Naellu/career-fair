@@ -155,8 +155,7 @@ $('#updateResumeBtn').click(function () {
         industryId: industryId
     }
 
-    // fetch("/member/resume/" + resumeId + "/update", {
-    fetch("/member/resume/" + resumeId, {
+    fetch("/resume/" + resumeId, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -171,7 +170,7 @@ $('#updateResumeBtn').click(function () {
 
             // 성공 시 리다이렉트
             if (status === 200) {
-                window.location.href = "/member/resume/" + resumeId;
+                window.location.href = "/resume/" + resumeId;
             }
             // 실패 시 페이지 리다이렉트
             else {

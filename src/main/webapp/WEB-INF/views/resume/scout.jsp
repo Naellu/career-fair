@@ -30,7 +30,7 @@
 <div class="container-lg mb-3 mt-5">
     <h2 class="mb-3">헤드헌트</h2>
 
-    <form action="/member/resume/scout" method="get">
+    <form action="/resume/scout" method="get">
 
         <div class="accordion mb-3" id="accordionExample">
             <div class="accordion-item">
@@ -65,7 +65,7 @@
     <div class="list-group mx-auto mb-3">
         <c:forEach items="${resumeList}" var="resume">
             <div class="list-group-item">
-                <a class="mb-1" href="/member/resume/${resume.resumeId}">${resume.title}</a>
+                <a class="mb-1" href="/resume/${resume.resumeId}">${resume.title}</a>
                 <p class="mb-1">${resume.memberId}</p>
             </div>
         </c:forEach>
@@ -113,6 +113,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/member/resume/scout.js"></script>
+<script src="/js/resume/scout.js"></script>
 </body>
 </html>
