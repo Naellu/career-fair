@@ -1,7 +1,6 @@
-package com.project.careerfair.service.company;
+package com.project.careerfair.service.company.join;
 
 import com.project.careerfair.domain.Company;
-import com.project.careerfair.domain.Industry;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public interface RecruiterService {
+public interface JoinService {
     // 신청 등록
     boolean create(Company company, MultipartFile[] files, Authentication authentication) throws IOException;
 

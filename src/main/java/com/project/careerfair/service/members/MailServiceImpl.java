@@ -1,4 +1,4 @@
-package com.project.careerfair.service.member;
+package com.project.careerfair.service.members;
 
 import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo;
 import com.project.careerfair.mapper.members.MemberMapper;

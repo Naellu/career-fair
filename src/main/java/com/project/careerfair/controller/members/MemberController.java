@@ -1,8 +1,8 @@
 package com.project.careerfair.controller.members;
 
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.service.member.MailService;
-import com.project.careerfair.service.member.MemberService;
+import com.project.careerfair.service.members.MailService;
+import com.project.careerfair.service.members.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
