@@ -1,16 +1,13 @@
-package com.project.careerfair.service.jobApplication;
+package com.project.careerfair.service.company.jobApplication;
 
-import com.project.careerfair.domain.Files;
 import com.project.careerfair.domain.JobApplication;
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.mapper.jobapplication.JobApplicationMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.services.s3.S3Client;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service

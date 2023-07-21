@@ -2,7 +2,7 @@ package com.project.careerfair.controller.company;
 
 import com.project.careerfair.domain.JobApplication;
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.service.jobApplication.JobApplicationService;
+import com.project.careerfair.service.company.jobApplication.JobApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("jobApplication")
+@RequestMapping("/company/job-application/")
 public class JobApplicationController {
 
     private final JobApplicationService service;
@@ -56,7 +56,7 @@ public class JobApplicationController {
                                @RequestParam("postingId") Integer postingId) {
         service.updateStatus(memberId, applicationId, applicationStatus, postingId);
 
-        return "redirect:/jobApplication/list?postingId=" + postingId;
+        return "redirect:/company/job-application/list?postingId=" + postingId;
     }
 
 //    @GetMapping("fileDetail/{applicationId}")

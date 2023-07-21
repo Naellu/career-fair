@@ -75,7 +75,7 @@
                 <td><a href="/member/company/posting/detail?postingId=${posting.postingId}">
                         ${posting.title}
                 </a></td>
-                <td><button onclick="location.href='/jobApplication/list?postingId=${posting.postingId}'">보기</button></td>
+                <td><button onclick="location.href='/company/job-application/list?postingId=${posting.postingId}'">보기</button></td>
                 <td>${posting.round}회차</td>
                 <td>${companyList[status.index].companyName}</td>
                 <td>${posting.employmentType}</td>
