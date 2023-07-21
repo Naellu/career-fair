@@ -1,4 +1,4 @@
-package com.project.careerfair.service.jobApplication;
+package com.project.careerfair.service.company.jobApplication;
 
 import com.project.careerfair.domain.Files;
 import com.project.careerfair.domain.JobApplication;

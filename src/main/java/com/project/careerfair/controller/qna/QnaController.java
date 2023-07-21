@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("qna")
+@RequestMapping("/qna/")
 public class QnaController {
 
     private final QnaService service;
@@ -39,7 +39,7 @@ public class QnaController {
     }
 
 
-    @GetMapping("/id/{id}")
+    @GetMapping("id/{id}")
     public String qnaGet(@PathVariable("id") Integer id, Model model) {
 
         QnaQuestion question = service.getQuestion(id);
