@@ -50,7 +50,7 @@
                 <div class="card mb-4">
                     <div class="card-body d-flex justify-content-between">
                         <h2 class="card-title">지원자 정보</h2>
-                        <button onclick="location.href='/jobApplication/list?postingId=${postingId}'" class="btn btn-primary">목록 가기</button>
+                        <button onclick="location.href='/company/job-application/list?postingId=${postingId}'" class="btn btn-primary">목록 가기</button>
                     </div>
                     <div class="card-body">
                         <hr>
