@@ -1,4 +1,4 @@
-package com.project.careerfair.controller.posting;
+package com.project.careerfair.controller.user.posting;
 
 import com.project.careerfair.domain.Posting;
 import com.project.careerfair.service.posting.PostingService;

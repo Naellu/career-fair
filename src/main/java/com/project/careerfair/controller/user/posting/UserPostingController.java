@@ -1,4 +1,4 @@
-package com.project.careerfair.controller.posting;
+package com.project.careerfair.controller.user.posting;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

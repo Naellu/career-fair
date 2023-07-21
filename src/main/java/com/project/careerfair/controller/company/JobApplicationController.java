@@ -1,4 +1,4 @@
-package com.project.careerfair.controller.jobApplication;
+package com.project.careerfair.controller.company;
 
 import com.project.careerfair.domain.JobApplication;
 import com.project.careerfair.domain.Members;
