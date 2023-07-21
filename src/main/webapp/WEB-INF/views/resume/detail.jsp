@@ -36,8 +36,8 @@
         <div class="resume-subject">${resumeData.title}</div>
         <div>
 <%--            <button type="submit" class="btn btn-outline-dark" id="getResumeUpdate" value="${resumeData.resumeId}">수정</button>--%>
-            <a href="/member/resume/${resumeData.resumeId}/update" id="updateResume" class="pr-5">수정</a>
-            <a href="/member/resume" id="moveToList">목록</a>
+            <a href="/resume/${resumeData.resumeId}/update" id="updateResume" class="pr-5">수정</a>
+            <a href="/resume/" id="moveToList">목록</a>
         </div>
     </div>
 
@@ -281,7 +281,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/member/resume/detail.js"></script>
+<script src="/js/resume/detail.js"></script>
 
 </body>
 </html>

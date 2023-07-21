@@ -222,7 +222,7 @@ $("#submitResumeButton").click(function () {
         industryId: industry
     }
 
-    fetch("/member/resume/write", {
+    fetch("/resume/write", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -233,7 +233,7 @@ $("#submitResumeButton").click(function () {
         .then(response => response.text())
         .then(message => {
             alert(message);
-            window.location.href = "/member/resume";
+            window.location.href = "/resume/";
         })
         .catch(error => {
             console.log("career data send error", error);

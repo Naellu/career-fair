@@ -9,7 +9,7 @@ $(document).ready(function () {
         let confirmDelete = confirm("이력서를 삭제하시겠습니까?");
 
         if (confirmDelete) {
-            fetch('/member/resume/' + resumeId, {
+            fetch('/resume/' + resumeId, {
                 method: 'DELETE',
             }).then((response) => {
                 if (response.ok) {
