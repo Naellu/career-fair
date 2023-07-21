@@ -16,7 +16,7 @@ const updateBtn = document.querySelector('#update-btn');
 function modifyView() {
     const url = window.location.href;
     const companyId = url.substring(url.lastIndexOf("/") + 1);
-    fetch(`/api/user/recruiter/${companyId}`)
+    fetch(`/api/company/join/${companyId}`)
         .then(response => response.json())
         .then(data => {
             const company = data.company;
@@ -125,7 +125,7 @@ updateBtn.addEventListener("click", function () {
     formData.append("detailAddress", detailAddressInput.value);
 
 
-    fetch(`/api/user/recruiter/${companyId}`, {
+    fetch(`/api/company/join/${companyId}`, {
         method: "POST",
         headers: {},
         body: formData
@@ -133,21 +133,21 @@ updateBtn.addEventListener("click", function () {
         .then(response => {
             if (response.status === 200) {
                 // 수정이 성공한 경우
-                location.href = "/user/recruiter/list";
+                location.href = "/company/join/list";
                 alert("수정이 완료되었습니다.");
             } else {
-                location.href = `/user/recruiter/modify/${companyId}`;
+                location.href = `/company/join/modify/${companyId}`;
                 alert("수정에 실패하였습니다.");
             }
         })
         .catch(error => {
-            location.href = `/`;
+            location.href = `../../..`;
             alert("오류가 발생했습니다 관리자에게 문의해주세요");
         });
 });
 
 function industryList(industryId) {
-    fetch(`/api/user/recruiter/industry`, {
+    fetch(`/api/company/join/industry`, {
         method: "GET",
     })
         .then(response => response.json())

@@ -13,7 +13,7 @@ function detailView(pageValue) {
     // URL 매개변수로 데이터 직렬화
     const params = new URLSearchParams(requestData).toString();
 
-    fetch(`/api/company/${companyId}?${params}`)
+    fetch(`/api/user/join/${companyId}?${params}`)
         .then(response => response.json())
         .then(data => {
             const company = data.company;

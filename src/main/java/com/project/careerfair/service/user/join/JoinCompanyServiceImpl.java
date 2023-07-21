@@ -15,10 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("userJoinCompanyServiceImpl")
 @Slf4j
 @RequiredArgsConstructor
-public class ParticipatingCompanyServiceImpl implements ParticipatingCompanyService {
+public class JoinCompanyServiceImpl implements JoinCompanyService {
 
     private final CompanyMapper companyMapper;
 

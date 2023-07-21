@@ -38,7 +38,7 @@ submitBtn.addEventListener("click", function () {
         formData.append("files", files[i]);
     }
     // POST 요청 보내기
-    fetch(`/api/user/recruiter/`, {
+    fetch(`/api/company/join/`, {
         method: "POST",
         headers: {},
         body: formData,
@@ -114,7 +114,7 @@ ceoNameInput.addEventListener("keyup", function () {
 
 
 function industryList() {
-    fetch(`/api/user/recruiter/industry`, {
+    fetch(`/api/company/join/industry`, {
         method: "GET",
     })
         .then(response => response.json())

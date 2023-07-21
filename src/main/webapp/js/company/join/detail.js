@@ -4,7 +4,7 @@ const bucketUrl = document.querySelector("#bucketUrl").value;
 function detailView() {
     const url = window.location.href;
     const companyId = url.substring(url.lastIndexOf("/") + 1);
-    fetch(`/api/user/recruiter/${companyId}`)
+    fetch(`/api/company/join/${companyId}`)
         .then(response => response.json())
         .then(data => {
             const company = data.company;

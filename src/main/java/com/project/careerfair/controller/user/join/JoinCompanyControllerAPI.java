@@ -2,7 +2,7 @@ package com.project.careerfair.controller.user.join;
 
 import com.project.careerfair.domain.Industry;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
-import com.project.careerfair.service.user.join.ParticipatingCompanyService;
+import com.project.careerfair.service.user.join.JoinCompanyService;
 import com.project.careerfair.service.industry.IndustryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,24 +12,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@RestController("userCompanyJoinControllerAPI")
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/company/")
-public class ParticipatingCompanyControllerAPI {
+@RequestMapping("/api/user/join")
+public class JoinCompanyControllerAPI {
 
-    private final ParticipatingCompanyService participatingCompanyService;
+    private final JoinCompanyService joinCompanyService;
 
     private final IndustryService industryService;
 
     private final ExhibitionInfoService exhibitionInfoService;
 
-    @GetMapping("industry")
+    @GetMapping("/industry")
     public List<Industry> industryList() {
         return industryService.getIndustryList();
     }
 
-    @GetMapping("round")
+    @GetMapping("/round")
     public Integer getList() {
         return exhibitionInfoService.getCurrentRound();
     }
@@ -42,7 +42,7 @@ public class ParticipatingCompanyControllerAPI {
             @RequestParam(value = "industryId", required = false) Integer industryId,
             @RequestParam(value = "roundValue", required = false) Integer roundValue,
             @RequestParam(value = "page", required = false) Integer page) {
-        Map<String, Object> result = participatingCompanyService.getList(search, type, industryId, roundValue, page);
+        Map<String, Object> result = joinCompanyService.getList(search, type, industryId, roundValue, page);
         return ResponseEntity.ok(result);
     }
 
@@ -50,7 +50,7 @@ public class ParticipatingCompanyControllerAPI {
     public ResponseEntity<Map<String, Object>> getDetail(
             @PathVariable("companyId") Integer companyId,
             @RequestParam("page") Integer page) {
-        Map<String, Object> result = participatingCompanyService.getDetail(companyId, page);
+        Map<String, Object> result = joinCompanyService.getDetail(companyId, page);
         return ResponseEntity.ok(result);
     }
 

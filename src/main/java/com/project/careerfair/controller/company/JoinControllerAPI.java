@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController("joinRecruiterControllerAPI ")
+@RestController("companyJoinControllerAPI ")
 @Slf4j
 @RequestMapping("/api/company/join/")
 @PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin') or hasAuthority('company')")

@@ -52,7 +52,7 @@
         </div>
     </nav>
     <div>
-        <a class="btn btn-success" href="/user/recruiter/reg">참여신청하기</a>
+        <a class="btn btn-success" href="/company/join/reg">참여신청하기</a>
     </div>
 </div>
 <div class="container-lg custom-div">
@@ -79,6 +79,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/user/recruiter/list.js"></script>
+<script src="/js/company/join/list.js"></script>
 </body>
 </html>

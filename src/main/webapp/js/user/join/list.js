@@ -9,7 +9,7 @@ roundList();
 industryList();
 
 function roundList() {
-    fetch(`/api/company/round`, {
+    fetch(`/api/user/join/round`, {
         method: "GET",
     })
         .then(response => response.json())
@@ -63,7 +63,7 @@ function roundList() {
 }
 
 function industryList() {
-    fetch(`/api/company/industry`, {
+    fetch(`/api/user/join/industry`, {
         method: "GET",
     })
         .then(response => response.json())
@@ -103,7 +103,7 @@ function listView() {
     // URL 매개변수로 데이터 직렬화
     const params = new URLSearchParams(requestData).toString();
 
-    fetch(`/api/company/?${params}`)
+    fetch(`/api/user/join?${params}`)
         .then(response => response.json())
         .then(data => {
             const companyList = data.companyList;
@@ -135,7 +135,7 @@ function listView() {
                                 </div >
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
-                                        <a class="btn btn-primary" href="/company/${company.companyId}">기업 정보 보기</a>
+                                        <a class="btn btn-primary" href="/user/join/${company.companyId}">기업 정보 보기</a>
                                     </div>
                             </div >
                         </div >

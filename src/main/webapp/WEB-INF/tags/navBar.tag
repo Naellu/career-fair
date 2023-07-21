@@ -19,11 +19,11 @@
                 <li class="dropdown"><a href="#"><span>박람회 소개</span> <i
                         class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="/customer/notice/list">박람회 소개</a></li>
+                        <li><a href="#">박람회 소개</a></li>
                         <li><a href="/location">찾아오시는길</a></li>
                     </ul>
 
-                <li><a href="/company/list">참여기업</a></li>
+                <li><a href="/user/join/list">참여기업</a></li>
                 <li><a href="/user/posting/list">채용공고</a></li>
                 <li><a href="/qna/QnaList">Q&A</a></li>
 
