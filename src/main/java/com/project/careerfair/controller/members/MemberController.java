@@ -33,12 +33,12 @@ public class MemberController {
             memberService.signup(member);
             rttr.addFlashAttribute("", "회원가입이 완료되었습니다.");
             System.out.println("회원가입이 완료되었습니다.");
-            return "redirect:/login/login";
+            return "redirect:/login";
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("members", member);
             System.out.println("회원가입에 실패하였습니다.");
-            return "redirect:/members/signup";
+            return "redirect:/signup";
         }
     }
 
@@ -53,12 +53,12 @@ public class MemberController {
             memberService.signup(member);
             rttr.addFlashAttribute("", "회원가입이 완료되었습니다.");
             System.out.println("회원가입이 완료되었습니다.");
-            return "redirect:/login/login";
+            return "redirect:/login";
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("members", member);
             System.out.println("회원가입에 실패하였습니다.");
-            return "redirect:/members/signup";
+            return "redirect:/member/cosignup";
         }
     }
 

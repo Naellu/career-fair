@@ -75,6 +75,10 @@ public class MailServiceImpl implements MailService {
     public boolean createPw(String id, String email, HttpSession session) {
         ArrayList<String> toUserList = new ArrayList<>();
 
+        ExhibitionInfo exhibitionInfo = exhibitionInfoService.getCurrentInfo();
+
+        String title = exhibitionInfo.getTitle();
+
         String ok = memberMapper.checkUser(id, email);
 
         int cnt = 0;
@@ -95,8 +99,8 @@ public class MailServiceImpl implements MailService {
         cnt = memberMapper.updatePw(id, email, password);
 
         session.setAttribute("authenticatedNum", password);
-        simpleMessage.setSubject("xx박람회 인증메일입니다.");
-        simpleMessage.setText("안녕하세요. xx박람회 입니다 임시 비밀번호를 보내드립니다.\n" + "\n" + "임시 비밀번호\n" + "++++++++++\n"
+        simpleMessage.setSubject(title + " 인증메일입니다.");
+        simpleMessage.setText("안녕하세요." + title + "입니다 임시 비밀번호를 보내드립니다.\n" + "\n" + "임시 비밀번호\n" + "++++++++++\n"
                 + randomNumber + "\n++++++++++");
 
         javaMailSender.send(simpleMessage);
