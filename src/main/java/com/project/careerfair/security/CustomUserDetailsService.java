@@ -1,4 +1,4 @@
-package com.project.careerfair.config;
+package com.project.careerfair.security;
 
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.mapper.members.MemberMapper;

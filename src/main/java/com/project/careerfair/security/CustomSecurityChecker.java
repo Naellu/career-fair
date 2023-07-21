@@ -1,4 +1,4 @@
-package com.project.careerfair.config;
+package com.project.careerfair.security;
 
 import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;

@@ -1,18 +1,15 @@
-package com.project.careerfair.controller.user;
+package com.project.careerfair.controller.company;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
 import com.project.careerfair.service.industry.IndustryService;
-import com.project.careerfair.service.user.RecruiterService;
+import com.project.careerfair.service.company.RecruiterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,12 +18,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController("userRecruiterControllerAPI ")
+@RestController("joinRecruiterControllerAPI ")
 @Slf4j
-@RequestMapping("/api/user/recruiter/")
+@RequestMapping("/api/company/join/")
 @PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin') or hasAuthority('company')")
 @RequiredArgsConstructor
-public class RecruiterControllerAPI {
+public class JoinControllerAPI {
 
     private final RecruiterService recruiterService;
 
@@ -63,38 +60,6 @@ public class RecruiterControllerAPI {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-
-   /* @PostMapping
-    public ResponseEntity<Map<String, Object>> regCompany(
-            @Validated @ModelAttribute("company") Company company,
-            BindingResult bindingResult,
-            @RequestParam("files") MultipartFile[] files,
-            Authentication authentication) {
-
-        if (bindingResult.hasErrors()) {
-            // 오류가 있는 경우
-            Map<String, Object> errors = new HashMap<>();
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errors.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
-        }
-
-        boolean ok = false;
-        try {
-            ok = recruiterService.create(company, files, authentication);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Map<String, Object> response = new HashMap<>();
-
-        if (ok) {
-            return ResponseEntity.ok(response);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
-    }*/
 
     // 목록 불러오기
     @GetMapping

@@ -30,7 +30,7 @@ public class SecurityConfig {
         http.csrf().disable();
 
         http.formLogin()
-                .loginPage("/login/login")
+                .loginPage("/login")
                 .failureHandler((request, response, exception) -> {
 
                     String errorMessage = null;
@@ -43,12 +43,12 @@ public class SecurityConfig {
                         errorMessage = "아이디 또는 비밀번호가 잘못되었습니다.";
                         request.getSession().setMaxInactiveInterval(sessionTimeoutInMinutes);
                         request.getSession().setAttribute("message", errorMessage);
-                        response.sendRedirect("/login/login");
+                        response.sendRedirect("/login");
                     } else {
                         errorMessage = "로그인에 실패하였습니다. 다시 시도해주세요.";
                         request.getSession().setMaxInactiveInterval(sessionTimeoutInMinutes);
                         request.getSession().setAttribute("message", errorMessage);
-                        response.sendRedirect("/login/login");
+                        response.sendRedirect("/login");
                     }
                 });
 

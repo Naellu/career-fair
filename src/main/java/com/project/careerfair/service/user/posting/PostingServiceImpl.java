@@ -1,4 +1,4 @@
-package com.project.careerfair.service.posting;
+package com.project.careerfair.service.user.posting;
 
 import com.project.careerfair.domain.*;
 import com.project.careerfair.mapper.jobapplication.JobApplicationMapper;
@@ -8,7 +8,6 @@ import com.project.careerfair.service.admin.ExhibitionInfoService;
 import com.project.careerfair.service.industry.IndustryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.binding.BindingException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -20,18 +19,16 @@ import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("userPostingServiceImpl")
 @Slf4j
 @RequiredArgsConstructor
-public class UserPostingServiceImpl implements UserPostingService {
+public class PostingServiceImpl implements PostingService {
 
     @Value("${aws.s3.bucketName}")
     private String bucketName;

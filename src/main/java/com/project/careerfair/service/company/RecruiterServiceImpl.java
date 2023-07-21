@@ -1,9 +1,8 @@
-package com.project.careerfair.service.user;
+package com.project.careerfair.service.company;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
 import com.project.careerfair.mapper.company.CompanyMapper;
-import com.project.careerfair.mapper.industry.IndustryMapper;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
 import com.project.careerfair.service.industry.IndustryService;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.project.careerfair.service.company;
+package com.project.careerfair.service.user.join;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;

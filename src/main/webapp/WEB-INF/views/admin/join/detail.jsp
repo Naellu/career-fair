@@ -93,7 +93,7 @@
                     <button id="hold-btn" type="button" class="btn btn-warning" style="color: white">보류</button>
                     <button id="reject-btn" type="button" class="btn btn-danger">반려</button>
                     <button id="approve-btn" type="button" class="btn btn-success">승인</button>
-                    <a class="btn btn-secondary" href="/admin/recruiter/list">목록으로 가기</a>
+                    <a class="btn btn-secondary" href="/admin/join/list">목록으로 가기</a>
                 </div>
             </div>
         </div>
@@ -107,6 +107,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/admin/recruiter/detail.js"></script>
+<script src="/js/admin/join/detail.js"></script>
 </body>
 </html>

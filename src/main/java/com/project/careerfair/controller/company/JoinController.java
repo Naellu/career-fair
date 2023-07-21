@@ -1,10 +1,9 @@
-package com.project.careerfair.controller.user;
+package com.project.careerfair.controller.company;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("userRecruiterController")
+@Controller("joinRecruiterController")
 @Slf4j
-@RequestMapping("/user/recruiter/")
+@RequestMapping("/company/join/")
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin') or hasAuthority('company')")
-public class RecruiterController {
+public class JoinController {
 
     private final ExhibitionInfoService exhibitionInfoService;
 
@@ -27,7 +26,7 @@ public class RecruiterController {
         Integer round = exhibitionInfoService.getCurrentRound();
         model.addAttribute("round", round);
         model.addAttribute("company", new Company());
-        return "user/recruiter/reg";
+        return "company/join/reg";
     }
 
     @GetMapping("list")
@@ -35,16 +34,16 @@ public class RecruiterController {
         if (authentication!= null){
             model.addAttribute("memberId", authentication.getName());
         }
-        return "user/recruiter/list";
+        return "company/join/list";
     }
 
     @GetMapping("{companyId}")
     public String detail(@PathVariable("companyId") Integer companyId) {
-        return "user/recruiter/detail";
+        return "company/join/detail";
     }
 
     @GetMapping("/modify/{companyId}")
     public String modify(@PathVariable("companyId") Integer companyId) {
-        return "user/recruiter/modify";
+        return "company/join/modify";
     }
 }

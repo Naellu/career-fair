@@ -53,7 +53,7 @@
                     </li>
                 </sec:authorize>
                 <sec:authorize access="isAnonymous()">
-                    <li><a href="/login/login">로그인</a></li>
+                    <li><a href="/login">로그인</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="hasAuthority('user')">

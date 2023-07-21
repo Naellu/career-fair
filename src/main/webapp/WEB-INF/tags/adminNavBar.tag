@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="/admin/main">관리자 메인</a></li>
                 <li><a href="/">메인</a></li>
-                <li><a href="/admin/recruiter/list">참여기업</a></li>
+                <li><a href="/admin/join/list">참여기업</a></li>
                 <li><a href="#">Q&A</a></li>
                 <li><a href="/customer/notice/list">공지사항</a></li>
                 <li><a href="/admin/round">회차관리</a></li>
