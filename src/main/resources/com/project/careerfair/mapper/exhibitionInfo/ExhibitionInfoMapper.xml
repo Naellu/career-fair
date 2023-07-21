@@ -5,7 +5,7 @@
 <mapper namespace="com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper">
 
     <!-- 관람회목록 불러오는 resultMap-->
-    <resultMap type="com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo"
+    <resultMap type="com.project.careerfair.domain.exhibitionInfo.ExhibitionInfo"
                id="ExhibitionInfoMap">
         <result column="round" property="round"/>
         <result column="location" property="location"/>

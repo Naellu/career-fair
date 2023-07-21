@@ -27,6 +27,9 @@ function detailView() {
             const industryId = posting.industryId - 1;
             const industryName = data.industryList[industryId].industryName;
 
+            const companyImage = document.querySelector(".company-image");
+            const bucketUrl = document.querySelector("#bucket-url");
+
             const h2Element = companyName.querySelector("h2");
             const aElement = companyName.querySelector("a");
             h2Element.innerHTML = posting.companyName;

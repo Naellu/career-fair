@@ -1,4 +1,4 @@
-package com.project.careerfair.domain.ExhibitionInfo;
+package com.project.careerfair.domain.exhibitionInfo;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -72,6 +72,9 @@
         <result column="education_level" property="educationLevel"/>
         <result column="hiring_count" property="hiringCount"/>
         <result column="application_count" property="applicationCount"/>
+        <collection property="fileName" ofType="string">
+            <result column="file_name"/>
+        </collection>
     </resultMap>
 
     <select id="getNowPostingsAll" resultMap="postingViewMap">

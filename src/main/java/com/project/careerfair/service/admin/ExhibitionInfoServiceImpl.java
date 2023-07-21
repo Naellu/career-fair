@@ -1,6 +1,6 @@
 package com.project.careerfair.service.admin;
 
-import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo;
+import com.project.careerfair.domain.exhibitionInfo.ExhibitionInfo;
 import com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
