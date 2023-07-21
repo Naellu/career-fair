@@ -1,4 +1,4 @@
-package com.project.careerfair.service.company;
+package com.project.careerfair.service.company.join;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
@@ -22,10 +22,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@Service("userRecruiterServiceImpl")
+@Service("companyJoinServiceImpl")
 @Slf4j
 @RequiredArgsConstructor
-public class RecruiterServiceImpl implements RecruiterService {
+public class JoinServiceImpl implements JoinService {
 
     private final IndustryService industryService;
 

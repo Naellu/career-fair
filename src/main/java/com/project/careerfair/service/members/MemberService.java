@@ -1,4 +1,4 @@
-package com.project.careerfair.service.member;
+package com.project.careerfair.service.members;
 
 import com.project.careerfair.domain.Members;
 import jakarta.servlet.http.HttpSession;

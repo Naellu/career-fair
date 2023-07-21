@@ -19,7 +19,7 @@ $("#checkEmailBtn").click(function() {
     if (email) {
         // 이메일 전송 요청
         $.ajax({
-            url : "/member/members/mail",
+            url : "/member/mail",
             method : "POST",
             data : {
                 email : email
@@ -44,7 +44,7 @@ $("#verifyEmailBtn").click(function() {
     if (enteredCode) {
         // 이메일 전송 요청
         $.ajax({
-            url : "/member/members/mailCheck",
+            url : "/member/mailCheck",
             method : "POST",
             data : {
                 enteredCode : enteredCode

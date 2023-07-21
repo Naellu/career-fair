@@ -1,9 +1,6 @@
-package com.project.careerfair.service.member;
+package com.project.careerfair.service.members;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.ui.Model;
-
-import java.util.Map;
 
 public interface MailService {
     public void sendMail(String email, HttpSession session);

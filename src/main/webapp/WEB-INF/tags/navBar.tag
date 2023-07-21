@@ -5,7 +5,7 @@
 
 <!-- ======= Header ======= -->
 <link rel="stylesheet" href="/css/navBar.css">
-<sec:authentication property="name" var="userId"/>
+<%--<sec:authentication property="name" var="userId"/>--%>
 
 <header id="header" class="header d-flex align-items-center sticked">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -47,8 +47,8 @@
                 <sec:authorize access="isAnonymous()">
                     <li class="dropdown"><a href="#">회원가입<i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="/member/members/signup">구직자 회원가입</a></li>
-                            <li><a href="/member/members/cosignup">기업 회원가입</a></li>
+                            <li><a href="/member/signup">구직자 회원가입</a></li>
+                            <li><a href="/member/cosignup">기업 회원가입</a></li>
                         </ul>
                     </li>
                 </sec:authorize>

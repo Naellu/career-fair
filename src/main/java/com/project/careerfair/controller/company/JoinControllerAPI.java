@@ -3,7 +3,7 @@ package com.project.careerfair.controller.company;
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
 import com.project.careerfair.service.industry.IndustryService;
-import com.project.careerfair.service.company.RecruiterService;
+import com.project.careerfair.service.company.join.JoinService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class JoinControllerAPI {
 
-    private final RecruiterService recruiterService;
+    private final JoinService joinService;
 
     private final IndustryService industryService;
 
@@ -49,7 +49,7 @@ public class JoinControllerAPI {
         }
 
         try {
-            ok = recruiterService.create(company, files, authentication);
+            ok = joinService.create(company, files, authentication);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -66,14 +66,14 @@ public class JoinControllerAPI {
     public ResponseEntity<Map<String, Object>> getCompanies(
             @RequestParam(value = "roundValue", required = false) String roundValue,
             Authentication authentication) {
-        Map<String, Object> result = recruiterService.getList(roundValue, authentication.getName());
+        Map<String, Object> result = joinService.getList(roundValue, authentication.getName());
         return ResponseEntity.ok(result);
     }
 
     // 상세 불러오기
     @GetMapping("{companyId}")
     public ResponseEntity<Map<String, Object>> getCompany(@PathVariable("companyId") Integer companyId) {
-        Map<String, Object> result = recruiterService.getDetail(companyId);
+        Map<String, Object> result = joinService.getDetail(companyId);
         return ResponseEntity.ok(result);
     }
 
@@ -85,7 +85,7 @@ public class JoinControllerAPI {
             @RequestParam(value = "removeFiles", required = false) List<String> removeFileNames,
             @RequestParam(value = "files", required = false) MultipartFile[] files) {
         try {
-            boolean ok = recruiterService.modify(company, files, removeFileNames);
+            boolean ok = joinService.modify(company, files, removeFileNames);
             Map<String, Object> response = new HashMap<>();
             if (ok) {
                 response.put("message", "수정되었습니다.");
