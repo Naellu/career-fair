@@ -90,8 +90,8 @@
 
             <div>
                 <div>
-                    <a class="btn btn-danger" href="/user/recruiter/modify/${companyId}">수정</a>
-                    <a class="btn btn-secondary" href="/user/recruiter/list">목록으로 가기</a>
+                    <a class="btn btn-danger" href="/company/join/modify/${companyId}">수정</a>
+                    <a class="btn btn-secondary" href="/company/join/list">목록으로 가기</a>
                 </div>
             </div>
         </div>
@@ -105,6 +105,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/user/recruiter/detail.js"></script>
+<script src="/js/company/join/detail.js"></script>
 </body>
 </html>

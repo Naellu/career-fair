@@ -86,7 +86,7 @@
             <div>
                 <div class="form-text">정보가 충분하지 않을 시 신청이 보류되거나 반려될 수 있습니다.</div>
                 <button id="update-btn" class="btn btn-danger">수정</button>
-                <a class="btn btn-secondary" href="/user/recruiter/list">목록으로 가기</a>
+                <a class="btn btn-secondary" href="/company/join/list">목록으로 가기</a>
             </div>
         </div>
     </div>
@@ -99,6 +99,6 @@
             integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/js/user/recruiter/modify.js"></script>
+    <script src="/js/company/join/modify.js"></script>
 </body>
 </html>

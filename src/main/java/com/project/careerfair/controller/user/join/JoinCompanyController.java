@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/company/")
-public class ParticipatingCompanyController {
+@RequestMapping("/user/join/")
+public class JoinCompanyController {
 
     @Value("${kakao.accessKey}")
     private String accessKey;

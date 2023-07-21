@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/notices/")
+@RequestMapping("/api/notices")
 @RequiredArgsConstructor
 @Slf4j
 public class NoticeControllerAPI {
@@ -60,13 +60,13 @@ public class NoticeControllerAPI {
         }
     }
 
-    @GetMapping("{noticeId}")
+    @GetMapping("/{noticeId}")
     public ResponseEntity<Map<String, Object>> getNotice(@PathVariable("noticeId") Integer noticeId) {
         Map<String, Object> result = noticeService.getDetail(noticeId);
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("{noticeId}")
+    @PostMapping("/{noticeId}")
     @PreAuthorize("hasAuthority('admin')")
     public ResponseEntity<Map<String, Object>> modifyNotice(
             @PathVariable("noticeId") Integer noticeId,

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController("adminRecruiterControllerAPI")
+@RestController("adminJoinControllerAPI")
 @Slf4j
 @RequestMapping("/api/admin/join/")
 @RequiredArgsConstructor
