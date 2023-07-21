@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("adminRecruiterController")
+@Controller("adminJoinController")
 @Slf4j
-@RequestMapping("/admin/recruiter/")
+@RequestMapping("/admin/join/")
 @PreAuthorize("hasAuthority('admin')")
-public class RecruiterController {
+public class JoinController {
 
     @GetMapping("list")
     public String list() {
-        return "admin/recruiter/list";
+        return "admin/join/list";
     }
 
     @GetMapping("{companyId}")
     public String detail(@PathVariable("companyId") Integer companyId) {
-        return "admin/recruiter/detail";
+        return "admin/join/detail";
     }
 }

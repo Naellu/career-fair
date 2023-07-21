@@ -1,24 +1,23 @@
 package com.project.careerfair.controller.admin;
 
-import com.project.careerfair.service.admin.RecruiterService;
+import com.project.careerfair.service.admin.JoinService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController("adminRecruiterControllerAPI")
 @Slf4j
-@RequestMapping("/api/admin/recruiter/")
+@RequestMapping("/api/admin/join/")
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('admin')")
-public class RecruiterControllerAPI {
+public class JoinControllerAPI {
 
-    private final RecruiterService recruiterService;
+    private final JoinService joinService;
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> getRecruiters(
@@ -26,13 +25,13 @@ public class RecruiterControllerAPI {
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "page", defaultValue = "1") Integer page) {
-        Map<String, Object> result = recruiterService.getList(search, type, page, status);
+        Map<String, Object> result = joinService.getList(search, type, page, status);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("{companyId}")
     public ResponseEntity<Map<String, Object>> getRecruiterDetail(@PathVariable("companyId") Integer companyId) {
-        Map<String, Object> result = recruiterService.getDetail(companyId);
+        Map<String, Object> result = joinService.getDetail(companyId);
         return ResponseEntity.ok(result);
     }
 
@@ -40,7 +39,7 @@ public class RecruiterControllerAPI {
     public ResponseEntity<Void> updateRecruiterStatus(
             @PathVariable("companyId") Integer companyId,
             @RequestBody Map<String, String> statusMap) {
-        boolean ok = recruiterService.changeStatus(companyId, statusMap);
+        boolean ok = joinService.changeStatus(companyId, statusMap);
         if (ok) {
             return ResponseEntity.ok().build(); // 200 OK 응답
         } else {

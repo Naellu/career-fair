@@ -1,6 +1,5 @@
-package com.project.careerfair.controller.company;
+package com.project.careerfair.controller.user.join;
 
-import com.project.careerfair.service.admin.ExhibitionInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +20,7 @@ public class ParticipatingCompanyController {
 
     @GetMapping("list")
     public String list() {
-        return "company/list";
+        return "user/join/list";
     }
 
     @GetMapping("{companyId}")
@@ -29,6 +28,6 @@ public class ParticipatingCompanyController {
             @PathVariable Integer companyId,
             Model model) {
         model.addAttribute("kakaoMap", accessKey);
-        return "company/detail";
+        return "user/join/detail";
     }
 }

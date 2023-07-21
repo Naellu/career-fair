@@ -1,8 +1,8 @@
-package com.project.careerfair.controller.company;
+package com.project.careerfair.controller.user.join;
 
 import com.project.careerfair.domain.Industry;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
-import com.project.careerfair.service.company.ParticipatingCompanyService;
+import com.project.careerfair.service.user.join.ParticipatingCompanyService;
 import com.project.careerfair.service.industry.IndustryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

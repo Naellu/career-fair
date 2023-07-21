@@ -17,7 +17,7 @@ function listView(searchValue, typeValue, pageValue, statusValue) {
     // URL 매개변수로 데이터 직렬화
     const params = new URLSearchParams(requestData).toString();
 
-    fetch(`/api/admin/recruiter/?${params}`)
+    fetch(`/api/admin/join/?${params}`)
         .then(response => response.json())
         .then(data => {
             const companyList = data.companyList;
@@ -52,7 +52,7 @@ function listView(searchValue, typeValue, pageValue, statusValue) {
                         <td style="text-align: center; width: 150px">${company.establishmentDate}</td>
                         <td style="text-align: center; " >${company.ceoName}</td>
                         <td style="text-align: center; " >${statusText}</td>
-                        <td style="text-align: center; " ><a href="/admin/recruiter/${company.companyId}" class="btn btn-secondary">상세페이지로</a></td>
+                        <td style="text-align: center; " ><a href="/admin/join/${company.companyId}" class="btn btn-secondary">상세페이지로</a></td>
                     </tr>
                 `;
                 tbody.insertAdjacentHTML('beforeend', recruiterHtml);

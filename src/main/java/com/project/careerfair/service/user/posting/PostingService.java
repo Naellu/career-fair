@@ -1,4 +1,4 @@
-package com.project.careerfair.service.posting;
+package com.project.careerfair.service.user.posting;
 
 import com.project.careerfair.domain.JobApplication;
 import org.springframework.security.core.Authentication;
@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Map;
 
-public interface UserPostingService {
+public interface PostingService {
     Map<String, Object> getPostings(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search, Integer page);
 
     Map<String, Object> getDetail(Integer postingId, Authentication authentication);

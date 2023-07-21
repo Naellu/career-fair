@@ -4,7 +4,7 @@ const bucketUrl = document.querySelector("#bucketUrl").value;
 function detailView() {
     const url = window.location.href;
     const companyId = url.substring(url.lastIndexOf("/") + 1);
-    fetch(`/api/admin/recruiter/${companyId}`)
+    fetch(`/api/admin/join/${companyId}`)
         .then(response => response.json())
         .then(data => {
             const company = data.company;
@@ -110,7 +110,7 @@ function changeStatus(data) {
     const companyId = url.substring(url.lastIndexOf("/") + 1);
     JSON.stringify(data);
 
-    fetch(`/api/admin/recruiter/${companyId}`, {
+    fetch(`/api/admin/join/${companyId}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -120,10 +120,10 @@ function changeStatus(data) {
         .then(response => {
             if (response.status === 200) {
                 // 수정이 성공한 경우
-                location.href = `/admin/recruiter/${companyId}`;
+                location.href = `/admin/join/${companyId}`;
                 alert("처리 완료되었습니다.");
             } else {
-                location.href = `/admin/recruiter/${companyId}`;
+                location.href = `/admin/join/${companyId}`;
                 alert("처리 실패하였습니다.");
             }
         })

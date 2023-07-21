@@ -2,9 +2,7 @@ package com.project.careerfair.service.admin;
 
 import com.project.careerfair.domain.Company;
 import com.project.careerfair.domain.Industry;
-import com.project.careerfair.domain.Notice;
 import com.project.careerfair.mapper.company.CompanyMapper;
-import com.project.careerfair.mapper.industry.IndustryMapper;
 import com.project.careerfair.service.industry.IndustryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("adminRecruiterServiceImpl")
+@Service("adminJoinServiceImpl")
 @Slf4j
 @RequiredArgsConstructor
-public class RecruiterServiceImpl implements RecruiterService {
+public class JoinServiceImpl implements JoinService {
 
     private final CompanyMapper companyMapper;
 

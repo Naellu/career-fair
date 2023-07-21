@@ -57,6 +57,7 @@ const mailConfirmInput = document.querySelector("#mail-confirm");
 authCodeCheck.addEventListener("click", function () {
     const inputAuthCode = mailConfirmInput.value;
     const memberId = memberInput.value;
+    console.log(inputAuthCode);
     fetch("/api/login/locked/verification", {
         method: "POST",
         headers: {
@@ -72,7 +73,7 @@ authCodeCheck.addEventListener("click", function () {
             const message = data.message;
             if (message === 'success') {
                 alert("활성화되었습니다. 로그인창으로가서 로그인해주세요")
-                location.href = "/login/login";
+                location.href = "/login";
             } else {
                 alert("인증에 실패하였습니다. 다시한번 시도해주세요");
                 location.href = "/login/locked";
