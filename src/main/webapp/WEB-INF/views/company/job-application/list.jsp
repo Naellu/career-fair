@@ -23,11 +23,19 @@
     <my:font></my:font>
     <title>Title</title>
 
+    <style>
+        .container-lg {
+            margin-top: 80px;
+        }
+    </style>
+
 
 </head>
 <body>
 <my:navBar/>
 
+
+<div class="container-lg">
 <table id="posting-table" class="table table-bordered custom-div">
     <thead class="table-dark">
     <tr>
@@ -43,7 +51,7 @@
             <td>${list.memberId}</td>
             <td><button onclick="location.href='/company/job-application/get?memberId=${list.memberId}&applicationId=${list.applicationId}&postingId=${list.postingId}'">상세 보기</button></td>
             <td>
-                <form id="updateForm${status.index}" action="/jobApplication/update" method="post">
+                <form id="updateForm${status.index}" action="/company/job-application/update" method="post">
                     <input type="hidden" name="memberId" value="${list.memberId}">
                     <input type="hidden" name="applicationId" value="${list.applicationId}">
                     <input type="hidden" name="postingId" value="${list.postingId}">
@@ -67,6 +75,8 @@
     </c:forEach>
     </tbody>
 </table>
+
+</div>
 
 <script>
     function submitForm(index) {

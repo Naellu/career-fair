@@ -30,7 +30,6 @@
     </style>
 
     <style>
-        /* 추가된 CSS 스타일 */
         .member-container {
             display: flex;
             justify-content: space-between;
