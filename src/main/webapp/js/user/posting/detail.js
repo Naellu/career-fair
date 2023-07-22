@@ -27,8 +27,18 @@ function detailView() {
             const industryId = posting.industryId - 1;
             const industryName = data.industryList[industryId].industryName;
 
-            const companyImage = document.querySelector(".company-image");
-            const bucketUrl = document.querySelector("#bucket-url");
+            const companyImage = document.querySelector("#company-image");
+            const bucketInput = document.querySelector("#bucket-url");
+
+            const bucketUrl = bucketInput.value;
+
+            companyImage.innerHTML = "";
+
+            const imageHtml = `
+                <img src="${bucketUrl}/company/${posting.companyId}/logo.png" class="img-fluid rounded-circle mx-auto d-block" alt="사진준비중">
+            `;
+
+            companyImage.innerHTML = imageHtml;
 
             const h2Element = companyName.querySelector("h2");
             const aElement = companyName.querySelector("a");
@@ -38,6 +48,7 @@ function detailView() {
             title.innerHTML = posting.title;
 
             workConditionUl.innerHTML = "";
+
             const conditionHtml = `
                 <li>근무지: ${posting.address}</li>
                 <li>근무형태: ${posting.employmentType}</li>

@@ -1,7 +1,9 @@
 package com.project.careerfair.service.admin;
 
 import com.project.careerfair.domain.exhibitionInfo.ExhibitionInfo;
+import com.project.careerfair.mapper.company.CompanyMapper;
 import com.project.careerfair.mapper.exhibitionInfo.ExhibitionInfoMapper;
+import com.project.careerfair.mapper.members.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +25,8 @@ import java.util.List;
 public class ExhibitionInfoServiceImpl implements ExhibitionInfoService {
 
     private final ExhibitionInfoMapper exhibitionInfoMapper;
+
+    private final MemberMapper memberMapper;
 
     @Value("${aws.s3.bucketName}")
     private String bucketName;
@@ -56,6 +60,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionInfoService {
         }
 
         // 채용담당자 권한을 company로 전부 변경하기
+        memberMapper.setTypeToCompany();
 
         return cnt == 1;
     }

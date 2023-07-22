@@ -33,7 +33,6 @@
         <div class="col-md-6 offset-md-3">
             <input id="bucket-url" type="hidden" value="${bucketUrl}">
             <div id="company-image">
-                <img src="/img/3.jpg" class="img-fluid rounded-circle mx-auto d-block" alt="회사 로고">
             </div>
             <div id="company-name" class="text-center my-4">
                 <h2>회사이름</h2>
