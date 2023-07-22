@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/stat")
+@RequestMapping("/stat/")
 public class StatisticController {
 
-    @GetMapping("")
+    @GetMapping
     public String showGraph() {
         return "admin/statistic/stat";
     }

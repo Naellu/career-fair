@@ -5,7 +5,7 @@
 
 <!-- ======= Header ======= -->
 <link rel="stylesheet" href="/css/navBar.css">
-<sec:authentication property="name" var="userId"/>
+<%--<sec:authentication property="name" var="userId"/>--%>
 
 <header id="header" class="header d-flex align-items-center sticked">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -19,11 +19,11 @@
                 <li class="dropdown"><a href="#"><span>박람회 소개</span> <i
                         class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="/customer/notice/list">박람회 소개</a></li>
+                        <li><a href="#">박람회 소개</a></li>
                         <li><a href="/location">찾아오시는길</a></li>
                     </ul>
 
-                <li><a href="/company/list">참여기업</a></li>
+                <li><a href="/user/join/list">참여기업</a></li>
                 <li><a href="/user/posting/list">채용공고</a></li>
                 <li><a href="/qna/QnaList">Q&A</a></li>
 
@@ -47,13 +47,13 @@
                 <sec:authorize access="isAnonymous()">
                     <li class="dropdown"><a href="#">회원가입<i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="/member/members/signup">구직자 회원가입</a></li>
-                            <li><a href="/member/members/cosignup">기업 회원가입</a></li>
+                            <li><a href="/member/signup">구직자 회원가입</a></li>
+                            <li><a href="/member/cosignup">기업 회원가입</a></li>
                         </ul>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="isAnonymous()">
-                    <li><a href="/login/login">로그인</a></li>
+                    <li><a href="/login">로그인</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="hasAuthority('user')">

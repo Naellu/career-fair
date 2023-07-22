@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("answer")
+@RequestMapping("/answer/")
 @RequiredArgsConstructor
 public class QnaAnswerController {
 

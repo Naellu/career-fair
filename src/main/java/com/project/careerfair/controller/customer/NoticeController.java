@@ -39,7 +39,7 @@ public class NoticeController {
         return "customer/notice/detail";
     }
 
-    @GetMapping("/modify/{noticeId}")
+    @GetMapping("modify/{noticeId}")
     @PreAuthorize("hasAuthority('admin')")
     public String modify(@PathVariable("noticeId") Integer noticeId) {
         return "customer/notice/modify";

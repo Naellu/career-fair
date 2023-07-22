@@ -7,20 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/tools")
+@RequestMapping("/tools/")
 public class ToolController {
 
-//    @GetMapping
-//    public String home() {
-//        return "tools/tools";
-//    }
-
-    @GetMapping("/count")
+    @GetMapping("count")
     public String countCharacter() {
         return "tools/count";
     }
 
-    @GetMapping("/grade")
+    @GetMapping("grade")
     public String gradeCalculator() {
         return "tools/grade";
     }

@@ -1,8 +1,8 @@
 package com.project.careerfair.controller.members;
 
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.service.member.MailService;
-import com.project.careerfair.service.member.MemberService;
+import com.project.careerfair.service.members.MailService;
+import com.project.careerfair.service.members.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Map;
 
 @Controller
-@RequestMapping("member/members")
+@RequestMapping("/member/")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -33,12 +33,12 @@ public class MemberController {
             memberService.signup(member);
             rttr.addFlashAttribute("", "회원가입이 완료되었습니다.");
             System.out.println("회원가입이 완료되었습니다.");
-            return "redirect:/login/login";
+            return "redirect:/login";
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("members", member);
             System.out.println("회원가입에 실패하였습니다.");
-            return "redirect:/members/signup";
+            return "redirect:/signup";
         }
     }
 
@@ -53,12 +53,12 @@ public class MemberController {
             memberService.signup(member);
             rttr.addFlashAttribute("", "회원가입이 완료되었습니다.");
             System.out.println("회원가입이 완료되었습니다.");
-            return "redirect:/login/login";
+            return "redirect:/login";
         } catch (Exception e) {
             e.printStackTrace();
             rttr.addFlashAttribute("members", member);
             System.out.println("회원가입에 실패하였습니다.");
-            return "redirect:/members/signup";
+            return "redirect:/member/cosignup";
         }
     }
 

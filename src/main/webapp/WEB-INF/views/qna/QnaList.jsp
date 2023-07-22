@@ -23,13 +23,23 @@
     <my:font></my:font>
     <title>Title</title>
 
+    <style>
+        .container-lg {
+            margin-top: 30px;
+        }
+    </style>
+
+
+
 </head>
 <body>
 <my:navBar/>
+
 <div class="container-lg">
     <sec:authorize access="isAuthenticated()">
         <button type="button" class="btn btn-primary" onclick="location.href='/qna/add'">Q&A 작성</button>
     </sec:authorize>
+    <hr>
     <table class="table">
         <thead>
         <tr>

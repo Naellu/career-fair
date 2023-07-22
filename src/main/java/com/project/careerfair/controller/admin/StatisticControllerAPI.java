@@ -15,30 +15,30 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/vi/stat")
+@RequestMapping("/api/vi/stat/")
 public class StatisticControllerAPI {
 
     private final StatisticService statisticService;
 
-    @GetMapping("/postings")
+    @GetMapping("postings")
     public List<Statistic> getStatData() {
         return statisticService.getAllPostings();
     }
 
-    @GetMapping("/industry/age")
+    @GetMapping("industry/age")
     public List<IndustryAgeGroupDto> showIndustryAgeGroupData() {
         List<IndustryAgeGroupDto> industryAgeGroupData = statisticService.getIndustryAgeGroupData();
         log.info("industryAgeGroupData={}", industryAgeGroupData);
         return industryAgeGroupData;
     }
 
-    @GetMapping("/industry/postings")
+    @GetMapping("industry/postings")
     public List<IndustryCount> showAllPostingByIndustry() {
         List<IndustryCount> allPostings = statisticService.getAllPostingByIndustry();
         return allPostings;
     }
 
-    @GetMapping("/industry/member")
+    @GetMapping("industry/member")
     public List<IndustryCount> showAllApplicantsMemberByIndustry() {
         List<IndustryCount> allApplicantsByIndustry = statisticService.getAllApplicantsByIndustry();
         return allApplicantsByIndustry;
