@@ -47,7 +47,7 @@
 <%--                    </div>--%>
                     <img src="/img/main/careerfair_visual_txt.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="/member/user/apply/detail" class="btn-get-started">참여신청하기</a>
+                        <a href="#" class="btn-get-started">참여신청하기</a>
 <%--                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>--%>
                     </div>
                 </div>
