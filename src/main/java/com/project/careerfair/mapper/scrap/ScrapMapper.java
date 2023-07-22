@@ -41,4 +41,10 @@ public interface ScrapMapper {
             WHERE scrap_id = #{scrapId}
             """)
     Integer cancelScrapByScrapId(Integer scrapId);
+
+    @Delete("""
+            DELETE FROM TB_SCRAP
+            WHERE posting_id = #{postingId}
+            """)
+    Integer deleteScrap(Integer postingId);
 }

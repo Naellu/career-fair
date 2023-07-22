@@ -1,9 +1,9 @@
 package com.project.careerfair.service.admin;
 
-import com.project.careerfair.domain.Files;
-import com.project.careerfair.domain.Members;
-import com.project.careerfair.domain.Posting;
+import com.project.careerfair.domain.*;
 import com.project.careerfair.mapper.admin.RecruitManageMapper;
+import com.project.careerfair.mapper.company.CompanyMapper;
+import com.project.careerfair.mapper.scrap.ScrapMapper;
 import com.project.careerfair.service.apply.PostingApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,11 +31,14 @@ public class RecruitManageServiceImpl implements RecruitManageService{
     private RecruitManageMapper rmMapper;
 
     @Autowired
+    private ScrapMapper scrapMapper;
+
+    @Autowired
     private PostingApplyService postingApplyService;
 
 
     @Override
-    public Map<String, Object> getPosting(Integer page, String search, String type, String status ) {
+    public Map<String, Object> getPosting(Integer page, String search, String type ) {
 
         Integer round = exhibitionInfoService.getCurrentRound();
 
@@ -44,7 +47,7 @@ public class RecruitManageServiceImpl implements RecruitManageService{
 
         //페이지네이션 정보
         //총 글 개수
-        Integer count = rmMapper.countAll(type, search, status,round);
+        Integer count = rmMapper.countAll(type, search, round);
 
         // 마지막 페이지 번호
         // 총 글개수 -1 / pageSize + 1
@@ -73,24 +76,27 @@ public class RecruitManageServiceImpl implements RecruitManageService{
         pageInfo.put("prevPageNum", prevPageNum);
         pageInfo.put("nextPageNum", nextPageNum);
 
-        List<Posting> postingList = rmMapper.getPostId(startNum, pageSize, search, type, status, round);
+        List<Posting> postingList = rmMapper.getPostId(startNum, pageSize, search, type, round);
         List<Members> member = rmMapper.getManageId();
         return Map.of("pageInfo",pageInfo, "postList",postingList , "members", member);
     }
 
     @Override
-    public boolean removeProcess(Integer postingId) {
+    public boolean removeProcess(Integer appicaitonId , Integer postingId) {
+
+        //스크랩 돼있는 공고 삭제
+        scrapMapper.deleteScrap(postingId);
 
         Integer round = exhibitionInfoService.getCurrentRound();
-        List<String> fileNames = rmMapper.selectFileId(postingId);
+
+        List<String> fileNames = rmMapper.selectFileId(appicaitonId);
 //        List<Integer> appicaitonId =    곧 이 방법으로 바꿈
-//        postingApplyService.applyCancel();
-
-
+        postingApplyService.applyCancel(appicaitonId);
 
         for(String fileName : fileNames) {
-            String objectKey = "career_fair/jobApplication/" + postingId;
+            String objectKey = "career_fair/jobApplication/" + appicaitonId;
             String fileKey = objectKey + "/" + fileName;
+
             DeleteObjectRequest dor = DeleteObjectRequest.builder()
                     .bucket(bucketName)
                     .key(fileKey)
@@ -100,7 +106,7 @@ public class RecruitManageServiceImpl implements RecruitManageService{
 
             rmMapper.removeFileId(fileName);
         }
-        int cnt = rmMapper.removeForm(postingId);
+        int cnt = rmMapper.removeForm(postingId,round);
         return cnt == 1;
     }
 

@@ -10,7 +10,7 @@ public interface RecruitManageService {
 //    public List<Posting> getRecrutList(String memberId);
 
 
-    public boolean removeProcess(Integer id);
+    public boolean removeProcess(Integer appicaitonId, Integer postingId);
 
-    public Map<String, Object> getPosting(Integer page, String search, String type, String status);
+    public Map<String, Object> getPosting(Integer page, String search, String type);
 }

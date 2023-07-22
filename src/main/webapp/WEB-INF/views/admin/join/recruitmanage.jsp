@@ -80,7 +80,7 @@
             </div>
           <div class="rectable-column-div">
             <div>
-                <button id="removeButton" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">삭제</button>
+                <button id="removeButton" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">삭제</button>
             </div>
           </div>
         </div>
@@ -160,22 +160,22 @@
     </div>
 <my:recmanageSearch></my:recmanageSearch>
 <%--삭제모달--%>
-<div style="display: none; ">
-    <form action="/admin/recruiter/remove" method="post" id="removeForm">
-        <input id="inputId" type="text" name="postingId" value="${postingList.postingId }" />
-    </form>
-</div>
-<div style="display: none;" class="delete_modal-f" id="deleteConfirmModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal_content">
-        <div class="modal-f-header">
-            <h1 class="modal-title-f" id="exampleModalLabel">게시글 삭제</h1>
-        </div>
-        <div class="modal-text-f">
-            <span>정말로 게시글을 삭제하시겠습니까?</span>
-        </div>
-        <div class="modal-f-footer">
-            <button type="submit" id="delete-modal" form="removeForm">삭제</button>
-            <button type="button" id="close-modal-s" >닫기</button>
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="removeForm" action="/admin/recruiter/remove" method="post">
+                    <input type="hidden" name="id" value="${postList.postingId }" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="submit" form="removeForm" class="btn btn-danger">확인</button>
+            </div>
         </div>
     </div>
 </div>
@@ -186,6 +186,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/admin/manage/remove"></script>
+<%--<script src="/js/admin/manage/remove"></script>--%>
 </body>
 </html>

@@ -26,17 +26,16 @@ public class RecruitManageController {
     public String recruitForm (Model model
                               , @RequestParam(value = "page", defaultValue = "1") Integer page
                               , @RequestParam(value = "search", required = false, defaultValue = "")String search
-                              , @RequestParam(value="type", required = false)String type
-                              , @RequestParam(value = "status", required = false) String status){
-        Map<String, Object> list = rmservice.getPosting(page, search, type, status);
+                              , @RequestParam(value="type", required = false)String type){
+        Map<String, Object> list = rmservice.getPosting(page, search, type);
 
         model.addAllAttributes(list);
 
         return "admin/recruiter/recruitmanage";
     }
     @PostMapping("remove")
-    public void removeForm(Integer id, RedirectAttributes rttr) {
-        boolean ok = rmservice.removeProcess(id);
+    public void removeForm(Integer appicaitonId,Integer postingId, RedirectAttributes rttr) {
+        boolean ok = rmservice.removeProcess(appicaitonId,postingId);
 
         if(ok) {
             rttr.addFlashAttribute("message", "해당 공고 삭제가 완료됐습니다.");

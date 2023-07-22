@@ -45,6 +45,8 @@ public interface RecruitManageMapper {
             , application_count 
         FROM 
             TB_POSTING 
+            <where>
+            <if test="search != null">
             <if test="type eq 'all'">
               AND (member_id LIKE #{pattern} OR title LIKE #{pattern} OR address LIKE #{pattern})
             </if>
@@ -57,22 +59,14 @@ public interface RecruitManageMapper {
             <if test="type eq 'address'">
               AND address LIKE #{pattern}
             </if>
+            </if>
+            </where>
         ORDER BY posting_id DESC
         LIMIT #{startNum}, #{pageSize}
         </script>
         """)
     @ResultMap("postingMap")
-    List<Posting> getPostId(Integer startNum, Integer pageSize, String search, String type, String status, Integer round);
-
-
-    @Select("""
-            SELECT 
-            file_name 
-            FROM
-            TB_FILES
-            WHERE posting_id = #{postingId}
-            """)
-    List<String> selectFileId(Integer postingId);
+    List<Posting> getPostId(Integer startNum, Integer pageSize, String search, String type, Integer round);
 
 
     @Delete("""
@@ -81,8 +75,9 @@ public interface RecruitManageMapper {
             TB_POSTING
             WHERE 
             posting_id = #{postingId}
+            AND round = #{round}
             """)
-    int removeForm(Integer postingId);
+    int removeForm(Integer postingId, Integer round);
 
     @Delete("""
             DELETE 
@@ -116,16 +111,18 @@ public interface RecruitManageMapper {
               </if>
               <if test="type eq 'address'">
               OR address LIKE #{pattern}
-              </if>
-              <if test="(status eq 'all') or (status eq '') ">
-              </if>
-              <if test="status neq 'all'">
-              AND status LIKE #{status}
-              </if>
-            		
+              </if>	
             </script>
             """)
-    Integer countAll(String type, String search, String status, Integer round);
+    Integer countAll(String type, String search, Integer round);
 
 
+    @Select("""
+            SELECT 
+            file_name 
+            FROM
+            TB_FILES
+            WHERE application_id = #{appicaitonId}
+            """)
+    List<String> selectFileId(Integer appicaitonId);
 }
