@@ -57,11 +57,11 @@
                 </sec:authorize>
 
                 <sec:authorize access="hasAuthority('user')">
-                    <li><a href="/member/user/mypage?id=${userId}">마이페이지</a></li>
+                    <li><a href="/member/mypage?id=<sec:authentication property="name" />">마이페이지</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="hasAuthority('recruiter') or hasAuthority('company') or hasAuthority('admin')">
-                    <li><a href="/member/company/mypage1?id=${userId}">마이페이지</a></li>
+                    <li><a href="/member/comypage?id=<sec:authentication property="name" />">마이페이지</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">

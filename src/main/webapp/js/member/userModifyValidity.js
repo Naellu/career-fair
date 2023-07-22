@@ -63,7 +63,7 @@ $("#password-check").blur(function() {
 $("#checkPhoneNumBtn").click(function() {
     const userphoneNum = $("#totalphone-num").val();
     // 입력한 ID와 ajax 요청 보내서
-    $.ajax("/member/members/checkphoneNumber/" + userphoneNum, {
+    $.ajax("/member/checkphoneNumber/" + userphoneNum, {
         success: function(data) {
 
             if (data.available) {
@@ -87,7 +87,7 @@ $("#checkPhoneNumBtn").click(function() {
 $("#search-email").click(function() {
     const userEmail = $("#totalemail").val();
     // 입력한 ID와 ajax 요청 보내서
-    $.ajax("/member/members/searchMail", {
+    $.ajax("/member/searchMail", {
         method: "post",
         data: {
             email: userEmail
@@ -124,7 +124,7 @@ $("#checkEmailBtn").click(function() {
     if (email) {
         // 이메일 전송 요청
         $.ajax({
-            url: "/member/members/mail",
+            url: "/member/mail",
             method: "POST",
             data: {
                 email: email
@@ -150,7 +150,7 @@ $("#verifyEmailBtn").click(function() {
     if (enteredCode) {
         // 이메일 전송 요청
         $.ajax({
-            url: "/member/members/mailCheck",
+            url: "/member/mailCheck",
             method: "POST",
             data: {
                 enteredCode: enteredCode
