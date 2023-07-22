@@ -55,7 +55,7 @@
                 </div>
 
                 <sec:authorize access="authentication.name eq #members.id">
-                    <a class="btn btn-secondary" href="/member/user/modify?id=${members.id }">수정</a>
+                    <a class="btn btn-secondary" href="/member/modify?id=${members.id }">수정</a>
                     <button type="button" data-bs-toggle="modal" class="btn btn-danger" data-bs-target="#confirmModal">탈퇴</button>
                 </sec:authorize>
             </div>
@@ -73,7 +73,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="removeForm" action="/member/user/remove" method="post">
+                    <form id="removeForm" action="/member/remove" method="post">
                         <input type="hidden" name="id" value="${members.id }" /> <label for="passwordInput1">암호</label> <input id="passwordInput1" type="password" name="password" class="form-control" />
                     </form>
                 </div>

@@ -17,12 +17,12 @@ import java.util.Map;
 @Controller
 @PreAuthorize("hasAuthority('admin')")
 @RequiredArgsConstructor
-@RequestMapping("/admin/recruiter/")
+@RequestMapping("/admin/management/")
 public class RecruitManageController {
 
     private final RecruitManageService rmservice;
 
-    @GetMapping("recruitmanage")
+    @GetMapping("recruitmanagement")
     public String recruitForm (Model model
                               , @RequestParam(value = "page", defaultValue = "1") Integer page
                               , @RequestParam(value = "search", required = false, defaultValue = "")String search
@@ -31,7 +31,7 @@ public class RecruitManageController {
 
         model.addAllAttributes(list);
 
-        return "admin/recruiter/recruitmanage";
+        return "admin/management/recruitmanagement";
     }
     @PostMapping("remove")
     public void removeForm(Integer appicaitonId,Integer postingId, RedirectAttributes rttr) {

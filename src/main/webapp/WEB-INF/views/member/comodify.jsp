@@ -1,15 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
-  User: user
-  Date: 2023-07-11
-  Time: 오후 12:23
+  User: LG
+  Date: 2023-07-13
+  Time: 오후 3:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page import="java.util.*" %>
 
 <html>
@@ -22,6 +21,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <my:font></my:font>
     <title>회원 정보 수정</title>
+
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         function kakaoAddress () {
@@ -102,9 +102,9 @@
 <div style="margin: 25px 0px;">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
-            <h1>회원 정보 수정</h1>
+            <h1>기업회원 정보 수정</h1>
             <div style="font-size: 13px; color: #4C84F3; margin-bottom: 20px;">정보수정은 비밀번호/Email/주소/전화번호만 수정가능합니다.</div>
-            <form id="modifyForm" action="/member/user/modify" method="post">
+            <form id="modifyForm" action="/member/comodify" method="post">
                 <div>
                     <div class="sign-column">
                         <span style="margin-right: 80px;">아이디</span>
@@ -194,7 +194,7 @@
             </div>
             <div class="modal-body">
                 <label for="inputOldPassword" class="form-label">이전 암호</label>
-                <input form="modifyForm" id="inputOldPassword" class="form-control" type="text" name="oldPassword" />
+                <input form="modifyForm" id="inputOldPassword" class="form-control" type="password" name="oldPassword" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
