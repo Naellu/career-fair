@@ -24,8 +24,7 @@
 
 </head>
 <body>
-<my:navBar/>
-
+<my:navBar/>iisfsdf
 <div class="container">
     <br/>
     <h3>스크랩 목록</h3>
