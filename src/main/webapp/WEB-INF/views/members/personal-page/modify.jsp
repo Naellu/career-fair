@@ -104,7 +104,7 @@
         <div class="col-12 col-md-8 col-lg-6">
             <h1>회원 정보 수정</h1>
             <div style="font-size: 13px; color: #4C84F3; margin-bottom: 20px;">정보수정은 비밀번호/Email/주소/전화번호만 수정가능합니다.</div>
-            <form id="modifyForm" action="/member/modify" method="post">
+            <form id="modifyForm" action="/members/personal-page/modify" method="post">
                 <div>
                     <div class="sign-column">
                         <span style="margin-right: 80px;">아이디</span>
@@ -210,6 +210,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/member/userModifyValidity.js"></script>
+<script src="/js/members/userModifyValidity.js"></script>
 </body>
 </html>

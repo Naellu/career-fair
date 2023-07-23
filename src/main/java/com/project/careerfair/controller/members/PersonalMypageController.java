@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Slf4j
 @RequiredArgsConstructor
 @PreAuthorize("isAuthenticated() and hasAuthority('user')")
-@RequestMapping("/member/")
+@RequestMapping("/members/personal-page/")
 public class PersonalMypageController {
     private final UserPageService userService;
 
@@ -33,7 +33,7 @@ public class PersonalMypageController {
         model.addAttribute("unreadNote", unreadNoteCount);
     }
 
-    @GetMapping("myInfo")
+    @GetMapping("myinfo")
     @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
     public void myInfo(String id, Model model) {
 
@@ -55,10 +55,10 @@ public class PersonalMypageController {
         boolean ok = userService.modifyAccount(member, oldPassword);
         if(ok) {
             rttr.addFlashAttribute("message", "회원 정보가 수정되었습니다.");
-            return "redirect:/member/myInfo?id=" + member.getId();
+            return "redirect:/members/personal-page/myinfo?id=" + member.getId();
         }else {
             rttr.addFlashAttribute("message", "회원 정보 수정중 오류가 발생하였습니다.");
-            return "redirect:/member/modify?id=" + member.getId();
+            return "redirect:/members/personal-page/modify?id=" + member.getId();
         }
 
     }
@@ -74,7 +74,7 @@ public class PersonalMypageController {
             return "redirect:/login";
         }else {
             rttr.addFlashAttribute("message","회원 탈퇴 중 문제가 발생하였습니다.");
-            return "redirect:/member/myInfo?id=" + member.getId();
+            return "redirect:/members/personal-page/myInfo?id=" + member.getId();
         }
     }
 }

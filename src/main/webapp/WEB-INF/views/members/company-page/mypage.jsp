@@ -67,7 +67,7 @@
 </div>
 <div class="mypage-container mypage-container-myinfo">
     <sec:authorize access="isAuthenticated()">
-        <a href="/member/comyinfo?id=<sec:authentication property="name" />">내 정보</a>
+        <a href="/members/company-page/myinfo?id=<sec:authentication property="name" />">내 정보</a>
     </sec:authorize>
 </div>
 <div class="mypage-container">
