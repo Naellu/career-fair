@@ -81,8 +81,12 @@
         <div class="mypage-column">  현재 게시한 공고</div>
         <div class="mypage-column mypage-column-b"><span>건</span></div>
     </div>
+    <div class="mypage-container-d">
+        <div class="mypage-column mypage-column-t">신청기록</div>
+        <div class="mypage-column"><button onclick="location.href='/company/join/list'">신청기록보기</button></div>
+        <div class="mypage-column mypage-column-b"> </div>
+    </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>

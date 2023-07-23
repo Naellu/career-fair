@@ -34,11 +34,13 @@ function detailView() {
 
             companyImage.innerHTML = "";
 
-            const imageHtml = `
+            if (posting.fileName.length > 0) {
+                const imageHtml = `
                 <img src="${bucketUrl}/company/${posting.companyId}/logo.png" class="img-fluid rounded-circle mx-auto d-block" alt="사진준비중">
             `;
 
-            companyImage.innerHTML = imageHtml;
+                companyImage.innerHTML = imageHtml;
+            }
 
             const h2Element = companyName.querySelector("h2");
             const aElement = companyName.querySelector("a");
