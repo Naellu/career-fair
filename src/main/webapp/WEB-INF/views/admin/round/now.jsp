@@ -88,8 +88,8 @@
             </div>
 
             <div>
-                <a href="/admin/round/reg" class="btn btn-primary">새 회차 등록</a>
                 <a href="/admin/round/update" class="btn btn-primary">현재 회차 수정</a>
+                <a href="/admin/round/reg" class="btn btn-danger">새 회차 등록</a>
             </div>
         </div>
     </div>

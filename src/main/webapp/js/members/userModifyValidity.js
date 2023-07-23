@@ -87,7 +87,7 @@ $("#checkPhoneNumBtn").click(function() {
 $("#search-email").click(function() {
     const userEmail = $("#totalemail").val();
     // 입력한 ID와 ajax 요청 보내서
-    $.ajax("/member/searchMail", {
+    $.ajax("/members/searchMail", {
         method: "post",
         data: {
             email: userEmail
@@ -124,7 +124,7 @@ $("#checkEmailBtn").click(function() {
     if (email) {
         // 이메일 전송 요청
         $.ajax({
-            url: "/member/mail",
+            url: "/members/mail",
             method: "POST",
             data: {
                 email: email
@@ -150,7 +150,7 @@ $("#verifyEmailBtn").click(function() {
     if (enteredCode) {
         // 이메일 전송 요청
         $.ajax({
-            url: "/member/mailCheck",
+            url: "/members/mailCheck",
             method: "POST",
             data: {
                 enteredCode: enteredCode
@@ -165,7 +165,7 @@ $("#verifyEmailBtn").click(function() {
                     $("#verificationSuccessText").show();
                     modiEnableSubmit();
 
-                    alert("인증이 완료되었습니다. 회원 가입을 진행합니다.");
+                    alert("인증이 완료되었습니다.");
                 } else {
                     alert("인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
                 }
