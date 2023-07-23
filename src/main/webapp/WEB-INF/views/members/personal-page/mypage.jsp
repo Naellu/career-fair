@@ -86,7 +86,7 @@
       </div>
       <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t">입사지원</div>
-        <div class="mypage-column"><a href="/member/user/apply/list">목록보기</a> </div>
+        <div class="mypage-column"><a href="/members/personal-page/apply/list">목록보기</a> </div>
         <div class="mypage-column mypage-column-b"></div>
       </div>
     <div class="mypage-container-d">
