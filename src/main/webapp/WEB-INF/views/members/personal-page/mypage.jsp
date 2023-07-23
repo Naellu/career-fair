@@ -91,9 +91,9 @@
       </div>
     <div class="mypage-container-d">
       <div class="mypage-column mypage-column-t">이력서</div>
-      <div class="mypage-column"><a href="/member/resume">내 이력서 보기</a></div>
+      <div class="mypage-column"><a href="/resume/">내 이력서 보기</a></div>
         <br>
-      <div class="mypage-column"><a href="/member/resume/write">이력서 작성하기</a></div>
+      <div class="mypage-column"><a href="/resume/write">이력서 작성하기</a></div>
       <div class="mypage-column mypage-column-b"></div>
     </div>
     <div class="mypage-container-d">
