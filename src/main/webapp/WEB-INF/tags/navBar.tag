@@ -16,10 +16,10 @@
         </a>
         <nav id="navbar" class="navbar">
             <ul>
-                <li class="dropdown"><a href="#"><span>박람회 소개</span> <i
+                <li class="dropdown"><a href="/info"><span>박람회 소개</span> <i
                         class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="#">박람회 소개</a></li>
+                        <li><a href="/info">박람회 소개</a></li>
                         <li><a href="/location">찾아오시는길</a></li>
                     </ul>
 
@@ -47,8 +47,8 @@
                 <sec:authorize access="isAnonymous()">
                     <li class="dropdown"><a href="#">회원가입<i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <li><a href="/member/signup">구직자 회원가입</a></li>
-                            <li><a href="/member/cosignup">기업 회원가입</a></li>
+                            <li><a href="/members/signup">구직자 회원가입</a></li>
+                            <li><a href="/members/cosignup">기업 회원가입</a></li>
                         </ul>
                     </li>
                 </sec:authorize>
@@ -57,11 +57,11 @@
                 </sec:authorize>
 
                 <sec:authorize access="hasAuthority('user')">
-                    <li><a href="/member/user/mypage?id=${userId}">마이페이지</a></li>
+                    <li><a href="/members/user/mypage?id=${userId}">마이페이지</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="hasAuthority('recruiter') or hasAuthority('company') or hasAuthority('admin')">
-                    <li><a href="/member/company/mypage1?id=${userId}">마이페이지</a></li>
+                    <li><a href="/members/company/mypage1?id=${userId}">마이페이지</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">

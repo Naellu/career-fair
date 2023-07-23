@@ -32,6 +32,13 @@
     <select id="getNowPostingList" resultMap="postingMap">
         SELECT * FROM TB_POSTING
         WHERE company_id = #{companyId} AND status = '채용중' AND round = #{round}
+        ORDER BY posting_id DESC
+        LIMIT #{startNumNow}, #{pageSizeNow}
+    </select>
+
+    <select id="countNowAll" resultType="Integer">
+        SELECT COUNT(*) FROM TB_POSTING
+        WHERE company_id = #{companyId} AND status = '채용중' AND round = #{round}
     </select>
 
     <select id="countAll" resultType="Integer">
@@ -72,6 +79,9 @@
         <result column="education_level" property="educationLevel"/>
         <result column="hiring_count" property="hiringCount"/>
         <result column="application_count" property="applicationCount"/>
+        <collection property="fileName" ofType="string">
+            <result column="file_name"/>
+        </collection>
     </resultMap>
 
     <select id="getNowPostingsAll" resultMap="postingViewMap">

@@ -81,6 +81,7 @@
                 <label for="form-file" class="form-label">첨부 파일</label>
                 <input class="form-control" name="files" type="file" id="form-file" multiple>
                 <div class="form-text">총 10MB, 하나의 파일을 1MB를 초과할 수 없습니다.</div>
+                <div class="form-text">회사 로고는 logo.png로 입력해주세요</div>
             </div>
 
             <div>

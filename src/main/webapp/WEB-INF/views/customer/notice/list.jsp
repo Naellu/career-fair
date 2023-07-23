@@ -19,6 +19,10 @@
 <body>
 <my:navBar/>
 
+<my:cheader>
+    공지사항
+</my:cheader>
+
 <div class="container-lg mt-3 custom-div">
     <div class="d-flex justify-content-end">
         <div>

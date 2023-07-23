@@ -94,6 +94,8 @@ public interface MemberMapper {
 
     void active(Object memberId);
 
+    void setTypeToCompany();
+
 /*    @Select("""
             SELECT
             FROM MEMBERS

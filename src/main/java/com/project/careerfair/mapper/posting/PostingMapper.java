@@ -9,7 +9,9 @@ import java.util.List;
 public interface PostingMapper {
 
     // 기업별 현재 포스팅 
-    List<Posting> getNowPostingList(Integer companyId, Integer round);
+    List<Posting> getNowPostingList(Integer pageSizeNow, Integer startNumNow, Integer companyId, Integer round);
+
+    Integer countNowAll(Integer companyId, Integer round);
 
     // 기업별 현재 포스팅 수
     Integer countAll(Integer companyId, Integer round);
@@ -132,4 +134,5 @@ public interface PostingMapper {
 
     // 입사지원시 지원자수 증가
     void updateCount(Integer postingId);
+
 }

@@ -16,11 +16,11 @@ public class LoginController {
     @GetMapping
     @PreAuthorize("isAnonymous()")
     public String loginForm() {
-        return "member/login";
+        return "members/login";
     }
 
     @GetMapping("/locked")
     public String loginLockedForm() {
-        return "member/locked";
+        return "members/locked";
     }
 }

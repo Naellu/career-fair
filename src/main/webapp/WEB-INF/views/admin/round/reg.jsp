@@ -100,7 +100,7 @@
 
                 <div class="mb-3">
                     <label for="etc" class="form-label">기타</label>
-                    <form:textarea path="etc" type="text" class="form-control" rows="5"/>
+                    <form:textarea path="etc" type="text" class="form-control" rows="5" readonly=""/>
                     <form:errors path="etc" cssClass="field-error"/>
                 </div>
 

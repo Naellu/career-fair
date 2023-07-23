@@ -12,16 +12,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="/css/main.css">
     <my:font></my:font>
-    <title>관리자페이지</title>
+    <title>박람회 소개</title>
 
 </head>
 <body>
-<my:adminNavBar/>
+<my:navBar/>
 
-<my:cheader>
-    관리자 메인 페이지
-</my:cheader>
+<section id="hero" class="hero">
+    <div class="container position-relative">
+        <div class="row gy-5" data-aos="fade-in">
+            <div class="order-1 order-lg-2">
+                <img src="${bucketUrl}/exhibitionInfo/${exhibitionInfo.round}/info.png" class="img-fluid" alt="이미지가없습니다 관리자에게 문의해주세요" data-aos="zoom-out" data-aos-delay="100">
+            </div>
+        </div>
+        <div class="mt-5">
+            <input type="hidden" value="${exhibitionInfo.etc}" id="textarea">
+            <textarea class="form-control-plaintext"
+                      style="background-color:transparent; font-size: 35px; text-align: center"
+                      rows="5" readonly>${exhibitionInfo.etc}</textarea>
+        </div>
+    </div>
+</section>
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -29,5 +45,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/exhibitionInfo/info.js"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/member/")
+@RequestMapping("/members/")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -38,7 +38,7 @@ public class MemberController {
             e.printStackTrace();
             rttr.addFlashAttribute("members", member);
             System.out.println("회원가입에 실패하였습니다.");
-            return "redirect:/signup";
+            return "redirect:/members/signup";
         }
     }
 
@@ -58,7 +58,7 @@ public class MemberController {
             e.printStackTrace();
             rttr.addFlashAttribute("members", member);
             System.out.println("회원가입에 실패하였습니다.");
-            return "redirect:/member/cosignup";
+            return "redirect:/members/cosignup";
         }
     }
 

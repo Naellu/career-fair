@@ -76,7 +76,7 @@
 
             <div class="mb-3">
                 <label for="etc" class="form-label">기타</label>
-                <input id="etc" type="text" class="form-control" value="${exhibitionInfo.etc}"/>
+                <textarea id="etc" rows="5" class="form-control">${exhibitionInfo.etc}</textarea>
             </div>
 
             <div class="mb-3">
@@ -90,7 +90,6 @@
             <div>
                 <a href="/admin/round/reg" class="btn btn-primary">새 회차 등록</a>
                 <a href="/admin/round/update" class="btn btn-primary">현재 회차 수정</a>
-                <button class="btn btn-primary">지난 회차 목록</button>
             </div>
         </div>
     </div>

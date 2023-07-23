@@ -1,6 +1,6 @@
 package com.project.careerfair.service.members;
 
-import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo;
+import com.project.careerfair.domain.exhibitionInfo.ExhibitionInfo;
 import com.project.careerfair.mapper.members.MemberMapper;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
 import jakarta.servlet.http.HttpSession;

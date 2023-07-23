@@ -31,7 +31,9 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <img src="/img/3.jpg" class="img-fluid rounded-circle mx-auto d-block" alt="회사 로고">
+            <input id="bucket-url" type="hidden" value="${bucketUrl}">
+            <div id="company-image">
+            </div>
             <div id="company-name" class="text-center my-4">
                 <h2>회사이름</h2>
                 <a href="">회사 정보 상세 보기></a>
@@ -78,7 +80,9 @@
             </div>
 
             <div style="text-align: center;" class="mb-5">
-                <button id="application-btn" class="btn btn-outline-success"><i class="fa-regular fa-paper-plane"></i> 입사지원하기</button>
+                <button id="application-btn" class="btn btn-outline-success"><i class="fa-regular fa-paper-plane"></i>
+                    입사지원하기
+                </button>
                 <button id="wish-btn"></button>
                 <button id="note-btn" class="btn btn-outline-primary"><i class="fa-regular fa-envelope"></i> 쪽지로 문의하기
                 </button>
