@@ -1,14 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: LG
-  Date: 2023-07-13
-  Time: 오후 3:08
+  User: user
+  Date: 2023-07-10
+  Time: 오후 2:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page import="java.util.*" %>
 
 <html>
@@ -25,6 +26,7 @@
 </head>
 <body>
 <my:navBar/>
+
 <div class="container-lg infoMainDiv">
     <div class="row justify-content-center"></div>
     <div id="idDiv">
@@ -53,7 +55,7 @@
                 </div>
 
                 <sec:authorize access="authentication.name eq #members.id">
-                    <a class="btn btn-secondary" href="/member/comodify?id=${members.id }">수정</a>
+                    <a class="btn btn-secondary" href="/members/personal-page/modify?id=${members.id }">수정</a>
                     <button type="button" data-bs-toggle="modal" class="btn btn-danger" data-bs-target="#confirmModal">탈퇴</button>
                 </sec:authorize>
             </div>
@@ -71,7 +73,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="removeForm" action="/member/coremove" method="post">
+                    <form id="removeForm" action="/members/personal-page/remove" method="post">
                         <input type="hidden" name="id" value="${members.id }" /> <label for="passwordInput1">암호</label> <input id="passwordInput1" type="password" name="password" class="form-control" />
                     </form>
                 </div>
@@ -83,6 +85,8 @@
         </div>
     </div>
 </sec:authorize>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

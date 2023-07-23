@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/member/")
+@RequestMapping("/members/company-page/")
 @PreAuthorize("isAuthenticated() and hasAuthority('company') or hasAnyAuthority('recruiter')")
 @RequiredArgsConstructor
 public class CompanyMypageController {
     private final UserPageService userService;
 
-    @GetMapping("comypage")
+    @GetMapping("mypage")
     @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
     public void coMyPage(String id, Model model) {
 
@@ -28,7 +28,7 @@ public class CompanyMypageController {
         model.addAttribute("members", member);
     }
 
-    @GetMapping("comyinfo")
+    @GetMapping("myinfo")
     @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
     public void coMyInfo(String id, Model model) {
 
@@ -38,29 +38,29 @@ public class CompanyMypageController {
     }
 
     //회원 정보 수정
-    @GetMapping("comodify")
+    @GetMapping("modify")
     @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
     public void coModifyForm(String id , Model model) {
         Members member = userService.get(id);
         model.addAttribute("member",member);
     }
 
-    @PostMapping("comodify")
+    @PostMapping("modify")
     @PreAuthorize("isAuthenticated()")
     public String coModify(Members member, RedirectAttributes rttr, String oldPassword) {
         boolean ok = userService.modifyAccount(member, oldPassword);
         if(ok) {
             rttr.addFlashAttribute("message", "회원 정보가 수정되었습니다.");
-            return "redirect:/member/comyInfo?id=" + member.getId();
+            return "redirect:/members/company-page/myinfo?id=" + member.getId();
         }else {
             rttr.addFlashAttribute("message", "회원 정보 수정중 오류가 발생하였습니다.");
-            return "redirect:/member/comodify?id=" + member.getId();
+            return "redirect:/members/company-page/modify?id=" + member.getId();
         }
 
     }
 
     //탈퇴
-    @PostMapping("coremove")
+    @PostMapping("remove")
     public String coIdRemove(Members member, RedirectAttributes rttr, HttpServletRequest request) throws ServletException {
 
         boolean ok = userService.removeAccout(member);
@@ -72,7 +72,7 @@ public class CompanyMypageController {
             return "redirect:/login";
         }else {
             rttr.addFlashAttribute("message","회원 탈퇴 중 문제가 발생하였습니다.");
-            return "redirect:/member/comyInfo?id=" + member.getId();
+            return "redirect:/members/company-page/myinfo?id=" + member.getId();
         }
     }
 
