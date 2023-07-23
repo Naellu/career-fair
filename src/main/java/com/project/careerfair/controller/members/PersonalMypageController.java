@@ -31,6 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @PreAuthorize("isAuthenticated() and hasAuthority('user')")
 @RequestMapping("/members/personal-page/")
 public class PersonalMypageController {
+
     private final PostingApplyService postingApplyService;
     private final UserPageService userService;
 
@@ -56,39 +57,42 @@ public class PersonalMypageController {
 
     @GetMapping("modify")
     @PreAuthorize("hasAuthority('admin') or (isAuthenticated() and (authentication.name eq #id))")
-    public void modifyForm(String id , Model model) {
+    public void modifyForm(String id, Model model) {
         Members member = userService.get(id);
-        model.addAttribute("member",member);
+        model.addAttribute("member", member);
     }
 
     @PostMapping("modify")
     @PreAuthorize("isAuthenticated()")
     public String modify(Members member, RedirectAttributes rttr, String oldPassword) {
         boolean ok = userService.modifyAccount(member, oldPassword);
-        if(ok) {
+        if (ok) {
             rttr.addFlashAttribute("message", "회원 정보가 수정되었습니다.");
             return "redirect:/members/personal-page/myinfo?id=" + member.getId();
-        }else {
+        } else {
             rttr.addFlashAttribute("message", "회원 정보 수정중 오류가 발생하였습니다.");
             return "redirect:/members/personal-page/modify?id=" + member.getId();
         }
 
     }
+
     @PostMapping("remove")
     public String idRemove(Members member, RedirectAttributes rttr, HttpServletRequest request) throws ServletException {
 
         boolean ok = userService.removeAccout(member);
-        if(ok) {
+        if (ok) {
             rttr.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
 
             //로그아웃
             request.logout();
             return "redirect:/login";
-        }else {
-            rttr.addFlashAttribute("message","회원 탈퇴 중 문제가 발생하였습니다.");
+        } else {
+            rttr.addFlashAttribute("message", "회원 탈퇴 중 문제가 발생하였습니다.");
             return "redirect:/members/personal-page/myInfo?id=" + member.getId();
+        }
+    }
 
- 
+
     @GetMapping("apply/list")
     public void applyList(
             Authentication authentication,
@@ -144,7 +148,7 @@ public class PersonalMypageController {
     ) {
         Boolean ok = postingApplyService.applyCancel(applicationId);
 
-        if(ok) {
+        if (ok) {
 
             // 클라이언트에게 닫기 요청을 보냄
             response.setContentType("text/html; charset=UTF-8");
