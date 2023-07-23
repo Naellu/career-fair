@@ -67,6 +67,12 @@
             <tbody>
             </tbody>
         </table>
+        <div class="row mt-2">
+            <nav aria-label="Page navigation example">
+                <ul id="page-ul-now" class="pagination justify-content-center">
+                </ul>
+            </nav>
+        </div>
     </div>
 
     <%-- 지난 공고 --%>

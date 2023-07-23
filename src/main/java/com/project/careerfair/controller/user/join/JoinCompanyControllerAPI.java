@@ -49,8 +49,9 @@ public class JoinCompanyControllerAPI {
     @GetMapping("{companyId}")
     public ResponseEntity<Map<String, Object>> getDetail(
             @PathVariable("companyId") Integer companyId,
-            @RequestParam("page") Integer page) {
-        Map<String, Object> result = joinCompanyService.getDetail(companyId, page);
+            @RequestParam("page") Integer page,
+            @RequestParam("pageNow") Integer pageNow) {
+        Map<String, Object> result = joinCompanyService.getDetail(companyId, page, pageNow);
         return ResponseEntity.ok(result);
     }
 

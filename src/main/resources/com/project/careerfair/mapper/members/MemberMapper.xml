@@ -39,4 +39,8 @@
     <update id="active">
         UPDATE TB_MEMBERS SET is_active = 1 WHERE member_id = #{memberId}
     </update>
+
+    <update id="setTypeToCompany">
+        UPDATE TB_MEMBERS SET member_type = 'company' WHERE member_type = 'recruiter'
+    </update>
 </mapper>

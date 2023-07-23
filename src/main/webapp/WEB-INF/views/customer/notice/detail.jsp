@@ -23,11 +23,11 @@
     <!-- .row.justify-content-center>.col-12.col-md-8.col-lg-6 -->
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
-            <div class="me-auto">
-                <h1>
-                    ${noticeId}번 공지사항
+            <div class="me-auto mt-3">
+                <h2>
+                    공지사항
                     <input type="hidden" id="bucketUrl" value="${bucketUrl}"/>
-                </h1>
+                </h2>
             </div>
 
             <div class="mb-3">

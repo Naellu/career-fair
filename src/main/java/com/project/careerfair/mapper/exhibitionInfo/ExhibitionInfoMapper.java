@@ -1,6 +1,6 @@
 package com.project.careerfair.mapper.exhibitionInfo;
 
-import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo;
+import com.project.careerfair.domain.exhibitionInfo.ExhibitionInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

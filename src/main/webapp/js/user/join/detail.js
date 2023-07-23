@@ -1,13 +1,15 @@
 let pageValue = "1";
+let pageValueNow = "1";
 
-detailView(pageValue);
+detailView(pageValue, pageValueNow);
 
 function detailView(pageValue) {
     const url = window.location.href;
     const companyId = url.substring(url.lastIndexOf("/") + 1);
 
     const requestData = {
-        page: pageValue
+        page: pageValue,
+        pageNow : pageValueNow
     };
 
     // URL 매개변수로 데이터 직렬화
@@ -21,6 +23,7 @@ function detailView(pageValue) {
             const nowPostingList = data.nowPostingList;
             const pastPostingList = data.pastPostingList;
             const pageInfo = data.pageInfo;
+            const nowPageInfo = data.pageInfoNow;
 
             const industryId = company.industryId - 1;
             const industryName = data.industryList[industryId].industryName;
@@ -139,7 +142,9 @@ function detailView(pageValue) {
             pageUl.innerHTML = "";
             createPagination(pageInfo, pageUl);
 
-
+            const pageUlNow = document.querySelector("#page-ul-now");
+            pageUlNow.innerHTML = "";
+            createNowPagination(nowPageInfo, pageUlNow);
         })
         .catch(error => {
             console.error("Error:", error);
@@ -272,5 +277,134 @@ function createPagination(pageInfo, pageUl) {
         };
         pageItem.appendChild(pageLinkItem);
         pageUl.appendChild(pageItem);
+    }
+}
+
+function createNowPagination(pageInfo, pageUlNow) {
+
+    // 첫 페이지로
+    if (pageInfo.currentPageNum !== 1) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+
+        let icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-angles-left');
+
+        pageLinkItem.appendChild(icon);
+
+        pageLinkItem.onclick = (event) => {
+            pageValueNow = 1;
+            detailView(pageValue, pageValueNow);
+            event.preventDefault();
+        };
+        pageItem.appendChild(pageLinkItem);
+        pageUlNow.appendChild(pageItem);
+    }
+
+
+    // 이전 페이지로
+    if (pageInfo.currentPageNum !== 1) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+
+        let icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-angle-left');
+
+        pageLinkItem.appendChild(icon);
+
+        pageLinkItem.onclick = (event) => {
+            pageValueNow = pageInfo.prevPageNum;
+            detailView(pageValue, pageValueNow);
+            event.preventDefault();
+        };
+        pageItem.appendChild(pageLinkItem);
+        pageUlNow.appendChild(pageItem);
+    }
+
+    // 페이지 번호
+    for (let pageNum = pageInfo.leftPageNum; pageNum <= pageInfo.rightPageNum; pageNum++) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+        pageLinkItem.textContent = pageNum;
+
+        if (pageNum === pageInfo.currentPageNum) {
+            pageLinkItem.classList.add('active');
+        }
+
+        pageLinkItem.onclick = (event) => {
+            pageValueNow = pageNum;
+            detailView(pageValue, pageValueNow);
+            event.preventDefault();
+        };
+
+        pageItem.appendChild(pageLinkItem);
+        pageUlNow.appendChild(pageItem);
+    }
+
+    // 다음 페이지로
+    if (pageInfo.currentPageNum !== pageInfo.lastPage) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+
+        let icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-angle-right');
+
+        pageLinkItem.appendChild(icon);
+
+        pageLinkItem.onclick = (event) => {
+            pageValueNow = pageInfo.nextPageNum;
+            detailView(pageValue, pageValueNow);
+            event.preventDefault();
+        };
+        pageItem.appendChild(pageLinkItem);
+        pageUlNow.appendChild(pageItem);
+    }
+
+    // 마지막 페이지로
+    if (pageInfo.currentPageNum !== pageInfo.lastPage) {
+        let pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+
+        let pageLinkItem = document.createElement('a');
+        pageLinkItem.classList.add('page-link');
+        pageLinkItem.classList.add('page-num');
+        pageLinkItem.setAttribute('href', '#');
+
+        let icon = document.createElement('i');
+        icon.classList.add('fa-solid');
+        icon.classList.add('fa-angles-right');
+
+        pageLinkItem.appendChild(icon);
+
+        pageLinkItem.onclick = (event) => {
+            pageValueNow = pageInfo.lastPage;
+            detailView(pageValue, pageValueNow);
+            event.preventDefault();
+        };
+        pageItem.appendChild(pageLinkItem);
+        pageUlNow.appendChild(pageItem);
     }
 }

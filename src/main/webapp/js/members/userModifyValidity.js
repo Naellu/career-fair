@@ -63,7 +63,7 @@ $("#password-check").blur(function() {
 $("#checkPhoneNumBtn").click(function() {
     const userphoneNum = $("#totalphone-num").val();
     // 입력한 ID와 ajax 요청 보내서
-    $.ajax("/member/checkphoneNumber/" + userphoneNum, {
+    $.ajax("/members/checkphoneNumber/" + userphoneNum, {
         success: function(data) {
 
             if (data.available) {

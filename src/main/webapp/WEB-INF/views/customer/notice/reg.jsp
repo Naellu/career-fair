@@ -16,6 +16,7 @@
 </head>
 <body>
 <my:navBar/>
+
 <div class="container-lg">
     <!-- .row.justify-content-center>.col-12.col-md-8.col-lg-6 -->
     <div class="row justify-content-center">

@@ -1,6 +1,6 @@
 package com.project.careerfair.controller;
 
-import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo;
+import com.project.careerfair.domain.exhibitionInfo.ExhibitionInfo;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,5 +36,12 @@ public class HomeController {
         model.addAttribute("kakaoMap", accessKey);
         model.addAttribute("exhibitionInfo", exhibitionInfo);
         return "exhibitionInfo/location";
+    }
+
+    @GetMapping("info")
+    public String info(Model model) {
+        ExhibitionInfo exhibitionInfo = exhibitionInfoService.getCurrentInfo();
+        model.addAttribute("exhibitionInfo", exhibitionInfo);
+        return "exhibitionInfo/info";
     }
 }

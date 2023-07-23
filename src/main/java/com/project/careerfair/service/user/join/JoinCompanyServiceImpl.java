@@ -46,7 +46,7 @@ public class JoinCompanyServiceImpl implements JoinCompanyService {
     }
 
     @Override
-    public Map<String, Object> getDetail(Integer companyId, Integer page) {
+    public Map<String, Object> getDetail(Integer companyId, Integer page, Integer pageNow) {
         //기업
         Company company = companyMapper.getDetail(companyId);
 
@@ -56,9 +56,46 @@ public class JoinCompanyServiceImpl implements JoinCompanyService {
         // 회차
         Integer round = exhibitionInfoService.getCurrentRound();
 
-        List<Posting> nowPostingList = postingMapper.getNowPostingList(companyId, round);
+        //현재회차 공고
+        Integer pageSizeNow = 10; // 10개씩
+        Integer startNumNow = (pageNow - 1) * pageSizeNow; // 0 6 11
 
-        Integer pageSize = 10; // 5개씩
+        //페이지네이션 정보
+        //총 현재 공고 개수
+        Integer countNow = postingMapper.countNowAll(companyId, round);
+
+        log.info("ps {}", countNow);
+
+        // 마지막 페이지 번호
+        // 총 글개수 -1 / pageSize + 1
+        Integer lastPageNow = (countNow - 1) / pageSizeNow + 1;
+
+        // 페이지네이션 왼쪽번호 1 6 11
+        Integer leftPageNumNow = pageNow - 2;
+        leftPageNumNow = Math.max(leftPageNumNow, 1);
+
+        // 페이지네이션 오른쪽 번호
+        Integer rightPageNumNow = leftPageNumNow + 5;
+        rightPageNumNow = Math.min(rightPageNumNow, lastPageNow);
+
+        // 이전페이지
+        Integer prevPageNumNow = pageNow - 1;
+
+        // 다음 페이지
+        Integer nextPageNumNow = pageNow + 1;
+
+        List<Posting> nowPostingList = postingMapper.getNowPostingList(pageSizeNow, startNumNow, companyId, round);
+
+        Map<String, Object> pageInfoNow = new HashMap<>();
+        pageInfoNow.put("lastPage", lastPageNow);
+        pageInfoNow.put("leftPageNum", leftPageNumNow);
+        pageInfoNow.put("rightPageNum", rightPageNumNow);
+        pageInfoNow.put("currentPageNum", pageNow);
+        pageInfoNow.put("prevPageNum", prevPageNumNow);
+        pageInfoNow.put("nextPageNum", nextPageNumNow);
+
+        //지난공고
+        Integer pageSize = 10; // 10개씩
         Integer startNum = (page - 1) * pageSize; // 0 6 11
 
         //페이지네이션 정보
@@ -98,6 +135,7 @@ public class JoinCompanyServiceImpl implements JoinCompanyService {
                 "round", round,
                 "nowPostingList", nowPostingList,
                 "pageInfo", pageInfo,
-                "pastPostingList", pastPostingList);
+                "pastPostingList", pastPostingList,
+                "pageInfoNow", pageInfoNow);
     }
 }

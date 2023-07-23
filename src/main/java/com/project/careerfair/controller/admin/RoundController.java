@@ -1,8 +1,8 @@
 package com.project.careerfair.controller.admin;
 
-import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfo;
-import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfoSaveForm;
-import com.project.careerfair.domain.ExhibitionInfo.ExhibitionInfoUpdateForm;
+import com.project.careerfair.domain.exhibitionInfo.ExhibitionInfo;
+import com.project.careerfair.domain.exhibitionInfo.ExhibitionInfoSaveForm;
+import com.project.careerfair.domain.exhibitionInfo.ExhibitionInfoUpdateForm;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

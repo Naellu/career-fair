@@ -128,7 +128,7 @@
                 </div>
 
                 <div>
-                    <button class="btn btn-primary" type="submit">등록</button>
+                    <button class="btn btn-primary" type="submit">수정</button>
                     <a href="/admin/round" class="btn btn-primary">현재 회차 정보 보기</a>
                 </div>
             </form:form>
