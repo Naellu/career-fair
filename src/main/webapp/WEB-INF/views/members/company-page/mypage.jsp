@@ -73,11 +73,23 @@
 <div class="mypage-container">
     <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t"><span>쪽지함</span></div>
-        <div class="mypage-column"><span>새로온 쪽지</span></div>
-        <div class="mypage-column mypage-column-b"><span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">건</span></div>
+        <div class="mypage-column mypage-column-b">
+            <c:url value="/note/list/receive" var="noteListURL">
+                <c:param name="memberId" value="${userId}"/>
+            </c:url>
+            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">받은쪽지함</span>
+            <c:url value="/note/list/send" var="noteListURL">
+                <c:param name="memberId" value="${userId}"/>
+            </c:url> <br>
+            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">보낸쪽지함</span>
+            <c:url value="/note/list/unread" var="noteListURL">
+                <c:param name="memberId" value="${userId}"/>
+            </c:url> <br>
+            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">안읽은쪽지함[${unreadNote}]</span>
+        </div>
     </div>
     <div class="mypage-container-d">
-        <div class="mypage-column mypage-column-t"><button onclick="location.href='/member/company/posting/list?memberId=${userId}'">채용공고 관리</button></div>
+        <div class="mypage-column mypage-column-t"><button onclick="location.href='/company/posting/list?memberId=${userId}'">채용공고 관리</button></div>
         <div class="mypage-column">  현재 게시한 공고</div>
         <div class="mypage-column mypage-column-b"><span>건</span></div>
     </div>
