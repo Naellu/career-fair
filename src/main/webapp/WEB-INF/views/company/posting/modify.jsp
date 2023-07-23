@@ -31,7 +31,7 @@
 <div class="container mt-5">
     <h2>채용공고 수정</h2>
 
-    <form id="modifyForm" action="/member/company/posting/modify" method="POST">
+    <form id="modifyForm" action="/company/posting/modify" method="POST">
         <div class="mb-3">
             <input type="hidden" name="postingId" value="${post.postingId}">
             <input type="hidden" name="memberId" value="${userId}">
@@ -131,7 +131,7 @@
             <div class="col-md-6 text-right">
                 <button type="submit" class="btn btn-outline-primary" form="modifyForm">수정</button>
                 <button class="btn btn-outline-secondary"
-                        onclick="location.href='/member/company/posting/detail?postingId=${post.postingId}'">뒤로가기
+                        onclick="location.href='/company/posting/detail?postingId=${post.postingId}'">뒤로가기
                 </button>
             </div>
         </div>

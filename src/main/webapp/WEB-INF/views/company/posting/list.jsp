@@ -33,24 +33,24 @@
         <li class="nav-item">
             <a class="nav-link ${(param.status eq 'all') or empty param.    status ? 'active' : ''}"
                aria-current="page"
-               href="/member/company/posting/list?memberId=${userId}&status=all">
+               href="/company/posting/list?memberId=${userId}&status=all">
                 전체 공고</a>
         </li>
         <li class="nav-item">
             <a class="nav-link ${param.status eq 'recruitment' ? 'active' : ''}"
-               href="/member/company/posting/list?memberId=${userId}&status=recruitment">
+               href="/company/posting/list?memberId=${userId}&status=recruitment">
                 채용중 공고</a>
         </li>
         <li class="nav-item">
             <a class="nav-link ${param.status eq 'deadline' ? 'active' : ''}"
-               href="/member/company/posting/list?memberId=${userId}&status=deadline">
+               href="/company/posting/list?memberId=${userId}&status=deadline">
                 마감된 공고</a>
         </li>
     </ul>
     <table id="posting-table" class="table table-bordered custom-div">
         <caption class="caption-top">
             <button class="btn btn-outline-primary"
-                    onclick="location.href='/member/company/posting/add?userId=${userId}'">공고등록
+                    onclick="location.href='/company/posting/add?userId=${userId}'">공고등록
             </button>
         </caption>
         <thead class="table-dark">
@@ -72,7 +72,7 @@
         <c:forEach items="${postingList}" var="posting" varStatus="status">
             <tr>
                 <td>${posting.startDate} ~ ${posting.endDate}</td>
-                <td><a href="/member/company/posting/detail?postingId=${posting.postingId}">
+                <td><a href="/company/posting/detail?postingId=${posting.postingId}">
                         ${posting.title}
                 </a></td>
                 <td><button onclick="location.href='/company/job-application/list?postingId=${posting.postingId}'">보기</button></td>
@@ -97,7 +97,7 @@
         <c:if test="${pageInfo.begin != 1}">
 
             <%--맨앞으로--%>
-            <c:url value="/member/company/posting/list" var="pageLink">
+            <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="1"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -106,7 +106,7 @@
             </li>
 
             <%-- 앞으로 --%>
-            <c:url value="/member/company/posting/list" var="pageLink">
+            <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="${pageInfo.previous }"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -117,7 +117,7 @@
         </c:if>
 
         <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
-            <c:url value="/member/company/posting/list" var="pageLink">
+            <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="${pageNumber }"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -138,7 +138,7 @@
         <c:if test="${pageInfo.end != pageInfo.last}">
 
             <%-- 뒤로--%>
-            <c:url value="/member/company/posting/list" var="pageLink">
+            <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="${pageInfo.next }"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
@@ -147,7 +147,7 @@
             </li>
 
             <%--맨 뒤로--%>
-            <c:url value="/member/company/posting/list" var="pageLink">
+            <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="${pageInfo.last }"></c:param>
                 <c:param name="memberId" value="${userId}"></c:param>
             </c:url>

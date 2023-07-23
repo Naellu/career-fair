@@ -88,7 +88,7 @@
 
 <%--삭제 모달--%>
 <div class="d-none">
-    <form action="/member/user/apply/cancel" method="post"
+    <form action="/members/personal-page/apply/cancel" method="post"
           id="applyCancelForm">
         <input type="text" id="applyCancel" name="applicationId" value="${application.applicationId}"/>
         <input type="hidden" name="removeFiles" value="${fileNames}">

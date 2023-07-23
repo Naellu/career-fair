@@ -98,7 +98,7 @@
     </div>
     <div class="mypage-container-d">
       <div class="mypage-column mypage-column-t">스크랩한 공고</div>
-      <div class="mypage-column"><a href="/member/user/scrap/list">목록보기</a></div>
+      <div class="mypage-column"><a href="/scrap/list">목록보기</a></div>
       <div class="mypage-column mypage-column-b"></div>
     </div>
     </div>
