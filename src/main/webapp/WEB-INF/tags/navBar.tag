@@ -16,10 +16,10 @@
         </a>
         <nav id="navbar" class="navbar">
             <ul>
-                <li class="dropdown"><a href="#"><span>박람회 소개</span> <i
+                <li class="dropdown"><a href="/info"><span>박람회 소개</span> <i
                         class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="#">박람회 소개</a></li>
+                        <li><a href="/info">박람회 소개</a></li>
                         <li><a href="/location">찾아오시는길</a></li>
                     </ul>
 

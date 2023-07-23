@@ -76,7 +76,7 @@
 
             <div class="mb-3">
                 <label for="etc" class="form-label">기타</label>
-                <input id="etc" type="text" class="form-control" value="${exhibitionInfo.etc}"/>
+                <textarea id="etc" rows="5" class="form-control">${exhibitionInfo.etc}</textarea>
             </div>
 
             <div class="mb-3">

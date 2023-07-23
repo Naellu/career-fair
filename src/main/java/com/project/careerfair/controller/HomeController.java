@@ -37,4 +37,11 @@ public class HomeController {
         model.addAttribute("exhibitionInfo", exhibitionInfo);
         return "exhibitionInfo/location";
     }
+
+    @GetMapping("info")
+    public String info(Model model) {
+        ExhibitionInfo exhibitionInfo = exhibitionInfoService.getCurrentInfo();
+        model.addAttribute("exhibitionInfo", exhibitionInfo);
+        return "exhibitionInfo/info";
+    }
 }
