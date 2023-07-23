@@ -71,11 +71,11 @@
                 </textarea>
             <div style="text-align: right;">
                 <button class="btn btn-outline-success"
-                        onclick="location.href='/member/company/posting/modify?postingId=${post.postingId}'">
+                        onclick="location.href='/company/posting/modify?postingId=${post.postingId}'">
                     수정</button>
                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deletePosting">삭제</button>
                 <button class="btn btn-outline-secondary"
-                        onclick="location.href='/member/company/posting/list?memberId=${post.memberId}'">
+                        onclick="location.href='/company/posting/list?memberId=${post.memberId}'">
                     목록</button>
             </div>
             <br>
@@ -85,7 +85,7 @@
 
 <%--삭제 모달--%>
 <div class="d-none">
-    <form action="/member/company/posting/delete" method="post" id="deletePostingForm">
+    <form action="/company/posting/delete" method="post" id="deletePostingForm">
         <input type="number" name="postingId" value="${post.postingId}">
         <input type="number" name="applicationCount" value="${post.applicationCount}">
         <input type="text" name="status" value="${post.status}">

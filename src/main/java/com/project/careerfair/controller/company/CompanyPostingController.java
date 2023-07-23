@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/member/company/posting")
+@RequestMapping("/company/posting")
 @RequiredArgsConstructor
 public class CompanyPostingController {
 
@@ -56,11 +56,11 @@ public class CompanyPostingController {
 
         if(ok){
             rttr.addFlashAttribute("message","공지가 등록되었습니다.");
-            return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
+            return "redirect:/company/posting/list?memberId=" + posting.getMemberId();
 
         } else{
             rttr.addFlashAttribute("message", "공지가 등록되지 않았습니다.");
-            return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
+            return "redirect:/company/posting/list?memberId=" + posting.getMemberId();
         }
     }
 
@@ -96,7 +96,7 @@ public class CompanyPostingController {
                 rttr.addFlashAttribute("message", "공고가 삭제되지 않았습니다.");
             }
         }
-        return "redirect:/member/company/posting/list?memberId=" + posting.getMemberId();
+        return "redirect:/company/posting/list?memberId=" + posting.getMemberId();
 
     }
 
@@ -124,6 +124,6 @@ public class CompanyPostingController {
         } else{
             rttr.addFlashAttribute("message", "공고가 수정되지 않았습니다.");
         }
-        return "redirect:/member/company/posting/detail?postingId=" + posting.getPostingId();
+        return "redirect:/company/posting/detail?postingId=" + posting.getPostingId();
     }
 }

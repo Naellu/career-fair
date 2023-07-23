@@ -22,7 +22,7 @@
 <div class="container mt-5">
     <h2>채용공고 등록</h2>
 
-    <form action="/member/company/posting/add" method="POST">
+    <form action="/company/posting/add" method="POST">
         <div class="mb-3">
             <input type="hidden" class="form-control" id="companyId" name="companyId" value="${companyList[0].companyId}" required>
             <input type="hidden" name="memberId" value="${userId}">
@@ -128,7 +128,7 @@
         <div class="row justify-content-end">
             <div class="col-md-6 text-right">
                 <button type="submit" class="btn btn-outline-primary">등록</button>
-                <button class="btn btn-outline-secondary" onclick="location.href='/member/company/posting/list?userId=${userId}'">뒤로가기</button>
+                <button class="btn btn-outline-secondary" onclick="location.href='/company/posting/list?userId=${userId}'">뒤로가기</button>
             </div>
         </div>
         <br>

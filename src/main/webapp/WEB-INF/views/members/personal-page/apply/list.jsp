@@ -44,7 +44,7 @@
             <tr>
                 <td>${post[status.index].round}회차</td>
                 <td><a href="#"
-                       onclick="window.open('/member/user/apply/detail?applicationId=${apply.applicationId}','_blank', 'width=800,height=700' )">
+                       onclick="window.open('/members/personal-page/apply/detail?applicationId=${apply.applicationId}','_blank', 'width=800,height=700' )">
                         ${post[status.index].title}</a></td>
                 <td>${company[status.index].companyName}</td>
                 <td>${post[status.index].status}</td>
