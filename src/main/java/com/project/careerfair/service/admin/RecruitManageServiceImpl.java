@@ -1,15 +1,14 @@
 package com.project.careerfair.service.admin;
 
 import com.project.careerfair.domain.*;
-import com.project.careerfair.mapper.admin.RecruitManageMapper;
-import com.project.careerfair.mapper.company.CompanyMapper;
+import com.project.careerfair.mapper.jobapplication.JobApplicationMapper;
+import com.project.careerfair.mapper.posting.PostingMapper;
 import com.project.careerfair.mapper.scrap.ScrapMapper;
 import com.project.careerfair.service.apply.PostingApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,19 +27,22 @@ public class RecruitManageServiceImpl implements RecruitManageService{
     private ExhibitionInfoService exhibitionInfoService;
 
     @Autowired
-    private RecruitManageMapper rmMapper;
+    private ScrapMapper scrapMapper;
 
     @Autowired
-    private ScrapMapper scrapMapper;
+    private JobApplicationMapper jobApplicationMapper;
+
+    @Autowired
+    private PostingMapper postingMapper;
 
     @Autowired
     private PostingApplyService postingApplyService;
 
 
     @Override
-    public Map<String, Object> getPosting(Integer page, String search, String type, Integer round ) {
+    public Map<String, Object> getPosting(Integer page, String search, String type, String roundValue ) {
 
-//        Integer round = exhibitionInfoService.getCurrentRound();
+        Integer round = exhibitionInfoService.getCurrentRound();
 
         Integer pageSize = 10; // 10개씩
         Integer startNum = (page - 1) * pageSize; // 0 10 20
@@ -50,7 +52,7 @@ public class RecruitManageServiceImpl implements RecruitManageService{
 
         //페이지네이션 정보
         //총 글 개수
-        Integer count = rmMapper.countAll(type, search);
+        Integer count = postingMapper.manageCount(type, search, roundValue, round);
 
         // 마지막 페이지 번호
         // 총 글개수 -1 / pageSize + 1
@@ -85,48 +87,35 @@ public class RecruitManageServiceImpl implements RecruitManageService{
         pageInfo.put("nextPageNum", nextPageNum);
         pageInfo.put("firstPageNum",firstPageNum);
 
-        List<Posting> postingList = rmMapper.getPostId(startNum, pageSize, search, type, round);
-        List<Members> member = rmMapper.getManageId();
-        return Map.of("pageInfo",pageInfo, "postList",postingList , "members", member);
+        List<Posting> postingList = postingMapper.getPostId(startNum, pageSize, search, type, roundValue, round);
+        return Map.of("pageInfo",pageInfo, "postList",postingList );
     }
 
-//    @Override
-//    public boolean removeProcess(Integer appicaitonId , Integer postingId) {
-//
-//        //스크랩 돼있는 공고 삭제
-//        scrapMapper.deleteScrap(postingId);
-//
-//        Integer round = exhibitionInfoService.getCurrentRound();
-//
-//        List<String> fileNames = rmMapper.selectFileId(appicaitonId);
-////        List<Integer> appicaitonId =    곧 이 방법으로 바꿈
-//        postingApplyService.applyCancel(appicaitonId);
-//
-//        for(String fileName : fileNames) {
-//            String objectKey = "career_fair/jobApplication/" + appicaitonId;
-//            String fileKey = objectKey + "/" + fileName;
-//
-//            DeleteObjectRequest dor = DeleteObjectRequest.builder()
-//                    .bucket(bucketName)
-//                    .key(fileKey)
-//                    .build();
-//
-//                    s3.deleteObject(dor);
-//
-//            rmMapper.removeFileId(fileName);
-//        }
-//        int cnt = rmMapper.removeForm(postingId,round);
-//        return cnt == 1;
-//    }
+    @Override
+    public boolean jobEndForm(Integer postingId) {
+        Integer cnt = postingMapper.changeStatus(postingId);
 
-//    @Override
-//    public boolean jobEndForm(Posting posting, String memberId) {
-//
-//        String username = rmMapper.getManageId(memberId);
-//
-//        int cnt = rmMapper.endJobMapper(posting);
-//
-//        return cnt ==1;
-//    }
+        return cnt == 1;
+    }
+
+    @Override
+    public boolean removeProcess(Integer postingId) {
+
+        //스크랩 돼있는 공고 삭제
+        scrapMapper.deleteScrap(postingId);
+
+        Integer round = exhibitionInfoService.getCurrentRound();
+
+
+        List<Integer> idList = jobApplicationMapper.getApplicationId(postingId);
+        if(idList.size() > 0) {
+            for (Integer applicationId :idList) {
+                postingApplyService.applyCancel(applicationId);
+            }
+        }
+
+        int cnt = postingMapper.removeForm(postingId,round);
+        return cnt == 1;
+    }
 
 }

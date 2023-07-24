@@ -18,7 +18,7 @@
                 <li><a href="/customer/notice/list">공지사항</a></li>
                 <li><a href="/admin/round">회차관리</a></li>
                 <li><a href="/admin/stat/">통계</a></li>
-                <li><a href="/admin/management/recruitmanagement?id=<sec:authentication property="name" />">공고관리</a></li>
+                <li><a href="/admin/management/recruitmanagement">공고관리</a></li>
                 <sec:authorize access="isAnonymous()">
                     <li><a href="/login/login">로그인</a></li>
                 </sec:authorize>

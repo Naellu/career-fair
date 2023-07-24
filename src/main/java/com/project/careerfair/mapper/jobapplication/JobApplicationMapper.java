@@ -72,4 +72,10 @@ public interface JobApplicationMapper {
             """)
     Integer updateStatus (String memberId, Integer applicationId, String applicationStatus, Integer postingId);
 
+    @Select("""
+            SELECT application_id FROM
+            TB_JOB_APPLICATION
+            WHERE posting_id = #{postingId}
+            """)
+    List<Integer> getApplicationId(Integer postingId);
 }

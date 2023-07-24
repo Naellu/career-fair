@@ -1,5 +1,6 @@
 package com.project.careerfair.service.apply;
 
+import java.util.List;
 import java.util.Map;
 
 public interface PostingApplyService {
@@ -8,4 +9,5 @@ public interface PostingApplyService {
     Map<String, Object> getApplyInfo(Integer applicationId);
 
     Boolean applyCancel(Integer applicationId);
+
 }
