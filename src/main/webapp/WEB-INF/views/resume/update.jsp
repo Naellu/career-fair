@@ -34,37 +34,6 @@
 
       <input type="hidden" id="resumeId" value="${resumeUpdateData.resumeId}">
 
-<%--      <!-- 인적사항 그룹 -->--%>
-<%--      <h4>인적사항</h4>--%>
-<%--      <div id="memberInfoContainer" class="inputContainer">--%>
-<%--          <div class="form-group mb-3 memberInfoGroup inputDetailGroup">--%>
-<%--              <div class="row">--%>
-<%--                  <div class="col">--%>
-<%--                      <label for="name">이름</label>--%>
-<%--                      <input type="text" class="form-control" id="name" placeholder="">--%>
-<%--                  </div>--%>
-<%--                  <div class="col">--%>
-<%--                      <label for="birth">생년월일</label>--%>
-<%--                      <input type="date" class="form-control" id="birth" placeholder="">--%>
-<%--                  </div>--%>
-<%--                  <div class="col">--%>
-<%--                      <label for="gender">성별</label>--%>
-<%--                      <select class="form-control" id="gender">--%>
-<%--                          <option selected disabled></option>--%>
-<%--                          <option>남성</option>--%>
-<%--                          <option>여성</option>--%>
-<%--                      </select>--%>
-<%--                  </div>--%>
-<%--              </div>--%>
-<%--              <label for="phone">전화번호</label>--%>
-<%--              <input type="text" class="form-control mt-2" id="phone" placeholder="">--%>
-<%--              <label for="email">이메일</label>--%>
-<%--              <input type="email" class="form-control mt-2" id="email" placeholder="">--%>
-<%--              <label for="address">주소</label>--%>
-<%--              <input type="text" class="form-control mt-2" id="address" placeholder="">--%>
-<%--          </div>--%>
-<%--      </div>--%>
-
 
       <!-- 경력 입력 그룹 -->
       <div class="form-group mb-3">

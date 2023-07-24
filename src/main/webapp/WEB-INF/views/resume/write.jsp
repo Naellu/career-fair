@@ -33,38 +33,6 @@
             <input type="text" class="form-control" id="resumeTitle" placeholder="이력서 제목을 입력해주세요">
         </div>
 
-        <!-- 인적사항 그룹 -->
-<%--        <h4>인적사항</h4>--%>
-<%--        <div id="memberInfoContainer" class="inputContainer">--%>
-<%--            <div class="form-group mb-3 memberInfoGroup inputDetailGroup">--%>
-<%--                <div class="row">--%>
-<%--                    <div class="col">--%>
-<%--                        <label for="name">이름</label>--%>
-<%--                        <input type="text" class="form-control" id="name" placeholder="">--%>
-<%--                    </div>--%>
-<%--                    <div class="col">--%>
-<%--                        <label for="birth">생년월일</label>--%>
-<%--                        <input type="date" class="form-control" id="birth" placeholder="">--%>
-<%--                    </div>--%>
-<%--                    <div class="col">--%>
-<%--                        <label for="gender">성별</label>--%>
-<%--                        <select class="form-control" id="gender">--%>
-<%--                            <option selected disabled></option>--%>
-<%--                            <option>남성</option>--%>
-<%--                            <option>여성</option>--%>
-<%--                        </select>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <label for="phone">전화번호</label>--%>
-<%--                <input type="text" class="form-control mt-2" id="phone" placeholder="">--%>
-<%--                <label for="email">이메일</label>--%>
-<%--                <input type="email" class="form-control mt-2" id="email" placeholder="">--%>
-<%--                <label for="address">주소</label>--%>
-<%--                <input type="text" class="form-control mt-2" id="address" placeholder="">--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-
         <!-- 경력 입력 그룹 -->
         <div class="form-group mb-3">
             <h4>경력</h4>
@@ -129,11 +97,11 @@
                         </div>
                         <div class="col">
                             <label for="enterDate">입학일</label>
-                            <input type="date" class="form-control enterDate" id="enterDate" placeholder="">
+                            <input type="text" class="form-control enterDate" id="enterDate" placeholder="YYYY-MM-DD">
                         </div>
                         <div class="col">
                             <label for="gradDate">졸업일</label>
-                            <input type="date" class="form-control gradDate" id="gradDate" placeholder="">
+                            <input type="text" class="form-control gradDate" id="gradDate" placeholder="YYYY-MM-DD">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -196,7 +164,7 @@
                 </div>
                 <button type="button" class="btn btn-dark mt-2 addBtnDiv" id="addWorkArea">근무지역 추가</button>
                 <label for="desiredSalary">연봉</label>
-                <input type="text" class="form-control desiredSalary" id="desiredSalary" placeholder="">
+                <input type="text" class="form-control desiredSalary" id="desiredSalary" placeholder="만원 이상">
                 <label for="employmentType">고용형태</label>
                 <select class="form-control" id="employmentType">
                     <option selected disabled></option>

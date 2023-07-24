@@ -41,12 +41,15 @@ public class ResumeController {
     @GetMapping("{resumeId}")
     public String showDetail(@PathVariable Integer resumeId, Model model, Authentication authentication) {
         ResumeDto resumeDetailData = resumeService.getResumeById(resumeId);
-        // view에 상세 데이터 전달
+        Integer industryId = resumeDetailData.getIndustryId();
+        Industry industry = industryService.findIndustryNameById(industryId);
+
 //      resumeId랑 memberId로 인적사항 정보 가져오기
         Members memberInfo = resumeService.getMemberInfoByMemberId(resumeDetailData.getResumeId(), resumeDetailData.getMemberId());
         model.addAttribute("resumeData", resumeDetailData);
         model.addAttribute("memberId", authentication.getName());
         model.addAttribute("memberInfo", memberInfo);
+        model.addAttribute("industry", industry);
         return "resume/detail";
     }
 

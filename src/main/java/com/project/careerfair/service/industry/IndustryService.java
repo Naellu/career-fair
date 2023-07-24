@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IndustryService {
     List<Industry> getIndustryList();
+
+    Industry findIndustryNameById(Integer industryId);
 }

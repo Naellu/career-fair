@@ -5,6 +5,28 @@ $(document).ready(function () {
     $("input[name='militaryService']").change(function () {
         updateMilitaryRankDisplay();
     });
+
+    $(document).on("keydown", ".entryDate, .resignationDate, .enterDate, .gradDate, .getDate", function(e){
+
+        // $(".entryDate, .resignationDate , .enterDate, .gradDate, .getDate").on("keydown", function(e){
+        let key = e.key;
+        let val = e.target.value;
+
+        // Check if input character is not a number or '-' and delete key
+        if((isNaN(key) && key !== '-') && key !== "Backspace" && key !== "Delete") {
+            e.preventDefault();
+        }
+
+        // Automatically add hyphen after YYYY and MM
+        else if((val.length === 4 || val.length === 7) && key !== "Backspace" && key !== "Delete") {
+            e.target.value = val + '-';
+        }
+
+        // Limit length to 10 (YYYY-MM-DD)
+        else if(val.length >= 10 && key !== "Backspace" && key !== "Delete") {
+            e.preventDefault();
+        }
+    });
 });
 
 // 입력 그룹 첫 번째 삭제 버튼 표시 안함
@@ -69,7 +91,6 @@ $('#updateResumeBtn').click(function () {
 
         careers.push(career);
     });
-    console.log(careers);
 
     let educations = [];
     $('.educationGroup').each(function (index, element) {
@@ -85,7 +106,6 @@ $('#updateResumeBtn').click(function () {
         };
         educations.push(education);
     });
-    console.log(educations);
 
     let certifications = [];
     $('.certificationGroup').each(function(index, element) {
@@ -98,7 +118,6 @@ $('#updateResumeBtn').click(function () {
         };
         certifications.push(certification);
     });
-    console.log(certifications);
 
     let workAreas = [];
     $('.desiredLocation').each(function(index, element) {
@@ -109,7 +128,6 @@ $('#updateResumeBtn').click(function () {
         };
         workAreas.push(workArea);
     });
-    console.log(workAreas);
 
     let workCondition = {};
     workCondition = {
@@ -118,21 +136,17 @@ $('#updateResumeBtn').click(function () {
         employmentType: $('#employmentType').val(),
         resumeId: $('#resumeId').val()
     }
-    console.log(workCondition);
 
     let military = $("input[name='militaryService']:checked").val();
     if(military === 'fulfilled') {
         military = $("#militaryRank").val();
     }
-    console.log(military);
 
     // 자기소개
     let intro = $("#selfIntroduction").val();
-    console.log(intro);
 
     // 희망업종
     let industryId = $("#desiredIndustry option:selected").val();
-    console.log(industryId);
 
     // 서버로 보낼 데이터를 구성합니다.
     let resumeData = {

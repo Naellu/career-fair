@@ -4,6 +4,28 @@ $(document).ready(function () {
     $("input[name='militaryService']").change(function () {
         updateMilitaryRankDisplay();
     });
+
+    $(document).on("keydown", ".entryDate, .resignationDate, .enterDate, .gradDate, .getDate", function(e){
+
+    // $(".entryDate, .resignationDate , .enterDate, .gradDate, .getDate").on("keydown", function(e){
+        let key = e.key;
+        let val = e.target.value;
+
+        // Check if input character is not a number or '-' and delete key
+        if((isNaN(key) && key !== '-') && key !== "Backspace" && key !== "Delete") {
+            e.preventDefault();
+        }
+
+        // Automatically add hyphen after YYYY and MM
+        else if((val.length === 4 || val.length === 7) && key !== "Backspace" && key !== "Delete") {
+            e.target.value = val + '-';
+        }
+
+        // Limit length to 10 (YYYY-MM-DD)
+        else if(val.length >= 10 && key !== "Backspace" && key !== "Delete") {
+            e.preventDefault();
+        }
+    });
 });
 
 

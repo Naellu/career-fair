@@ -14,6 +14,12 @@
     <select id="getIndustryList" resultMap="industryMap">
         SELECT * FROM TB_INDUSTRIES
     </select>
+
+    <select id="findIndustryNameById" resultMap="industryMap">
+        SELECT industry_name
+        FROM TB_INDUSTRIES
+        WHERE industry_id = #{industryId}
+    </select>
 </mapper>
 
 
