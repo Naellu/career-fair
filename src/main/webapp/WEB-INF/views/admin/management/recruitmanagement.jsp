@@ -20,7 +20,7 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <my:font></my:font>
-    <title>Title</title>
+    <title>채용공고관리</title>
 
 <style>
     .div-cloumn{
@@ -51,18 +51,37 @@
 </head>
 <body>
 <my:adminNavBar/>
-<form method="get">
     <div style="display: flex; justify-content: center; margin: 30px 0px 40px 0px;">
         <h3>채용공고 관리</h3>
-    </div>
-    <div>
-      <button name="round">회차</button>
     </div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 120px; ">
         <div class="rec-column-top">
           <span style="font-size: 20px; font-weight: 600;">게시한 공고 목록</span>
           <div class="div-cloumn"></div>
-          <span style="font-size: 14px;color: rgba(0,0,0,0.3);">지원자가 있는 경우 삭제가 불가능합니다</span>
+
+
+            <c:url value="/admin/management/recruitmanagement" var="roundLink">
+                <c:param name="page" value="1" />
+                <c:if test="${not empty param.search }">
+                    <c:param name="search" value="${param.search }" />
+                </c:if>
+                <!-- 처음버튼 눌러도 검색값 변하지 않게 하기 -->
+                <c:if test="${not empty param.type }">
+                    <c:param name="type" value="${param.type }" />
+                </c:if>
+            </c:url>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="${roundLink }&round=all">전체</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${roundLink }&round=now">현재회차</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${roundLink }&round=past">지난회차</a>
+                </li>
+            </ul>
+
         </div>
       <div class="rec-column-top">
         <div style="margin-left: 15px;">
@@ -77,26 +96,25 @@
             <div class="rectable-column-div">
               <div id="postingid-text" style="display: none;">${posting.postingId}</div>
               <div><h3><a href="/user/posting/${posting.postingId}">${posting.title}</a></h3></div>
-                <div><span>${posting.memberId}</span></div>
-          <div><span>${posting.educationLevel}</span> <span>${posting.address}</span><span>${posting.employmentType}</span></div>
+                <div><span>기업명 ${posting.companyName}</span></div>
+                <div><span>담당자 ${posting.memberId}</span></div>
+          <div><span>${posting.educationLevel}</span> <span>${posting.address}</span><span> ${posting.employmentType}</span></div>
               <div>${posting.applicationCount}/${posting.hiringCount}</div>
             </div>
           <div class="rectable-column-div">
             <div>
-                <button id="removeButton" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">삭제</button>
+                <button type="button" class="btn btn-danger removeButton" data-postingId="${posting.postingId}">삭제</button>
             </div>
-<%--              <div>--%>
-<%--                  <form action="/admin/management/recruitmanagement/recruitend" method="post">--%>
-<%--                      <input style="display: none" type="text" name="status" value="마감">--%>
-<%--                  <button id="statusButton" class="btn btn-primary">마감</button>--%>
-<%--                  </form>--%>
-<%--              </div>--%>
+
+              <div>
+                  <button type="button" class="btn btn-primary statusButton mt-2" data-postingId="${posting.postingId}">마감</button>
+              </div>
+
           </div>
         </div>
       </div>
       </c:forEach>
     </div>
-</form>
 
 <!-- pagenation -->
     <div class="container-lg" style="margin-top: 20px;">
@@ -106,7 +124,7 @@
                     <!-- 처음버튼 -->
                     <c:if test="${pageInfo.currentPageNum ne 1 }">
                     <c:url value="/admin/management/recruitmanagement" var="recpageLink">
-                    <c:param name="page" value="${pageInfo.currentPageNum -1 }" />
+                    <c:param name="page" value="${pageInfo.firstPageNum}" />
                     <c:if test="${not empty param.search }">
                     <c:param name="search" value="${param.search }" />
                     </c:if>
@@ -168,26 +186,6 @@
         </div>
     </div>
 <my:recmanageSearch></my:recmanageSearch>
-<%--삭제모달--%>
-<%--<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
-<%--    <div class="modal-dialog">--%>
-<%--        <div class="modal-content">--%>
-<%--            <div class="modal-header">--%>
-<%--                <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>--%>
-<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--            </div>--%>
-<%--            <div class="modal-body">--%>
-<%--                <form id="removeForm" action="/admin/management/remove" method="post">--%>
-<%--                    <input type="hidden" name="id" value="${postList.postingId }" />--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div class="modal-footer">--%>
-<%--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                <button type="submit" form="removeForm" class="btn btn-danger">확인</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -195,6 +193,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<%--<script src="/js/admin/manage/remove"></script>--%>
+<script src="/js/admin/manage/manage.js"></script>
 </body>
 </html>

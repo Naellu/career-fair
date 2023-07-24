@@ -48,12 +48,16 @@
 <div style="display: flex; justify-content: center;">
 
     <div class="board-search-container">
+
         <form action="/admin/management/recruitmanagement" role="search">
             <select  class="search-select" name="type" style="width: 120px;">
                 <option value="title"${param.type eq 'title' ? 'selected' : '' }>공고명</option>
                 <option value="memberId"${param.type eq 'memberId' ? 'selected' : '' }>담당자</option>
-                <option value="address"${param.type eq 'address' ? 'selected' : '' }>주소</option>
+                <option value="companyName"${param.type eq 'companyName' ? 'selected' : '' }>기업명</option>
             </select>
+            <c:if test="${not empty param.round }">
+                <input type="hidden" name="round" value="${param.round}" />
+            </c:if>
             <div class="board-searchbar-div">
                 <input class="search-input" type="search" name="search" placeholder="키워드를 입력해주세요" aria-label="Search" value="${param.search }" style="width: 420px;"/>
                 <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>

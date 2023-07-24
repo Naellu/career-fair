@@ -10,9 +10,9 @@
     <c:if test="${not empty param.type }">
         <c:param name="type" value="${param.type }" />
     </c:if>
-<%--    <c:if test="${not empty param.round }">--%>
-<%--        <c:param name="round" value="${param.round }" />--%>
-<%--    </c:if>--%>
+    <c:if test="${not empty param.round }">
+        <c:param name="round" value="${param.round }" />
+    </c:if>
 </c:url>
 <li class="page-item">
     <a class="page-link ${recPageNum eq pageInfo.thisPage ? 'active' : '' }" href="${recpageLink }">

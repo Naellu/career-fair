@@ -188,6 +188,33 @@
         UPDATE TB_POSTING SET application_count = application_count + 1
         WHERE posting_id = #{postingId}
     </update>
+
+    <resultMap type="com.project.careerfair.domain.Posting"
+               id="managePostingMap">
+        <id column="posting_id" property="postingId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="round" property="round"/>
+        <result column="company_name" property="companyName"/>
+        <result column="title" property="title"/>
+        <result column="industry_id" property="industryId"/>
+        <result column="hiring_count" property="hiringCount"/>
+        <result column="spare_count" property="spareCount"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="address" property="address"/>
+        <result column="status" property="status"/>
+        <result column="salary" property="salary"/>
+        <result column="preferences" property="preference"/>
+        <result column="benefits" property="benefit"/>
+        <result column="requirements" property="requirement"/>
+        <result column="etc" property="etc"/>
+        <result column="employment_type" property="employmentType"/>
+        <result column="experience_level" property="experienceLevel"/>
+        <result column="education_level" property="educationLevel"/>
+        <result column="hiring_count" property="hiringCount"/>
+        <result column="application_count" property="applicationCount"/>
+    </resultMap>
 </mapper>
 
 
