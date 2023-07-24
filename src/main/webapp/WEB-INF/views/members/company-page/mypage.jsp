@@ -96,8 +96,9 @@
     </div>
     <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t">신청기록</div>
-        <div class="mypage-column"><button onclick="location.href='/company/join/list'">신청기록보기</button></div>
-        <div class="mypage-column mypage-column-b"> </div>
+        <div class="mypage-column mypage-column-b">
+            <span onclick="location.href='/company/join/list'" style="cursor:pointer; color:#4C84F3;">신청기록 보기</span>
+        </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
