@@ -43,4 +43,8 @@
     <update id="setTypeToCompany">
         UPDATE TB_MEMBERS SET member_type = 'company' WHERE member_type = 'recruiter'
     </update>
+
+    <select id="getAuth">
+        SELECT member_type FROM TB_MEMBERS WHERE member_id = #{memberId}
+    </select>
 </mapper>

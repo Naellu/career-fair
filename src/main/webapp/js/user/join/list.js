@@ -167,6 +167,25 @@ searchBtn.addEventListener("click", function () {
     listView(searchValue, typeValue, industryValue, roundValue, pageValue);
 });
 
+const search = document.querySelector("#search");
+search.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        const search = document.querySelector("#search");
+        searchValue = search.value;
+
+        const type = document.querySelector("#type");
+        typeValue = type.value;
+
+        const industryId = document.querySelector("#industry-select");
+        industryValue = industryId.value;
+
+        pageValue = "8";
+
+        listView(searchValue, typeValue, industryValue, roundValue, pageValue);
+    }
+});
+
+
 const pageBtn = document.querySelector("#page-btn");
 pageBtn.addEventListener("click", function () {
 

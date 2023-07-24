@@ -86,6 +86,8 @@ function detailView() {
             const senderId = data.senderId;
             const recipientId = posting.memberId;
 
+            const auth = data.auth;
+
             //쪽지 처리
             const noteBtn = document.querySelector("#note-btn");
             if (senderId === "notLogin") {
@@ -101,8 +103,9 @@ function detailView() {
                 });
             }
 
-            // 좋아요 상태 표시
+            // 찜 상태 표시
             const wishBtn = document.querySelector("#wish-btn");
+
             if (posting.scraped) {
                 wishBtn.innerHTML = "<i class=\"fa-regular fa-star\"></i> 공고찜취소";
                 wishBtn.classList = "btn btn-outline-danger";
@@ -110,9 +113,14 @@ function detailView() {
                 wishBtn.innerHTML = "<i class=\"fa-regular fa-star\"></i> 공고찜하기";
                 wishBtn.classList = "btn btn-outline-warning";
             }
-
             wishBtn.addEventListener("click", wish);
+            const applicationBtn = document.querySelector("#application-btn");
 
+            if (auth === "admin" || auth === "company" || auth === "recruiter") {
+                applicationBtn.classList.add("d-none");
+                wishBtn.classList.add("d-none");
+                noteBtn.classList.add("d-none");
+            }
         })
         .catch(error => {
             alert("문제가 발생했습니다. 관리자에게 문의해주세요");
@@ -150,7 +158,6 @@ function wish() {
 }
 
 const applicationBtn = document.querySelector("#application-btn");
-
 applicationBtn.addEventListener("click", function () {
     const url = window.location.href;
     const postingId = url.substring(url.lastIndexOf("/") + 1);
@@ -178,5 +185,5 @@ applicationBtn.addEventListener("click", function () {
             toastBody.innerHTML = "로그인 후 이용해주세요!";
             toastBootstrap.show();
         });
-
 });
+

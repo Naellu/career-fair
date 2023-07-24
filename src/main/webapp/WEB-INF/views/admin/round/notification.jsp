@@ -13,13 +13,26 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <my:font></my:font>
-    <title>$Title$</title>
+    <title>메일보내기</title>
 
 </head>
 <body>
-<my:navBar/>
 
-페이지가 없습니다!!
+<div class="container mt-5">
+    <h1>회원에게 메일 보내기</h1>
+
+    <div class="mb-3">
+        <label for="content" class="form-label">메일 내용 입력</label>
+        <textarea id="content" type="text" class="form-control" rows="10" readonly=""></textarea>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button id="submit-btn" type="button" class="btn btn-outline-primary">전송</button>
+            <button id="close-btn" type="button" class="btn btn-outline-secondary">닫기</button>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -27,6 +40,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="/js/user/posting/application.js"></script>
 </body>
 </html>
