@@ -30,9 +30,26 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-7">
+            <div class="col-md-7 mt-5">
 
                 <h2>자주 묻는 질문</h2>
+
+                <form action="/faq" class="d-flex" role="search">
+
+                    <div class="input-group">
+                        <select class="form-select flex-grow-0" style="width: 100px;" name="type" id="">
+                            <option value="all">전체</option>
+                            <option value="title" ${param.type eq 'title' ? 'selected' : '' }>제목</option>
+                            <option value="content" ${param.type eq 'content' ? 'selected' : '' }>본문</option>
+                        </select>
+
+                        <input value="${param.search }" name="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+
                 <sec:authorize access="hasAuthority('admin')">
                     <button type="button" class="btn btn-dark write-faq-btn" data-bs-toggle="modal" data-bs-target="#faqWriteBtn">작성</button>
                 </sec:authorize>
