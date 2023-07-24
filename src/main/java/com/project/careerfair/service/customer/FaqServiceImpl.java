@@ -15,9 +15,13 @@ public class FaqServiceImpl implements FaqService {
 
     private final FaqMapper faqMapper;
 
+//    @Override
+//    public List<Faq> findAll() {
+//        return faqMapper.findAll();
+//    }
     @Override
-    public List<Faq> findAll() {
-        return faqMapper.findAll();
+    public List<Faq> findAll(String search, String type) {
+        return faqMapper.findAll(search, type);
     }
 
     @Override
