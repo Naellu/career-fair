@@ -38,20 +38,28 @@ public class RecruitManageServiceImpl implements RecruitManageService{
 
 
     @Override
-    public Map<String, Object> getPosting(Integer page, String search, String type ) {
+    public Map<String, Object> getPosting(Integer page, String search, String type, Integer round ) {
 
-        Integer round = exhibitionInfoService.getCurrentRound();
+//        Integer round = exhibitionInfoService.getCurrentRound();
 
         Integer pageSize = 10; // 10개씩
         Integer startNum = (page - 1) * pageSize; // 0 10 20
 
+        //현재페이지
+        Integer currentPageNum = page;
+
         //페이지네이션 정보
         //총 글 개수
-        Integer count = rmMapper.countAll(type, search, round);
+        Integer count = rmMapper.countAll(type, search);
 
         // 마지막 페이지 번호
         // 총 글개수 -1 / pageSize + 1
         Integer lastPage = (count - 1) / pageSize + 1;
+
+        //맨처음 페이지로 가기
+        Integer firstPageNum = 1;
+        //맨 마지막 페이지로 가기
+        Integer endPageNumber = (count / 5)+1;
 
         // 페이지네이션 왼쪽번호 1 11 21 31
         Integer leftPageNum = page - 5;
@@ -75,45 +83,50 @@ public class RecruitManageServiceImpl implements RecruitManageService{
         pageInfo.put("currentPageNum", page);
         pageInfo.put("prevPageNum", prevPageNum);
         pageInfo.put("nextPageNum", nextPageNum);
+        pageInfo.put("firstPageNum",firstPageNum);
 
         List<Posting> postingList = rmMapper.getPostId(startNum, pageSize, search, type, round);
         List<Members> member = rmMapper.getManageId();
         return Map.of("pageInfo",pageInfo, "postList",postingList , "members", member);
     }
 
-    @Override
-    public boolean removeProcess(Integer appicaitonId , Integer postingId) {
-
-        //스크랩 돼있는 공고 삭제
-        scrapMapper.deleteScrap(postingId);
-
-        Integer round = exhibitionInfoService.getCurrentRound();
-
-        List<String> fileNames = rmMapper.selectFileId(appicaitonId);
-//        List<Integer> appicaitonId =    곧 이 방법으로 바꿈
-        postingApplyService.applyCancel(appicaitonId);
-
-        for(String fileName : fileNames) {
-            String objectKey = "career_fair/jobApplication/" + appicaitonId;
-            String fileKey = objectKey + "/" + fileName;
-
-            DeleteObjectRequest dor = DeleteObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(fileKey)
-                    .build();
-
-                    s3.deleteObject(dor);
-
-            rmMapper.removeFileId(fileName);
-        }
-        int cnt = rmMapper.removeForm(postingId,round);
-        return cnt == 1;
-    }
+//    @Override
+//    public boolean removeProcess(Integer appicaitonId , Integer postingId) {
+//
+//        //스크랩 돼있는 공고 삭제
+//        scrapMapper.deleteScrap(postingId);
+//
+//        Integer round = exhibitionInfoService.getCurrentRound();
+//
+//        List<String> fileNames = rmMapper.selectFileId(appicaitonId);
+////        List<Integer> appicaitonId =    곧 이 방법으로 바꿈
+//        postingApplyService.applyCancel(appicaitonId);
+//
+//        for(String fileName : fileNames) {
+//            String objectKey = "career_fair/jobApplication/" + appicaitonId;
+//            String fileKey = objectKey + "/" + fileName;
+//
+//            DeleteObjectRequest dor = DeleteObjectRequest.builder()
+//                    .bucket(bucketName)
+//                    .key(fileKey)
+//                    .build();
+//
+//                    s3.deleteObject(dor);
+//
+//            rmMapper.removeFileId(fileName);
+//        }
+//        int cnt = rmMapper.removeForm(postingId,round);
+//        return cnt == 1;
+//    }
 
 //    @Override
-//    public List<Posting> getRecrutList(String memberId){
-//        List<Posting> list = rmMapper.recuruitList(memberId);
+//    public boolean jobEndForm(Posting posting, String memberId) {
 //
-//        return list;
+//        String username = rmMapper.getManageId(memberId);
+//
+//        int cnt = rmMapper.endJobMapper(posting);
+//
+//        return cnt ==1;
 //    }
+
 }
