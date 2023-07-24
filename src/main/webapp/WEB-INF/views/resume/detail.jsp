@@ -98,9 +98,6 @@
                             <div class="info">
                                 <div class="item">
                                     <div class="label">연봉</div>
-                                    <div class="value">
-                                        222만원
-                                    </div>
                                 </div>
                                 <div class="item">
                                     <div class="label">주요직무</div>
@@ -135,8 +132,9 @@
                         <div class="content-body">
                             <div class="info">
                                 <div class="item">
-                                    <div class="label">학점</div>
-                                    <div class="value">3.5 / 4.5</div>
+<%--                                    <div class="label">학과</div>--%>
+<%--                                    <div class="label">${education.major}</div>--%>
+<%--                                    <div class="value"></div>--%>
                                 </div>
                             </div>
                         </div>
@@ -219,7 +217,7 @@
         </div>
         <div class="list list-certificate list-military">
             <div class="item pdf-page-break">
-                <div class="date">테스트</div>
+                <div class="date">상태</div>
                 <div class="content">
                     <div class="content-header">
                         <div class="name certificationName">${resumeData.military}</div>
@@ -245,10 +243,11 @@
         </div>
         <div class="list list-certificate list-industry">
             <div class="item pdf-page-break">
-                <div class="date">테스트</div>
+                <div class="date">종목</div>
                 <div class="content">
                     <div class="content-header">
-                        <div class="name" id="${resumeData.industryId}">${resumeData.industryId}</div>
+<%--                        <div class="name" id="${resumeData.industryId}">${resumeData.industryId}</div>--%>
+                        <div class="name" id="${industry.industryId}">${industry.industryName}</div>
                     </div>
                 </div>
             </div>

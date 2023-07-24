@@ -19,4 +19,9 @@ public class IndustryServiceImpl implements IndustryService{
     public List<Industry> getIndustryList() {
         return industryMapper.getIndustryList();
     }
+
+    @Override
+    public Industry findIndustryNameById(Integer industryId) {
+        return industryMapper.findIndustryNameById(industryId);
+    }
 }

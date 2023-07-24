@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface IndustryMapper {
     List<Industry> getIndustryList();
+
+    Industry findIndustryNameById(Integer industryId);
 }
