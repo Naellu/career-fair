@@ -81,11 +81,12 @@ public class PostingApplyServiceImpl implements PostingApplyService{
             fileMapper.deleteFileByFileName(fileName);
         }
 
+        JobApplication application = jobApplicationMapper.getApplyInfo(applicationId);
         Integer check = jobApplicationMapper.cancelApplyByApplicationId(applicationId);
+        System.out.println(application);
 
         if (check==1) {
-            JobApplication application = jobApplicationMapper.getApplyInfo(applicationId);
-            jobApplicationMapper.reduceApplcationCount(application.getPostingId());
+            postingMapper.reduceApplcationCount(application.getPostingId());
         }
 
         return check == 1;

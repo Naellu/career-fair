@@ -79,10 +79,5 @@ public interface JobApplicationMapper {
             """)
     List<Integer> getApplicationId(Integer postingId);
 
-    @Update("""
-            UPDATE TB_Posting
-            SET application_count -= 1
-            WHERE posting_id = #{postingId}
-            """)
-    void reduceApplcationCount(Integer postingId);
+
 }

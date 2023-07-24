@@ -229,4 +229,12 @@ public interface PostingMapper {
             AND round = #{round}
             """)
     int removeForm(Integer postingId, Integer round);
+
+    @Update("""
+            UPDATE TB_POSTING   
+            SET application_count = application_count - 1
+            WHERE posting_id = #{postingId}
+            """)
+    void reduceApplcationCount(Integer postingId);
 }
+
