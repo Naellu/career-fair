@@ -78,4 +78,6 @@ public interface JobApplicationMapper {
             WHERE posting_id = #{postingId}
             """)
     List<Integer> getApplicationId(Integer postingId);
+
+
 }
