@@ -16,9 +16,6 @@
 <body>
     <my:navBar/>
 
- <sec:authentication property="Principal"/><br>
-
-
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero">
         <div class="container position-relative">
