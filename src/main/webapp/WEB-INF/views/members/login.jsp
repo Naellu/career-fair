@@ -40,6 +40,7 @@
     </style>
 </head>
 <body>
+<my:font></my:font>
 <my:navBar/>
 
 <c:if test="${not empty message}">

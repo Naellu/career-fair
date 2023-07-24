@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <my:font></my:font>
     <title>채용공고관리</title>
 
 <style>
@@ -50,6 +49,7 @@
 </style>
 </head>
 <body>
+<my:font></my:font>
 <my:adminNavBar/>
     <div style="display: flex; justify-content: center; margin: 30px 0px 40px 0px;">
         <h3>채용공고 관리</h3>
