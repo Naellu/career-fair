@@ -1,6 +1,6 @@
 function checkRecipientId (){
     const recipientId = $("#recipientId").val();
-    $.ajax("/member/members/checkId/" + recipientId, {
+    $.ajax("/members/checkId/" + recipientId, {
         method:"get",
         success:function (result){
             if(!result.available){

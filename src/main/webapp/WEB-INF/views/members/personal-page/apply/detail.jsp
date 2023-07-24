@@ -13,7 +13,7 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <my:font></my:font>
-    <title>입사지원</title>
+    <title>지원 내용</title>
 
 </head>
 <body onload="defaultSet()">
