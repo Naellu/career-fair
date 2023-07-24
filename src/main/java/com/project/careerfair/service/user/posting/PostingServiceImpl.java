@@ -2,6 +2,7 @@ package com.project.careerfair.service.user.posting;
 
 import com.project.careerfair.domain.*;
 import com.project.careerfair.mapper.jobapplication.JobApplicationMapper;
+import com.project.careerfair.mapper.members.MemberMapper;
 import com.project.careerfair.mapper.posting.PostingMapper;
 import com.project.careerfair.mapper.scrap.ScrapMapper;
 import com.project.careerfair.service.admin.ExhibitionInfoService;
@@ -44,6 +45,8 @@ public class PostingServiceImpl implements PostingService {
     private final JobApplicationMapper jobApplicationMapper;
 
     private final ExhibitionInfoService exhibitionInfoService;
+
+    private final MemberMapper memberMapper;
 
     @Override
     public Map<String, Object> getPostings(Integer[] industrIds, String[] experienceLevels, String[] educationLevels, String[] employmentTypes, String type, String search, Integer page) {
@@ -98,21 +101,24 @@ public class PostingServiceImpl implements PostingService {
         List<Industry> industryList = industryService.getIndustryList();
 
         String senderId = null;
+        String auth = null;
 
         posting.setScraped(false);
 
         // 해당 계정이 좋아요눌럿는지와 로그인되어잇는지 체크
         if (authentication == null) {
             senderId = "notLogin";
+            auth = "notLogin";
         } else {
             Scrap scrap = scrapMapper.scrapCheck(postingId, authentication.getName());
             if (scrap != null) {
                 posting.setScraped(true);
             }
+            auth = memberMapper.getAuth(authentication.getName());
             senderId = authentication.getName();
         }
 
-        return Map.of("posting", posting, "industryList", industryList, "senderId", senderId);
+        return Map.of("posting", posting, "industryList", industryList, "senderId", senderId, "auth", auth);
     }
 
     // 지원하기전 날짜, 지원자수, 로그인 상황체크
@@ -121,7 +127,7 @@ public class PostingServiceImpl implements PostingService {
 
         Posting posting = postingMapper.getPostViewDetailByPostingId(postingId);
 
-        Integer applicationCount = posting.getApplicationCount() + 1;
+        Integer applicationCount = posting.getApplicationCount();
         Integer spareCount = posting.getSpareCount();
         String endDate = posting.getEndDate();
 

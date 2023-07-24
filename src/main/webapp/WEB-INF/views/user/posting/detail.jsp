@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="java.util.*" %>
 
 <html>
@@ -80,13 +81,15 @@
             </div>
 
             <div style="text-align: center;" class="mb-5">
-                <button id="application-btn" class="btn btn-outline-success"><i class="fa-regular fa-paper-plane"></i>
+                <button id="application-btn" class="btn btn-outline-success"><i
+                        class="fa-regular fa-paper-plane"></i>
                     입사지원하기
                 </button>
                 <button id="wish-btn"></button>
-                <button id="note-btn" class="btn btn-outline-primary"><i class="fa-regular fa-envelope"></i> 쪽지로 문의하기
+                <button id="note-btn" class="btn btn-outline-primary"><i class="fa-regular fa-envelope"></i> 쪽지로
+                    문의하기
                 </button>
-                <a href="/user/posting/list" class="btn btn-outline-secondary">목록으로가기</a>
+                <a href="/user/posting/list" class="btn btn-outline-primary">목록으로가기</a>
             </div>
         </div>
     </div>

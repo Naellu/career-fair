@@ -96,6 +96,8 @@ public interface MemberMapper {
 
     void setTypeToCompany();
 
+    String getAuth(String memberId);
+
 /*    @Select("""
             SELECT
             FROM MEMBERS

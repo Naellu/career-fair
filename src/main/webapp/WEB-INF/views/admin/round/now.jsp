@@ -90,6 +90,7 @@
             <div>
                 <a href="/admin/round/update" class="btn btn-primary">현재 회차 수정</a>
                 <a href="/admin/round/reg" class="btn btn-danger">새 회차 등록</a>
+                <%--<button id="send-mail-btn" type="button" class="btn btn-success">메일보내기</button>--%>
             </div>
         </div>
     </div>

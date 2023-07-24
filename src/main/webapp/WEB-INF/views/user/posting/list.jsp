@@ -32,7 +32,7 @@
 <my:cheader>
     채 용 공 고
 </my:cheader>
-<form method="GET">
+<form id="filter-form" method="GET">
     <div class="container-lg mt-3">
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
@@ -46,70 +46,70 @@
                 </h2>
 
                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="col border-secondary border-end">
-                                <h5>업종</h5>
-                                <div id="industry-container"></div>
-                            </div>
-                            <div class="col border-secondary border-end">
-                                <h5>경력</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="experienceLevels" type="checkbox" value="신입">
-                                    <label class="form-check-label">
-                                        신입
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="experienceLevels" type="checkbox" value="경력">
-                                    <label class="form-check-label">
-                                        경력
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="experienceLevels" type="checkbox"
-                                           value="경력무관">
-                                    <label class="form-check-label">
-                                        경력무관
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col border-secondary border-end">
-                                <h5>학력</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="educationLevels" type="checkbox"
-                                           value="대학원이상">
-                                    <label class="form-check-label">
-                                        대학원이상
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="educationLevels" type="checkbox" value="대졸이상">
-                                    <label class="form-check-label">
-                                        대졸이상 ${param.educationLevels}
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="educationLevels" type="checkbox"
-                                           value="초대졸이상">
-                                    <label class="form-check-label">
-                                        초대졸이상
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="educationLevels" type="checkbox" value="고졸이상">
-                                    <label class="form-check-label">
-                                        고졸이상
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="educationLevels" type="checkbox" value="학력무관">
-                                    <label class="form-check-label">
-                                        학력무관
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col border-secondary border-end">
+                                        <h5>업종</h5>
+                                        <div id="industry-container"></div>
+                                    </div>
+                                    <div class="col border-secondary border-end">
+                                        <h5>경력</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="experienceLevels" type="checkbox" value="신입">
+                                            <label class="form-check-label">
+                                                신입
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="experienceLevels" type="checkbox" value="경력">
+                                            <label class="form-check-label">
+                                                경력
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="experienceLevels" type="checkbox"
+                                                   value="경력무관">
+                                            <label class="form-check-label">
+                                                경력무관
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col border-secondary border-end">
+                                        <h5>학력</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="educationLevels" type="checkbox"
+                                                   value="대학원이상">
+                                            <label class="form-check-label">
+                                                대학원이상
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="educationLevels" type="checkbox" value="대졸이상">
+                                            <label class="form-check-label">
+                                                대졸이상
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="educationLevels" type="checkbox"
+                                                   value="초대졸이상">
+                                            <label class="form-check-label">
+                                                초대졸이상
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="educationLevels" type="checkbox" value="고졸이상">
+                                            <label class="form-check-label">
+                                                고졸이상
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="educationLevels" type="checkbox" value="학력무관">
+                                            <label class="form-check-label">
+                                                학력무관
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
                                 <h5>채용형태</h5>
                                 <div class="form-check">
                                     <input class="form-check-input" name="employmentTypes" type="checkbox" value="정규직">

@@ -27,6 +27,11 @@ function listView() {
                 `;
 
                 industryContainer.insertAdjacentHTML('beforeend', industryHtml);
+
+                const checkbox = industryContainer.querySelector(`input[value="${industry.industryId}"]`);
+                checkbox.addEventListener("change", function () {
+                    form.submit();
+                });
             });
 
             const postingContainerTbody = document.querySelector('#posting-container tbody');
@@ -165,9 +170,12 @@ const urlParams = new URLSearchParams(window.location.search);
 
 // 체크박스 그룹들
 const checkboxGroups = [
-    { name: 'employmentTypes', checkboxes: document.querySelectorAll('input[type="checkbox"][name="employmentTypes"]') },
-    { name: 'experienceLevels', checkboxes: document.querySelectorAll('input[type="checkbox"][name="experienceLevels"]') },
-    { name: 'educationLevels', checkboxes: document.querySelectorAll('input[type="checkbox"][name="educationLevels"]') }
+    {name: 'employmentTypes', checkboxes: document.querySelectorAll('input[type="checkbox"][name="employmentTypes"]')},
+    {
+        name: 'experienceLevels',
+        checkboxes: document.querySelectorAll('input[type="checkbox"][name="experienceLevels"]')
+    },
+    {name: 'educationLevels', checkboxes: document.querySelectorAll('input[type="checkbox"][name="educationLevels"]')}
 ];
 
 // 체크박스 그룹에 대한 처리
@@ -177,5 +185,19 @@ checkboxGroups.forEach(group => {
         if (urlParams.getAll(group.name).includes(value)) {
             checkbox.checked = true;
         }
+    });
+});
+
+// 체크박스들을 선택합니다.
+const checkboxes = document.querySelectorAll("input[type='checkbox']");
+
+// form을 선택합니다.
+const form = document.getElementById("filter-form");
+
+// 체크박스들에 대해 이벤트 리스너를 등록합니다.
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", function () {
+        // 체크박스 상태 변화가 있을 때 form을 자동으로 제출
+        form.submit();
     });
 });
