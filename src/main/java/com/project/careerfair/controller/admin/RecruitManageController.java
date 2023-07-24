@@ -25,23 +25,39 @@ public class RecruitManageController {
     @GetMapping("recruitmanagement")
     public String recruitForm (Model model
                               , @RequestParam(value = "page", defaultValue = "1") Integer page
-                              , @RequestParam(value = "search", required = false, defaultValue = "")String search
-                              , @RequestParam(value="type", required = false)String type){
-        Map<String, Object> list = rmservice.getPosting(page, search, type);
+                              , @RequestParam(value = "search", defaultValue = "")String search
+                              , @RequestParam(value="type", required = false)String type
+                              , @RequestParam(value = "round", required = false) Integer round){
+        Map<String, Object> list = rmservice.getPosting(page, search, type, round);
 
         model.addAllAttributes(list);
 
         return "admin/management/recruitmanagement";
     }
-    @PostMapping("remove")
-    public void removeForm(Integer appicaitonId,Integer postingId, RedirectAttributes rttr) {
-        boolean ok = rmservice.removeProcess(appicaitonId,postingId);
 
-        if(ok) {
-            rttr.addFlashAttribute("message", "해당 공고 삭제가 완료됐습니다.");
-        }else {
-            rttr.addFlashAttribute("message","공고 삭제에 문제가 발생하였습니다.");
-        }
-    }
+//    @PostMapping("/recruitmanagement/recruitend")
+//    public String jobEnd(Posting posting, String memberId ,RedirectAttributes rttr, Model model) {
+//        boolean ok = rmservice.jobEndForm(posting,memberId);
+//
+//        if(ok){
+//            rttr.addFlashAttribute("message","마감되었습니다.");
+//            return "redirect:./";
+//        }else {
+//            rttr.addFlashAttribute("message","오류가 발생하였습니다.");
+//            return "redirect:./";
+//        }
+//    }
+//    @PostMapping("remove")
+//    public void removeForm(Integer appicaitonId,Integer postingId, RedirectAttributes rttr) {
+//        boolean ok = rmservice.removeProcess(appicaitonId,postingId);
+//
+//        if(ok) {
+//            rttr.addFlashAttribute("message", "해당 공고 삭제가 완료됐습니다.");
+//            System.out.println(postingId);
+//        }else {
+//            rttr.addFlashAttribute("message","공고 삭제에 문제가 발생하였습니다.");
+//            System.out.println(postingId);
+//        }
+//    }
 
 }

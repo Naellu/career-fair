@@ -48,7 +48,7 @@
 <div style="display: flex; justify-content: center;">
 
     <div class="board-search-container">
-        <form action="/admin/recruiter/recruitmanage" role="search">
+        <form action="/admin/management/recruitmanagement" role="search">
             <select  class="search-select" name="type" style="width: 120px;">
                 <option value="title"${param.type eq 'title' ? 'selected' : '' }>공고명</option>
                 <option value="memberId"${param.type eq 'memberId' ? 'selected' : '' }>담당자</option>
