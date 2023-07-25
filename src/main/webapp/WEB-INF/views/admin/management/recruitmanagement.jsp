@@ -50,7 +50,7 @@
 </head>
 <body>
 <my:font></my:font>
-<my:adminNavBar/>
+<my:navBar/>
     <div style="display: flex; justify-content: center; margin: 30px 0px 40px 0px;">
         <h3>채용공고 관리</h3>
     </div>
