@@ -7,7 +7,7 @@
         <div class="row align-items-center justify-content-between d-flex">
             <div id="logo">
                 <%--로고--%>
-                <a href="/"><img src="/img/job-img/logo.png" alt="" title="" /></a>
+                <a href="/job-main"><img src="/img/job-img/logo.png" alt="" title="" /></a>
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
@@ -69,7 +69,15 @@
                     </sec:authorize>
 
                     <sec:authorize access="hasAuthority('admin')">
-                        <li><a href="/admin/main">관리자</a></li>
+                        <li class="dropdown"><a href="/admin/main">관리자<i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                            <ul>
+                                <li><a href="/admin/main">관리자 메인</a></li>
+                                <li><a href="/admin/join/list">참여기업 관리</a></li>
+                                <li><a href="/admin/round">회차 관리</a></li>
+                                <li><a href="/admin/stat/">통계</a></li>
+                                <li><a href="/admin/management/recruitmanagement">공고관리</a></li>
+                            </ul>
+                        </li>
                     </sec:authorize>
                 </ul>
             </nav><!-- #nav-menu-container -->
