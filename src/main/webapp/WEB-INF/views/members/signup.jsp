@@ -114,7 +114,7 @@
 <body>
 <my:font></my:font>
 <my:navBar />
-    <div style="">
+    <div>
       <div style="display: flex; justify-content: center;">
         <div>
           <div style="margin: 40px 0px 40px 0px; display: flex; justify-content: center;">

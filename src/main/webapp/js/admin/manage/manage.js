@@ -39,7 +39,6 @@ window.addEventListener("DOMContentLoaded", function () {
                 success: function (response) {
                     if(response.message === "success"){
                         alert("마감이 완료 되었습니다.");
-                        $(".statusButton").hide();
                         window.location.href = "/admin/management/recruitmanagement";
                     }else {
                         alert("마감 완료에 실패하였습니다.");
