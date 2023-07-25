@@ -112,10 +112,10 @@
 <body>
 <my:font></my:font>
 <my:navBar />
-<div style="">
+<div>
     <div style="display: flex; justify-content: center;">
         <div>
-            <div style="margin: 30px 0px 30px 0px; display: flex; justify-content: center;">
+            <div style="margin: 40px 0px 40px 0px; display: flex; justify-content: center;">
                 <h1>기업 회원가입</h1>
             </div>
             <form method="post" id="signup-form">

@@ -106,9 +106,11 @@
                 <button type="button" class="btn btn-danger removeButton" data-postingId="${posting.postingId}">삭제</button>
             </div>
 
+              <c:if test="${posting.status ne '마감'}">
               <div>
                   <button type="button" class="btn btn-primary statusButton mt-2" data-postingId="${posting.postingId}">마감</button>
               </div>
+              </c:if>
 
           </div>
         </div>
