@@ -24,6 +24,11 @@ public class HomeController {
         return "main";
     }
 
+    @GetMapping("job-main")
+    public String jobMain() {
+        return "job-main";
+    }
+
     // navBar 출력 테스트 페이지
     @GetMapping("test")
     public String test() {

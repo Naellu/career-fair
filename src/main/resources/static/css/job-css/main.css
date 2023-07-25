@@ -51,7 +51,7 @@
 
 body {
   color: #777777;
-  font-family: "Poppins", sans-serif;
+  /*font-family: "Poppins", sans-serif;*/
   font-size: 14px;
   font-weight: 300;
   line-height: 1.625em;
@@ -118,7 +118,7 @@ a, a:focus, a:hover {
 
 h1, h2, h3,
 h4, h5, h6 {
-  font-family: "Poppins", sans-serif;
+  /*font-family: "Poppins", sans-serif;*/
   color: #222222;
   line-height: 1.2em !important;
   margin-bottom: 0;
@@ -130,7 +130,7 @@ h4, h5, h6 {
 .h4, .h5, .h6 {
   margin-bottom: 0;
   margin-top: 0;
-  font-family: "Poppins", sans-serif;
+  /*font-family: "Poppins", sans-serif;*/
   font-weight: 600;
   color: #222222;
 }
@@ -1560,7 +1560,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-checkbox input:checked + label {
-  background: url(../img/elements/primary-check.png) no-repeat center center/cover;
+  background: url(job-img/elements/primary-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1598,7 +1598,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .confirm-checkbox input:checked + label {
-  background: url(../img/elements/success-check.png) no-repeat center center/cover;
+  background: url(job-img/elements/success-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1641,7 +1641,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .disabled-checkbox input:checked + label {
-  background: url(../img/elements/disabled-check.png) no-repeat center center/cover;
+  background: url(job-img/elements/disabled-check.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1679,7 +1679,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-radio input:checked + label {
-  background: url(../img/elements/primary-radio.png) no-repeat center center/cover;
+  background: url(job-img/elements/primary-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1717,7 +1717,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .confirm-radio input:checked + label {
-  background: url(../img/elements/success-radio.png) no-repeat center center/cover;
+  background: url(job-img/elements/success-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -1760,7 +1760,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .disabled-radio input:checked + label {
-  background: url(../img/elements/disabled-radio.png) no-repeat center center/cover;
+  background: url(job-img/elements/disabled-radio.png) no-repeat center center/cover;
   border: none;
 }
 
@@ -2298,7 +2298,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .banner-area {
-  background: url(../img/header-bg.jpg) center;
+  background: url(job-img/header-bg.jpg) center;
   background-size: cover;
 }
 
