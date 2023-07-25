@@ -2298,7 +2298,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .banner-area {
-  background: url(job-img/header-bg.jpg) center;
+  background: url("/img/job-img/header-bg.jpg") center;
   background-size: cover;
 }
 
@@ -2320,6 +2320,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .banner-content h1 span {
   color: #49e4fa;
+  font-weight: bold;
 }
 
 @media (max-width: 991.98px) {
@@ -2853,6 +2854,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #fff;
 }
 
+
 .callto-action-area .primary-btn {
   margin: 10px;
   text-transform: capitalize;
@@ -3105,6 +3107,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .footer-area {
+  margin-top: 100px;
   padding-top: 100px;
   background-color: #222222;
 }
