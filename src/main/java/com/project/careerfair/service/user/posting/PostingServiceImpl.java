@@ -88,21 +88,30 @@ public class PostingServiceImpl implements PostingService {
 
         List<Posting> postingList = postingMapper.getNowPostingsAll(pageSize, startNum, industrIds, experienceLevels, educationLevels, employmentTypes, type, search, round);
 
-        List<Industry> industryList = industryService.getIndustryList();
+        List<Industry> industryList = industryService.getIndustryListWithRound(round);
 
-        return Map.of("postingList", postingList, "industryList", industryList, "pageInfo", pageInfo);
+        List<Posting> topPostingList = postingMapper.getTopPosting(round);
+
+        return Map.of(
+                "postingList", postingList,
+                "industryList", industryList,
+                "pageInfo", pageInfo,
+                "topPostingList", topPostingList);
     }
 
     @Override
     public Map<String, Object> getDetail(Integer postingId, Authentication authentication) {
+        Integer round = exhibitionInfoService.getCurrentRound();
 
         Posting posting = postingMapper.getPostViewDetailByPostingId(postingId);
 
-        List<Industry> industryList = industryService.getIndustryList();
+        List<Industry> industryList = industryService.getIndustryListWithRound(round);
+
+        List<Posting> topPostingList = postingMapper.getTopPosting(round);
 
         String senderId = null;
         String auth = null;
-        Boolean applyCheck = null;
+        Boolean applyCheck = false;
 
         posting.setScraped(false);
 
@@ -123,7 +132,13 @@ public class PostingServiceImpl implements PostingService {
             senderId = memberId;
         }
 
-        return Map.of("posting", posting, "industryList", industryList, "senderId", senderId, "auth", auth, "applyCheck", applyCheck);
+        return Map.of(
+                "posting", posting,
+                "industryList", industryList,
+                "senderId", senderId,
+                "auth", auth,
+                "applyCheck", applyCheck,
+                "topPostingList", topPostingList);
     }
 
     // 지원하기전 날짜, 지원자수, 로그인 상황체크

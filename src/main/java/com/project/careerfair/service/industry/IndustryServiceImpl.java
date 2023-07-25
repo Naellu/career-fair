@@ -21,7 +21,14 @@ public class IndustryServiceImpl implements IndustryService{
     }
 
     @Override
+    public List<Industry> getIndustryListWithRound(Integer round) {
+        return industryMapper.getIndustryListWithRound(round);
+    }
+
+    @Override
     public Industry findIndustryNameById(Integer industryId) {
         return industryMapper.findIndustryNameById(industryId);
     }
+
+
 }

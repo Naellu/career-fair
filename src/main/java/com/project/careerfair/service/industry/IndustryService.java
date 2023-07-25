@@ -8,4 +8,6 @@ public interface IndustryService {
     List<Industry> getIndustryList();
 
     Industry findIndustryNameById(Integer industryId);
+
+    List<Industry> getIndustryListWithRound(Integer round);
 }

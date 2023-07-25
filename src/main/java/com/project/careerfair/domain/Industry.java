@@ -10,4 +10,6 @@ import lombok.ToString;
 public class Industry {
     private Integer industryId;
     private String industryName;
+
+    private Integer count;
 }
