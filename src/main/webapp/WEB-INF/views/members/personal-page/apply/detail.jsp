@@ -126,6 +126,6 @@
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="/js/member/user/apply/detail.js"></script>
+<script src="/js/members/user/apply/detail.js"></script>
 </body>
 </html>

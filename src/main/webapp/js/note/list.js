@@ -17,3 +17,8 @@ for (const deleteButton of deleteButtons){
         console.log($("#deleteNoteById").val());
     })
 }
+window.onload = function() {
+    window.onbeforeunload = function() {
+        window.opener.location.reload();
+    };
+};

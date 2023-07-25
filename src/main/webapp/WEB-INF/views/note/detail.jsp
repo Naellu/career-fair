@@ -76,7 +76,7 @@
         <div class="col-sm-10">
             <div class="text-right">
                 <c:choose>
-                    <c:when test="${distinction eq 'receive'}">
+                    <c:when test="${distinction eq ('receive' or 'unread')}">
                         <c:url value="/note/write" var="writeNoteURL">
                             <c:param name="senderId" value="${noteInfo.recipientId}"/>
                             <c:param name="recipientId" value="${noteInfo.senderId}"/>
