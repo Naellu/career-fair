@@ -1,0 +1,24 @@
+
+@import "functions";
+@import "variables";
+
+//
+// Grid mixins
+//
+
+@import "breakpoints";
+
+
+// including variables and mixins
+@import "variables";
+@import "mixins";
+@import "flexbox";
+@import "reset";
+
+
+// Custom Scss 
+@import "elements";
+@import "header";
+@import "home";
+@import "pages";
+@import "footer";

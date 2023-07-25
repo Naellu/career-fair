@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <my:font></my:font>
     <title>Title</title>
 
     <style>
@@ -106,6 +105,7 @@
 
 </head>
 <body>
+<my:font></my:font>
 <my:navBar/>
     <div style="margin: 70px 30px;">
       <div style="display: flex; justify-content: center;">

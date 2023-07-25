@@ -14,7 +14,7 @@
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <my:font></my:font>
+
     <title>회원가입</title>
 
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -112,12 +112,13 @@
   </style>
 </head>
 <body>
+<my:font></my:font>
 <my:navBar />
-    <div style="">
+    <div>
       <div style="display: flex; justify-content: center;">
         <div>
           <div style="margin: 40px 0px 40px 0px; display: flex; justify-content: center;">
-            <h1 style="font-weight: 600;">회원가입</h1>
+            <h1>회원가입</h1>
           </div>
           <form method="post" id="signup-form">
             <input type="text" name="authority" value="user" style="display: none;"> <!--기업은 company로-->
@@ -208,7 +209,7 @@
               </div>
 
               <!-- 인증 완료 메시지 -->
-                <div style="display: none; font-size: 15px; color: #4C84F3" id="verificationSuccessText">
+                <div style="display: none;  color: #4C84F3" id="verificationSuccessText">
                   <i class="fa-solid fa-check"></i>이메일 인증이 완료되었습니다.
                 </div>
 

@@ -100,7 +100,7 @@
 
             <div class="section-header">
                 <h2>박람회 소개</h2>
-                <p>Aperiam dolorum et et wuia molestias qui eveniet numquam nihil porro incidunt dolores placeat sunt id nobis omnis tiledo stran delop</p>
+                <p>제 N회 중앙 일자리 박람회를 소개합니다</p>
             </div>
 
             <div class="row gy-4">
@@ -137,7 +137,33 @@
         </div>
     </section><!-- End About Us Section -->
 
+
+<%--    <!-- ======= Clients Section ======= -->--%>
+<%--    <section id="clients" class="clients">--%>
+<%--        <div class="container" data-aos="zoom-out">--%>
+
+<%--            <div class="clients-slider swiper">--%>
+<%--                <div class="swiper-wrapper align-items-center">--%>
+<%--                    <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>--%>
+<%--                    <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+
+<%--        </div>--%>
+<%--    </section><!-- End Clients Section -->--%>
+
+
+
+
+    <my:footer />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
