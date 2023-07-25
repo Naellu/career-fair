@@ -13,16 +13,15 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {"property.value=propertyTest"}
-    , classes = {CareerFairApplication.class}
-    , webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+        ,classes = {CareerFairApplication.class}
+        ,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CareerFairApplicationTests {
 
     @Value("${property.value}")
     private String propertyValue;
 
     @Test
-    public void contextLoads() {
+    void contextLoads() {
         assertThat(propertyValue, is("propertyTest"));
     }
-
 }
