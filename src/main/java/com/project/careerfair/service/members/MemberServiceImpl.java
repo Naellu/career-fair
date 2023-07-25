@@ -116,6 +116,12 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    @Override
+    public String checkUser(String id, String email) {
+
+        String result = mapper.findMemberId(email, id);
+        return (result != null) ? result : null; // 실패 시 null 리턴
+    }
 
 }
 

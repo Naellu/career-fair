@@ -22,4 +22,6 @@ public interface MemberService {
     Map<String, Object> checkEmail(String email);
 
     Map<String, Object> active(Map<String, Object> map, HttpSession session);
+
+    String checkUser(String id, String email);
 }
