@@ -38,48 +38,70 @@
 <my:job-inner-banner />
 
 
-<div class="container">
-    <br/>
-    <h3>스크랩 목록</h3>
-    <hr>
-    <table id="posting-table" class="table table-bordered custom-div center-align">
+<div class="container mt-50">
+    <div class="row justify-content-center d-flex">
 
-        <thead class="table-dark">
-        <tr>
-            <th style="width: 200px;">회차정보</th>
-            <th style="width: 200px;">회사명</th>
-            <th style="width: 1000px">공고명</th>
-            <th style="width: 500px">채용기간</th>
-            <th style="width: 200px;">채용인원</th>
-            <th style="width: 200px;">공고상태</th>
-            <th style="width: 200px;">지원자 수</th>
-            <th style="width: 250px;">스크랩 취소</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${scrapList}" var="scrap" varStatus="status">
-            <tr>
-                <td>${scrap.round}회차</td>
-                <td>${scrap.companyName}</td>
-                <td>
-                    <a href="/user/posting/${postingList[status.index].postingId}">${scrap.title}</a>
-                </td>
-                <td>${scrap.startDate} ~ ${scrap.endDate}</td>
-                <td>${scrap.hiringCount}</td>
-                <td>${scrap.status}</td>
-                <td>${scrap.applicationCount}</td>
-                <td>
-                    <button name="cancelBtn"
-                            class="btn btn-outline-danger"
-                            data-scrap-id="${scrap.scrapId}"
-                            data-bs-toggle="modal"
-                            data-bs-target="#cancelScrapConfirmModal"
-                    >스크랩 취소</button>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+        <div class="col-lg-9 post-list">
+            <br/>
+            <h3>스크랩 목록</h3>
+            <hr>
+            <table id="posting-table" class="table table-bordered custom-div center-align">
+
+                <thead class="table-dark">
+                <tr>
+                    <th style="width: 200px;">회차정보</th>
+                    <th style="width: 200px;">회사명</th>
+                    <th style="width: 1000px">공고명</th>
+                    <th style="width: 500px">채용기간</th>
+                    <th style="width: 200px;">채용인원</th>
+                    <th style="width: 200px;">공고상태</th>
+                    <th style="width: 200px;">지원자 수</th>
+                    <th style="width: 250px;">스크랩 취소</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${scrapList}" var="scrap" varStatus="status">
+                    <tr>
+                        <td>${scrap.round}회차</td>
+                        <td>${scrap.companyName}</td>
+                        <td>
+                            <a href="/user/posting/${postingList[status.index].postingId}">${scrap.title}</a>
+                        </td>
+                        <td>${scrap.startDate} ~ ${scrap.endDate}</td>
+                        <td>${scrap.hiringCount}</td>
+                        <td>${scrap.status}</td>
+                        <td>${scrap.applicationCount}</td>
+                        <td>
+                            <button name="cancelBtn"
+                                    class="btn btn-outline-danger"
+                                    data-scrap-id="${scrap.scrapId}"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#cancelScrapConfirmModal"
+                            >스크랩 취소</button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-lg-3 sidebar mt-20">
+            <div class="single-slidebar">
+                <h4>마이페이지</h4>
+                <ul class="cat-list">
+                    <li><a class="justify-content-between d-flex" href="/scrap/list"><p>스크랩 공고</p></a></li>
+                    <li><a class="justify-content-between d-flex" href="/resume/"><p>이력서</p></a></li>
+                    <li><a class="justify-content-between d-flex" href="/members/personal-page/apply/list"><p>입사지원</p></a></li>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Arizona</p><span>36</span></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Florida</p><span>47</span></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Rocky Beach</p><span>27</span></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Chicago</p><span>17</span></a></li>--%>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <%--삭제 모달--%>
