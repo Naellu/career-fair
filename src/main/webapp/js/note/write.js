@@ -12,7 +12,10 @@ function checkRecipientId (){
                 $("#denyRecipient").removeClass("d-none");
                 $("#sendBtn").attr("disabled","disabled");
             }
+
+
         }
+
     })
 }
 
@@ -21,11 +24,9 @@ $("#recipientId").on("keyup",function(){
     checkRecipientId();
 })
 
-
-window.onload = function() {
-    window.onbeforeunload = function() {
-        window.opener.location.reload();
-    };
+window.onbeforeunload = function() {
+    window.opener.location.reload();
 };
+
 
 
