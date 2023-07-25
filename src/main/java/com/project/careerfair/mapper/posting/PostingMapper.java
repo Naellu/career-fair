@@ -236,5 +236,8 @@ public interface PostingMapper {
             WHERE posting_id = #{postingId}
             """)
     void reduceApplcationCount(Integer postingId);
+
+    // 상위 5가지
+    List<Posting> getTopPosting(Integer round);
 }
 

@@ -10,4 +10,6 @@ public interface IndustryMapper {
     List<Industry> getIndustryList();
 
     Industry findIndustryNameById(Integer industryId);
+
+    List<Industry> getIndustryListWithRound(Integer round);
 }

@@ -13,10 +13,14 @@
     </resultMap>
 
     <select id="getIndustryList" resultMap="industryMap">
+        SELECT * FROM TB_INDUSTRIES
+    </select>
+
+    <select id="getIndustryListWithRound" resultMap="industryMap">
         SELECT i.industry_id, i.industry_name, IFNULL(COUNT(p.industry_id), 0) AS count
         FROM TB_INDUSTRIES i
-        LEFT JOIN TB_POSTING p ON i.industry_id = p.industry_id AND round = 1
-        GROUP BY i.industry_id
+        LEFT JOIN TB_POSTING p ON i.industry_id = p.industry_id AND round = #{round} AND status = '채용중'
+        GROUP BY i.industry_id;
     </select>
 
     <select id="findIndustryNameById" resultMap="industryMap">

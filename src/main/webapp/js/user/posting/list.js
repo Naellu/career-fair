@@ -9,6 +9,7 @@ function listView() {
             const postingList = data.postingList;
             const industryList = data.industryList;
             const pageInfo = data.pageInfo;
+            const topPostingList = data.topPostingList;
 
             const industryContainer = document.querySelector('#industry-container');
 
@@ -38,7 +39,7 @@ function listView() {
                 });
 
                 const industrySideHtml = `
-                  <li><a class="justify-content-between d-flex" href="/user/posting/list?industrIds=${industry.industryId + 1}"><p>${industry.industryName}</p>
+                  <li><a class="justify-content-between d-flex" href="/user/posting/list?industrIds=${industry.industryId}"><p>${industry.industryName}</p>
                     <span>${industry.count}</span></a></li>
                 `;
 
@@ -51,7 +52,17 @@ function listView() {
 
             const postingContainer = document.querySelector('#posting-container');
 
+            const countDiv = document.querySelector('#count-div');
+
             postingContainer.innerHTML = "";
+
+            countDiv.innerHTML = "";
+
+            const countHtml = `
+            <p style="text-align: center; font-size: 20px; margin-top: 0; margin-bottom: 0;">현재 채용중인 공고 : ${pageInfo.count}건</p>
+            `;
+
+            countDiv.innerHTML = countHtml;
 
             postingList.forEach(posting => {
                 const postingHtml = `
@@ -83,6 +94,19 @@ function listView() {
                 `
                 postingContainer.insertAdjacentHTML('beforeend', postingHtml);
             })
+
+
+            const applicationSide = document.querySelector("#application-side");
+            applicationSide.innerHTML = "";
+
+            topPostingList.forEach(topPosting => {
+                const topHtml = `
+                    <li><a class="justify-content-between d-flex" href="/user/posting/${topPosting.postingId}"><p>${topPosting.title}</p>
+                            <span>${topPosting.applicationCount}명</span></a></li>
+                `;
+
+                applicationSide.insertAdjacentHTML('beforeend', topHtml);
+            });
 
             const pageUl = document.querySelector("#page-ul");
             pageUl.innerHTML = "";

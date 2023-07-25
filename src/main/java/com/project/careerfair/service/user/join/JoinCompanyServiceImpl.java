@@ -64,8 +64,6 @@ public class JoinCompanyServiceImpl implements JoinCompanyService {
         //총 현재 공고 개수
         Integer countNow = postingMapper.countNowAll(companyId, round);
 
-        log.info("ps {}", countNow);
-
         // 마지막 페이지 번호
         // 총 글개수 -1 / pageSize + 1
         Integer lastPageNow = (countNow - 1) / pageSizeNow + 1;

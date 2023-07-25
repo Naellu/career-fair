@@ -11,6 +11,8 @@ function detailView() {
         .then(response => response.json())
         .then(data => {
             const posting = data.posting;
+            const industryList = data.industryList;
+            const topPostingList = data.topPostingList;
 
             const companyName = document.querySelector("#company-name");
             const title = document.querySelector("#title");
@@ -36,7 +38,7 @@ function detailView() {
 
             if (posting.fileName.length > 0) {
                 const imageHtml = `
-                <img src="${bucketUrl}/company/${posting.companyId}/logo.png" class="img-fluid rounded-circle mx-auto d-block" alt="사진준비중">
+                <img src="${bucketUrl}/company/${posting.companyId}/logo.png" style="max-width: 500px" class="img-fluid rounded-circle mx-auto d-block" alt="사진준비중">
             `;
 
                 companyImage.innerHTML = imageHtml;
@@ -52,10 +54,20 @@ function detailView() {
             workConditionUl.innerHTML = "";
 
             const conditionHtml = `
-                <li>근무지: ${posting.address}</li>
-                <li>근무형태: ${posting.employmentType}</li>
-                <li>연봉: ${posting.salary}원</li>
+                <li>
+                    <i class="fa-regular fa-square-check fa-2xl"></i>
+                    <span>근무지: ${posting.address}</span>
+                </li>
+                <li>
+                    <i class="fa-regular fa-square-check fa-2xl"></i>
+                    <span>근무형태: ${posting.employmentType}</span>
+                </li>
+               <li>
+                    <i class="fa-regular fa-square-check fa-2xl"></i>
+                    <span>연봉: ${posting.salary}원</span>
+                </li>
             `;
+
             workConditionUl.innerHTML = conditionHtml;
 
             hiringCount.value = posting.hiringCount + '명';
@@ -76,7 +88,7 @@ function detailView() {
             period.value = `${posting.startDate} ~ ${posting.endDate}`;
 
             const textAreaElement = etc.querySelector("textarea");
-            if (posting.etc != null) {
+            if (posting.etc != null && posting.etc != '없음') {
                 textAreaElement.innerHTML = posting.etc;
                 resizeTextarea(etc);
             } else {
@@ -126,6 +138,32 @@ function detailView() {
             if (applyCheck) {
                 applicationBtn.classList.add("d-none");
             }
+
+            const industrySide = document.querySelector('#industry-side');
+
+            industrySide.innerHTML = "";
+
+            industryList.forEach(industry => {
+                const industrySideHtml = `
+                  <li><a class="justify-content-between d-flex" href="/user/posting/list?industrIds=${industry.industryId}"><p>${industry.industryName}</p>
+                    <span>${industry.count}</span></a></li>
+                `;
+
+                industrySide.insertAdjacentHTML('beforeend', industrySideHtml);
+            });
+
+            const applicationSide = document.querySelector("#application-side");
+            applicationSide.innerHTML = "";
+
+            topPostingList.forEach(topPosting => {
+                const topHtml = `
+                    <li><a class="justify-content-between d-flex" href="/user/posting/${topPosting.postingId}"><p>${topPosting.title}</p>
+                            <span>${topPosting.applicationCount}명</span></a></li>
+                `;
+
+                applicationSide.insertAdjacentHTML('beforeend', topHtml);
+            });
+
         })
         .catch(error => {
             alert("문제가 발생했습니다. 관리자에게 문의해주세요");

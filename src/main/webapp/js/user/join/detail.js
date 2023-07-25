@@ -35,8 +35,8 @@ function detailView(pageValue) {
             const fullAddress = `(${postalCode}) ${address} ${detailAddress}`;
 
             const companyTableBody = document.querySelector("#company-table tbody");
-            const cHeader = document.querySelector("#c-header");
-            cHeader.innerHTML = `${company.companyName}`;
+           /* const cHeader = document.querySelector("#c-header");
+            cHeader.innerHTML = `${company.companyName}`;*/
 
             companyTableBody.innerHTML = "";
             const companyHtml = `

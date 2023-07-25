@@ -4,7 +4,6 @@
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -177,6 +176,11 @@
         </form>
 
         <div class="row justify-content-center d-flex mt-3">
+            <div class="col-lg-12 mb-3">
+                <div id="count-div" style="background-color: beige; height: 50px; align-items: center"
+                     class="d-flex justify-content-center ">
+                </div>
+            </div>
             <div class="col-lg-8 post-list">
                 <input id="bucket-url" type="hidden" value="${bucketUrl}">
                 <div id="posting-container">
@@ -212,40 +216,16 @@
                 <div class="single-slidebar">
                     <h4>업종 별 공고 수</h4>
                     <ul id="industry-side" class="cat-list">
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>New York</p>
+                        <li><a class="justify-content-between d-flex" href="#"><p>New York</p>
                             <span>37</span></a></li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Park Montana</p>
-                            <span>57</span></a></li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Atlanta</p><span>33</span></a>
-                        </li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Arizona</p><span>36</span></a>
-                        </li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Florida</p><span>47</span></a>
-                        </li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Rocky Beach</p>
-                            <span>27</span></a></li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Chicago</p><span>17</span></a>
-                        </li>
                     </ul>
                 </div>
 
                 <div class="single-slidebar">
-                    <h4>Jobs by Category</h4>
-                    <ul class="cat-list">
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Technology</p>
+                    <h4>지원자 수 많은 공고</h4>
+                    <ul id="application-side" class="cat-list">
+                        <li><a class="justify-content-between d-flex" href="#"><p>Technology</p>
                             <span>37</span></a></li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Media & News</p>
-                            <span>57</span></a></li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Goverment</p>
-                            <span>33</span></a></li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Medical</p><span>36</span></a>
-                        </li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Restaurants</p>
-                            <span>47</span></a></li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Developer</p>
-                            <span>27</span></a></li>
-                        <li><a class="justify-content-between d-flex" href="category.html"><p>Accounting</p>
-                            <span>17</span></a></li>
                     </ul>
                 </div>
             </div>

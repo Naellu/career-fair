@@ -215,6 +215,15 @@
         <result column="hiring_count" property="hiringCount"/>
         <result column="application_count" property="applicationCount"/>
     </resultMap>
+
+    <!-- 채용공고 top 5 -->
+    <select id="getTopPosting" resultMap="managePostingMap">
+        SELECT posting_id, title, company_name, application_count
+        FROM (SELECT * FROM VIEW_POSTING WHERE round = #{round}) p
+        WHERE application_count != 0
+        ORDER BY application_count DESC
+        LIMIT 5;
+    </select>
 </mapper>
 
 
