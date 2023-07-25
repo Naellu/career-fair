@@ -41,4 +41,10 @@
         INSERT INTO TB_FILES (application_id, file_name)
         VALUES (#{applicationId}, #{originalFilename})
     </insert>
+
+    <!-- 지원확인 -->
+    <select id="getApplied">
+        SELECT count(application_id) FROM TB_JOB_APPLICATION
+        WHERE member_id = #{memberId} AND posting_id = #{postingId};
+    </select>
 </mapper>
