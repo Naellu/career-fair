@@ -22,3 +22,9 @@ function defaultSet(){
 
     changeSalary();
 }
+
+window.onload = function() {
+    window.onbeforeunload = function() {
+        window.opener.location.reload();
+    };
+};

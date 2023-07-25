@@ -83,7 +83,6 @@ public class PostingApplyServiceImpl implements PostingApplyService{
 
         JobApplication application = jobApplicationMapper.getApplyInfo(applicationId);
         Integer check = jobApplicationMapper.cancelApplyByApplicationId(applicationId);
-        System.out.println(application);
 
         if (check==1) {
             postingMapper.reduceApplcationCount(application.getPostingId());

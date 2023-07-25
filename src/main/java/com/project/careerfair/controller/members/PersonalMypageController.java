@@ -142,35 +142,21 @@ public class PersonalMypageController {
         }
         */
     @PostMapping("apply/cancel")
-    public void applyCancel(
-            HttpServletResponse response,
-            Integer applicationId
+    public String applyCancel(
+            Integer applicationId,
+            RedirectAttributes rttr
     ) {
+
         Boolean ok = postingApplyService.applyCancel(applicationId);
+        rttr.addFlashAttribute("check", ok);
 
-        if (ok) {
+        return "redirect:/members/personal-page/apply/cancel";
 
-            // 클라이언트에게 닫기 요청을 보냄
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out;
-            try {
-                out = response.getWriter();
-                out.println("<script>alert('지원이 취소되었습니다.');window.close();</script>");
-                out.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out;
-            try {
-                out = response.getWriter();
-                out.println("<script>alert('다시 시도해주세요');window.close();</script>");
-                out.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
+
+    @GetMapping("apply/cancel")
+    public void applyCancelResult(){
+
+    }
+
 }

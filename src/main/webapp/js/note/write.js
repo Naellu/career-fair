@@ -20,3 +20,12 @@ function checkRecipientId (){
 $("#recipientId").on("keyup",function(){
     checkRecipientId();
 })
+
+
+window.onload = function() {
+    window.onbeforeunload = function() {
+        window.opener.location.reload();
+    };
+};
+
+
