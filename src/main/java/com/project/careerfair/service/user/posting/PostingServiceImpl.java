@@ -102,23 +102,28 @@ public class PostingServiceImpl implements PostingService {
 
         String senderId = null;
         String auth = null;
+        Boolean applyCheck = null;
 
         posting.setScraped(false);
 
         // 해당 계정이 좋아요눌럿는지와 로그인되어잇는지 체크
+        // 권한체크 입사지원한건지 체크
         if (authentication == null) {
             senderId = "notLogin";
             auth = "notLogin";
         } else {
+            String memberId = authentication.getName();
             Scrap scrap = scrapMapper.scrapCheck(postingId, authentication.getName());
             if (scrap != null) {
                 posting.setScraped(true);
             }
-            auth = memberMapper.getAuth(authentication.getName());
-            senderId = authentication.getName();
+            Integer cnt = jobApplicationMapper.getApplied(memberId, postingId);
+            applyCheck = (cnt == 1);
+            auth = memberMapper.getAuth(memberId);
+            senderId = memberId;
         }
 
-        return Map.of("posting", posting, "industryList", industryList, "senderId", senderId, "auth", auth);
+        return Map.of("posting", posting, "industryList", industryList, "senderId", senderId, "auth", auth, "applyCheck", applyCheck);
     }
 
     // 지원하기전 날짜, 지원자수, 로그인 상황체크

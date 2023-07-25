@@ -44,7 +44,7 @@ function listView() {
                 const postingHtml = `
                     <tr>
                         <td style="height: 100px; width: 200px; text-align : center; vertical-align : middle;">
-                            <a href="/company/${posting.companyId}">${posting.companyName}</a>
+                            <a href="/user/join/${posting.companyId}">${posting.companyName}</a>
                         </td>
                         <td style="vertical-align : middle;">
                             <a href="/user/posting/${posting.postingId}">

@@ -24,7 +24,6 @@ function detailView() {
             const statusInput = document.querySelector('#status');
             const fileNameContainer = document.querySelector('#file-name');
 
-
             const industryId = company.industryId - 1;
 
             const industryName = data.industryList[industryId].industryName;

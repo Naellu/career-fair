@@ -45,7 +45,7 @@ function detailView() {
             const h2Element = companyName.querySelector("h2");
             const aElement = companyName.querySelector("a");
             h2Element.innerHTML = posting.companyName;
-            aElement.href = `/company/${posting.companyId}`;
+            aElement.href = `/user/join/${posting.companyId}`;
 
             title.innerHTML = posting.title;
 
@@ -87,6 +87,7 @@ function detailView() {
             const recipientId = posting.memberId;
 
             const auth = data.auth;
+            const applyCheck = data.applyCheck;
 
             //쪽지 처리
             const noteBtn = document.querySelector("#note-btn");
@@ -120,6 +121,10 @@ function detailView() {
                 applicationBtn.classList.add("d-none");
                 wishBtn.classList.add("d-none");
                 noteBtn.classList.add("d-none");
+            }
+
+            if (applyCheck) {
+                applicationBtn.classList.add("d-none");
             }
         })
         .catch(error => {
@@ -187,3 +192,13 @@ applicationBtn.addEventListener("click", function () {
         });
 });
 
+// 메시지 수신 시 동작할 함수 정의
+function handleMessage(event) {
+    if (event.data === "applicationCompleted") {
+        // 작업 완료 메시지 수신 시 메인 페이지 새로고침
+        window.location.reload();
+    }
+}
+
+// 메시지 이벤트 리스너 등록
+window.addEventListener("message", handleMessage);

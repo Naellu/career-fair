@@ -1,6 +1,5 @@
 package com.project.careerfair.mapper.jobapplication;
 
-import com.project.careerfair.domain.Files;
 import com.project.careerfair.domain.JobApplication;
 import com.project.careerfair.domain.Members;
 import org.apache.ibatis.annotations.*;
@@ -70,7 +69,7 @@ public interface JobApplicationMapper {
             AND application_id = #{applicationId}
             AND posting_id = #{postingId}
             """)
-    Integer updateStatus (String memberId, Integer applicationId, String applicationStatus, Integer postingId);
+    Integer updateStatus(String memberId, Integer applicationId, String applicationStatus, Integer postingId);
 
     @Select("""
             SELECT application_id FROM
@@ -79,5 +78,5 @@ public interface JobApplicationMapper {
             """)
     List<Integer> getApplicationId(Integer postingId);
 
-
+    Integer getApplied(String memberId, Integer postingId);
 }

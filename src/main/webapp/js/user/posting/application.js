@@ -30,6 +30,9 @@ submitBtn.addEventListener("click", function () {
         .then(data => {
             if (data.status) {
                 alert("입사지원신청이 완료되었습니다.");
+
+                // 작업 완료 시 메인 페이지에 메시지 보내기
+                window.opener.postMessage("applicationCompleted", "*")
                 window.close();
             } else {
                 alert("입사지원신청이 실패하였습니다. 담당자에게 쪽지로 문의해주세요");
