@@ -64,13 +64,22 @@
                     <li><a href="/members/company-page/mypage?id=<sec:authentication property="name" />">마이페이지</a></li>
                 </sec:authorize>
 
+                <sec:authorize access="hasAuthority('admin')">
+                    <li class="dropdown"><a href="/admin/main">관리자<i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="/admin/main">관리자 메인</a></li>
+                            <li><a href="/admin/join/list">참여기업 관리</a></li>
+                            <li><a href="/admin/round">회차 관리</a></li>
+                            <li><a href="/admin/stat/">통계</a></li>
+                            <li><a href="/admin/management/recruitmanagement">공고관리</a></li>
+                        </ul>
+                    </li>
+                </sec:authorize>
+
                 <sec:authorize access="isAuthenticated()">
                     <li><a href="/login/logout">로그아웃</a></li>
                 </sec:authorize>
 
-                <sec:authorize access="hasAuthority('admin')">
-                    <li><a href="/admin/main">관리자</a></li>
-                </sec:authorize>
             </ul>
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>

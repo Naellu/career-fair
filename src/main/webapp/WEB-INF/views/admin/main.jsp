@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<my:adminNavBar/>
+<my:navBar/>
 
 <my:cheader>
     관리자 메인 페이지

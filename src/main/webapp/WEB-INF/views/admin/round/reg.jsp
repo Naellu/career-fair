@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-<my:adminNavBar/>
+<my:navBar/>
 
 <c:if test="${not empty message }">
     <div class="container-lg">

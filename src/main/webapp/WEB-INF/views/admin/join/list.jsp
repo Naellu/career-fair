@@ -15,7 +15,7 @@
     <title>참여신청목록</title>
 </head>
 <body>
-<my:adminNavBar/>
+<my:navBar/>
 <div class="container-lg">
     <nav class="navbar navbar-expand-lg bg-body-white">
         <div class="container-fluid bg-white">

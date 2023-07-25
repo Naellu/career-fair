@@ -32,7 +32,7 @@
 
 </head>
 <body>
-<my:adminNavBar />
+<my:navBar />
 
 <div>
     <div id="chart-container">
