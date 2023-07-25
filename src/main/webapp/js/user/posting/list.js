@@ -12,7 +12,11 @@ function listView() {
 
             const industryContainer = document.querySelector('#industry-container');
 
+            const industrySide = document.querySelector('#industry-side');
+
             industryContainer.innerHTML = "";
+
+            industrySide.innerHTML = "";
 
             industryList.forEach(industry => {
                 const checked = queryParams.has('industrIds') && queryParams.getAll('industrIds').includes(industry.industryId.toString()) ? 'checked' : '';
@@ -32,37 +36,52 @@ function listView() {
                 checkbox.addEventListener("change", function () {
                     form.submit();
                 });
+
+                const industrySideHtml = `
+                  <li><a class="justify-content-between d-flex" href="/user/posting/list?industrIds=${industry.industryId + 1}"><p>${industry.industryName}</p>
+                    <span>${industry.count}</span></a></li>
+                `;
+
+                industrySide.insertAdjacentHTML('beforeend', industrySideHtml);
             });
 
-            const postingContainerTbody = document.querySelector('#posting-container tbody');
+            const bucketInput = document.querySelector("#bucket-url");
 
-            postingContainerTbody.innerHTML = "";
+            const bucketUrl = bucketInput.value;
 
-            postingContainerTbody.insertAdjacentHTML('beforeend', `<tr><td colspan="3" style="background-color: beige; text-align: center">현재 채용중인 공고 : ${pageInfo.count}건</td></tr>`);
+            const postingContainer = document.querySelector('#posting-container');
+
+            postingContainer.innerHTML = "";
 
             postingList.forEach(posting => {
                 const postingHtml = `
-                    <tr>
-                        <td style="height: 100px; width: 200px; text-align : center; vertical-align : middle;">
-                            <a href="/user/join/${posting.companyId}">${posting.companyName}</a>
-                        </td>
-                        <td style="vertical-align : middle;">
-                            <a href="/user/posting/${posting.postingId}">
-                                ${posting.title}
-                                <br>
-                                ${posting.experienceLevel} ${posting.employmentType} ${posting.educationLevel}
-                                <br>
-                                업종 : ${industryList[posting.industryId - 1].industryName}
-                            </a>
-                        </td>
-                        <td style="text-align : center; width: 200px; vertical-align : middle;">
-                            마감일
-                            <br/>
-                            ~ ${posting.endDate}
-                        </td>
-                    </tr>
+                    <div class="single-post d-flex flex-row">
+                        <div class="thumb me-5">
+                            <div class="d-flex justify-content-center">
+                                <img src="/img/info.png" width="100px" height="100px" alt="사진준비중">
+                            </div>
+                            <ul class="tags">
+                                <li>
+                                    <a href="/user/join/${posting.companyId}">${posting.companyName}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="details">
+                            <div class="title d-flex flex-row justify-content-between">
+                                <div class="titles posting-title">
+                                       <a href="/user/posting/${posting.postingId}"><h4>${posting.title}</h4></a>
+                                    <h6>${industryList[posting.industryId - 1].industryName}</h6>
+                                </div>
+                            </div>
+                            <p>
+                                ${posting.address}
+                            </p>
+                            <h5>${posting.experienceLevel} ${posting.employmentType} ${posting.educationLevel}</h5>
+                            <p>마감일 : ${posting.endDate}</p>
+                        </div>
+                    </div>          
                 `
-                postingContainerTbody.insertAdjacentHTML('beforeend', postingHtml);
+                postingContainer.insertAdjacentHTML('beforeend', postingHtml);
             })
 
             const pageUl = document.querySelector("#page-ul");

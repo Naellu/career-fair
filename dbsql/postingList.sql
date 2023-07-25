@@ -3,7 +3,6 @@ AS
 SELECT p.*, c.company_name
 FROM TB_POSTING p JOIN TB_COMPANIES c
 ON p.company_id = c.company_id;
-
 SELECT p.*, c.company_name, f.file_name
 FROM TB_POSTING p
 JOIN TB_COMPANIES c ON p.company_id = c.company_id
@@ -24,6 +23,8 @@ UPDATE TB_POSTING SET experience_level = '경력무관' WHERE experience_level =
 
 SELECT * FROM TB_POSTING;
 UPDATE TB_POSTING SET end_date = '2023-08-30' WHERE status != '마감' AND end_date= '2023-07-17';
+
+
 
 
 
