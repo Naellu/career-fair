@@ -48,4 +48,10 @@ public interface QnaAnswerMapper {
 	@ResultMap("answerMap")
 	int deleteById(Integer answerId);
 
+	@Delete("""
+			DELETE FROM TB_QNA_ANSWER
+			WHERE qna_id = #{qnaId}
+			""")
+	int deleteByQnaId(Integer qnaId);
+
 }

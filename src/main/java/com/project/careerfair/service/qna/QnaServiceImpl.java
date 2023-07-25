@@ -49,7 +49,7 @@ public class QnaServiceImpl implements QnaService{
     @Override
     public boolean remove(Integer id) {
 
-        int cnt2 = answerMapper.deleteById(id);
+        int cnt2 = answerMapper.deleteByQnaId(id);
         int cnt = mapper.deleteById(id);
 
         return cnt == 1 && cnt2 == 1;
