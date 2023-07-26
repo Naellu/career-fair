@@ -140,7 +140,7 @@
         <div class="row justify-content-end">
             <div class="col-md-6 text-right">
                 <button type="submit" class="btn btn-outline-primary">등록</button>
-                <button class="btn btn-outline-secondary" onclick="location.href='/company/posting/list?userId=${userId}'">뒤로가기</button>
+                <button class="btn btn-outline-secondary" onclick="location.href='/company/posting/list?userId=${userId}'">취소</button>
             </div>
         </div>
         <br>

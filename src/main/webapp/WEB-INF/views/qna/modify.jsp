@@ -33,7 +33,8 @@
         <div class="col-12 col-md-8 col-lg-6">
 
 
-            <h1>${question.title }</h1>
+            <br>
+
             <form method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="${question.id }" />
                 <div class="mb-3">
