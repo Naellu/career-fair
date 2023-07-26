@@ -60,7 +60,7 @@
                     <li><a href="/members/personal-page/mypage?id=<sec:authentication property="name" />">마이페이지</a></li>
                 </sec:authorize>
 
-                <sec:authorize access="hasAuthority('recruiter') or hasAuthority('company') or hasAuthority('admin')">
+                <sec:authorize access="hasAuthority('recruiter') or hasAuthority('company')">
                     <li><a href="/members/company-page/mypage?id=<sec:authentication property="name" />">마이페이지</a></li>
                 </sec:authorize>
 
