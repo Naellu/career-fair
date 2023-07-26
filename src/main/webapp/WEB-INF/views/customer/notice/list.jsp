@@ -102,10 +102,11 @@
                     <h4 class="title">고객센터</h4>
                     <ul>
                         <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>
-                            QNA</h6></li>
+                            QNA</h6></a></li>
                         <li><a href="/customer/notice/list" class="justify-content-between align-items-center d-flex">
-                            <h6>공지사항</h6></li>
-                        <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></li>
+                            <h6>공지사항</h6></a></li>
+                        <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></a>
+                        </li>
                     </ul>
                 </div>
 
@@ -116,7 +117,6 @@
                     </ul>
                 </div>
             </div>
-
 
             <div class="container-lg">
                 <div class="row">

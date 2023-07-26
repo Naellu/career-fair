@@ -15,17 +15,32 @@
 <html>
 <head>
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+              integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+              crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
+    <link rel="stylesheet" href="/css/job-css/linearicons.css">
+    <link rel="stylesheet" href="/css/job-css/bootstrap.css">
+    <link rel="stylesheet" href="/css/job-css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/job-css/nice-select.css">
+    <link rel="stylesheet" href="/css/job-css/animate.min.css">
+    <link rel="stylesheet" href="/css/job-css/owl.carousel.css">
+    <link rel="stylesheet" href="/css/job-css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <my:font></my:font>
-    <title>Title</title>
-
+    <!-- Site Title -->
+    <title>QNA</title>
 </head>
 <body>
-<my:navBar/>
+<my:font/>
+<my:job-header-nav/>
+
+<my:job-inner-banner>
+    QNA
+</my:job-inner-banner>
 
 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -58,26 +73,31 @@
 
                     <div class="mb-3">
                         <label for="content" class="form-label">내용</label>
-                        <textarea id="content" class="form-control" cols="90" rows="10" readonly>${question.content}</textarea>
+                        <textarea id="content" class="form-control" cols="90" rows="10"
+                                  readonly>${question.content}</textarea>
                     </div>
                     <sec:authorize access="authentication.name eq #question.memberId">
                         <a class="btn btn-secondary" href="/qna/modify/${question.id }">수정</a>
-                        <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">삭제</button>
+                        <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal"
+                                data-bs-target="#deleteConfirmModal">삭제
+                        </button>
                     </sec:authorize>
 
                     <!-- 삭제 -->
                     <div class="d-none">
                         <form action="/qna/remove" method="post" id="removeForm">
-                            <input type="text" name="id" value="${question.id }" />
+                            <input type="text" name="id" value="${question.id }"/>
                         </form>
                     </div>
 
-                    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">삭제 하시겠습니까?</div>
                                 <div class="modal-footer">
@@ -88,18 +108,21 @@
                         </div>
                     </div>
 
-                    <sec:authorize access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
+                    <sec:authorize
+                            access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
                     <div id="answerContainer">
                         <div class="mb-3" id="addAnswerContainer">
                             <div class="input-group">
                                 <div class="form-floating">
-                                    <textarea style="height: 97px" placeholder="답변을 남겨주세요" class="form-control" id="answerTextArea"></textarea>
+                                    <textarea style="height: 97px" placeholder="답변을 남겨주세요" class="form-control"
+                                              id="answerTextArea"></textarea>
                                     <label for="answerTextArea">답변을 남겨주세요</label>
                                 </div>
-                                <button class="btn btn-outline-primary" id="sendAnswerBtn"><i class="fa-regular fa-paper-plane"></i></button>
+                                <button class="btn btn-outline-primary" id="sendAnswerBtn"><i
+                                        class="fa-regular fa-paper-plane"></i></button>
                             </div>
                         </div>
-                    </sec:authorize>
+                        </sec:authorize>
 
                         <ul class="list-group" id="answerListContainer">
 
@@ -114,7 +137,8 @@
 
 <sec:authorize access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
     <!-- 댓글 삭제 Modal -->
-    <div class="modal fade" id="deleteAnswerConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteAnswerConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -124,7 +148,9 @@
                 <div class="modal-body">삭제 하시겠습니까?</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button id="deleteAnswerModalButton" data-bs-dismiss="modal" type="submit" class="btn btn-danger">삭제</button>
+                    <button id="deleteAnswerModalButton" data-bs-dismiss="modal" type="submit" class="btn btn-danger">
+                        삭제
+                    </button>
                 </div>
             </div>
         </div>
@@ -140,28 +166,48 @@
                 </div>
                 <div class="modal-body">
                     <div id="updateAnswerContainer">
-                        <input type="hidden" id="answerUpdateIdInput" />
+                        <input type="hidden" id="answerUpdateIdInput"/>
                         <textarea class="form-control" id="answerUpdateTextArea"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                    <button type="button" class="btn btn-primary" id="updateAnswerBtn" data-bs-dismiss="modal">수정</button>
+                    <button type="button" class="btn btn-primary" id="updateAnswerBtn" data-bs-dismiss="modal">수정
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </sec:authorize>
 
+<my:job-footer/>
+
+<script src="/job-js/vendor/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="/job-js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script src="/job-js/easing.min.js"></script>
+<script src="/job-js/hoverIntent.js"></script>
+<script src="/job-js/superfish.min.js"></script>
+<script src="/job-js/jquery.ajaxchimp.min.js"></script>
+<script src="/job-js/jquery.magnific-popup.min.js"></script>
+<script src="/job-js/owl.carousel.min.js"></script>
+<script src="/job-js/jquery.sticky.js"></script>
+<script src="/job-js/jquery.nice-select.min.js"></script>
+<script src="/job-js/parallax.min.js"></script>
+<script src="/job-js/mail-script.js"></script>
+<script src="/job-js/main.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>--%>
 <script src="/js/qna/answer.js"></script>
-
 
 
 </body>

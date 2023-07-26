@@ -23,7 +23,7 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!-- Site Title -->
-    <title>공지사항등록</title>
+    <title>QNA</title>
     <style>
         .container-lg {
             margin-top: 30px;
@@ -78,10 +78,11 @@
                     <h4 class="title">고객센터</h4>
                     <ul>
                         <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>
-                            QNA</h6></li>
+                            QNA</h6></a></li>
                         <li><a href="/customer/notice/list" class="justify-content-between align-items-center d-flex">
-                            <h6>공지사항</h6></li>
-                        <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></li>
+                            <h6>공지사항</h6></a></li>
+                        <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></a>
+                        </li>
                     </ul>
                 </div>
 
@@ -91,16 +92,17 @@
                         <c:forEach items="${topNoticeList}" var="notice">
                             <li><a href="/customer/notice/${notice.noticeId}"
                                    class="justify-content-between align-items-center d-flex"><h6>${notice.title}</h6>
-                            </li>
+                            </a></li>
                         </c:forEach>
                     </ul>
                 </div>
             </div>
 
+            <%-- 페이징 부분 --%>
             <div class="container-lg">
                 <div class="row">
                     <nav aria-label="Page navigation example">
-                        <ul id="page-ul" class="pagination justify-content-center">
+                        <ul class="pagination justify-content-center">
                             <li>1</li>
                             <li>2</li>
                             <li>3</li>
