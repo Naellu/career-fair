@@ -24,4 +24,6 @@ public interface QnaService {
     QnaQuestion getAnswerCount(Integer questionId);
 
     List<Notice> getTopNoticeList();
+
+    Map<String, Object> readQuestion(Integer page);
 }

@@ -107,9 +107,26 @@
                 <div class="row">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
-                            <li>1</li>
-                            <li>2</li>
-                            <li>3</li>
+                            <c:if test="${pageInfo.currentPageNum gt 1}">
+                                <my:questionPageInfo pageNum="${pageInfo.currentPageNum - 1}">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </my:questionPageInfo>
+                            </c:if>
+
+                            <c:forEach begin="${pageInfo.leftPageNum}" end="${pageInfo.rightPageNum}" var="pageNum">
+                                <my:questionPageInfo pageNum="${pageNum}">
+                                    ${pageNum}
+                                </my:questionPageInfo>
+                            </c:forEach>
+
+                            <!-- 다음 버튼 -->
+                            <c:if test="${pageInfo.currentPageNum lt pageInfo.lastPageNum}">
+
+                                <my:questionPageInfo pageNum="${pageInfo.currentPageNum + 1}">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </my:questionPageInfo>
+
+                            </c:if>
                         </ul>
                     </nav>
                 </div>

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,23 +25,49 @@ public class QnaController {
 
     private final QnaService service;
 
+//    @GetMapping("QnaList")
+//    public String qnaList(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page
+//                          ) {
+//        Map<String, Object> pageInfo = service.getPage(page);
+//        List<QnaQuestion> list = service.readQuestion();
+//        List<QnaQuestion> updatedList = new ArrayList<>();
+//
+//        List<Notice> topNoticeList = service.getTopNoticeList();
+//
+//        for (QnaQuestion question : list) {
+//            QnaQuestion questionWithAnswerCount = service.getAnswerCount(question.getId());
+////            updatedList.add(question);
+//            updatedList.add(questionWithAnswerCount);
+//        }
+//
+//        model.addAttribute("question", updatedList);
+//        model.addAttribute("topNoticeList", topNoticeList);
+//        return "qna/QnaList";
+//    }
+
     @GetMapping("QnaList")
-    public String qnaList(Model model) {
+    public String qnaList(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page) {
+        List<Notice> topNoticeList = service.getTopNoticeList();
+
         List<QnaQuestion> list = service.readQuestion();
         List<QnaQuestion> updatedList = new ArrayList<>();
 
-        List<Notice> topNoticeList = service.getTopNoticeList();
+        Map<String, Object> pageInfo = service.readQuestion(page);
+        List<QnaQuestion> questionList = (List<QnaQuestion>) pageInfo.get("questionList");
 
         for (QnaQuestion question : list) {
             QnaQuestion questionWithAnswerCount = service.getAnswerCount(question.getId());
-//            updatedList.add(question);
             updatedList.add(questionWithAnswerCount);
         }
 
-        model.addAttribute("question", updatedList);
         model.addAttribute("topNoticeList", topNoticeList);
+        model.addAttribute("question", updatedList);
+        model.addAttribute("questionList", questionList);
+        model.addAttribute("pageInfo", pageInfo);
+
         return "qna/QnaList";
     }
+
 
 
     @GetMapping("id/{id}")

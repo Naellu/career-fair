@@ -79,4 +79,37 @@ public class QnaServiceImpl implements QnaService {
     public List<Notice> getTopNoticeList() {
         return noticeMapper.getTopNoticeList();
     }
+
+    @Override
+    public Map<String, Object> readQuestion(Integer page) {
+        Integer rowPerPage = 7;
+
+        page = Math.max(page, 1);
+
+        Integer startIndex = (page - 1) * rowPerPage;
+
+        Integer numOfRecords = mapper.countAll();
+
+        Integer lastPageNumber = (numOfRecords - 1) / rowPerPage + 1;
+
+        Integer leftPageNum = page - 5;
+        leftPageNum = Math.max(leftPageNum, 1);
+
+        Integer rightPageNum = leftPageNum + 9;
+        rightPageNum = Math.min(rightPageNum, lastPageNumber);
+
+        Map<String, Object> pageInfo = new HashMap<>();
+        pageInfo.put("rightPageNum", rightPageNum);
+        pageInfo.put("leftPageNum", leftPageNum);
+        pageInfo.put("currentPageNum", page);
+        pageInfo.put("lastPageNum", lastPageNumber);
+
+        List<QnaQuestion> list = mapper.selectAllPaging(startIndex, rowPerPage);
+
+        pageInfo.put("questionList", list);
+
+        return pageInfo;
+    }
+
+
 }
