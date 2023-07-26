@@ -53,5 +53,8 @@ public interface NoticeMapper {
 
     // 조회수 증가
     void hitUp(Integer noticeId);
+
+    // 조회수 높은 공지
+    List<Notice> getTopNoticeList();
 }
 

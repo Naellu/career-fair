@@ -10,8 +10,6 @@
     <%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
               integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
               crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
-    <!-- Site Title -->
-    <title>채용공고</title>
     <link rel="stylesheet" href="/css/job-css/linearicons.css">
     <link rel="stylesheet" href="/css/job-css/bootstrap.css">
     <link rel="stylesheet" href="/css/job-css/magnific-popup.css">
@@ -21,18 +19,22 @@
     <link rel="stylesheet" href="/css/job-css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         .single-post .title h4:hover {
             color: #00b6a1;
         }
     </style>
+    <!-- Site Title -->
+    <title>채용공고</title>
 </head>
 <body>
 <my:font/>
 <my:job-header-nav/>
 
-<my:job-inner-banner/>
+<my:job-inner-banner>
+    채용공고
+</my:job-inner-banner>
 <!-- Start post Area -->
 <section class="post-area mt-3">
     <div class="container">

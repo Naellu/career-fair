@@ -20,35 +20,49 @@ function listView(searchValue, typeValue, pageValue) {
         .then(data => {
             const noticeList = data.noticeList;
             const pageInfo = data.pageInfo;
-            const number = pageInfo.number;
-            const tbody = document.querySelector("#noticeTable tbody");
+            const topNoticeList = data.topNoticeList;
+            const noticeCard = document.querySelector("#noticeTable");
             const pageUl = document.querySelector("#page-ul");
-            tbody.innerHTML = "";
-            noticeList.forEach((notice, index) => {
+            noticeCard.innerHTML = "";
+            noticeList.forEach((notice) => {
                 const date = new Date(notice.modified);
                 const options = {year: 'numeric', month: 'long', day: 'numeric'};
                 const formattedDate = date.toLocaleDateString('ko-KR', options);
 
-                const maxLength = 15; // 최대 길이 설정
-
-                let truncatedTitle = "";
-
-                if (notice.title.length > maxLength) {
-                    truncatedTitle = notice.title.substring(0, maxLength) + '...';
-                } else {
-                    truncatedTitle = notice.title;
-                }
-
                 const noticeHtml = `
-                    <tr>
-                        <td style="text-align: center; width: 50px;">${number - index}</td>
-                        <td style="text-align: left; width: 300px" ><a href="/customer/notice/${notice.noticeId}">${truncatedTitle}</a></td>
-                        <td style="text-align: center; width: 230px " >${notice.modifierId}</td>
-                        <td style="text-align: center; width: 70px">${notice.hit}</td>
-                        <td style="text-align: center; width: 150px" >${formattedDate}</td>
-                    </tr>
+                    <div class="single-post">
+                        <a href="/customer/notice/${notice.noticeId}">
+                            <h1>
+                                ${notice.title}
+                            </h1>
+                        </a>
+                        <p>
+                            <i class="fa-solid fa-pen"></i> ${notice.modifierId}
+                        </p>
+                        <div class="bottom-meta">
+                            <div class="user-details row align-items-center">
+                                <div class="comment-wrap col-lg-6">
+                                    <ul>
+                                        <li><i class="fa-solid fa-check"></i> 조회수 ${notice.hit}</li>
+                                        <li><i class="fa-regular fa-calendar-days"></i> ${formattedDate}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `;
-                tbody.insertAdjacentHTML('beforeend', noticeHtml);
+                noticeCard.insertAdjacentHTML('beforeend', noticeHtml);
+            });
+
+            const topNotice = document.querySelector("#top-notice");
+            topNotice.innerHTML = "";
+
+            topNoticeList.forEach(notice => {
+                const topNoticeHtml = `
+                    <li><a href="/customer/notice/${notice.noticeId}" class="justify-content-between align-items-center d-flex"><h6>${notice.title}</h6></li>
+                    `
+
+                topNotice.insertAdjacentHTML('beforeend', topNoticeHtml);
             });
 
             pageUl.innerHTML = "";

@@ -35,10 +35,9 @@ public class NoticeServiceImpl implements NoticeService {
 
     private final S3Client s3;
 
-
     @Override
     public Map<String, Object> getNoticeList(String search, String type, Integer page) {
-        Integer pageSize = 10; // 10개씩
+        Integer pageSize = 5; // 10개씩 -> 5개씩
         Integer startNum = (page - 1) * pageSize; // 0 10 20
 
         //페이지네이션 정보
@@ -76,7 +75,10 @@ public class NoticeServiceImpl implements NoticeService {
         pageInfo.put("number", number);
 
         List<Notice> noticeList = noticeMapper.getNoticeList(startNum, pageSize, search, type);
-        return Map.of("pageInfo", pageInfo, "noticeList", noticeList);
+
+        List<Notice> topNoticeList = noticeMapper.getTopNoticeList();
+
+        return Map.of("pageInfo", pageInfo, "noticeList", noticeList, "topNoticeList", topNoticeList);
     }
 
     @Override

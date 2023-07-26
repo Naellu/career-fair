@@ -24,31 +24,44 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <title>참여기업목록</title>
+
+    <style>
+        #round-ul .nav-link {
+            font-size: 17px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <my:font/>
 
 <my:job-header-nav/>
 
-<my:job-inner-banner/>
+<my:job-inner-banner>
+    참여기업
+</my:job-inner-banner>
 
-<section class="mt-3">
-    <div class="container-lg">
-        <nav class="navbar navbar-expand-lg bg-body-white">
-            <div class="container-fluid bg-white">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul id="round-ul" class="navbar-nav me-auto mb-2 mb-lg-0 nav-tabs nav-pills">
-                    </ul>
-                </div>
+<section class="service-area mt-3" id="service">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-md-8 pb-40 header-text">
+                <nav class="navbar navbar-expand-lg bg-body-white">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul id="round-ul" class="navbar-nav me-auto mb-lg-0 nav-tabs nav-pills">
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
-        </nav>
+        </div>
 
-        <div class="d-flex justify-content-end mt-3">
+        <div class="d-flex justify-content-end">
             <select id="industry-select" class="form-select flex-grow-0" style="width: 250px;" name="type">
             </select>
             <select id="type" class="form-select flex-grow-0" style="width: 120px;">
@@ -63,19 +76,29 @@
             </button>
         </div>
 
-        <div>
-            <div class="container px-4 px-lg-5 mt-5">
-                <div id="company-view"
-                     class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"></div>
+        <div id="company-view" class="row mt-2">
+            <div class="col-lg-3 col-md-6">
+                <div class="single-service">
+                    <h4><span class="lnr lnr-user"></span>기업ㅁㅁㅁㅁ</h4>
+                    <p>
+                        사원수 : 4564
+                        <br>
+                        설립일 : 2023-07-14
+                        <br>
+                        업종 : 컨설팅 및 전략
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+
     <div style="text-align: center">
         <button id="page-btn" class="btn" style="width: 500px; background-color: lightgray">
             목 록 더 보 기
         </button>
     </div>
 </section>
+<!-- End service Area -->
 
 <my:job-footer/>
 

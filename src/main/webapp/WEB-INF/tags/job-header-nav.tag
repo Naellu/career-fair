@@ -4,7 +4,7 @@
 
 <header id="header" id="home">
     <div class="container">
-        <div class="row align-items-center justify-content-between d-flex">
+        <div class="align-items-center justify-content-between d-flex">
             <div id="logo">
                 <%--로고--%>
                 <a href="/job-main"><img src="/img/job-img/logo.png" alt="" title="" /></a>

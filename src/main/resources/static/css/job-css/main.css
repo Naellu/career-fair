@@ -3524,6 +3524,11 @@ body.mobile-nav-active #mobile-nav-toggle {
     margin-bottom: 20px;
 }
 
+.single-service a {
+    text-decoration: none;
+    color: black;
+}
+
 .single-service {
     background-color: #f9f9ff;
     padding: 30px;
@@ -3548,6 +3553,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
+    font-size: 17px;
 }
 
 .single-service h4 {
