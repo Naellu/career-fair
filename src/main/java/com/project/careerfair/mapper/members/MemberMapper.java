@@ -98,6 +98,16 @@ public interface MemberMapper {
 
     String getAuth(String memberId);
 
+    @Select("""
+            SELECT 
+            member_id
+            FROM
+            TB_MEMBERS
+            WHERE member_id = #{memberId}
+            AND email = #{email}
+            """)
+    String findMemberId(String email, String memberId);
+
 /*    @Select("""
             SELECT
             FROM MEMBERS

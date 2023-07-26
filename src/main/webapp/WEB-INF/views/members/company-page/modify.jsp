@@ -88,6 +88,20 @@
             width: 205px;
             padding: 0px 5px;
         }
+        #verifyEmailBtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 7px;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            border: none;
+            color: whitesmoke;
+            transition: background-color 0.1s ease-in;
+        }
+        #verifyEmailBtn:hover {
+            background-color: #9B9B9B;
+        }
     </style>
 
     <link rel="stylesheet" href="/css/job-css/linearicons.css">
@@ -115,7 +129,7 @@
             <form id="modifyForm" action="/members/company-page/modify" method="post">
                 <div style="display: flex;justify-content: center;">
                     <div class="sign-column">
-                        <span style="margin-right: 80px;">아이디</span>
+                        <span style="margin-right: 70px;">아이디</span>
                         <input type="text" class="sign-input" id="input-id" name="id" value="${member.id}" maxlength="20" readonly>
                     </div>
                 </div>
@@ -130,7 +144,7 @@
                     </div>
                 <div style="display: flex; justify-content: center;">
                     <div class="sign-column">
-                        <span>새 비밀번호 확인 * </span>
+                        <span style="margin-right: 10px;">새 비밀번호 확인 * </span>
                         <input  type="password" class="sign-input" id="password-check" name="password-check" placeholder="위와 동일하게 입력해주세요">
                         <div style="margin-left: 120px;" id="pwdcheck-blank2"></div>
                     </div>
@@ -138,23 +152,28 @@
                 </c:if>
 
                 <div class="sign-column" style="display: flex; justify-content: center;">
-                    <span style="margin-right: 30px;">이메일 주소 *</span>
+                    <span style="margin-right: 40px;">이메일 주소 *</span>
                     <input id="totalemail" name="email" value="${member.email}">
                     <input type="button" class="check-button" id="search-email" value="중복확인">
                     <input style="display: none;" type="button" class="check-button" id="checkEmailBtn" value="인증하기">
-                    <div class="d-none form-text text-primary" id="availableEmailMessage">
-                        <i style="margin-left: 120px;" class="fa-solid fa-check"></i>등록 가능한 이메일 입니다.
-                    </div>
-                    <div class="d-none form-text text-danger" id="notAvailableEmailMessage">
-                        <i style="margin-left: 120px;" class="fa-solid fa-triangle-exclamation"></i>이미 등록된 이메일 입니다.
-                    </div>
                 </div>
+                    <div style="display: flex; justify-content: center; font-size: 13px; margin-bottom: 10px;" >
+                    <div class="d-none form-text text-primary" id="availableEmailMessage">
+                        <i class="fa-solid fa-check" ><span style="margin-right:40px ;">등록 가능한 이메일 입니다.</span></i>
+                    </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; font-size: 13px; margin-bottom: 10px;">
+                    <div class="d-none form-text text-danger" id="notAvailableEmailMessage" >
+                        <i class="fa-solid fa-triangle-exclamation" style="font-size: 14px;"><span style="margin-right:40px;">이미 등록된 이메일 입니다.</span></i>
+                    </div>
+                    </div>
+
 
                 <!-- 인증번호 입력 칸 -->
                 <div  style="display: none;" id="inputVerificationCode">
                     <div class="input-group">
                         <input type="text" class="form-control" id="verificationCode" name="verificationCode" placeholder="인증번호를 입력하세요" />
-                        <button type="button" id="verifyEmailBtn" style="display: none;">확인</button>
+                        <button type="button" id="verifyEmailBtn">확인</button>
                     </div>
                 </div>
 
@@ -165,7 +184,7 @@
 
                 <div style="margin: 10px 0px;">
                     <div style="display: flex; align-items: center; justify-content: center;">
-                        <span>우편번호</span>
+                        <span style="margin-right: 15px;">우편번호</span>
                         <input class="sign-input" type="text" id="zipcode" name="zipCode" value="${member.zipCode}">
                         <input class="check-button" type="button" value="우편번호찾기" onclick="kakaoAddress()">
                     </div>
@@ -179,10 +198,10 @@
                 </div>
 
                 <div  style="margin-left: 5px;" class="sign-column">
-                    <span style="margin-right: 35px;">휴대폰번호 *</span>
+                    <span style="margin-right: 40px;">휴대폰번호 *</span>
                     <div>
                         <input type="text" maxlength="13" id="totalphone-num" name="phoneNumber" value="${member.phoneNumber}">
-                        <button class="check-button" type="button" id="checkPhoneNumBtn">중복확인</button>
+                        <button class="check-button" type="button" style="outline: none;" id="checkPhoneNumBtn">중복확인</button>
                     </div>
                     <div class="d-none form-text text-primary" id="availablePhoneNumMessage">
                         <i class="fa-solid fa-check"></i>등록 가능한 핸드폰 번호입니다.
@@ -192,7 +211,7 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: flex-end;">
-                <button disabled id="modify-Button" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" class="btn btn-primary">수정</button>
+                <button disabled id="modify-Button" type="button" data-toggle="modal" data-target="#confirmModal" class="btn btn-primary">수정</button>
                 </div>
             </form>
 
@@ -200,19 +219,19 @@
     </div>
 </div>
 
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="confirmModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">수정 확인</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <label for="inputOldPassword" class="form-label">이전 암호</label>
                 <input form="modifyForm" id="inputOldPassword" class="form-control" type="password" name="oldPassword" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                 <button type="submit" form="modifyForm" class="btn btn-primary">확인</button>
             </div>
         </div>

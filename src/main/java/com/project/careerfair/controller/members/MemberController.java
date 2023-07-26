@@ -5,12 +5,14 @@ import com.project.careerfair.service.members.MailService;
 import com.project.careerfair.service.members.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -133,7 +135,21 @@ public class MemberController {
     }
 
     @PostMapping("sendPw")
-    public void sendUserPw (String id, String email, HttpSession session){
-        boolean result = mailService.createPw(id,email,session);
+    public ResponseEntity<Map<String, Object>> sendUserPw (String id, String email, HttpSession session){
+
+        String memberId = memberService.checkUser(id, email);
+        boolean shouldSendEmail = (memberId != null);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("success" , shouldSendEmail);
+        if(shouldSendEmail) {
+            boolean result = mailService.createPw(id,email,session);
+            response.put("message", "입력하신 메일로 임시 비밀번호가 발송되었습니다!!");
+            return ResponseEntity.ok(response);
+        }else {
+            response.put("message","회원정보가 일치하지 않습니다!!");
+            return ResponseEntity.status(404).body(response);
+        }
+
     }
 }

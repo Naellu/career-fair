@@ -79,22 +79,17 @@ function checkPwClick() {
             "id" : id,
             "email" : email
         },
-        success : function(data) {
-            if (data) {
-                $('#id_value').text("회원 정보를 확인해주세요!");
+        success: function(response) {
+            if (response.message) {
+                $('#id_value').text(response.message);
                 $('#member-id').val('');
-                $('#email').val('');
-                alert("입력하신 메일로 임시 비밀번호가 발송되었습니다!!")
-            } else {
-                $('#id_value').text(data);
-                $('#member-id').val('');
-                $('#email').val('');
-
+                $('#inputEmail').val('');
+                alert(response.message);
             }
         },
         error : function() {
 
-            alert("에러입니다");
+            alert("회원정보가 일치하지 않습니다!!");
         }
     });
 };
