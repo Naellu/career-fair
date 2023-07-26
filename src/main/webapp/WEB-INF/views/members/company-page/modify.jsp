@@ -192,7 +192,7 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: flex-end;">
-                <button disabled id="modify-Button" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal" class="btn btn-primary">수정</button>
+                <button disabled id="modify-Button" type="button" data-toggle="modal" data-target="#confirmModal" class="btn btn-primary">수정</button>
                 </div>
             </form>
 
@@ -200,19 +200,19 @@
     </div>
 </div>
 
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="confirmModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">수정 확인</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <label for="inputOldPassword" class="form-label">이전 암호</label>
                 <input form="modifyForm" id="inputOldPassword" class="form-control" type="password" name="oldPassword" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                 <button type="submit" form="modifyForm" class="btn btn-primary">확인</button>
             </div>
         </div>
