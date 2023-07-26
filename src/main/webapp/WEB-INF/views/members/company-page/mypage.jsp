@@ -111,6 +111,12 @@
             <span onclick="location.href='/company/join/list'" style="cursor:pointer; color:#4C84F3;">신청기록 보기</span>
         </div>
     </div>
+    <div class="mypage-container-d">
+        <div class="mypage-column mypage-column-t">인재 찾기</div>
+        <div class="mypage-column mypage-column-b">
+            <span onclick="location.href='/resume/scout'" style="cursor:pointer; color:#4C84F3;">공개된 이력서 보기</span>
+        </div>
+    </div>
 </div>
 
 <my:job-footer />
