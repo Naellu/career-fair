@@ -45,6 +45,8 @@
                         </ul>
                     </li>
 
+                    <li><a href="/tools/grade">취업성공툴</a></li>
+                  
                     <sec:authorize access="hasAuthority('admin')">
                         <li class="dropdown"><a href="/admin/main">관리자<i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
