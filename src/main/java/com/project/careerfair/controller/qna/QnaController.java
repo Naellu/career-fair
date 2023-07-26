@@ -1,5 +1,6 @@
 package com.project.careerfair.controller.qna;
 
+import com.project.careerfair.domain.Notice;
 import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
 import com.project.careerfair.service.qna.QnaService;
@@ -28,6 +29,8 @@ public class QnaController {
         List<QnaQuestion> list = service.readQuestion();
         List<QnaQuestion> updatedList = new ArrayList<>();
 
+        List<Notice> topNoticeList = service.getTopNoticeList();
+
         for (QnaQuestion question : list) {
             QnaQuestion questionWithAnswerCount = service.getAnswerCount(question.getId());
 //            updatedList.add(question);
@@ -35,6 +38,7 @@ public class QnaController {
         }
 
         model.addAttribute("question", updatedList);
+        model.addAttribute("topNoticeList", topNoticeList);
         return "qna/QnaList";
     }
 

@@ -13,3 +13,7 @@ WHERE application_count != 0
 ORDER BY application_count DESC 
 LIMIT 5;
 
+SELECT n.*, count(f.file_id) count FROM TB_NOTICE n 
+LEFT JOIN TB_FILES f
+ON n.notice_id = f.notice_id
+GROUP BY notice_id;

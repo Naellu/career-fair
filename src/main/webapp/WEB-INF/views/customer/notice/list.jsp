@@ -29,6 +29,10 @@
         #noticeTable .single-post h1:hover {
             color: #00b6a1;
         }
+
+        .badge {
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
@@ -43,7 +47,7 @@
 <section class="blog-posts-area mt-3">
     <div class="container">
         <sec:authorize access="hasAuthority('admin')">
-            <div class="d-flex justify-content-end">
+            <div class="d-flex">
                 <div class="ms-5">
                     <a class="btn btn-success" href="/customer/notice/reg">글작성하기</a>
                 </div>
@@ -97,8 +101,10 @@
                 <div class="single-widget category-widget">
                     <h4 class="title">고객센터</h4>
                     <ul>
-                        <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>QNA</h6></li>
-                        <li><a href="/customer/notice/list" class="justify-content-between align-items-center d-flex"><h6>공지사항</h6></li>
+                        <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>
+                            QNA</h6></li>
+                        <li><a href="/customer/notice/list" class="justify-content-between align-items-center d-flex">
+                            <h6>공지사항</h6></li>
                         <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></li>
                     </ul>
                 </div>

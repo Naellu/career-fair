@@ -22,4 +22,6 @@ public class Notice {
     private LocalDateTime modified;
 
     private List<String> fileName;
+
+    private Integer count;
 }

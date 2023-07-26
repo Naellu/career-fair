@@ -1,5 +1,5 @@
 detailView();
-const bucketUrl = document.querySelector("#bucketUrl").value;
+const bucketUrl = document.querySelector("#bucket-url").value;
 
 function detailView() {
     const url = window.location.href;
@@ -11,14 +11,13 @@ function detailView() {
             const notice = data.notice;
             const prevId = data.prevNotice;
             const nextId = data.nextNotice;
+            const topNoticeList = data.topNoticeList;
 
-            const titleInput = document.querySelector('#title');
-            titleInput.value = notice.title;
+            const title = document.querySelector('#title');
+            title.innerHTML = notice.title;
 
-            const writerInput = document.querySelector('#writer');
-            writerInput.value = notice.modifierId;
+            const noticeUl = document.querySelector('#notice-ul');
 
-            const createdInput = document.querySelector('#created');
             const options = {
                 year: 'numeric',
                 month: 'long',
@@ -27,25 +26,63 @@ function detailView() {
                 minute: '2-digit',
                 second: '2-digit',
             };
-            createdInput.value = new Date(notice.modified).toLocaleString('ko-KR', options);
+            const fommatedDate = new Date(notice.modified).toLocaleString('ko-KR', options);
+
+            const noticeHtml = `
+                <li>
+                    <i class="fa-regular fa-square-check"></i>
+                    <span>작성자 : ${notice.modifierId}</span>
+                </li>
+                <li>
+                    <i class="fa-regular fa-square-check"></i>
+                    <span>작성일시 : ${fommatedDate}</span>
+                </li>
+            `;
+
+            noticeUl.innerHTML = noticeHtml;
 
             const contentTextarea = document.querySelector('#content');
             contentTextarea.value = notice.content;
 
+            resizeTextarea(contentTextarea);
+
             const fileNameContainer = document.querySelector('#file-name');
+            const imageFiles = [];
+            const otherFiles = [];
 
-            if (data.notice.fileName.length === 0) {
-                fileNameContainer.classList.add('d-none');
-            } else {
-                data.notice.fileName.forEach(fileName => {
-                    const fileLink = document.createElement('a');
-                    fileLink.href = `${bucketUrl}/notice/${noticeId}/${fileName}`;
-                    fileLink.textContent = fileName;
-                    fileLink.classList.add('form-control');
+            data.notice.fileName.forEach(fileName => {
+                if (fileName.toLowerCase().endsWith('.img') || fileName.toLowerCase().endsWith('.png')) {
+                    imageFiles.push(fileName);
+                } else {
+                    otherFiles.push(fileName);
+                }
+            });
 
-                    fileNameContainer.appendChild(fileLink);
-                });
-            }
+            // 이미지 파일 먼저 추가
+            imageFiles.forEach(fileName => {
+                const imgElement = document.createElement('img');
+                imgElement.src = `${bucketUrl}/notice/${noticeId}/${fileName}`;
+                imgElement.alt = 'Image Preview';
+                imgElement.classList.add('img-preview');
+                imgElement.classList.add('mt-2');
+
+                // 이미지 크기 제한 (500 x 500)
+                imgElement.style.maxWidth = '500px';
+                imgElement.style.maxHeight = '500px';
+
+                fileNameContainer.appendChild(imgElement);
+            });
+
+            // 이미지가 아닌 파일 추가
+            otherFiles.forEach(fileName => {
+                const fileLink = document.createElement('a');
+                fileLink.href = `${bucketUrl}/notice/${noticeId}/${fileName}`;
+                fileLink.textContent = fileName;
+                fileLink.classList.add('form-control');
+                fileLink.classList.add('mt-2');
+
+                fileNameContainer.appendChild(fileLink);
+            });
 
             const prev = document.querySelector('#prev');
 
@@ -67,6 +104,16 @@ function detailView() {
                 next.href = `/customer/notice/${nextId}`;
             }
 
+            const topNotice = document.querySelector("#top-notice");
+            topNotice.innerHTML = "";
+
+            topNoticeList.forEach(notice => {
+                const topNoticeHtml = `
+                    <li><a href="/customer/notice/${notice.noticeId}" class="justify-content-between align-items-center d-flex"><h6>${notice.title}</h6></li>
+                    `
+
+                topNotice.insertAdjacentHTML('beforeend', topNoticeHtml);
+            });
         })
         .catch(error => {
             console.error("Error:", error);
@@ -79,8 +126,8 @@ removeBtn.addEventListener("click", function () {
     const noticeId = url.substring(url.lastIndexOf("/") + 1);
 
     fetch(`/api/notices/${noticeId}`, {
-            method: "DELETE"
-        })
+        method: "DELETE"
+    })
         .then(response => {
                 if (response.status === 200) {
                     // 수정이 성공한 경우
@@ -96,3 +143,9 @@ removeBtn.addEventListener("click", function () {
             console.error("Error:", error);
         });
 });
+
+// textarea의 내용이 변경될 때마다 크기 조정
+function resizeTextarea(textarea) {
+    textarea.style.height = 'auto'; // 먼저 기존의 높이를 초기화
+    textarea.style.height = textarea.scrollHeight + 'px'; // 내용의 높이에 따라 새로운 높이를 설정
+}

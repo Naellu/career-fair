@@ -1,7 +1,9 @@
 package com.project.careerfair.service.qna;
 
+import com.project.careerfair.domain.Notice;
 import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
+import com.project.careerfair.mapper.notice.NoticeMapper;
 import com.project.careerfair.mapper.qna.QnaAnswerMapper;
 import com.project.careerfair.mapper.qna.QnaMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +15,13 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class QnaServiceImpl implements QnaService{
+public class QnaServiceImpl implements QnaService {
 
     private final QnaMapper mapper;
 
     private final QnaAnswerMapper answerMapper;
+
+    private final NoticeMapper noticeMapper;
 
     @Override
     public Boolean addQuestion(QnaQuestion question) {
@@ -65,10 +69,14 @@ public class QnaServiceImpl implements QnaService{
 
     @Override
     public QnaQuestion getAnswerCount(Integer id) {
-       QnaQuestion question = mapper.selectById(id);
-       Integer answerCount = mapper.selectAnswerCount(id);
-       question.setAnswerCount(answerCount != null ? answerCount : 0);
+        QnaQuestion question = mapper.selectById(id);
+        Integer answerCount = mapper.selectAnswerCount(id);
+        question.setAnswerCount(answerCount != null ? answerCount : 0);
         return question;
     }
 
+    @Override
+    public List<Notice> getTopNoticeList() {
+        return noticeMapper.getTopNoticeList();
+    }
 }

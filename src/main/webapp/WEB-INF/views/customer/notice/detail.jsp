@@ -39,59 +39,82 @@
     공지사항
 </my:job-inner-banner>
 
-<div class="container-lg">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-            <div class="me-auto mt-3">
-                <h2>
-                    공지사항
-                    <input type="hidden" id="bucketUrl" value="${bucketUrl}"/>
-                </h2>
-            </div>
+<!-- Start post Area -->
+<section class="post-area section-gap">
+    <div class="container">
+        <div class="row justify-content-center d-flex">
+            <div class="col-lg-8 post-list">
+                <input id="bucket-url" type="hidden" value="${bucketUrl}">
+                <div style="text-align: center">
+                    <h2 id="title" class="my-4">공지사항제목</h2>
+                </div>
 
-            <div class="mb-3">
-                <label for="title" class="form-label">제목</label>
-                <input id="title" type="text" class="form-control" readonly/>
-            </div>
+                <div class="single-post job-experience">
+                    <ul id="notice-ul">
+                        <li>
+                            <i class="fa-regular fa-square-check"></i>
+                            <span>작성자 : admin</span>
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-square-check"></i>
+                            <span>작성일 : 2023-07-26</span>
+                        </li>
+                    </ul>
+                </div>
 
-            <div class="mb-3">
-                <label for="writer" class="form-label">작성자</label>
-                <input id="writer" type="text" class="form-control" readonly/>
-            </div>
+                <div class="single-post job-details mt-3">
+                    <h4 class="my-4">내용</h4>
+                    <textarea id="content" style="resize: none; font-size: 17px" class="form-control-plaintext"
+                              cols="30" readonly></textarea>
+                </div>
 
-            <div class="mb-3">
-                <label for="created" class="form-label">작성일</label>
-                <input id="created" type="text" class="form-control" readonly/>
-            </div>
+                <div id="file-name" class="single-post job-details mt-3">
+                    <h4 class="my-4">첨부파일</h4>
+                </div>
 
-            <div class="mb-3">
-                <label for="content" class="form-label">내용</label>
-                <textarea id="content" class="form-control" cols="90" rows="10" readonly></textarea>
-            </div>
-
-            <div id="file-name" class="mb-3">
-                <label class="form-label">첨부파일</label>
-            </div>
-
-            <div class="mb-3">
-                <a id="prev" class="btn btn-secondary">이전글로 가기</a>
-                <a class="btn btn-secondary" href="/customer/notice/list">목록으로 가기</a>
-                <a id="next" class="btn btn-secondary">다음글로 가기</a>
-            </div>
-
-            <sec:authorize access="hasAuthority('admin')">
-                <div>
-                    <div>
-                        <a class="btn btn-primary" href="/customer/notice/modify/${noticeId}">수정</a>
-                        <button id="removeButton" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteConfirmModal">삭제
-                        </button>
+                <div class="justify-content-center d-flex">
+                    <div class="mb-3">
+                        <a id="prev" class="btn btn-outline-primary">이전글로 가기</a>
+                        <a class="btn btn-outline-primary" href="/customer/notice/list">목록으로 가기</a>
+                        <a id="next" class="btn btn-outline-primary">다음글로 가기</a>
                     </div>
                 </div>
-            </sec:authorize>
+                <sec:authorize access="hasAuthority('admin')">
+                    <div class="justify-content-center d-flex">
+                        <div>
+                            <div>
+                                <a class="btn btn-primary" href="/customer/notice/modify/${noticeId}">수정</a>
+                                <button id="removeButton" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteConfirmModal">삭제
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </sec:authorize>
+            </div>
+            <div class="col-lg-4 sidebar">
+                <div class="single-widget category-widget">
+                    <h4 class="title">고객센터</h4>
+                    <ul>
+                        <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>
+                            QNA</h6></li>
+                        <li><a href="/customer/notice/list" class="justify-content-between align-items-center d-flex">
+                            <h6>공지사항</h6></li>
+                        <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></li>
+                    </ul>
+                </div>
+
+                <div class="single-widget category-widget">
+                    <h4 class="title">중요 공지</h4>
+                    <ul id="top-notice">
+                        <li><a href="#" class="justify-content-between align-items-center d-flex"><h6>공지사항2</h6></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
+<!-- End post Area -->
 
 <!-- Modal -->
 <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,7 +124,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">공지를 삭제 하시겠습니까?</div>
+            <div class="modal-body" style="color: black;">공지를 삭제 하시겠습니까?</div>
             <div class="modal-footer">
                 <button id="remove-btn" type="button" class="btn btn-danger">삭제</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>

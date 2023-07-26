@@ -1,5 +1,6 @@
 package com.project.careerfair.service.qna;
 
+import com.project.careerfair.domain.Notice;
 import com.project.careerfair.domain.QnaAnswer;
 import com.project.careerfair.domain.QnaQuestion;
 
@@ -22,4 +23,5 @@ public interface QnaService {
 
     QnaQuestion getAnswerCount(Integer questionId);
 
+    List<Notice> getTopNoticeList();
 }
