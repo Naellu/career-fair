@@ -142,7 +142,7 @@
             <div class="col-md-6 text-right">
                 <button type="submit" class="btn btn-outline-primary" form="modifyForm">수정</button>
                 <button class="btn btn-outline-secondary"
-                        onclick="location.href='/company/posting/detail?postingId=${post.postingId}'">뒤로가기
+                        onclick="location.href='/company/posting/detail?postingId=${post.postingId}'">취소
                 </button>
             </div>
         </div>
