@@ -35,9 +35,10 @@
 <my:job-inner-banner />
   <br>
 
-  <div class="container-lg">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
+  <div class="container mt-30">
+    <div class="row justify-content-center d-flex">
+
+        <div class="col-lg-9">
           <div class="contWrap ResumeMngCont">
 
               <div class="form-head">
@@ -101,6 +102,22 @@
               </div>
             </div>
         </div>
+
+        <div class="col-lg-3 sidebar mt-20">
+            <div class="single-slidebar">
+                <h4>마이페이지</h4>
+                <ul class="cat-list">
+                    <li><a class="justify-content-between d-flex" href="/scrap/list"><p>스크랩 공고</p></a></li>
+                    <li><a class="justify-content-between d-flex" href="/resume/"><p>이력서</p></a></li>
+                    <li><a class="justify-content-between d-flex" href="/members/personal-page/apply/list"><p>입사지원</p></a></li>
+                    <%--                                        <li><a class="justify-content-between d-flex" href="category.html"><p>쪽지함</p></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Florida</p><span>47</span></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Rocky Beach</p><span>27</span></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Chicago</p><span>17</span></a></li>--%>
+                </ul>
+            </div>
+        </div>
+
     </div>
   </div>
 

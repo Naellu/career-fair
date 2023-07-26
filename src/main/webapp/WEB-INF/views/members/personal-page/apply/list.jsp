@@ -36,36 +36,53 @@
 <my:job-header-nav />
 <my:job-inner-banner />
 
-<div class="container">
+<div class="container mt-50">
+    <div class="row justify-content-center d-flex">
+        <div class="col-lg-9">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>회차정보</th>
+                    <th>지원공고명</th>
+                    <th>회사명</th>
+                    <th>공고상태</th>
+                    <th>지원일자</th>
+                    <th>지원상태</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${applyList}" var="apply" varStatus="status">
+                    <tr>
+                        <td>${post[status.index].round}회차</td>
+                        <td><a href="#"
+                               onclick="window.open('/members/personal-page/apply/detail?applicationId=${apply.applicationId}','_blank', 'width=800,height=700' )">
+                                ${post[status.index].title}</a></td>
+                        <td>${company[status.index].companyName}</td>
+                        <td>${post[status.index].status}</td>
+                        <td>${apply.applicationDate}</td>
+                        <td>${apply.applicationStatus}</td>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>회차정보</th>
-            <th>지원공고명</th>
-            <th>회사명</th>
-            <th>공고상태</th>
-            <th>지원일자</th>
-            <th>지원상태</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${applyList}" var="apply" varStatus="status">
-            <tr>
-                <td>${post[status.index].round}회차</td>
-                <td><a href="#"
-                       onclick="window.open('/members/personal-page/apply/detail?applicationId=${apply.applicationId}','_blank', 'width=800,height=700' )">
-                        ${post[status.index].title}</a></td>
-                <td>${company[status.index].companyName}</td>
-                <td>${post[status.index].status}</td>
-                <td>${apply.applicationDate}</td>
-                <td>${apply.applicationStatus}</td>
+                    </tr>
+                </c:forEach>
 
-            </tr>
-        </c:forEach>
-
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-3 sidebar mt-20">
+            <div class="single-slidebar">
+                <h4>마이페이지</h4>
+                <ul class="cat-list">
+                    <li><a class="justify-content-between d-flex" href="/scrap/list"><p>스크랩 공고</p></a></li>
+                    <li><a class="justify-content-between d-flex" href="/resume/"><p>이력서</p></a></li>
+                    <li><a class="justify-content-between d-flex" href="/members/personal-page/apply/list"><p>입사지원</p></a></li>
+                    <%--                                        <li><a class="justify-content-between d-flex" href="category.html"><p>쪽지함</p></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Florida</p><span>47</span></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Rocky Beach</p><span>27</span></a></li>--%>
+                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Chicago</p><span>17</span></a></li>--%>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
 <my:job-footer />
