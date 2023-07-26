@@ -92,7 +92,7 @@
                     <li><a class="justify-content-between d-flex" href="/scrap/list"><p>스크랩 공고</p></a></li>
                     <li><a class="justify-content-between d-flex" href="/resume/"><p>이력서</p></a></li>
                     <li><a class="justify-content-between d-flex" href="/members/personal-page/apply/list"><p>입사지원</p></a></li>
-                    <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Arizona</p><span>36</span></a></li>--%>
+                    <li><a class="justify-content-between d-flex" href="/note/list/receive"><p>쪽지함</p></a></li>
                     <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Florida</p><span>47</span></a></li>--%>
                     <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Rocky Beach</p><span>27</span></a></li>--%>
                     <%--                    <li><a class="justify-content-between d-flex" href="category.html"><p>Chicago</p><span>17</span></a></li>--%>
