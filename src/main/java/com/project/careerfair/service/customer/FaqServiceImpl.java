@@ -29,4 +29,15 @@ public class FaqServiceImpl implements FaqService {
         return faqMapper.writeNewFAQ(faq);
     }
 
+    @Override
+    public Integer update(Faq faq) {
+        return faqMapper.update(faq);
+    }
+
+    @Override
+    public Integer delete(Integer faqId) {
+        return faqMapper.delete(faqId);
+
+    }
+
 }

@@ -45,4 +45,24 @@ public interface FaqMapper {
     @Options(useGeneratedKeys = true, keyProperty = "faqId")
     Integer writeNewFAQ(Faq faq);
 
+
+    @Update("""
+            UPDATE 
+                TB_FAQ
+            SET
+                title = #{title},
+                content = #{content}
+            WHERE 
+                faq_id = #{faqId}
+           
+            """)
+    Integer update(Faq faq);
+
+
+    @Delete("""
+            DELETE FROM TB_FAQ
+            WHERE faq_id = #{faqId}
+            """)
+    Integer delete(Integer faqId);
+
 }
