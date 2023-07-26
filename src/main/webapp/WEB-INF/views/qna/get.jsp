@@ -32,14 +32,14 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!-- Site Title -->
-    <title>QNA</title>
+    <title>Q&A</title>
 </head>
 <body>
 <my:font/>
 <my:job-header-nav/>
 
 <my:job-inner-banner>
-    QNA
+    Q&A
 </my:job-inner-banner>
 
 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">

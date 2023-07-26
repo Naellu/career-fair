@@ -23,7 +23,7 @@
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!-- Site Title -->
-    <title>QNA</title>
+    <title>Q&A</title>
     <style>
         .container-lg {
             margin-top: 30px;
@@ -35,17 +35,12 @@
 <my:job-header-nav/>
 
 <my:job-inner-banner>
-    QNA
+    Q&A
 </my:job-inner-banner>
 
 <!-- Start blog-posts Area -->
 <section class="blog-posts-area mt-3">
     <div class="container">
-        <sec:authorize access="isAuthenticated()">
-            <div class="d-flex">
-                <button type="button" class="btn btn-success" onclick="location.href='/qna/add'">Q&A 작성</button>
-            </div>
-        </sec:authorize>
         <div class="row mt-3">
             <div class="col-lg-8 post-list blog-post-list">
                 <c:forEach items="${question}" var="question">
@@ -74,11 +69,20 @@
             </div>
 
             <div class="col-lg-4 sidebar">
+                <sec:authorize access="isAuthenticated()">
+                <div class="single-widget search-widget">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-success" onclick="location.href='/qna/add'">Q&A 작성
+                            </button>
+                        </div>
+                </div>
+                </sec:authorize>
+
                 <div class="single-widget category-widget">
                     <h4 class="title">고객센터</h4>
                     <ul>
                         <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>
-                            QNA</h6></a></li>
+                            Q&A</h6></a></li>
                         <li><a href="/customer/notice/list" class="justify-content-between align-items-center d-flex">
                             <h6>공지사항</h6></a></li>
                         <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></a>

@@ -97,7 +97,7 @@
                     <h4 class="title">고객센터</h4>
                     <ul>
                         <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>
-                            QNA</h6></li>
+                            Q&A</h6></li>
                         <li><a href="/customer/notice/list" class="justify-content-between align-items-center d-flex">
                             <h6>공지사항</h6></li>
                         <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></li>

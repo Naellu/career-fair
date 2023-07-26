@@ -1,6 +1,7 @@
 package com.project.careerfair.service.customer;
 
 import com.project.careerfair.domain.Faq;
+import com.project.careerfair.domain.Notice;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface FaqService {
     Integer update(Faq faq);
     Integer delete(Integer faq);
 
+    List<Notice> getTopNoticeList();
 }
