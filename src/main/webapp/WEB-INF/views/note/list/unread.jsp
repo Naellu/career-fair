@@ -46,13 +46,13 @@
 <div class="container">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" href="/note/list/receive?memberId=${userId}" style="color: #222222">받은 쪽지함</a>
+            <a class="nav-link active" href="/note/list/receive" style="color: #222222">받은 쪽지함</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/note/list/send?memberId=${userId}" style="color: #222222">보낸 쪽지함</a>
+            <a class="nav-link" href="/note/list/send" style="color: #222222">보낸 쪽지함</a>
         </li>
         <li class="nav-item"  style="background-color:#f8f3ed">
-            <a class="nav-link" href="/note/list/unread?memberId=${userId}" style="color: #222222">안읽은 쪽지함</a>
+            <a class="nav-link" href="/note/list/unread" style="color: #222222">안읽은 쪽지함</a>
         </li>
         <li class="nav-item ml-auto"> <!-- 오른쪽 정렬 -->
             <button class="btn btn-primary" onclick="openNoteWindow('/note/write?senderId=${userId}')">쪽지쓰기</button>
@@ -115,7 +115,6 @@
             <%--맨앞으로--%>
             <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="1"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <li class="page-item">
                 <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angles-left"></i></a>
@@ -124,7 +123,6 @@
             <%-- 앞으로 --%>
             <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="${pageInfo.previous }"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <li class="page-item">
                 <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angle-left"></i></a>
@@ -135,7 +133,6 @@
         <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
             <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="${pageNumber }"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <c:choose>
                 <c:when test="${param.page == null}">
@@ -156,7 +153,6 @@
             <%-- 뒤로--%>
             <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="${pageInfo.next }"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <li class="page-item">
                 <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angle-right"></i></a>
@@ -165,7 +161,6 @@
             <%--맨 뒤로--%>
             <c:url value="/note/list/unread" var="pageLink">
                 <c:param name="page" value="${pageInfo.last }"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <li class="page-item">
                 <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angles-right"></i></a>
