@@ -35,7 +35,9 @@
 
 <my:job-header-nav/>
 
-<my:job-inner-banner/>
+<my:job-inner-banner>
+    채용공고
+</my:job-inner-banner>
 
 <!-- toast -->
 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
@@ -106,27 +108,29 @@
 
                 <div class="single-post job-details mt-3">
                     <h4 class="my-4"><i class="fa-solid fa-user-plus"></i> 우대사항입니다</h4>
-                    <textarea id="preferences" style="resize: none; overflow: hidden" class="form-control-plaintext"
+                    <textarea id="preferences" style="resize: none; font-size: 17px; overflow: hidden"
+                              class="form-control-plaintext"
                               cols="30"
                               rows="2" readonly></textarea>
                 </div>
 
                 <div class="single-post job-details mt-3">
                     <h4 class="my-4"><i class="fa-solid fa-hand-holding-heart"></i> 이런 복지가 있습니다</h4>
-                    <textarea id="benefits" style="resize: none" class="form-control-plaintext ta" cols="30" rows="2"
+                    <textarea id="benefits" style="resize: none; font-size: 17px" class="form-control-plaintext ta"
+                              cols="30" rows="2"
                               readonly></textarea>
                 </div>
 
                 <div class="single-post job-details mt-3">
                     <h4 class="my-3"><i class="fa-regular fa-calendar-days"></i> 모집기간</h4>
-                    <input id="period" style="resize: none" class="form-control-plaintext fs-5"
+                    <input id="period" style="resize: none; font-size: 17px" class="form-control-plaintext fs-5"
                            value="2023.07.14 ~ 2023.07.89"
                            readonly/>
                 </div>
 
                 <div id="etc" class="single-post job-details mt-3">
                     <h4 class="my-4">기타 사항</h4>
-                    <textarea style="resize: none" class="form-control-plaintext" cols="30" readonly></textarea>
+                    <textarea style="resize: none; font-size: 17px" class="form-control-plaintext" cols="30" readonly></textarea>
                 </div>
 
                 <div style="text-align: center;" class="mb-5">

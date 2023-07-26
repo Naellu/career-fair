@@ -118,28 +118,20 @@ function listView() {
                 const industryId = company.industryId - 1;
                 const industryName = industryList[industryId].industryName;
                 const companyHtml = `
-                 <div class="col mb-5">
-						<div class="card h-100">
-							<div class="card-body p-4">
-								<div class="text-center">
-									<h5 class="fw-bolder">${company.companyName}</h5>
-									<br/>
-									사원수 : ${company.numberOfEmployees}
-                                    <br />
-									<br />
-									설립일 : ${company.establishmentDate}
-									<br />
-                                    <br />
-									업종 : ${industryName}
-								</div >
-                                </div >
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center">
-                                        <a class="btn btn-primary" href="/user/join/${company.companyId}">기업 정보 보기</a>
-                                    </div>
-                            </div >
-                        </div >
-                </div >
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-service">
+                            <a style="text-decoration: none;" href="/user/join/${company.companyId}">
+                            <h4>${company.companyName}</h4>
+                            <p>
+                                사원수 : ${company.numberOfEmployees}
+                                <br>
+                                설립일 : ${company.establishmentDate}
+                                <br>
+                                업종 : ${industryName}
+                            </p>
+                          </a>
+                        </div>
+                    </div>
                 `;
                 companyView.insertAdjacentHTML('beforeend', companyHtml);
             })

@@ -31,7 +31,9 @@
 
 <my:job-header-nav/>
 
-<my:job-inner-banner/>
+<my:job-inner-banner>
+    기업정보
+</my:job-inner-banner>
 
 <div class="container-lg">
     <div class="mt-5">
@@ -58,7 +60,7 @@
             <caption class="caption-top"><h3>채용 공고</h3></caption>
             <thead class="table-dark">
             <tr>
-                <th style="width: 220px;">기간</th>
+                <th style="width: 250px;">기간</th>
                 <th>공고명</th>
                 <th style="width: 100px;">채용인원</th>
                 <th style="width: 100px;">고용형태</th>
@@ -83,7 +85,7 @@
             <caption class="caption-top"><h3>지난 공고</h3></caption>
             <thead class="table-dark">
             <tr>
-                <th style="width: 220px;">기간</th>
+                <th style="width: 250px;">기간</th>
                 <th>공고명</th>
                 <th style="width: 100px;">채용인원</th>
                 <th style="width: 100px;">고용형태</th>

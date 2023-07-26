@@ -165,6 +165,11 @@
         SET hit = hit + 1
         WHERE notice_id = #{noticeId}
     </update>
+
+    <!-- 조회수 높은 공지 -->
+    <select id="getTopNoticeList" resultMap="noticeMap">
+        SELECT * FROM TB_NOTICE ORDER BY hit DESC LIMIT 5;
+    </select>
 </mapper>
 
 
