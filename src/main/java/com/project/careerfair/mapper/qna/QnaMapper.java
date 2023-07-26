@@ -53,4 +53,25 @@ public interface QnaMapper {
         """)
     int selectAnswerCount(Integer id);
 
+    @Select("""
+			SELECT COUNT(qna_id)
+			FROM TB_QNA
+			""")
+    Integer countAll();
+
+    @Select("""
+			SELECT
+				qna_id id,
+				title,
+				content,
+				member_id memberId,
+				created,
+				is_answered isAnswered
+			FROM TB_QNA
+
+			GROUP BY qna_id
+			ORDER BY qna_id DESC
+			LIMIT #{startIndex}, #{rowPerPage}
+			""")
+    List<QnaQuestion> selectAllPaging(Integer startIndex, Integer rowPerPage);
 }
