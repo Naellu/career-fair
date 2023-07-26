@@ -49,7 +49,9 @@ public class JoinServiceImpl implements JoinService {
 
         int cnt = companyMapper.insert(company);
 
-        fileToS3(company, files);
+        if (files != null) {
+            fileToS3(company, files);
+        }
 
         return cnt == 1;
     }
