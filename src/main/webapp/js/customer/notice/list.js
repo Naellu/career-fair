@@ -29,11 +29,16 @@ function listView(searchValue, typeValue, pageValue) {
                 const options = {year: 'numeric', month: 'long', day: 'numeric'};
                 const formattedDate = date.toLocaleDateString('ko-KR', options);
 
+                let badge = "";
+                if (notice.count !== 0) {
+                    badge = `<span class="badge text-bg-danger"><i class="fa-solid fa-folder"></i> ${notice.count}</span>`;
+                }
+
                 const noticeHtml = `
                     <div class="single-post">
                         <a href="/customer/notice/${notice.noticeId}">
                             <h1>
-                                ${notice.title}
+                                ${notice.title} ${badge}
                             </h1>
                         </a>
                         <p>
@@ -51,6 +56,7 @@ function listView(searchValue, typeValue, pageValue) {
                         </div>
                     </div>
                 `;
+
                 noticeCard.insertAdjacentHTML('beforeend', noticeHtml);
             });
 

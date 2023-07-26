@@ -117,7 +117,7 @@ updateBtn.addEventListener("click", function () {
         .then(response => {
             if (response.status === 200) {
                 // 수정이 성공한 경우
-                location.href = "/customer/notice/list";
+                location.href = `/customer/notice/${noticeId}`;
                 alert("수정이 완료되었습니다.");
             } else {
                 location.href = `/customer/notice/modify/${noticeId}`;

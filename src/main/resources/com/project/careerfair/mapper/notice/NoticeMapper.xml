@@ -15,11 +15,14 @@
         <result column="hit" property="hit"/>
         <result column="modifier_id" property="modifierId"/>
         <result column="modified" property="modified"/>
+        <result column="count" property="count"/>
     </resultMap>
 
     <select id="getNoticeList" resultMap="noticeMap">
         <bind name="pattern" value="'%' + search + '%'"/>
-        SELECT * FROM TB_NOTICE
+        SELECT n.*, count(f.file_id) count FROM TB_NOTICE n
+        LEFT JOIN TB_FILES f
+        ON n.notice_id = f.notice_id
         <where>
             <if test="type eq 'all'">
                 (title LIKE #{pattern} OR content LIKE #{pattern} OR member_id LIKE #{pattern})
@@ -34,6 +37,7 @@
                 OR modifier_id LIKE #{pattern}
             </if>
         </where>
+        GROUP BY notice_id
         ORDER BY modified DESC LIMIT #{startNum}, #{pageSize}
     </select>
 

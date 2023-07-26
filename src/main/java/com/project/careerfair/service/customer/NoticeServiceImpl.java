@@ -107,9 +107,12 @@ public class NoticeServiceImpl implements NoticeService {
             nextNotice = noticeMapper.getLastNotice(noticeId);
         }
 
+        List<Notice> topNoticeList = noticeMapper.getTopNoticeList();
+
         return Map.of("notice", notice,
                 "prevNotice", prevNotice,
-                "nextNotice", nextNotice
+                "nextNotice", nextNotice,
+                "topNoticeList", topNoticeList
         );
     }
 
