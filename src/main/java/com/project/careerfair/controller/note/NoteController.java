@@ -29,12 +29,13 @@ public class NoteController {
 
     @GetMapping("/list/receive")
     public String getReceiveList(
-            String memberId,
+            Authentication authentication,
             Model model,
             @RequestParam(value = "page", defaultValue = "1") Integer page
     ) {
 
         String distinction = "receive";
+        String memberId = authentication.getName();
 
         Map<String, Object> result = service.getListByUserId(memberId, page, distinction);
 
@@ -44,13 +45,14 @@ public class NoteController {
 
     @GetMapping("/list/send")
     public void getSendList(
-            String memberId,
+            Authentication authentication,
             Model model,
             @RequestParam(value = "page", defaultValue = "1") Integer page
 
     ) {
 
         String distinction = "send";
+        String memberId = authentication.getName();
 
         Map<String, Object> result = service.getListByUserId(memberId, page, distinction);
 
@@ -59,13 +61,14 @@ public class NoteController {
 
     @GetMapping("/list/unread")
     public void getUnreadList(
-            String memberId,
+            Authentication authentication,
             Model model,
             @RequestParam(value = "page", defaultValue = "1") Integer page
 
     ) {
 
         String distinction = "unread";
+        String memberId = authentication.getName();
 
         Map<String, Object> result = service.getListByUserId(memberId, page, distinction);
 
