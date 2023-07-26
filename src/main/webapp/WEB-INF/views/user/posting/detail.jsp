@@ -130,7 +130,7 @@
 
                 <div id="etc" class="single-post job-details mt-3">
                     <h4 class="my-4">기타 사항</h4>
-                    <textarea style="resize: none; font-size: 17px" class="form-control-plaintext" cols="30" readonly></textarea>
+                    <textarea style="resize: none; font-size: 17px;" class="form-control-plaintext" cols="30" readonly></textarea>
                 </div>
 
                 <div style="text-align: center;" class="mb-5">

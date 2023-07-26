@@ -73,7 +73,7 @@
 
                     <div class="mb-3">
                         <label for="content" class="form-label">내용</label>
-                        <textarea id="content" class="form-control" cols="90" rows="10"
+                        <textarea id="content" style="background-color: white" class="form-control" cols="90" rows="10"
                                   readonly>${question.content}</textarea>
                     </div>
                     <sec:authorize access="authentication.name eq #question.memberId">

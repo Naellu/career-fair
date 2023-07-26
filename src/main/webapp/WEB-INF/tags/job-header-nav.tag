@@ -7,7 +7,7 @@
         <div class="align-items-center justify-content-between d-flex">
             <div id="logo">
                 <%--로고--%>
-                <a href="/job-main"><img src="/img/job-img/logo.png" alt="" title="" /></a>
+                <a href="/job-main"><img src="/img/job-img/logo.png" alt="" title=""/></a>
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
@@ -45,6 +45,19 @@
                         </ul>
                     </li>
 
+                    <sec:authorize access="hasAuthority('admin')">
+                        <li class="dropdown"><a href="/admin/main">관리자<i
+                                class="bi bi-chevron-down dropdown-indicator"></i></a>
+                            <ul>
+                                <li><a href="/admin/main">관리자 메인</a></li>
+                                <li><a href="/admin/join/list">참여기업 관리</a></li>
+                                <li><a href="/admin/round">회차 관리</a></li>
+                                <li><a href="/admin/stat/">통계</a></li>
+                                <li><a href="/admin/management/recruitmanagement">공고관리</a></li>
+                            </ul>
+                        </li>
+                    </sec:authorize>
+
                     <sec:authorize access="isAnonymous()">
                         <li class="dropdown"><a href="#">회원가입<i class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>
@@ -63,7 +76,7 @@
                     </sec:authorize>
 
                     <sec:authorize
-                            access="hasAuthority('recruiter') or hasAuthority('company') or hasAuthority('admin')">
+                            access="hasAuthority('recruiter') or hasAuthority('company')">
                         <li><a href="/members/company-page/mypage?id=<sec:authentication property="name" />">마이페이지</a>
                         </li>
                     </sec:authorize>
@@ -72,17 +85,6 @@
                         <li><a href="/login/logout">로그아웃</a></li>
                     </sec:authorize>
 
-                    <sec:authorize access="hasAuthority('admin')">
-                        <li class="dropdown"><a href="/admin/main">관리자<i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                            <ul>
-                                <li><a href="/admin/main">관리자 메인</a></li>
-                                <li><a href="/admin/join/list">참여기업 관리</a></li>
-                                <li><a href="/admin/round">회차 관리</a></li>
-                                <li><a href="/admin/stat/">통계</a></li>
-                                <li><a href="/admin/management/recruitmanagement">공고관리</a></li>
-                            </ul>
-                        </li>
-                    </sec:authorize>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>

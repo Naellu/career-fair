@@ -51,12 +51,12 @@
 
             <div class="mb-3">
                 <label for="writer" class="form-label">작성자</label>
-                <input id="writer" type="text" class="form-control" readonly/>
+                <input id="writer" type="text" style="background-color: white"  class="form-control" readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="created" class="form-label">작성일</label>
-                <input id="created" type="text" class="form-control" readonly/>
+                <input id="created" type="text" style="background-color: white"  class="form-control" readonly/>
             </div>
 
             <div class="mb-3">
