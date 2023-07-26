@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -113,6 +114,7 @@ public class ResumeController {
     }
 
     @GetMapping("scout")
+    @PreAuthorize("hasAuthority('recruiter') or hasAuthority('admin') or hasAuthority('company')")
     public String scoutList(@RequestParam(value = "page", defaultValue = "1") Integer page,
                             @RequestParam(value = "industry", required = false) Integer[] industries,
                             Model model) {
