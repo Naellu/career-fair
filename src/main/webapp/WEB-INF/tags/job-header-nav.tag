@@ -45,6 +45,8 @@
                         </ul>
                     </li>
 
+                    <li><a href="/tools/grade">취업성공툴</a></li>
+
                     <sec:authorize access="isAnonymous()">
                         <li class="dropdown"><a href="#">회원가입<i class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>

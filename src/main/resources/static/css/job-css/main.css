@@ -1993,13 +1993,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Nav Menu Arrows */
 .sf-arrows .sf-with-ul {
-    padding-right: 30px;
+    padding-right: 18px;
 }
 
 .sf-arrows .sf-with-ul:after {
     content: "\f107";
     position: absolute;
-    right: 15px;
+    right: 3px;
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
