@@ -46,13 +46,6 @@
 <!-- Start blog-posts Area -->
 <section class="blog-posts-area mt-3">
     <div class="container">
-        <sec:authorize access="hasAuthority('admin')">
-            <div class="d-flex">
-                <div class="ms-5">
-                    <a class="btn btn-success" href="/customer/notice/reg">글작성하기</a>
-                </div>
-            </div>
-        </sec:authorize>
         <div class="row">
             <div class="col-lg-8 post-list blog-post-list" id="noticeTable">
                 <div class="single-post">
@@ -78,8 +71,13 @@
             </div>
 
             <div class="col-lg-4 sidebar">
-                <div class="single-widget search-widget">
-                    <div class="d-flex justify-content-end">
+                <sec:authorize access="hasAuthority('admin')">
+                    <div class="d-flex">
+                        <a class="btn btn-success" href="/customer/notice/reg">글작성하기</a>
+                    </div>
+                </sec:authorize>
+                <div class="single-widget search-widget mt-3">
+                    <div class="d-flex justify-content-end ">
                         <div>
                             <div class="input-group">
                                 <select id="type" class="form-select flex-grow-0" style="width: 90px;">
@@ -102,7 +100,7 @@
                     <h4 class="title">고객센터</h4>
                     <ul>
                         <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>
-                            QNA</h6></a></li>
+                            Q&A</h6></a></li>
                         <li><a href="/customer/notice/list" class="justify-content-between align-items-center d-flex">
                             <h6>공지사항</h6></a></li>
                         <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6></a>

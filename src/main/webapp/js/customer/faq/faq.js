@@ -35,6 +35,7 @@ $("#faqForm").submit(function(e) {
     });
 });
 
+/*
 
 // faq 수정 - jquery 추가
     fetch('/faq', {
@@ -88,4 +89,4 @@ $("#faqForm").submit(function(e) {
     .catch((error) => {
         alert(error);
         console.error('Error:', error);
-    });
+    });*/

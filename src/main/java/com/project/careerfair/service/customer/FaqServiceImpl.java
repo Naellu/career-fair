@@ -1,7 +1,9 @@
 package com.project.careerfair.service.customer;
 
 import com.project.careerfair.domain.Faq;
+import com.project.careerfair.domain.Notice;
 import com.project.careerfair.mapper.faq.FaqMapper;
+import com.project.careerfair.mapper.notice.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.List;
 public class FaqServiceImpl implements FaqService {
 
     private final FaqMapper faqMapper;
+
+    private final NoticeMapper noticeMapper;
 
 //    @Override
 //    public List<Faq> findAll() {
@@ -38,6 +42,11 @@ public class FaqServiceImpl implements FaqService {
     public Integer delete(Integer faqId) {
         return faqMapper.delete(faqId);
 
+    }
+
+    @Override
+    public List<Notice> getTopNoticeList() {
+        return noticeMapper.getTopNoticeList();
     }
 
 }

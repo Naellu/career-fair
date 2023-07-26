@@ -1,6 +1,7 @@
 package com.project.careerfair.controller.customer;
 
 import com.project.careerfair.domain.Faq;
+import com.project.careerfair.domain.Notice;
 import com.project.careerfair.service.customer.FaqService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +28,9 @@ public class FAQController {
                               Model model) {
 //        List<Faq> faqList = faqService.findAll();
         List<Faq> faqList = faqService.findAll(search, type);
+        List<Notice> topNoticeList = faqService.getTopNoticeList();
         model.addAttribute("faq", faqList);
+        model.addAttribute("topNoticeList", topNoticeList);
         return "customer/faq/list";
     }
 
