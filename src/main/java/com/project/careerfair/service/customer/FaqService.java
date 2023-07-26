@@ -10,5 +10,7 @@ public interface FaqService {
     List<Faq> findAll(String search, String type);
 
     Integer addNewFAQ(Faq faq);
+    Integer update(Faq faq);
+    Integer delete(Integer faq);
 
 }

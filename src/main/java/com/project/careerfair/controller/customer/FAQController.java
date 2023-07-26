@@ -42,8 +42,15 @@ public class FAQController {
         }
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> delete() {
-        return null;
+    @PutMapping
+    public ResponseEntity<String> update(@RequestBody Faq faq) {
+        faqService.update(faq);
+        return ResponseEntity.ok("수정되었습니다");
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> delete(@RequestBody Faq faq) {
+        faqService.delete(faq.getFaqId());
+        return ResponseEntity.ok("삭제되었습니다");
     }
 }
