@@ -10,8 +10,8 @@
                 <div class="single-footer-widget">
                     <h6>기타사항</h6>
                     <ul class="footer-nav">
-                        <li><a href="#">개인정보처리방침</a></li>
-                        <li><a href="#">이용약관</a></li>
+                        <li><a href="/policy">개인정보처리방침</a></li>
+                        <li><a href="/clause">이용약관</a></li>
                         <li><a href="/deny-email">이메일 무단 수집거부</a></li>
 <%--                        <li><a href="#"></a></li>--%>
                     </ul>

@@ -50,4 +50,12 @@ public class HomeController {
     public String denyCollectEmail() {
         return "denycollectemail";
     }
+    @GetMapping("policy")
+    public String policy() {
+        return "personalprocessingpolicy";
+    }
+    @GetMapping("clause")
+    public String clause() {
+        return "clause";
+    }
 }
