@@ -2012,6 +2012,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Nav Meu Container */
 #nav-menu-container {
     margin: 0;
+    font-size: 15px;
 }
 
 @media (min-width: 1024px) {
@@ -2192,7 +2193,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .section-gap {
-    padding: 120px 0;
+    padding: 150px 0;
 }
 
 .section-title {
@@ -2521,6 +2522,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .single-feature h4 {
     padding-bottom: 15px;
+}
+
+.single-feature a {
+    color: #777777;
 }
 
 @media (max-width: 960px) {
@@ -2983,7 +2988,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .download-area {
-    background-color: #f9f9ff;
+    background-color: #ffffff;
 }
 
 @media (max-width: 960px) {
@@ -3049,7 +3054,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .buttons p span {
-    font-size: 24px;
+    font-size: 15px;
     font-weight: 600;
 }
 

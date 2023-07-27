@@ -8,37 +8,42 @@
         <div class="row">
             <div class="col-lg-3  col-md-12">
                 <div class="single-footer-widget">
-                    <h6>Top Products</h6>
+                    <h6>기타사항</h6>
                     <ul class="footer-nav">
-                        <li><a href="#">Managed Website</a></li>
-                        <li><a href="#">Manage Reputation</a></li>
-                        <li><a href="#">Power Tools</a></li>
-                        <li><a href="#">Marketing Service</a></li>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="/deny-email">이메일 무단 수집거부</a></li>
+<%--                        <li><a href="#"></a></li>--%>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-6  col-md-12">
-                <div class="single-footer-widget newsletter">
-                    <h6>Newsletter</h6>
-                    <p>You can trust us. we only send promo offers, not a single spam.</p>
-                    <div id="mc_embed_signup">
-                        <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+                <div class="single-footer-widget">
+                    <h6>정보</h6>
+                    <ul class="footer-nav">
+                        <li>사업자등록번호 : 123-45-67890</li>
+                        <li>주소 : 서울시 강남구 영동대로</li>
+                        <li>대표자명 : NNN   |  대표전화 : 033-123-4567</li>
+                    </ul>
 
-                            <div class="form-group row" style="width: 100%">
-                                <div class="col-lg-8 col-md-12">
-                                    <input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-                                    <div style="position: absolute; left: -5000px;">
-                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                                    </div>
-                                </div>
+<%--                    <div id="mc_embed_signup">--%>
+<%--                        <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">--%>
 
-                                <div class="col-lg-4 col-md-12">
-                                    <button class="nw-btn primary-btn">Subscribe<span class="lnr lnr-arrow-right"></span></button>
-                                </div>
-                            </div>
-                            <div class="info"></div>
-                        </form>
-                    </div>
+<%--                            <div class="form-group row" style="width: 100%">--%>
+<%--                                <div class="col-lg-8 col-md-12">--%>
+<%--                                    <input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">--%>
+<%--                                    <div style="position: absolute; left: -5000px;">--%>
+<%--                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+
+<%--                                <div class="col-lg-4 col-md-12">--%>
+<%--                                    <button class="nw-btn primary-btn">Subscribe<span class="lnr lnr-arrow-right"></span></button>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="info"></div>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
                 </div>
             </div>
 <%--            <div class="col-lg-3  col-md-12">--%>

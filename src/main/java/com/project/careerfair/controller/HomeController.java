@@ -19,20 +19,16 @@ public class HomeController {
 
     private final ExhibitionInfoService exhibitionInfoService;
 
+//    @GetMapping
+//    public String home() {
+//        return "main";
+//    }
+
     @GetMapping
-    public String home() {
-        return "main";
-    }
-
-    @GetMapping("job-main")
-    public String jobMain() {
+    public String jobMain(Model model) {
+        ExhibitionInfo exhibitionInfo = exhibitionInfoService.getCurrentInfo();
+        model.addAttribute("exhibitionInfo", exhibitionInfo);
         return "job-main";
-    }
-
-    // navBar 출력 테스트 페이지
-    @GetMapping("test")
-    public String test() {
-        return "test";
     }
 
     @GetMapping("location")
@@ -48,5 +44,10 @@ public class HomeController {
         ExhibitionInfo exhibitionInfo = exhibitionInfoService.getCurrentInfo();
         model.addAttribute("exhibitionInfo", exhibitionInfo);
         return "exhibitionInfo/info";
+    }
+
+    @GetMapping("deny-email")
+    public String denyCollectEmail() {
+        return "denycollectemail";
     }
 }

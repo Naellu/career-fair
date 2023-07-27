@@ -9,7 +9,9 @@
         <div class="row fullscreen d-flex align-items-center justify-content-center">
             <div class="banner-content col-lg-12">
                 <h1 class="text-white">
-                    <span>제 1회</span> 중앙 취업 일자리 박람회
+<%--                    <span>제 1회</span> 중앙 취업 일자리 박람회--%>
+                    ${exhibitionInfo.title}
+<%--                    <c:out value="${exhibitionInfo.title}" />--%>
                 </h1>
                 <form action="search.html" class="serach-form-area">
 <%--                    <div class="row justify-content-center form-wrap">--%>
