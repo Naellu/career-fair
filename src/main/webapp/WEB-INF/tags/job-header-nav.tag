@@ -7,7 +7,8 @@
         <div class="align-items-center justify-content-between d-flex">
             <div id="logo">
                 <%--로고--%>
-                <a href="/job-main"><img src="/img/job-img/logo.png" alt="" title=""/></a>
+<%--                <a href="/"><img src="/img/job-img/logo.png" alt="" title=""/></a>--%>
+                <a href="/"><img class="img-fluid" src="${bucketUrl}/exhibitionInfo/${exhibitionInfo.round}/2023중앙일자리박람회.png" alt=""></a>
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
