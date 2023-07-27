@@ -102,7 +102,7 @@
     <div class="mypage-container-d">
         <div class="mypage-column mypage-column-t">채용공고</div>
         <div class="mypage-column mypage-column-b">
-            <span onclick="location.href='/company/posting/list?memberId=${userId}'" style="cursor:pointer; color:#4C84F3;">채용공고 관리</span>
+            <span onclick="location.href='/company/posting/list'" style="cursor:pointer; color:#4C84F3;">채용공고 관리</span>
         </div>
     </div>
     <div class="mypage-container-d">

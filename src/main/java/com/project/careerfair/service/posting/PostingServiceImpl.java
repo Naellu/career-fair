@@ -34,7 +34,15 @@ public class PostingServiceImpl implements PostingService {
 
         Map<String, Object> resultMap = new HashMap<>();
 
-        List<Company> companyList = companyMapper.getListByName("now", userId, round);
+        List<Company> AllCompanyList = companyMapper.getListByName("now", userId, round);
+
+        List<Company> companyList = new ArrayList<>();
+        for (Company company : AllCompanyList){
+            if(company.getStatus().equals("approved")){
+               companyList.add(company);
+            }
+        }
+
         resultMap.put("companyList", companyList);
 
         List<Industry> industryList = industryMapper.getIndustryList();

@@ -23,7 +23,15 @@
     <link rel="stylesheet" href="/css/job-css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <style>
+        .nav-link{
+            color: #222222;
+        }
+        .nav-item>.active{
+            background-color:#b4a4fc;
+        }
 
+    </style>
 </head>
 <body>
 <my:font />
@@ -46,16 +54,16 @@
 <div class="container">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" href="/note/list/receive" style="color: #222222">받은 쪽지함</a>
+            <a class="nav-link" href="/note/list/receive" >받은 쪽지함</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/note/list/send" style="color: #222222">보낸 쪽지함</a>
+            <a class="nav-link" href="/note/list/send" >보낸 쪽지함</a>
         </li>
-        <li class="nav-item"  style="background-color:#f8f3ed">
-            <a class="nav-link" href="/note/list/unread" style="color: #222222">안읽은 쪽지함</a>
+        <li class="nav-item">
+            <a class="nav-link active" href="/note/list/unread" >안읽은 쪽지함</a>
         </li>
         <li class="nav-item ml-auto"> <!-- 오른쪽 정렬 -->
-            <button class="btn btn-primary" onclick="openNoteWindow('/note/write?senderId=${userId}')">쪽지쓰기</button>
+            <button class="btn btn-outline-primary" onclick="openNoteWindow('/note/write?senderId=${userId}')">쪽지쓰기</button>
         </li>
     </ul>
     <table class="table" style="">
@@ -78,7 +86,7 @@
                     </c:url>
                     <c:choose>
                         <c:when test="${note.status}">
-                            <a href="#" onclick="openNoteWindow('${noteDetailURL}')" style="color: #222222">
+                            <a href="#" onclick="openNoteWindow('${noteDetailURL}')" >
                                     ${note.title}
                             </a>
                         </c:when>
