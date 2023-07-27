@@ -9,7 +9,7 @@ let checkAgree = false;
 //===============================유효성 모두 완료되면 가입가능======================================
 function enableSubmit() {
     if (checkId && password_check && name && gender && searchEmail && checkEmail && checkphoneNumber && checkAgree) {
-        $("#signup-submit").removeAttr("disabled");
+        $("#signup-submit").removeAttr("disabled").css("cursor", "pointer");
         $("#need-sign").hide();
     } else {
         $("#signup-submit").attr("disabled", "");
@@ -22,12 +22,12 @@ $("#input-id").blur(function (){
 
     if($("#input-id").val() == "") {
         $("#idcheck-blank").css("color", "red");
-        $("#idcheck-blank").text("아이디는 필수 입력");
+        $("#idcheck-blank").text("! 아이디는 필수 입력");
         id = false;
         enableSubmit();
     }else if(!idCheck.test($("#input-id").val())) {
         $("#idcheck-blank").css("color", "red");
-        $("#idcheck-blank").text("영문 또는 영문 숫자 조합하여 6~20자만 가능");
+        $("#idcheck-blank").text("! 영문 또는 영문 숫자 조합하여 6~20자만 가능");
         id = false;
         enableSubmit();
     }else {
@@ -59,7 +59,7 @@ $("#id-Confirm").click(function() {
                     checkId = true;
                 } else {
                     $("#idcheck-blank").css("color", "red");
-                    $("#idcheck-blank").text("중복된 아이디입니다.");
+                    $("#idcheck-blank").text("! 중복된 아이디입니다.");
                     checkId = false;
                 }
             },
@@ -77,12 +77,12 @@ $("#input-password").blur(function() {
 
     if ($("#input-password").val() == "") {
         $("#pwdcheck-blank1").css("color", "red");
-        $("#pwdcheck-blank1").text("패스워드를 입력해주세요.");
+        $("#pwdcheck-blank1").text("! 패스워드를 입력해주세요.");
         password = false;
     }
     else if (!pwdCheck.test($("#input-password").val())) {
         $("#pwdcheck-blank1").css("color", "red");
-        $("#pwdcheck-blank1").text("비밀번호는 영문+숫자+특수문자 조합하여 8~16자리를 사용해야 합니다");
+        $("#pwdcheck-blank1").text("! 비밀번호는 영문+숫자+특수문자 조합하여 8~16자리를 사용해야 합니다");
         password = false;
     }else {
         $("#pwdcheck-blank1").css("color", "blue");
@@ -97,7 +97,7 @@ $("#input-password").blur(function() {
 $("#password-check").blur(function() {
     if($("#password-check").val() == "") {
         $("#pwdcheck-blank2").css("color", "red");
-        $("#pwdcheck-blank2").text("패스워드를 입력해주세요.");
+        $("#pwdcheck-blank2").text("! 패스워드를 입력해주세요.");
         password_check = false;
         enableSubmit();
     }
@@ -108,7 +108,7 @@ $("#password-check").blur(function() {
         enableSubmit();
     }else {
         $("#pwdcheck-blank2").css("color", "red");
-        $("#pwdcheck-blank2").text("비밀번호를 다시 확인해주세요.");
+        $("#pwdcheck-blank2").text("! 비밀번호를 다시 확인해주세요.");
         $("#password-check").val("");
         password_check = false;
         enableSubmit();
@@ -122,12 +122,12 @@ $("#input-name").blur(function() {
 
     if ($("#input-name").val() == "") {
         $("#namecheck-blank").css("color", "red");
-        $("#namecheck-blank").text("이름은 필수 입력입니다.");
+        $("#namecheck-blank").text("! 이름은 필수 입력입니다.");
         name = false;
         enableSubmit();
     } else if (!nameCheck.test($("#input-name").val())) {
         $("#namecheck-blank").css("color", "red");
-        $("#namecheck-blank").text("이름은 한글 또는 영어로 이루어져야 하며, 2자에서 20자 사이여야 합니다.");
+        $("#namecheck-blank").text("! 이름은 한글 또는 영어로 이루어져야 하며, 2자에서 20자 사이여야 합니다.");
         name = false;
         enableSubmit();
     } else {

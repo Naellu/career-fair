@@ -51,8 +51,9 @@
                 <div class="mb-3">
                     <label class="form-label">아이디</label> <input class="form-control" type="text" value="${members.id }" readonly />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" >패스워드</label> <input class="form-control" type="password" value="${members.password }" readonly />
+                <div class="mb-3" style="display: none;">
+                    <label class="form-label" >패스워드</label>
+                    <input class="form-control" type="password" value="${members.password }" readonly />
                 </div>
 
                 <div class="mb-3">
