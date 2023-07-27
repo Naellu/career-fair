@@ -1,4 +1,4 @@
-function setDate() {
+function defaultSet() {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -9,18 +9,15 @@ function setDate() {
     $("#startDate").attr("value", formattedDate);
     $("#endDate").attr("value", formattedDate);
 
+    optionSet();
+
 }
 
-$("#startDate").on("change", function () {
-    const startDate = $(this).val();
-    $("#endDate").attr("min", startDate);
-});
-
-$("#companyName").on("change", function () {
-    const companyId = $(this).children("option:selected").data('companyId');
-    const round = $(this).children("option:selected").data('round');
-    const industryId = $(this).children("option:selected").data('industryId');
-    const address = $(this).children("option:selected").data('address');
+function optionSet(){
+    const companyId = $("#companyName").children("option:selected").data('companyId');
+    const round = $("#companyName").children("option:selected").data('round');
+    const industryId = $("#companyName").children("option:selected").data('industryId');
+    const address = $("#companyName").children("option:selected").data('address');
 
     $("#companyId").val(companyId);
     $("#round").val(round);
@@ -33,6 +30,17 @@ $("#companyName").on("change", function () {
             $(this).prop("selected", false);
         }
     })
+
+}
+$("#startDate").on("change", function () {
+    const startDate = $(this).val();
+    $("#endDate").attr("min", startDate);
+});
+
+
+$("#companyName").on("change", function () {
+    optionSet();
+
 
 })
 

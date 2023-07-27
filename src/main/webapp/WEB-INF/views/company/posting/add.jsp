@@ -24,7 +24,7 @@
 
 
 </head>
-<body onload="setDate()">
+<body onload="defaultSet()">
 <sec:authentication property="name" var="userId" />
 
 <my:font />
