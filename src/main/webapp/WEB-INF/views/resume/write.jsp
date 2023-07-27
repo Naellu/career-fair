@@ -16,10 +16,9 @@
 
     <title>이력서 작성</title>
 
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">--%>
-<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />--%>
 
-    <link rel="stylesheet" href="/css/resume/resume.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <link rel="stylesheet" href="/css/job-css/linearicons.css">
     <link rel="stylesheet" href="/css/job-css/bootstrap.css">
@@ -30,25 +29,33 @@
     <link rel="stylesheet" href="/css/job-css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">--%>
+
+    <link rel="stylesheet" href="/css/resume/resume.css">
 </head>
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    이력서 등록
+</my:job-inner-banner>
 
 
-    <div class="container col-lg-5">
-        <h2 class="mt-4" id="resumeMain">이력서 등록</h2>
+    <div class="container col-lg-5 pt-50">
+
+        <div class="text-right">
+            <a href="/resume/" class="genric-btn default">뒤로가기</a>
+        </div>
 
         <!-- 이력서 제목 입력칸 -->
         <div class="form-group mb-3">
-            <h4>이력서 제목</h4>
+            <h4 class="mb-10">이력서 제목</h4>
             <input type="text" class="form-control" id="resumeTitle" placeholder="이력서 제목을 입력해주세요">
         </div>
 
         <!-- 경력 입력 그룹 -->
         <div class="form-group mb-3">
-            <h4>경력</h4>
+            <h4 class="mb-10">경력</h4>
             <div id="careerContainer" class="inputContainer">
                 <div class="careerGroup inputDetailGroup">
                     <button class="deleteButton"><i class="fa-solid fa-xmark"></i></button>
@@ -88,7 +95,7 @@
 
         <!-- 학력 입력 그룹 -->
         <div class="form-group mb-3">
-            <h4>학력</h4>
+            <h4 class="mb-10">학력</h4>
             <div id="educationContainer" class="inputContainer">
                 <div class="educationGroup inputDetailGroup">
                     <button class="deleteButton"><i class="fa-solid fa-xmark"></i></button>
@@ -142,7 +149,7 @@
 
         <!-- 자격증 입력 그룹 -->
         <div class="form-group mb-3">
-            <h4>자격증</h4>
+            <h4 class="mb-10">자격증</h4>
             <div id="certificationContainer" class="inputContainer">
                 <div class="certificationGroup inputDetailGroup">
                     <button class="deleteButton"><i class="fa-solid fa-xmark"></i></button>
@@ -168,7 +175,7 @@
         </div>
 
         <!-- 희망근무조건 입력 그룹 -->
-        <h4>희망근무조건</h4>
+        <h4 class="mb-10">희망근무조건</h4>
         <div id="desiredConditionContainer" class="inputContainer">
             <div class="form-group mb-3 desiredConditionGroup inputDetailGroup">
                 <div id="workAreaContainer">
@@ -190,7 +197,7 @@
 
         <!-- 병역여부 그룹 -->
         <div class="form-group mb-3">
-            <h4>병역여부</h4>
+            <h4 class="mb-10">병역여부</h4>
             <div class="inputContainer">
                 <div class="inputDetailGroup">
                     <div class="form-check">
@@ -218,13 +225,13 @@
 
         <!-- 자기소개 입력칸 -->
         <div class="form-group mb-3">
-            <h4>자기소개</h4>
+            <h4 class="mb-10">자기소개</h4>
             <textarea class="form-control" id="selfIntroduction" rows="3"></textarea>
         </div>
 
         <!-- 희망업종 선택칸 -->
         <div class="form-group mb-3">
-            <h4>희망업종</h4>
+            <h4 class="mb-10">희망업종</h4>
             <select class="form-select" id="desiredIndustry">
                 <c:forEach var="industry" items="${industry}" >
                     <option value="${industry.industryId}">${industry.industryName}</option>
@@ -238,23 +245,24 @@
     <my:job-footer />
 
 <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>--%>
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--%>
 
-    <script src="/job-js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="/job-js/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-    <script src="/job-js/easing.min.js"></script>
-    <script src="/job-js/hoverIntent.js"></script>
-    <script src="/job-js/superfish.min.js"></script>
-    <script src="/job-js/jquery.ajaxchimp.min.js"></script>
-    <script src="/job-js/jquery.magnific-popup.min.js"></script>
-    <script src="/job-js/owl.carousel.min.js"></script>
-    <script src="/job-js/jquery.sticky.js"></script>
-    <script src="/job-js/jquery.nice-select.min.js"></script>
-    <script src="/job-js/parallax.min.js"></script>
-    <script src="/job-js/mail-script.js"></script>
-    <script src="/job-js/main.js"></script>
+<script src="/job-js/vendor/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="/job-js/vendor/bootstrap.min.js"></script>
+<%--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>--%>
+<script src="/job-js/easing.min.js"></script>
+<script src="/job-js/hoverIntent.js"></script>
+<script src="/job-js/superfish.min.js"></script>
+<script src="/job-js/jquery.ajaxchimp.min.js"></script>
+<script src="/job-js/jquery.magnific-popup.min.js"></script>
+<script src="/job-js/owl.carousel.min.js"></script>
+<script src="/job-js/jquery.sticky.js"></script>
+<script src="/job-js/jquery.nice-select.min.js"></script>
+<script src="/job-js/parallax.min.js"></script>
+<script src="/job-js/mail-script.js"></script>
+<script src="/job-js/main.js"></script>
+
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--%>
 
 <script src="/js/resume/write.js"></script>
 </body>

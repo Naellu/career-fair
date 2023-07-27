@@ -47,8 +47,8 @@
         <div class="resume-subject">${resumeData.title}</div>
         <div>
 <%--            <button type="submit" class="btn btn-outline-dark" id="getResumeUpdate" value="${resumeData.resumeId}">수정</button>--%>
-            <a href="/resume/${resumeData.resumeId}/update" id="updateResume" class="pr-5">수정</a>
-            <a href="/resume/" id="moveToList">목록</a>
+            <a href="/resume/${resumeData.resumeId}/update" id="updateResume" class="genric-btn default">수정</a>
+            <a href="/resume/" id="moveToList" class="genric-btn default-border">목록</a>
         </div>
     </div>
 

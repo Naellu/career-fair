@@ -16,9 +16,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
-<%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
-<%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
+    <%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
+    <%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
+    <%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
 
     <link rel="stylesheet" href="/css/job-css/linearicons.css">
     <link rel="stylesheet" href="/css/job-css/bootstrap.css">
@@ -27,7 +27,9 @@
     <link rel="stylesheet" href="/css/job-css/animate.min.css">
     <link rel="stylesheet" href="/css/job-css/owl.carousel.css">
     <link rel="stylesheet" href="/css/job-css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <link rel="stylesheet" href="/css/resume/scout.css">
 
@@ -35,27 +37,40 @@
 
 </head>
 <body>
-<my:font />
-<my:job-header-nav />
-<my:job-inner-banner />
+<my:font/>
+<my:job-header-nav/>
+<my:job-inner-banner>
+    인재 찾기
+</my:job-inner-banner>
 
 <div class="container-lg mb-3 mt-5">
-    <h2 class="mb-3">헤드헌트</h2>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-3">헤드헌트</h2>
+
+        <div class="">
+            <a href="#" onclick="history.back(); return false;" class="genric-btn default">뒤로가기</a>
+        </div>
+    </div>
+
 
     <form action="/resume/scout" method="get">
 
         <div class="accordion mb-3" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         업종 선택
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <c:forEach items="${industryList}" var="industry">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="${industry.industryId}" id="industry_${industry.industryId}" name="industry">
+                                <input class="form-check-input" type="checkbox" value="${industry.industryId}"
+                                       id="industry_${industry.industryId}" name="industry">
                                 <label class="form-check-label" for="industry_${industry.industryId}">
                                         ${industry.industryName}
                                 </label>
@@ -117,7 +132,7 @@
 
 </div>
 
-<my:job-footer />
+<my:job-footer/>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -126,9 +141,12 @@
 <%--        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="--%>
 <%--        crossorigin="anonymous" referrerpolicy="no-referrer"></script>--%>
 <script src="/job-js/vendor/jquery-2.2.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 <script src="/job-js/vendor/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
 <script src="/job-js/easing.min.js"></script>
 <script src="/job-js/hoverIntent.js"></script>
 <script src="/job-js/superfish.min.js"></script>
