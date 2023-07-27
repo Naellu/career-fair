@@ -54,6 +54,9 @@
                     <li class="nav-item">
                         <button value="rejected" class="nav-link">반려</button>
                     </li>
+                    <li class="nav-item">
+                        <button value="past" class="nav-link">이전회차</button>
+                    </li>
                 </ul>
 
                 <div class="d-flex">

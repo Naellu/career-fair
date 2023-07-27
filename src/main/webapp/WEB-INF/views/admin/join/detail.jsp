@@ -7,12 +7,12 @@
 <html>
 <head>
 
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"--%>
-<%--          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">--%>
-<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
-<%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
-<%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
-<%--    <my:font></my:font>--%>
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"--%>
+    <%--          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">--%>
+    <%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
+    <%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
+    <%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
+    <%--    <my:font></my:font>--%>
 
     <link rel="stylesheet" href="/css/job-css/linearicons.css">
     <link rel="stylesheet" href="/css/job-css/bootstrap.css">
@@ -21,18 +21,23 @@
     <link rel="stylesheet" href="/css/job-css/animate.min.css">
     <link rel="stylesheet" href="/css/job-css/owl.carousel.css">
     <link rel="stylesheet" href="/css/job-css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <title>참여기업상세</title>
 
 </head>
 <body>
-<my:font />
-<my:job-header-nav />
-<my:job-inner-banner />
+<my:font/>
+<my:job-header-nav/>
+
+<my:job-inner-banner>
+    참여기업 신청 상세
+</my:job-inner-banner>
 
 
-<div class="container-lg">
+<div class="container-lg mt-3">
     <!-- .row.justify-content-center>.col-12.col-md-8.col-lg-6 -->
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
@@ -43,57 +48,63 @@
                 </h1>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 mt-3">
                 <label for="round" class="form-label">회차</label>
-                <input id="round" type="text" class="form-control" readonly/>
+                <input id="round" type="text" style="background-color: white" class="form-control" readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="member-id" class="form-label">담당자</label>
-                <input id="member-id" type="text" class="form-control" readonly/>
+                <input id="member-id" type="text" style="background-color: white" class="form-control" readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="registration-number" class="form-label">사업자등록번호</label>
-                <input id="registration-number" type="text" class="form-control" readonly/>
+                <input id="registration-number" type="text" style="background-color: white" class="form-control"
+                       readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="number-of-employees" class="form-label">사원수</label>
-                <input id="number-of-employees" type="text" class="form-control" readonly/>
+                <input id="number-of-employees" type="text" style="background-color: white" class="form-control"
+                       readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="establishment-date" class="form-label">설립일</label>
-                <input id="establishment-date" type="text" class="form-control" readonly/>
+                <input id="establishment-date" type="text" style="background-color: white" class="form-control"
+                       readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="revenue" class="form-label">매출액</label>
-                <input id="revenue" type="text" class="form-control" readonly/>
+                <input id="revenue" type="text" style="background-color: white" class="form-control" readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="address" class="form-label">주소</label>
-                <input id="postalCode" type="text" class="form-control" placeholder="우편번호" readonly/>
-                <input id="address" type="text" class="form-control" placeholder="주소" readonly/>
-                <input id="detail-address" type="text" class="form-control" placeholder="상세주소" readonly/>
+                <input id="postalCode" type="text" style="background-color: white" class="form-control"
+                       placeholder="우편번호" readonly/>
+                <input id="address" type="text" style="background-color: white" class="form-control" placeholder="주소"
+                       readonly/>
+                <input id="detail-address" type="text" style="background-color: white" class="form-control"
+                       placeholder="상세주소" readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="ceo-name" class="form-label">대표</label>
-                <input id="ceo-name" type="text" class="form-control" readonly/>
+                <input id="ceo-name" type="text" style="background-color: white" class="form-control" readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="industry-name" class="form-label">업종</label>
-                <input id="industry-name" type="text" class="form-control" readonly/>
+                <input id="industry-name" type="text" style="background-color: white" class="form-control" readonly/>
                 <input id="industry-id" type="hidden" class="form-control" readonly/>
             </div>
 
             <div class="mb-3">
                 <label for="status" class="form-label">상태</label>
-                <input id="status" type="text" class="form-control" readonly/>
+                <input id="status" type="text" style="background-color: white" class="form-control" readonly/>
             </div>
 
             <div id="file-name" class="mb-3">
@@ -122,9 +133,12 @@
 <%--        crossorigin="anonymous" referrerpolicy="no-referrer"></script>--%>
 
 <script src="/job-js/vendor/jquery-2.2.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 <script src="/job-js/vendor/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
 <script src="/job-js/easing.min.js"></script>
 <script src="/job-js/hoverIntent.js"></script>
 <script src="/job-js/superfish.min.js"></script>

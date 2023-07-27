@@ -21,7 +21,7 @@
 <%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
 
 
-    <title>기업정보 수정</title>
+    <title>회원 정보 수정</title>
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -117,14 +117,13 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    회원 정보 수정
+</my:job-inner-banner>
 
 <div style=" display:flex; justify-content: center; margin: 25px 0px;">
     <div class="row justify-content-center">
         <div>
-            <div style="justify-content: center; display: flex;">
-            <h1>기업회원 정보 수정</h1>
-            </div>
             <div style="font-size: 13px; display: flex; justify-content: center; color: #4C84F3; margin-bottom: 20px;">정보수정은 비밀번호/Email/주소/전화번호만 수정가능합니다.</div>
             <form id="modifyForm" action="/members/company-page/modify" method="post">
                 <div style="display: flex;justify-content: center;">

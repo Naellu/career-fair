@@ -76,13 +76,16 @@
                         <textarea id="content" style="background-color: white" class="form-control" cols="90" rows="10"
                                   readonly>${question.content}</textarea>
                     </div>
-                    <sec:authorize access="authentication.name eq #question.memberId">
-                        <a class="btn btn-secondary" href="/qna/modify/${question.id }">수정</a>
-                        <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal"
-                                data-bs-target="#deleteConfirmModal">삭제
-                        </button>
-                    </sec:authorize>
 
+                    <div class="d-flex">
+                        <a class="btn btn-primary me-1" href="/qna/QnaList">목록으로 가기</a>
+                        <sec:authorize access="authentication.name eq #question.memberId">
+                            <a class="btn btn-secondary me-1" href="/qna/modify/${question.id }">수정</a>
+                            <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal"
+                                    data-bs-target="#deleteConfirmModal">삭제
+                            </button>
+                        </sec:authorize>
+                    </div>
                     <!-- 삭제 -->
                     <div class="d-none">
                         <form action="/qna/remove" method="post" id="removeForm">

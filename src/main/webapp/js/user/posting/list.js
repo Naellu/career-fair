@@ -69,7 +69,7 @@ function listView() {
                     <div class="single-post d-flex flex-row">
                         <div class="thumb me-5">
                             <div class="d-flex justify-content-center">
-                                <img src="/img/info.png" width="100px" height="100px" alt="사진준비중">
+                                <img src="${bucketUrl}/company/${posting.companyId}/logo.png" width="100px" height="100px" alt="사진준비중">
                             </div>
                             <ul class="tags">
                                 <li>

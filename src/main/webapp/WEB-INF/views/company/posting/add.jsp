@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>채용공고</title>
 <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">--%>
 <%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
 <%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
@@ -29,11 +29,11 @@
 
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    채용 공고 등록
+</my:job-inner-banner>
 
 <div class="container mt-5">
-    <h2>채용공고 등록</h2>
-
     <form action="/company/posting/add" method="POST">
         <div class="mb-3">
             <input type="hidden" class="form-control" id="companyId" name="companyId" value="${companyList[0].companyId}" required>

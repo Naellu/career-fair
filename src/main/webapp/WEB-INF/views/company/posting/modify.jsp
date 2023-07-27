@@ -29,19 +29,19 @@
     <link rel="stylesheet" href="/css/job-css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Title</title>
+    <title>채용공고</title>
 
 </head>
 <body onload="defaultSet()">
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    채용 공고 수정
+</my:job-inner-banner>
 
 <sec:authentication property="name" var="userId" />
 
 <div class="container mt-5">
-    <h2>채용공고 수정</h2>
-
     <form id="modifyForm" action="/company/posting/modify" method="POST">
         <div class="mb-3">
             <input type="hidden" name="postingId" value="${post.postingId}">

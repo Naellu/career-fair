@@ -127,7 +127,9 @@ public class NoticeServiceImpl implements NoticeService {
         // 공지사항 등록
         int cnt = noticeMapper.insert(notice);
 
-        fileToS3(notice, files);
+        if (files != null) {
+            fileToS3(notice, files);
+        }
 
         return cnt == 1;
     }

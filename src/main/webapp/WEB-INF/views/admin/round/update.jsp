@@ -8,10 +8,10 @@
 <head>
 
 
-<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
-<%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
-<%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
-<%--    <my:font></my:font>--%>
+    <%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
+    <%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
+    <%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
+    <%--    <my:font></my:font>--%>
 
     <link rel="stylesheet" href="/css/job-css/linearicons.css">
     <link rel="stylesheet" href="/css/job-css/bootstrap.css">
@@ -20,7 +20,9 @@
     <link rel="stylesheet" href="/css/job-css/animate.min.css">
     <link rel="stylesheet" href="/css/job-css/owl.carousel.css">
     <link rel="stylesheet" href="/css/job-css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -35,8 +37,8 @@
     </style>
 </head>
 <body>
-<my:font />
-<my:job-header-nav />
+<my:font/>
+<my:job-header-nav/>
 <my:job-inner-banner>
     회차 관리
 </my:job-inner-banner>
@@ -57,7 +59,8 @@
             <form:form method="post" modelAttribute="exhibitionInfo" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="round" class="form-label">회차</label>
-                    <form:input path="round" type="number" id="round" class="form-control" readonly="true"/>
+                    <form:input path="round" type="number" id="round" class="form-control"
+                                style="background-color: white" readonly="true"/>
                 </div>
 
                 <div class="mb-3">
@@ -95,7 +98,7 @@
                     <label for="input-address" class="form-label">주소</label>
                     <div class="input-group">
                         <form:input path="location" id="input-address" type="text" class="form-control mb-1"
-                                    readonly="true" placeholder="도로명 주소"/>
+                                    readonly="true" style="background-color: white" placeholder="도로명 주소"/>
                         <button class="btn btn-outline-secondary" type="button" id="search-address-btn">주소검색</button>
                     </div>
                     <form:errors path="location" cssClass="field-error"/>
@@ -164,7 +167,9 @@
 <%--        crossorigin="anonymous" referrerpolicy="no-referrer"></script>--%>
 
 <script src="/job-js/vendor/jquery-2.2.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 <script src="/job-js/vendor/bootstrap.min.js"></script>
 <%--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>--%>
 <script src="/job-js/easing.min.js"></script>
