@@ -41,9 +41,9 @@
 <!-- Start blog-posts Area -->
 <section class="blog-posts-area mt-3">
     <div class="container">
-        <div class="row mt-3">
+        <dv class="row mt-3">
             <div class="col-lg-8 post-list blog-post-list">
-                <c:forEach items="${question}" var="question">
+                <c:forEach items="${pageInfo.questionList}" var="question">
                     <div class="single-post">
                         <a href="/qna/id/${question.id}">
                             <h1>
@@ -57,7 +57,7 @@
                             <div class="user-details row align-items-center">
                                 <div class="comment-wrap col-lg-6">
                                     <ul>
-                                        <li>댓글 개수: ${question.answerCount}개</a></li>
+                                        <li>댓글 개수: ${question.answerCount}개</li>
                                         <li>답변 여부: ${question.isAnswered ? '답변 완료' : '미답변'}</li>
                                         <li>작성일: ${question.created}</li>
                                     </ul>
@@ -67,6 +67,7 @@
                     </div>
                 </c:forEach>
             </div>
+
 
             <div class="col-lg-4 sidebar">
                 <sec:authorize access="isAuthenticated()">

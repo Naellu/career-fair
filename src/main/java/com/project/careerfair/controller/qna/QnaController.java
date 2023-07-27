@@ -49,19 +49,10 @@ public class QnaController {
     public String qnaList(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page) {
         List<Notice> topNoticeList = service.getTopNoticeList();
 
-        List<QnaQuestion> list = service.readQuestion();
-        List<QnaQuestion> updatedList = new ArrayList<>();
-
         Map<String, Object> pageInfo = service.readQuestion(page);
         List<QnaQuestion> questionList = (List<QnaQuestion>) pageInfo.get("questionList");
 
-        for (QnaQuestion question : list) {
-            QnaQuestion questionWithAnswerCount = service.getAnswerCount(question.getId());
-            updatedList.add(questionWithAnswerCount);
-        }
-
         model.addAttribute("topNoticeList", topNoticeList);
-        model.addAttribute("question", updatedList);
         model.addAttribute("questionList", questionList);
         model.addAttribute("pageInfo", pageInfo);
 
