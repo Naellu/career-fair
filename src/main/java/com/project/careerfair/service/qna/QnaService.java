@@ -21,7 +21,7 @@ public interface QnaService {
 
     boolean modify(QnaQuestion question);
 
-    QnaQuestion getAnswerCount(Integer questionId);
+//    QnaQuestion getAnswerCount(Integer questionId);
 
     List<Notice> getTopNoticeList();
 

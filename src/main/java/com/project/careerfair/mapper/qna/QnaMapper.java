@@ -46,12 +46,12 @@ public interface QnaMapper {
             """)
     int modify(QnaQuestion question);
 
-    @Select("""
-        SELECT COUNT(*) AS answerCount
-        FROM TB_QNA_ANSWER
-        WHERE qna_id = #{id};
-        """)
-    int selectAnswerCount(Integer id);
+//    @Select("""
+//        SELECT COUNT(*) AS answerCount
+//        FROM TB_QNA_ANSWER
+//        WHERE qna_id = #{id};
+//        """)
+//    int selectAnswerCount(Integer id);
 
     @Select("""
 			SELECT COUNT(qna_id)
@@ -66,10 +66,9 @@ public interface QnaMapper {
 				content,
 				member_id memberId,
 				created,
-				is_answered isAnswered
+				is_answered isAnswered,
+				(SELECT COUNT(*) FROM TB_QNA_ANSWER WHERE qna_id = TB_QNA.qna_id) as answerCount
 			FROM TB_QNA
-
-			GROUP BY qna_id
 			ORDER BY qna_id DESC
 			LIMIT #{startIndex}, #{rowPerPage}
 			""")

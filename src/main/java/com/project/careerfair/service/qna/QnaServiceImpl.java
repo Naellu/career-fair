@@ -67,13 +67,13 @@ public class QnaServiceImpl implements QnaService {
         return cnt == 1;
     }
 
-    @Override
-    public QnaQuestion getAnswerCount(Integer id) {
-        QnaQuestion question = mapper.selectById(id);
-        Integer answerCount = mapper.selectAnswerCount(id);
-        question.setAnswerCount(answerCount != null ? answerCount : 0);
-        return question;
-    }
+//    @Override
+//    public QnaQuestion getAnswerCount(Integer id) {
+//        QnaQuestion question = mapper.selectById(id);
+//        Integer answerCount = mapper.selectAnswerCount(id);
+//        question.setAnswerCount(answerCount != null ? answerCount : 0);
+//        return question;
+//    }
 
     @Override
     public List<Notice> getTopNoticeList() {
