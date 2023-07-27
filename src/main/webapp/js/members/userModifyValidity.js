@@ -6,7 +6,7 @@ let checkphoneNumber = false
 //===============================유효성 모두 완료되면 수정 가능=======================================
 function modiEnableSubmit() {
     if (password_check && searchEmail && checkEmail && checkphoneNumber) {
-        $("#modify-Button").removeAttr("disabled");
+        $("#modify-Button").removeAttr("disabled").css("cursor", "pointer");
     } else {
         $("#modify-Button").attr("disabled", "");
     }

@@ -34,17 +34,45 @@
       top: 0;
       bottom: 0;
     }
+    #signup-form {
+      display: flex;
+      flex-direction: column;
+    }
     .sign-column{
       margin: 0px 0px 15px 0px;
     }
     .sign-input{
       border: none;
       border-bottom: 1px solid rgba(0,0,0,0.2);
-      margin-right: 30px;
+      margin-right: 25px;
       outline:none;
-      width: 300px;
+      width: 82%;
       padding: 0px 5px;
+      transition: border-color 0.2s ease-in-out;
     }
+    .sign-input:focus,
+    .signphone-input1:focus,
+    .signphone-input2:focus,
+    .maile-sign-input1:focus,
+    .maile-sign-input2:focus,
+    .sign-input-ad:focus
+    {
+      border-color: #fee102;
+    }
+    .sign-input-s {
+      width: 30%;
+    }
+    .sign-input-ad {
+      border: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      margin-right: 25px;
+      outline:none;
+      width: 82%;
+      padding: 0px 5px;
+      width: 90%;
+      transition: border-color 0.2s ease-in-out;
+    }
+
     .check-button{
       padding: 5px;
       border: none;
@@ -58,36 +86,42 @@
     .check-button:hover {
       background-color: #9B9B9B;
     }
+    #checkPhoneNumBtn{
+      margin-left: 25px;
+    }
+
     .signphone-input1{
       border: none;
       border-bottom: 1px solid rgba(0,0,0,0.2);
-      margin-right: 30px;
       outline:none;
-      width: 80px;
+      width: 22%;
       padding: 0px 5px;
+      transition: border-color 0.2s ease-in-out;
     }
     .signphone-input2{
       border: none;
       border-bottom: 1px solid rgba(0,0,0,0.2);
-      margin-right: 30px;
       outline:none;
-      width: 150px;
+      width: 23%;
       padding: 0px 5px;
+      transition: border-color 0.2s ease-in-out;
     }
     .maile-sign-input1{
       border: none;
       border-bottom: 1px solid rgba(0,0,0,0.2);
       outline:none;
-      width: 170px;
+      width: 40%;
       padding: 0px 5px;
+      transition: border-color 0.2s ease-in-out;
     }
     .maile-sign-input2{
       border: none;
       border-bottom: 1px solid rgba(0,0,0,0.2);
       outline:none;
-      width: 150px;
+      width: 40%;
       padding: 0px 5px;
       margin-right: 30px;
+      transition: border-color 0.2s ease-in-out;
     }
     .sign-agree-check{
       display: flex;
@@ -106,7 +140,7 @@
       justify-content: center;
       align-items: center;
       color: white;
-      margin-top: 5px;
+      margin: 10px;
     }
 
   </style>
@@ -128,7 +162,7 @@
 
     <div>
       <div style="display: flex; justify-content: center;">
-        <div>
+        <div style="border: 1px solid rgba(0,0,0,0.3); border-radius: 7px; margin-top: 30px; padding: 0px 30px;">
           <div style="margin: 40px 0px 40px 0px; display: flex; justify-content: center;">
             <h1>회원가입</h1>
           </div>
@@ -136,38 +170,50 @@
             <input type="text" name="authority" value="user" style="display: none;"> <!--기업은 company로-->
             <div>
             <div class="sign-column">
+              <div>
               <span style="margin-right: 50px;">아이디 *</span>
+              </div>
               <input type="text" class="sign-input" id="input-id" name="id" value="${members.id}" maxlength="20" placeholder="영문 또는 영문 숫자 조합으로 6~20자">
               <input class="check-button" type="button" id="id-Confirm" value="중복확인">
-              <div style="margin-left: 120px;" id="idcheck-blank"></div>
+              <div id="idcheck-blank" style="margin-left: 10px;"></div>
             </div>
             </div>
             <div class="sign-column">
+              <div>
               <span style="margin-right: 35px;">비밀번호 * </span>
+              </div>
               <input type="password" class="sign-input" id="input-password" name="password" placeholder="영문,숫자,특수문자 조합하여 8~16자리" maxlength="16">
-              <div style="margin-left: 120px;" id="pwdcheck-blank1"></div>
+              <div style="margin-left: 10px;" id="pwdcheck-blank1"></div>
             </div>
             <div class="sign-column">
+              <div>
               <span>비밀번호 확인 * </span>
+              </div>
               <input  type="password" class="sign-input" id="password-check" name="password-check" placeholder="위와 동일하게 입력해주세요">
-              <div style="margin-left: 120px;" id="pwdcheck-blank2"></div>
+              <div style="margin-left: 10px;" id="pwdcheck-blank2"></div>
             </div>
 
             <div class="sign-column">
+              <div>
               <span style="margin-right: 65px;">이 름 * </span>
+              </div>
               <input type="text" class="sign-input" id="input-name" name="name" value="${members.name}" placeholder="한글 또는 영어로 입력해주세요" maxlength="20">
-              <div style="margin-left: 120px;" id="namecheck-blank"></div>
+              <div style="margin-left: 10px;" id="namecheck-blank"></div>
             </div>
             <div class="sign-column">
+              <div>
               <span style="margin-right: 70px;">성 별 *</span>
+              </div>
               <input type="radio" id="input-gender-m" name="gender" value="남" placeholder="">
               <label for="input-gender-m">남성</label>
               <input type="radio" id="input-gender-w" name="gender" value="여" placeholder="">
               <label for="input-gender-w">여성</label>
             </div>
             <div class="sign-column">
-              <span style="margin-right: 35px;">휴대폰번호 *</span>
               <div>
+              <span style="margin-right: 35px;">휴대폰번호 *</span>
+              </div>
+              <div style="display: flex;">
                   <select id="phoneNum1" class="signphone-input1">
                     <option value="010">010</option>
                     <option value="011">011</option>
@@ -176,22 +222,24 @@
                     <option value="018">018</option>
                     <option value="019">019</option>
                   </select>
-                <span id="first-hyphen">-</span>
+                <span id="first-hyphen" style="margin:0px 20px;">-</span>
                 <input type="number" class="signphone-input2" id="phoneNum2" maxlength="4" oninput="maxLengthCheck(this)">
-                <span id="second-hyphen">-</span>
+                <span id="second-hyphen" style="margin: 0px 20px;">-</span>
                 <input type="number" class="signphone-input2" id="phoneNum3" maxlength="4" oninput="maxLengthCheck(this)">
                 <input type="hidden" id="totalphone-num" name="phoneNumber" value="${members.phoneNumber}">
                 <button class="check-button" type="button" id="checkPhoneNumBtn">중복확인</button>
               </div>
               <div class="d-none form-text text-primary" id="availablePhoneNumMessage">
-                <i class="fa-solid fa-check"></i>등록 가능한 핸드폰 번호입니다.
+                <i class="fa-solid fa-check" style="margin-left: 10px;"></i>등록 가능한 핸드폰 번호입니다.
               </div>
               <div class="d-none form-text text-danger" id="notAvailablePhoneNumMessage">
-                <i class="fa-solid fa-triangle-exclamation"></i>이미 등록된 핸드폰 번호입니다.
+                <i class="fa-solid fa-triangle-exclamation" style="margin-left: 10px;"></i>이미 등록된 핸드폰 번호입니다.
               </div>
             </div>
             <div class="sign-column">
+              <div>
               <span style="margin-right: 20px;">이메일 주소 *</span>
+              </div>
               <input type="text" class="maile-sign-input1"  id="user-email">
                 <span id="middle-email">@</span>
               <input type="text" class="maile-sign-input2" id="email_address" list="user-email-address">
@@ -202,13 +250,13 @@
                 <option value="">직접입력</option>
               </datalist>
               <input type="hidden" id="totalemail" name="email" value="${members.email}">
-              <input type="button" class="check-button" id="search-email" value="중복확인">
+              <input type="button" class="check-button" id="search-email" style="margin-left: -10px;" value="중복확인">
               <input style="display: none;" type="button" class="check-button" id="checkEmailBtn" value="인증하기">
               <div class="d-none form-text text-primary" id="availableEmailMessage">
-                <i style="margin-left: 120px;" class="fa-solid fa-check"></i>등록 가능한 이메일 입니다.
+                <i style="margin-left: 10px;" class="fa-solid fa-check"></i>등록 가능한 이메일 입니다.
               </div>
               <div class="d-none form-text text-danger" id="notAvailableEmailMessage">
-                <i style="margin-left: 120px;" class="fa-solid fa-triangle-exclamation"></i>이미 등록된 이메일 입니다.
+                <i style="margin-left: 10px;" class="fa-solid fa-triangle-exclamation"></i>이미 등록된 이메일 입니다.
               </div>
             </div>
 
@@ -228,13 +276,17 @@
             <!--주소 등록-->
             <div class="sign-column">
               <div>
+                <div>
                 <span style="margin-right: 53px;">우편번호</span>
-                <input class="sign-input" type="text" id="zipcode" name="zipCode">
+                </div>
+                <input class="sign-input sign-input-s" type="text" id="zipcode" name="zipCode">
                 <input class="check-button" type="button" value="우편번호찾기" onclick="kakaoAddress()">
               </div>
               <div style="margin-top: 10px; margin-right: 53px">
+                <div>
                 <span style="margin-right: 80px;">주 소</span>
-                <input class="sign-input" type="text" name="address" id="address">
+                </div>
+                <input class="sign-input-ad" type="text" name="address" id="address">
               </div>
             </div>
 
