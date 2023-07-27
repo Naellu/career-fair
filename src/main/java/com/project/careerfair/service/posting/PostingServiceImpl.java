@@ -67,6 +67,7 @@ public class PostingServiceImpl implements PostingService {
         pageInfo.put("next", next);
 
         Integer startIndex = currentPage * 10 - 10;
+
         List<Posting> postingList = postingMapper.getPostingInfoByMemberId(memberId, startIndex, status);
 
         List<Company> companyList = new ArrayList<>();

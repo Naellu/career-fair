@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -96,14 +97,16 @@ public class PersonalMypageController {
     @GetMapping("apply/list")
     public void applyList(
             Authentication authentication,
-            Model model
+            Model model,
+            @RequestParam(value="page", defaultValue = "1")Integer page
     ) {
         String memberId = authentication.getName();
-        Map<String, Object> resultMap = postingApplyService.getApplyList(memberId);
+        Map<String, Object> resultMap = postingApplyService.getApplyList(memberId, page);
 
         model.addAttribute("applyList", resultMap.get("applyList"));
         model.addAttribute("post", resultMap.get("post"));
         model.addAttribute("company", resultMap.get("companyList"));
+        model.addAttribute("pageInfo", resultMap.get("pageInfo"));
     }
 
     @GetMapping("apply/detail")

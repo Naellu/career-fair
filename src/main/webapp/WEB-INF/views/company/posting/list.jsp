@@ -114,7 +114,6 @@
             <%--맨앞으로--%>
             <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="1"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <li class="page-item">
                 <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angles-left"></i></a>
@@ -123,7 +122,6 @@
             <%-- 앞으로 --%>
             <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="${pageInfo.previous }"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <li class="page-item">
                 <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angle-left"></i></a>
@@ -134,7 +132,6 @@
         <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
             <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="${pageNumber }"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <c:choose>
                 <c:when test="${param.page == null}">
@@ -155,7 +152,6 @@
             <%-- 뒤로--%>
             <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="${pageInfo.next }"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
             <li class="page-item">
                 <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angle-right"></i></a>
@@ -164,7 +160,6 @@
             <%--맨 뒤로--%>
             <c:url value="/company/posting/list" var="pageLink">
                 <c:param name="page" value="${pageInfo.last }"></c:param>
-                <c:param name="memberId" value="${userId}"></c:param>
             </c:url>
 
             <li class="page-item">

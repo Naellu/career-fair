@@ -36,6 +36,7 @@
 <my:job-header-nav />
 <my:job-inner-banner />
 
+
 <div class="container mt-50">
     <div class="row justify-content-center d-flex">
         <div class="col-lg-9">
@@ -60,7 +61,7 @@
                         <td>${company[status.index].companyName}</td>
                         <td>${post[status.index].status}</td>
                         <td>${apply.applicationDate}</td>
-                        <td>${apply.applicationStatus}</td>
+                        <td>${apply.applicationStatus}${apply.applicationId}</td>
 
                     </tr>
                 </c:forEach>
@@ -84,6 +85,72 @@
         </div>
     </div>
 </div>
+
+<%--페이지네이션--%>
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+
+
+        <c:if test="${pageInfo.begin != 1}">
+
+            <%--맨앞으로--%>
+            <c:url value="/members/personal-page/apply/list" var="pageLink">
+                <c:param name="page" value="1"></c:param>
+            </c:url>
+            <li class="page-item">
+                <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angles-left"></i></a>
+            </li>
+
+            <%-- 앞으로 --%>
+            <c:url value="/members/personal-page/apply/list" var="pageLink">
+                <c:param name="page" value="${pageInfo.previous }"></c:param>
+            </c:url>
+            <li class="page-item">
+                <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angle-left"></i></a>
+            </li>
+
+        </c:if>
+
+        <c:forEach begin="${pageInfo.begin}" end="${pageInfo.end}" var="pageNumber">
+            <c:url value="/members/personal-page/apply/list" var="pageLink">
+                <c:param name="page" value="${pageNumber }"></c:param>
+            </c:url>
+            <c:choose>
+                <c:when test="${param.page == null}">
+                    <c:set var="page" value="1"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="page" value="${param.page}"/>
+                </c:otherwise>
+            </c:choose>
+            <li class="page-item ${page eq pageNumber ? 'active' : ''}">
+                <a class="page-link" href="${pageLink}">${pageNumber}</a>
+            </li>
+        </c:forEach>
+
+
+        <c:if test="${pageInfo.end != pageInfo.last}">
+
+            <%-- 뒤로--%>
+            <c:url value="/members/personal-page/apply/list" var="pageLink">
+                <c:param name="page" value="${pageInfo.next }"></c:param>
+            </c:url>
+            <li class="page-item">
+                <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angle-right"></i></a>
+            </li>
+
+            <%--맨 뒤로--%>
+            <c:url value="/members/personal-page/apply/list" var="pageLink">
+                <c:param name="page" value="${pageInfo.last }"></c:param>
+            </c:url>
+
+            <li class="page-item">
+                <a class="page-link" href="${pageLink}"><i class="fa-solid fa-angles-right"></i></a>
+            </li>
+
+        </c:if>
+    </ul>
+</nav>
 
 <my:job-footer />
 

@@ -16,9 +16,10 @@ public interface JobApplicationMapper {
             SELECT * FROM TB_JOB_APPLICATION
             WHERE member_id = #{memberId}
             ORDER BY application_id DESC
+            LIMIT #{startIndex}, 10
             """)
     @ResultMap("applyResultMap")
-    List<JobApplication> getApplyList(String memberId);
+    List<JobApplication> getApplyList(String memberId, Integer startIndex);
 
     @Select("""
             SELECT * FROM TB_JOB_APPLICATION
@@ -79,4 +80,12 @@ public interface JobApplicationMapper {
     List<Integer> getApplicationId(Integer postingId);
 
     Integer getApplied(String memberId, Integer postingId);
+
+    @Select("""
+            SELECT COUNT(*)
+            FROM TB_JOB_APPLICATION
+            WHERE  
+            member_id = #{memberId}
+            """)
+    Integer countApplicationBymemberId(String memberId);
 }
