@@ -1,10 +1,9 @@
 package com.project.careerfair.service.apply;
 
-import java.util.List;
 import java.util.Map;
 
 public interface PostingApplyService {
-    Map<String, Object> getApplyList(String memberId);
+    Map<String, Object> getApplyList(String memberId, Integer page);
 
     Map<String, Object> getApplyInfo(Integer applicationId);
 

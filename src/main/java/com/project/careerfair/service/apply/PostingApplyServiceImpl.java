@@ -30,10 +30,32 @@ public class PostingApplyServiceImpl implements PostingApplyService{
     @Value("${aws.s3.bucketName}")
     private String bucketName;
     @Override
-    public Map<String, Object> getApplyList(String memberId) {
+    public Map<String, Object> getApplyList(String memberId, Integer currentPage) {
         Map<String, Object> resultMap = new HashMap<>();
 
-        List<JobApplication> applyList = jobApplicationMapper.getApplyList(memberId);
+        Integer applicationCount = jobApplicationMapper.countApplicationBymemberId(memberId);
+        Map<String, Object> pageInfo = new HashMap<>();
+        pageInfo.put("page", currentPage);
+
+        Integer last = applicationCount / 10 + 1;
+        pageInfo.put("last", last);
+
+        Integer begin = 1 + (currentPage - 1) / 10 * 10;
+        Integer end = Math.min(begin + 9, last);
+
+        pageInfo.put("begin", begin);
+        pageInfo.put("end", end);
+
+        Integer previous = Math.max(1, (currentPage - 1) / 10 * 10);
+        Integer next = Math.min(last, (currentPage - 1) / 10 * 10 + 11);
+        pageInfo.put("previous", previous);
+        pageInfo.put("next", next);
+
+        Integer startIndex = currentPage * 10 - 10;
+
+        List<JobApplication> applyList = jobApplicationMapper.getApplyList(memberId, startIndex);
+        resultMap.put("applyList", applyList);
+
         List<Posting> postingDetails = new ArrayList<>();
         List<Company> companyList = new ArrayList<>();
 
@@ -42,9 +64,11 @@ public class PostingApplyServiceImpl implements PostingApplyService{
             postingDetails.add(posting);
             companyList.add(companyMapper.getDetail(posting.getCompanyId()));
         }
-        resultMap.put("applyList", applyList);
         resultMap.put("post", postingDetails);
         resultMap.put("companyList",companyList);
+        resultMap.put("pageInfo", pageInfo);
+
+
 
         return resultMap;
     }

@@ -3,6 +3,7 @@ package com.project.careerfair.controller.company;
 import com.project.careerfair.domain.Posting;
 import com.project.careerfair.service.posting.PostingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +24,15 @@ public class CompanyPostingController {
 
     @GetMapping("list")
     public void list(
-            String memberId,
+            Authentication authentication,
             Model model,
             @RequestParam(value="page", defaultValue = "1")Integer page,
             @RequestParam(value="status", defaultValue="all") String status
     ){
 
+        String memberId = authentication.getName();
         Map<String,Object> resultMap = service.getPostingInfo(memberId, page, status);
+
         model.addAttribute("postingList", resultMap.get("postingList"));
         model.addAttribute("pageInfo", resultMap.get("pageInfo"));
         model.addAttribute("companyList", resultMap.get("companyList"));
