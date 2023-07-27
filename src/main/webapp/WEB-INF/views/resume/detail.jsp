@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%@ page import="java.util.*" %>
 
@@ -45,11 +46,12 @@
     <!-- 이력서 제목 -->
     <div class="form-group mb-3 resumeTitleDiv">
         <div class="resume-subject">${resumeData.title}</div>
-        <div>
-<%--            <button type="submit" class="btn btn-outline-dark" id="getResumeUpdate" value="${resumeData.resumeId}">수정</button>--%>
-            <a href="/resume/${resumeData.resumeId}/update" id="updateResume" class="genric-btn default">수정</a>
-            <a href="/resume/" id="moveToList" class="genric-btn default-border">목록</a>
-        </div>
+        <sec:authorize access="hasAuthority('user')">
+            <div>
+                <a href="/resume/${resumeData.resumeId}/update" id="updateResume" class="genric-btn default">수정</a>
+                <a href="/resume/" id="moveToList" class="genric-btn default-border">목록</a>
+            </div>
+        </sec:authorize>
     </div>
 
     <%--  인적사항  --%>
@@ -89,7 +91,7 @@
     <%-- 경력 --%>
     <div class="base career">
         <div class="headers">
-            <h4 class="">경력</h4>
+            <h4 class="mb-10">경력</h4>
         </div>
         <div class="list list-career">
             <c:forEach var="career" items="${resumeData.careers}">
@@ -126,7 +128,7 @@
     <!-- 학력 -->
     <div class="base education">
         <div class="headers">
-            <h4 class="">학력</h4>
+            <h4 class="mb-10">학력</h4>
         </div>
         <div class="list list-education">
             <c:forEach var="education" items="${resumeData.educations}">
@@ -158,7 +160,7 @@
     <!-- 자격증 -->
     <div class="base certificate">
         <div class="headers">
-            <h4 class="">자격증</h4>
+            <h4 class="mb-10">자격증</h4>
         </div>
         <div class="list list-certificate">
             <c:forEach var="certification" items="${resumeData.certifications}">
@@ -178,7 +180,7 @@
     <!-- 희망근무조건 -->
     <div class="base hopework" id="js-hopeworkAnchor">
         <div class="headers">
-            <h4 class="">희망근무조건</h4>
+            <h4 class="mb-10">희망근무조건</h4>
         </div>
         <table class="table table-hopework">
 <%--            <caption><span class="skip">희망근무조건</span></caption>--%>
@@ -224,7 +226,7 @@
     <!-- 병역여부 -->
     <div class="base certificate">
         <div class="headers">
-            <h4 class="">병역여부</h4>
+            <h4 class="mb-10">병역여부</h4>
         </div>
         <div class="list list-certificate list-military">
             <div class="item pdf-page-break">
@@ -242,7 +244,7 @@
     <!-- 자기소개 -->
     <div class="form-group mb-3">
         <div class="headers">
-            <h4 class="">자기소개</h4>
+            <h4 class="mb-10">자기소개</h4>
         </div>
         <div class="form-group" id="${resumeData.resumeId}">${resumeData.intro}</div>
     </div>
@@ -250,7 +252,7 @@
     <!-- 희망업종 -->
     <div class="base certificate">
         <div class="headers">
-            <h4 class="">희망업종</h4>
+            <h4 class="mb-10">희망업종</h4>
         </div>
         <div class="list list-certificate list-industry">
             <div class="item pdf-page-break">
