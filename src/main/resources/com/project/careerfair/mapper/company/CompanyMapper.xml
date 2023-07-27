@@ -44,7 +44,12 @@
 
     <select id="getList" resultMap="companyMap">
         <bind name="pattern" value="'%' + search + '%'"/>
-        SELECT * FROM (SELECT * FROM TB_COMPANIES WHERE round = #{round}) c
+        <if test="roundValue eq 'now'">
+            SELECT * FROM (SELECT * FROM TB_COMPANIES WHERE round = #{round}) c
+        </if>
+        <if test="roundValue eq 'past'">
+            SELECT * FROM (SELECT * FROM TB_COMPANIES WHERE round &lt; #{round}) c
+        </if>
         <where>
             <if test="type eq 'all'">
                 (member_id LIKE #{pattern}
@@ -63,7 +68,7 @@
             </if>
             <if test="(status eq 'all') or (status eq '') ">
             </if>
-            <if test="status neq 'all'">
+            <if test="status eq 'review' or status eq 'hold' or status eq 'approved' or status eq 'rejected'">
                 AND status LIKE #{status}
             </if>
         </where>

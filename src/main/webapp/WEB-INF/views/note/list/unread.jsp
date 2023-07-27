@@ -36,7 +36,9 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    안읽은 쪽지함
+</my:job-inner-banner>
 
 <sec:authentication property="name" var="userId" />
 

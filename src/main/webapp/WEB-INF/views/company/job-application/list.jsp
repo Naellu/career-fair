@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/css/job-css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Title</title>
+    <title>입사지원관리</title>
 
     <style>
         .container-lg {
@@ -42,7 +42,9 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    입사 지원 관리
+</my:job-inner-banner>
 
 
 <div class="container-lg">

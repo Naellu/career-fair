@@ -95,7 +95,7 @@
                 <div class="single-post job-details mt-3">
                     <h4 class="my-4"><i class="fa-solid fa-user-check"></i> 필요조건입니다</h4>
                     <input id="level" style="font-size: 17px" class="form-control-plaintext" value="대졸이상 경력" readonly/>
-                    <textarea id="requirements" style="resize: none; font-size: 17px" class="form-control-plaintext"
+                    <textarea id="requirements" style="resize: none; font-size: 17px; overflow: hidden" class="form-control-plaintext"
                               cols="30" rows="2"
                               readonly></textarea>
                 </div>
@@ -116,7 +116,7 @@
 
                 <div class="single-post job-details mt-3">
                     <h4 class="my-4"><i class="fa-solid fa-hand-holding-heart"></i> 이런 복지가 있습니다</h4>
-                    <textarea id="benefits" style="resize: none; font-size: 17px" class="form-control-plaintext ta"
+                    <textarea id="benefits" style="resize: none; font-size: 17px; overflow: hidden" class="form-control-plaintext ta"
                               cols="30" rows="2"
                               readonly></textarea>
                 </div>
@@ -130,7 +130,7 @@
 
                 <div id="etc" class="single-post job-details mt-3">
                     <h4 class="my-4">기타 사항</h4>
-                    <textarea style="resize: none; font-size: 17px;" class="form-control-plaintext" cols="30" readonly></textarea>
+                    <textarea style=" overflow: hidden; resize: none; font-size: 17px;" class="form-control-plaintext" cols="30" readonly></textarea>
                 </div>
 
                 <div style="text-align: center;" class="mb-5">

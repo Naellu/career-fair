@@ -29,14 +29,16 @@
     <link rel="stylesheet" href="/css/job-css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Title</title>
+    <title>채용공고</title>
 
 </head>
 <body onload="changeSalary(${post.salary})">
 
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    공고 상세
+</my:job-inner-banner>
 
 <c:if test="${not empty message}">
     <script>alert('${message}')</script>
@@ -44,9 +46,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <img src="[회사 로고 경로]" class="img-fluid rounded-circle mx-auto d-block" alt="회사 로고">
+            <img src="${bucketUrl}/company/${company.companyId}/logo.png" class="img-fluid rounded-circle mx-auto d-block" alt="회사 로고">
             <h2 class="text-center my-4">${company.companyName}</h2>
-
 
             <h4 class="my-4">${post.title} (${post.status})</h4>
             <h5 class="my-3">모집기간 : ${post.startDate} ~ ${post.endDate}</h5>

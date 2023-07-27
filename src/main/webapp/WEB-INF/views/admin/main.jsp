@@ -28,7 +28,9 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    관리자 메인 페이지
+</my:job-inner-banner>
 
 <%--
 <my:navBar/>
@@ -37,8 +39,6 @@
 </my:cheader>
 --%>
 
-
-<my:job-footer/>
 <%--
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

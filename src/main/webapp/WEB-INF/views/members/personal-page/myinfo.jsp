@@ -36,12 +36,14 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    ${members.name }님회원정보
+</my:job-inner-banner>
 
-<div class="container-lg infoMainDiv">
+<div class="container-lg infoMainDiv mt-3">
     <div class="row justify-content-center"></div>
     <div id="idDiv">
-        <h1>${members.name }님회원정보</h1>
+
     </div>
     <div class="container-lg">
         <div class="row justify-content-center">

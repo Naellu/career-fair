@@ -21,7 +21,7 @@
 <%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
 <%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
 
-    <title>Title</title>
+    <title>입사지원관리</title>
 
     <style>
         .container-lg {
@@ -50,7 +50,9 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    지원자 상세 정보
+</my:job-inner-banner>
 
 <div class="container-lg">
     <div class="row justify-content-center">

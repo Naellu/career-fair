@@ -34,7 +34,9 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    지원 공고 목록
+</my:job-inner-banner>
 
 
 <div class="container mt-50">

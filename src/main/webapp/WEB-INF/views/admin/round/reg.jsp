@@ -92,7 +92,7 @@
                 <div class="mb-3">
                     <label for="input-address" class="form-label">주소</label>
                     <div class="input-group">
-                        <form:input path="location" id="input-address" type="text" class="form-control mb-1"
+                        <form:input path="location" style="background-color: white" id="input-address" type="text" class="form-control mb-1"
                                     readonly="true" placeholder="도로명 주소"/>
                         <button class="btn btn-outline-secondary" type="button" id="search-address-btn">주소검색</button>
                     </div>

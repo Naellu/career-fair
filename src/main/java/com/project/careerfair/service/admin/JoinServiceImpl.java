@@ -30,9 +30,15 @@ public class JoinServiceImpl implements JoinService {
         Integer pageSize = 10; // 10개씩
         Integer startNum = (page - 1) * pageSize; // 0 10 20
 
+        String roundValue = "now";
+
+        if (status.equals("past")) {
+            roundValue = "past";
+        }
+
         //페이지네이션 정보
         //총 글 개수
-        Integer count = companyMapper.countAll(type, search, status,round);
+        Integer count = companyMapper.countAll(type, search, status, round, roundValue);
 
         // 마지막 페이지 번호
         // 총 글개수 -1 / pageSize + 1
@@ -61,7 +67,7 @@ public class JoinServiceImpl implements JoinService {
         pageInfo.put("prevPageNum", prevPageNum);
         pageInfo.put("nextPageNum", nextPageNum);
 
-        List<Company> companyList = companyMapper.getList(startNum, pageSize, search, type, status, round);
+        List<Company> companyList = companyMapper.getList(startNum, pageSize, search, type, status, round, roundValue);
 
         return Map.of("pageInfo", pageInfo, "companyList", companyList);
     }

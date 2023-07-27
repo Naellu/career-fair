@@ -35,15 +35,16 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    스크랩 목록
+</my:job-inner-banner>
 
-
-<div class="container mt-50">
+<div class="container mt-3">
     <div class="row justify-content-center d-flex">
 
         <div class="col-lg-9 post-list">
             <br/>
-            <h3>스크랩 목록</h3>
+
             <hr>
             <table id="posting-table" class="table table-bordered custom-div center-align">
 

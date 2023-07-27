@@ -110,14 +110,15 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    회원 정보 수정
+</my:job-inner-banner>
 
 <div style="display: flex;justify-content: center;">
 <div style="margin: 25px 0px;">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3">
         <div>
             <div style="display: flex; justify-content: center;">
-            <h1>회원 정보 수정</h1>
             </div>
             <div style="display: flex; justify-content: center;">
             <div style="font-size: 13px; color: #4C84F3; margin-bottom: 20px;">정보수정은 비밀번호/Email/주소/전화번호만 수정가능합니다.</div>
