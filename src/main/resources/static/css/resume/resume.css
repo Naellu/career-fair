@@ -32,6 +32,7 @@
     right: 0;
     background: none;
     border: none;
+    z-index: 1;
 }
 
 .addBtnDiv {

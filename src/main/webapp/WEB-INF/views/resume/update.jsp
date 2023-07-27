@@ -33,14 +33,19 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    이력서 수정
+</my:job-inner-banner>
 
-  <div class="container col-lg-5">
-      <h2 class="mt-4 mb-3" id="resumeMain">이력서 수정</h2>
+  <div class="container col-lg-5 pt-50">
+
+      <div class="text-right">
+          <a href="/resume/" class="genric-btn default">뒤로가기</a>
+      </div>
 
       <!-- 이력서 제목 입력칸 -->
       <div class="form-group mb-3">
-          <h4>이력서 제목</h4>
+          <h4 class="mb-10">이력서 제목</h4>
           <input type="text" class="form-control" id="resumeTitle" value="${resumeUpdateData.title}" placeholder="이력서 제목을 입력해주세요">
       </div>
 
@@ -49,7 +54,7 @@
 
       <!-- 경력 입력 그룹 -->
       <div class="form-group mb-3">
-          <h4>경력</h4>
+          <h4 class="mb-10">경력</h4>
           <div id="careerContainer" class="inputContainer">
               <c:forEach var="career" items="${resumeUpdateData.careers}" varStatus="status">
                   <div class="careerGroup inputDetailGroup">
@@ -91,7 +96,7 @@
 
       <!-- 학력 입력 그룹 -->
       <div class="form-group mb-3">
-          <h4>학력</h4>
+          <h4 class="mb-10">학력</h4>
           <div id="educationContainer" class="inputContainer">
               <c:forEach var="education" items="${resumeUpdateData.educations}" varStatus="status">
                   <div class="educationGroup inputDetailGroup">
@@ -148,7 +153,7 @@
 
       <!-- 자격증 입력 그룹 -->
       <div class="form-group mb-3">
-          <h4>자격증</h4>
+          <h4 class="mb-10">자격증</h4>
           <div id="certificationContainer" class="inputContainer">
               <c:forEach var="certification" items="${resumeUpdateData.certifications}" varStatus="status">
                   <div class="certificationGroup inputDetailGroup">
@@ -177,7 +182,7 @@
       </div>
 
       <!-- 희망근무조건 입력 그룹 -->
-      <h4>희망근무조건</h4>
+      <h4 class="mb-10">희망근무조건</h4>
       <div id="desiredConditionContainer" class="inputContainer">
           <div class="form-group mb-3 desiredConditionGroup inputDetailGroup">
               <input type="hidden" class="form-control workConditionId" id="workConditionId" value="${resumeUpdateData.workCondition.workConditionId}">
@@ -203,7 +208,7 @@
 
       <!-- 병역여부 그룹 -->
       <div class="form-group mb-3">
-          <h4>병역여부</h4>
+          <h4 class="mb-10">병역여부</h4>
           <div class="inputContainer">
               <div class="inputDetailGroup">
                   <div class="form-check">
@@ -231,13 +236,13 @@
 
       <!-- 자기소개 입력칸 -->
       <div class="form-group mb-3">
-          <h4>자기소개</h4>
+          <h4 class="mb-10">자기소개</h4>
           <textarea class="form-control" id="selfIntroduction" rows="3">${resumeUpdateData.intro}</textarea>
       </div>
 
       <!-- 희망업종 선택칸 -->
       <div class="form-group mb-3">
-          <h4>희망업종</h4>
+          <h4 class="mb-10">희망업종</h4>
           <select class="form-select" id="desiredIndustry">
               <c:forEach var="industry" items="${industry}" >
                   <option value="${industry.industryId}" ${industry.industryId == resumeUpdateData.industryId ? 'selected' : ''}>${industry.industryName}</option>

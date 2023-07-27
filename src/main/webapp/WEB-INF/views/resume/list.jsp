@@ -32,7 +32,9 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    이력서
+</my:job-inner-banner>
   <br>
 
   <div class="container mt-30">
@@ -43,18 +45,18 @@
 
               <div class="form-head">
                   <div class="hdWrap">
-                      <h2 class="hd_1">이력서 목록</h2>
+<%--                      <h2 class="hd_1">이력서 목록</h2>--%>
                       <%--              <a class="hd_side" href="/User/ResumeMng/File">첨부파일 관리</a>--%>
                   </div>
 
                   <div class="btnBx">
-                      <a id="resumeWrittenBtn" href="/resume/write" class="btn btnBl mtuSpImgBefore wrBtn">
+                      <a id="resumeWrittenBtn" href="/resume/write" class="btn btnBl mtuSpImgBefore wrBtn genric-btn primary-border radius">
                           <span>이력서 등록</span>
                       </a>
                   </div>
               </div>
 
-              <div class="tableList">
+              <div class="tableList pt-20">
                   <div clas="">
                       <div class="listSortArea">
                           <div class="col col01">이력서 제목</div>

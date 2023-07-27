@@ -37,22 +37,22 @@
 /*    vertical-align: middle;*/
 /*}*/
 
-.wrBtn {
-    position: relative;
-    overflow: hidden;
-    font-family: inherit;
-    display: inline-block;
-    padding: 6px 10px 8px;
-    font-size: 12px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: normal;
-    letter-spacing: -1px;
-    white-space: nowrap;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+/*.wrBtn {*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*    font-family: inherit;*/
+/*    display: inline-block;*/
+/*    !*padding: 6px 10px 8px;*!*/
+/*    font-size: 14px;*/
+/*    text-align: center;*/
+/*    vertical-align: middle;*/
+/*    line-height: normal;*/
+/*    letter-spacing: -1px;*/
+/*    white-space: nowrap;*/
+/*    -webkit-box-sizing: border-box;*/
+/*    -moz-box-sizing: border-box;*/
+/*    box-sizing: border-box;*/
+/*}*/
 
 .btnBx {
     position: relative;
@@ -60,13 +60,13 @@
     right: 10px;
 }
 
-.wrBtn, a.wrBtn {
-    /*border: 1px solid #39f!important;*/
-    /*background: #39f!important;*/
-    background: #f8edd5!important;
-    /*color: #fff!important;*/
-    color: #252525!important;
-}
+/*.wrBtn, a.wrBtn {*/
+/*    !*border: 1px solid #39f!important;*!*/
+/*    !*background: #39f!important;*!*/
+/*    background: #f8edd5!important;*/
+/*    !*color: #fff!important;*!*/
+/*    color: #252525!important;*/
+/*}*/
 
 a, a:link, a:visited {
     color: #999;
@@ -82,7 +82,7 @@ a, a:link, a:visited {
 }
 
 #resumeWrittenBtn {
-    padding: 9px 20px 7px;
+    /*padding: 9px 20px 7px;*/
 }
 
 /*-- 수정 전 css ---*/
