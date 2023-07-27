@@ -52,6 +52,7 @@ public class QnaController {
         List<QnaQuestion> list = service.readQuestion();
         List<QnaQuestion> updatedList = new ArrayList<>();
 
+
         Map<String, Object> pageInfo = service.readQuestion(page);
         List<QnaQuestion> questionList = (List<QnaQuestion>) pageInfo.get("questionList");
 
