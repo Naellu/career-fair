@@ -58,11 +58,11 @@ public class CompanyPostingController {
 
 
         if(ok){
-            rttr.addFlashAttribute("message","공지가 등록되었습니다.");
+            rttr.addFlashAttribute("message","공고가 등록되었습니다.");
             return "redirect:/company/posting/list?memberId=" + posting.getMemberId();
 
         } else{
-            rttr.addFlashAttribute("message", "공지가 등록되지 않았습니다.");
+            rttr.addFlashAttribute("message", "공고가 등록되지 않았습니다.");
             return "redirect:/company/posting/list?memberId=" + posting.getMemberId();
         }
     }
