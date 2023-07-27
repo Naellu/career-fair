@@ -14,11 +14,11 @@
 <html>
 <head>
 
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"--%>
-<%--          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">--%>
-<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
-<%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
-<%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"--%>
+    <%--          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">--%>
+    <%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"--%>
+    <%--          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="--%>
+    <%--          crossorigin="anonymous" referrerpolicy="no-referrer"/>--%>
 
     <link rel="stylesheet" href="/css/job-css/linearicons.css">
     <link rel="stylesheet" href="/css/job-css/bootstrap.css">
@@ -43,19 +43,20 @@
 <div id="contents" class="container">
     <p class="tit_ty01">
         <span class="line"></span>
-        이메일주소 무단수집거부<!-- 2018-09-12 -->
+        <h1 class="pt-20">이메일주소 무단수집거부</h1>
     </p>
 
     <!-- 2018-09-12 -->
     <div class="agreement_article">
-<pre>본 채용박람회 사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 무단으로 수집되는 것을 <br>거부하며 이를 위반 시 [정보통신망법에 의해 형사처벌]됨을 유념하시기 바랍니다.<br><br>
-게시일 2018년 9월 14일</pre>
+        <p>본 채용박람회 사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 무단으로 수집되는 것을 <br>거부하며 이를 위반 시 [정보통신망법에 의해 형사처벌]됨을
+            유념하시기 바랍니다.<br><br>
+            게시일 2023년 08월 01일</p>
     </div>
     <!-- //2018-09-12 -->
 
 </div>
 
-<my:job-footer />
+<my:job-footer/>
 
 <%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"--%>
 <%--        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"--%>
