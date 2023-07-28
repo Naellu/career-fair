@@ -40,6 +40,10 @@
             top: 0;
             bottom: 0;
         }
+        #modifyForm{
+            display: flex;
+            flex-direction: column;
+        }
         .sign-column{
             margin: 0px 0px 15px 0px;
         }
@@ -48,8 +52,12 @@
             border-bottom: 1px solid rgba(0,0,0,0.2);
             margin-right: 30px;
             outline:none;
-            width: 300px;
+            width: 95%;
             padding: 0px 5px;
+            transition: border-color 0.2s ease-in-out;
+        }
+        .sign-input:focus{
+            border-color: #fee102;
         }
         .check-button{
             padding: 5px;
@@ -60,6 +68,7 @@
             align-items: center;
             color: white;
             transition: background-color 0.1s ease-in;
+            cursor: pointer;
         }
         .check-button:hover {
             background-color: #9B9B9B;
@@ -69,24 +78,36 @@
             border-bottom: 1px solid rgba(0,0,0,0.2);
             margin-right: 30px;
             outline:none;
-            width: 300px;
+            width: 84.7%;
             padding: 0px 5px;
+            transition: border-color 0.2s ease-in-out;
+        }
+        #totalphone-num:focus{
+            border-color: #fee102;
         }
         #totalemail{
             border: none;
             border-bottom: 1px solid rgba(0,0,0,0.2);
             outline:none;
-            width: 270px;
+            width: 86%;
             padding: 0px 5px;
+            margin-right: 20px;
+            transition: border-color 0.2s ease-in-out;
+        }
+        #totalemail:focus{
+            border-color: #fee102;
         }
         #zipcode{
-            margin-left: 63px;
             border: none;
             border-bottom: 1px solid rgba(0,0,0,0.2);
-            margin-right: 30px;
+            margin-right: 20px;
             outline:none;
-            width: 205px;
+            width: 30%;
             padding: 0px 5px;
+            transition: border-color 0.2s ease-in-out;
+        }
+        #zipcode:focus {
+            border-color: #fee102;
         }
         #verifyEmailBtn{
             display: flex;
@@ -98,6 +119,7 @@
             border: none;
             color: whitesmoke;
             transition: background-color 0.1s ease-in;
+            cursor: pointer;
         }
         #verifyEmailBtn:hover {
             background-color: #9B9B9B;
@@ -121,49 +143,53 @@
     회원 정보 수정
 </my:job-inner-banner>
 
-<div style=" display:flex; justify-content: center; margin: 25px 0px;">
-    <div class="row justify-content-center">
-        <div>
-            <div style="font-size: 13px; display: flex; justify-content: center; color: #4C84F3; margin-bottom: 20px;">정보수정은 비밀번호/Email/주소/전화번호만 수정가능합니다.</div>
+<div>
+    <div style="margin: 40px 0px 40px 0px; display: flex;justify-content: center;">
+        <div style="border: 1px solid rgba(0,0,0,0.3); border-radius: 7px; margin-top: 30px; background-color: #fafafa; padding: 0px 30px;">
+            <div style="display: flex; justify-content: center;">
+            <div style="font-size: 13px; color: #4C84F3; margin: 40px 140px;">정보수정은 비밀번호 / Email / 주소 / 전화번호만 수정가능합니다.</div>
+            </div>
             <form id="modifyForm" action="/members/company-page/modify" method="post">
-                <div style="display: flex;justify-content: center;">
                     <div class="sign-column">
+                        <div>
                         <span style="margin-right: 70px;">아이디</span>
+                        </div>
                         <input type="text" class="sign-input" id="input-id" name="id" value="${member.id}" maxlength="20" readonly>
                     </div>
-                </div>
 
                 <c:if test="${empty members.oauth }">
-                    <div style="display: flex; justify-content: center;">
                     <div class="sign-column">
+                        <div>
                         <span style="margin-right: 35px;">새 비밀번호 * </span>
+                        </div>
                         <input type="password" class="sign-input" id="input-password" name="password" placeholder="영문,숫자,특수문자 조합하여 8~16자리" maxlength="16">
-                        <div style="margin-left: 120px;" id="pwdcheck-blank1"></div>
+                        <div id="pwdcheck-blank1"></div>
                     </div>
-                    </div>
-                <div style="display: flex; justify-content: center;">
                     <div class="sign-column">
+                        <div>
                         <span style="margin-right: 10px;">새 비밀번호 확인 * </span>
+                        </div>
                         <input  type="password" class="sign-input" id="password-check" name="password-check" placeholder="위와 동일하게 입력해주세요">
-                        <div style="margin-left: 120px;" id="pwdcheck-blank2"></div>
+                        <div id="pwdcheck-blank2"></div>
                     </div>
-                </div>
                 </c:if>
 
-                <div class="sign-column" style="display: flex; justify-content: center;">
+                <div class="sign-column">
+                    <div>
                     <span style="margin-right: 40px;">이메일 주소 *</span>
-                    <input id="totalemail" name="email" value="${member.email}">
+                    </div>
+                    <input id="totalemail" class="sign-input" name="email" value="${member.email}">
                     <input type="button" class="check-button" id="search-email" value="중복확인">
                     <input style="display: none;" type="button" class="check-button" id="checkEmailBtn" value="인증하기">
                 </div>
-                    <div style="display: flex; justify-content: center; font-size: 13px; margin-bottom: 10px;" >
+                    <div style="font-size: 13px;" >
                     <div class="d-none form-text text-primary" id="availableEmailMessage">
-                        <i class="fa-solid fa-check" ><span style="margin-right:40px ;">등록 가능한 이메일 입니다.</span></i>
+                        <i class="fa-solid fa-check" ><span>등록 가능한 이메일 입니다.</span></i>
                     </div>
                     </div>
-                    <div style="display: flex; justify-content: center; font-size: 13px; margin-bottom: 10px;">
+                    <div style="font-size: 13px;">
                     <div class="d-none form-text text-danger" id="notAvailableEmailMessage" >
-                        <i class="fa-solid fa-triangle-exclamation" style="font-size: 14px;"><span style="margin-right:40px;">이미 등록된 이메일 입니다.</span></i>
+                        <i class="fa-solid fa-triangle-exclamation" style="font-size: 14px;"><span>이미 등록된 이메일 입니다.</span></i>
                     </div>
                     </div>
 
@@ -181,25 +207,24 @@
                     <i class="fa-solid fa-check"></i>이메일 인증이 완료되었습니다.
                 </div>
 
-                <div style="margin: 10px 0px;">
-                    <div style="display: flex; align-items: center; justify-content: center;">
+                <div class="sign-column">
+                    <div>
                         <span style="margin-right: 15px;">우편번호</span>
+                    </div>
                         <input class="sign-input" type="text" id="zipcode" name="zipCode" value="${member.zipCode}">
                         <input class="check-button" type="button" value="우편번호찾기" onclick="kakaoAddress()">
-                    </div>
-                    <div style="display: flex;justify-content: center;">
+
                     <div style="margin-top: 10px;">
-                        <span style="margin-right: 80px;">주 소</span>
+                        <span>주 소</span>
+                        </div>
                         <input class="sign-input" type="text" name="address" id="address" value="${member.address}">
-                        <div class="form-text" style="margin-left: 120px;">변경하지 않을 시 기존의 주소로 설정됩니다.</div>
-                    </div>
-                    </div>
+                        <div class="form-text">변경하지 않을 시 기존의 주소로 설정됩니다.</div>
                 </div>
 
-                <div  style="margin-left: 5px;" class="sign-column">
+                <div class="sign-column">
                     <span style="margin-right: 40px;">휴대폰번호 *</span>
                     <div>
-                        <input type="text" maxlength="13" id="totalphone-num" name="phoneNumber" value="${member.phoneNumber}">
+                        <input type="text" maxlength="13" class="sign-input" id="totalphone-num" name="phoneNumber" value="${member.phoneNumber}">
                         <button class="check-button" type="button" style="outline: none;" id="checkPhoneNumBtn">중복확인</button>
                     </div>
                     <div class="d-none form-text text-primary" id="availablePhoneNumMessage">

@@ -39,6 +39,10 @@
             top: 0;
             bottom: 0;
         }
+        #modifyForm{
+            display: flex;
+            flex-direction: column;
+        }
         .sign-column{
             margin: 0px 0px 15px 0px;
         }
@@ -47,8 +51,12 @@
             border-bottom: 1px solid rgba(0,0,0,0.2);
             margin-right: 30px;
             outline:none;
-            width: 300px;
+            width: 95%;
             padding: 0px 5px;
+            transition: border-color 0.2s ease-in-out;
+        }
+        .sign-input:focus{
+            border-color: #fee102;
         }
         .check-button{
             padding: 5px;
@@ -59,6 +67,7 @@
             align-items: center;
             color: white;
             transition: background-color 0.1s ease-in;
+            cursor: pointer;
         }
         .check-button:hover {
             background-color: #9B9B9B;
@@ -68,15 +77,24 @@
             border-bottom: 1px solid rgba(0,0,0,0.2);
             margin-right: 30px;
             outline:none;
-            width: 200px;
+            width: 84.7%;
             padding: 0px 5px;
+            transition: border-color 0.2s ease-in-out;
+        }
+        #totalphone-num:focus{
+            border-color: #fee102;
         }
         #totalemail{
             border: none;
             border-bottom: 1px solid rgba(0,0,0,0.2);
             outline:none;
-            width: 260px;
+            width: 86%;
             padding: 0px 5px;
+            margin-right: 20px;
+            transition: border-color 0.2s ease-in-out;
+        }
+        #totalemail:focus{
+            border-color: #fee102;
         }
         .maile-sign-input2{
             border: none;
@@ -87,13 +105,31 @@
             margin-right: 30px;
         }
         #zipcode{
-            margin-left: 63px;
             border: none;
             border-bottom: 1px solid rgba(0,0,0,0.2);
-            margin-right: 30px;
+            margin-right: 20px;
             outline:none;
-            width: 205px;
+            width: 30%;
             padding: 0px 5px;
+            transition: border-color 0.2s ease-in-out;
+        }
+        #zipcode:focus {
+            border-color: #fee102;
+        }
+        #verifyEmailBtn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 7px;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            border: none;
+            color: whitesmoke;
+            transition: background-color 0.1s ease-in;
+            cursor: pointer;
+        }
+        #verifyEmailBtn:hover {
+            background-color: #9B9B9B;
         }
     </style>
 
@@ -114,54 +150,51 @@
     회원 정보 수정
 </my:job-inner-banner>
 
-<div style="display: flex;justify-content: center;">
-<div style="margin: 25px 0px;">
-    <div class="row justify-content-center mt-3">
-        <div>
+<div>
+    <div style="display: flex; justify-content: center;">
+        <div style="border: 1px solid rgba(0,0,0,0.3); border-radius: 7px; margin-top: 30px; background-color: #fafafa; padding: 0px 30px;">
             <div style="display: flex; justify-content: center;">
-            </div>
-            <div style="display: flex; justify-content: center;">
-            <div style="font-size: 13px; color: #4C84F3; margin-bottom: 20px;">정보수정은 비밀번호/Email/주소/전화번호만 수정가능합니다.</div>
+            <div style="font-size: 13px; color: #4C84F3; margin: 40px 140px;">정보수정은 비밀번호 / Email / 주소 / 전화번호만 수정가능합니다.</div>
             </div>
             <form id="modifyForm" action="/members/personal-page/modify" method="post">
-                <div style="display: flex; justify-content: center;">
                     <div class="sign-column">
-                        <span style="margin-right: 80px;">아이디</span>
+                        <div>
+                        <span>아이디</span>
+                        </div>
                         <input type="text" class="sign-input" id="input-id" name="id" value="${member.id}" maxlength="20" readonly>
                     </div>
-                </div>
 
                 <c:if test="${empty members.oauth }">
-                <div style="display: flex; justify-content: center;">
                     <div class="sign-column">
+                        <div>
                         <span style="margin-right: 35px;">새 비밀번호 * </span>
+                        </div>
                         <input type="password" class="sign-input" id="input-password" name="password" placeholder="영문,숫자,특수문자 조합하여 8~16자리" maxlength="16">
-                        <div style="margin-left: 120px;" id="pwdcheck-blank1"></div>
+                        <div id="pwdcheck-blank1"></div>
                     </div>
-                </div>
-                <div style="display: flex; justify-content: center;">
                     <div class="sign-column">
+                        <div>
                         <span>새 비밀번호 확인 * </span>
+                        </div>
                         <input  type="password" class="sign-input" id="password-check" name="password-check" placeholder="위와 동일하게 입력해주세요">
-                        <div style="margin-left: 120px;" id="pwdcheck-blank2"></div>
+                        <div id="pwdcheck-blank2"></div>
                     </div>
-                </div>
                 </c:if>
 
-                <div style="display: flex; justify-content: center;">
                 <div class="sign-column">
+                    <div>
                     <span style="margin-right: 30px;">이메일 주소 *</span>
-                    <input id="totalemail" name="email" value="${member.email}">
+                    </div>
+                    <input id="totalemail" class="sign-input" name="email" value="${member.email}">
                     <input type="button" class="check-button" id="search-email" value="중복확인">
                     <input style="display: none;" type="button" class="check-button" id="checkEmailBtn" value="인증하기">
+                </div>
                     <div class="d-none form-text text-primary" id="availableEmailMessage">
-                        <i style="margin-left: 120px;" class="fa-solid fa-check"></i>등록 가능한 이메일 입니다.
+                        <i class="fa-solid fa-check"></i>등록 가능한 이메일 입니다.
                     </div>
                     <div class="d-none form-text text-danger" id="notAvailableEmailMessage">
-                        <i style="margin-left: 120px;" class="fa-solid fa-triangle-exclamation"></i>이미 등록된 이메일 입니다.
+                        <i class="fa-solid fa-triangle-exclamation"></i>이미 등록된 이메일 입니다.
                     </div>
-                </div>
-                </div>
 
                 <!-- 인증번호 입력 칸 -->
                 <div  style="display: none;" id="inputVerificationCode">
@@ -177,45 +210,43 @@
                 </div>
 
 
-                <div style="margin: 10px 0px;">
-                    <div style="display: flex; justify-content: center;">
-                    <div style="display: flex; align-items: center">
+                <div class="sign-column">
+                    <div>
                         <span>우편번호</span>
-                        <input class="sign-input" type="text" id="zipcode" name="zipCode" value="${member.zipCode}">
+                    </div>
+                        <input type="text" id="zipcode" name="zipCode" value="${member.zipCode}">
                         <input class="check-button" type="button" value="우편번호찾기" onclick="kakaoAddress()">
-                    </div>
-                    </div>
-                    <div style="display: flex; justify-content: center;">
+
                     <div style="margin-top: 10px;">
-                        <span style="margin-right: 80px;">주 소</span>
+                        <span>주 소</span>
+                    </div>
                         <input class="sign-input" type="text" name="address" id="address" value="${member.address}">
-                        <div class="form-text" style="margin-left: 110px;">변경하지 않을 시 기존의 주소로 설정됩니다.</div>
-                    </div>
-                    </div>
+                        <div class="form-text">변경하지 않을 시 기존의 주소로 설정됩니다.</div>
+
                 </div>
 
-                <div class="sign-column" style="margin-left: 5px;">
+                <div class="sign-column">
                     <span style="margin-right: 35px;">휴대폰번호 *</span>
                     <div>
                         <input type="text" maxlength="13" id="totalphone-num" name="phoneNumber" value="${member.phoneNumber}">
                         <button class="check-button" type="button" id="checkPhoneNumBtn">중복확인</button>
                     </div>
+
+                </div>
                     <div class="d-none form-text text-primary" id="availablePhoneNumMessage">
                         <i class="fa-solid fa-check"></i>등록 가능한 핸드폰 번호입니다.
                     </div>
                     <div class="d-none form-text text-danger" id="notAvailablePhoneNumMessage">
                         <i class="fa-solid fa-triangle-exclamation"></i>이미 등록된 핸드폰 번호입니다.
                     </div>
-                </div>
                 <div style="display: flex;justify-content: flex-end;">
                 <button disabled id="modify-Button" type="button" data-toggle="modal" data-target="#confirmModal" class="btn btn-primary">수정</button>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
-</div>
+
 <div class="modal fade" id="confirmModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

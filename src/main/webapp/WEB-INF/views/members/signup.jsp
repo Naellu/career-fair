@@ -82,12 +82,14 @@
       align-items: center;
       color: white;
       transition: background-color 0.1s ease-in;
+      cursor: pointer;
     }
     .check-button:hover {
       background-color: #9B9B9B;
     }
     #checkPhoneNumBtn{
       margin-left: 25px;
+      cursor: pointer;
     }
 
     .signphone-input1{
@@ -142,7 +144,21 @@
       color: white;
       margin: 10px;
     }
-
+    #verifyEmailBtn{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 7px;
+      background-color: rgba(0,0,0,0.2);
+      border-radius: 5px;
+      border: none;
+      color: whitesmoke;
+      transition: background-color 0.1s ease-in;
+      cursor: pointer;
+    }
+    #verifyEmailBtn:hover {
+      background-color: #9B9B9B;
+    }
   </style>
 
   <link rel="stylesheet" href="/css/job-css/linearicons.css">
