@@ -23,33 +23,21 @@
     <title>마이 페이지</title>
 
     <style>
-        .mypage-container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 40px 0px;
+        .single-price li {
+            font-size: 17px;
+            color: black;
         }
-        .mypage-container-myinfo {
-            justify-content: flex-end;
-            margin-right: 135px;
+
+        .single-price li:hover {
+            color: blue;
         }
-        .mypage-container-d{
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
-            margin: 0px 40px;
-            background-color: #fafafa;
-            width: 280px;
-            height: 320px;
-            border-radius: 5px;
-            border: 0.5px solid rgba(0,0,0,0.1);
+
+        .single-price a {
+            color: black;
         }
-        .mypage-column-t {
-            margin-bottom: 80px;
-        }
-        .mypage-column-b{
-            margin-bottom: 80px;
+
+        .single-price a:hover {
+            color: blue;
         }
     </style>
 
@@ -67,57 +55,81 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+    ${members.name}님의 마이페이지
+</my:job-inner-banner>
 
 <sec:authentication property="name" var="userId" />
 <c:url value="/note/list/receive" var="noteListURL">
     <c:param name="memberId" value="${userId}"/>
 </c:url>
-<div class="mypage-container">
-    <h1>${members.name}님의 마이페이지</h1>
-</div>
-<div class="mypage-container mypage-container-myinfo">
-    <sec:authorize access="isAuthenticated()">
-        <a href="/members/company-page/myinfo?id=<sec:authentication property="name" />">내 정보</a>
-    </sec:authorize>
-</div>
-<div class="mypage-container">
-    <div class="mypage-container-d">
-        <div class="mypage-column mypage-column-t"><span>쪽지함</span></div>
-        <div class="mypage-column mypage-column-b">
-            <c:url value="/note/list/receive" var="noteListURL">
-                <c:param name="memberId" value="${userId}"/>
-            </c:url>
-            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">받은쪽지함</span>
-            <c:url value="/note/list/send" var="noteListURL">
-                <c:param name="memberId" value="${userId}"/>
-            </c:url> <br>
-            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">보낸쪽지함</span>
-            <c:url value="/note/list/unread" var="noteListURL">
-                <c:param name="memberId" value="${userId}"/>
-            </c:url> <br>
-            <span onclick="location.href='${noteListURL}'" style="cursor: pointer; color: #4C84F3;">안읽은쪽지함[${unreadNote}]</span>
+
+<section class="price-area mt-5" id="price">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="single-price no-padding">
+                    <div class="price-top">
+                        <h4>쪽지함</h4>
+                    </div>
+                    <ul class="lists">
+                        <c:url value="/note/list/receive" var="noteListURL">
+                            <c:param name="memberId" value="${userId}"/>
+                        </c:url>
+                        <li><span onclick="location.href='${noteListURL}'" style="cursor: pointer;">받은쪽지함</span></li>
+                        <c:url value="/note/list/send" var="noteListURL">
+                            <c:param name="memberId" value="${userId}"/>
+                        </c:url>
+                        <li><span onclick="location.href='${noteListURL}'" style="cursor: pointer;">보낸쪽지함</span></li>
+                        <c:url value="/note/list/unread" var="noteListURL">
+                            <c:param name="memberId" value="${userId}"/>
+                        </c:url>
+                        <li><span onclick="location.href='${noteListURL}'" style="cursor: pointer;">안읽은쪽지함[${unreadNote}]</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="single-price no-padding">
+                    <div class="price-top">
+                        <h4>채용공고</h4>
+                    </div>
+                    <ul class="lists">
+                        <li><span onclick="location.href='/company/posting/list'" style="cursor:pointer;">채용공고 관리</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="single-price no-padding">
+                    <div class="price-top">
+                        <h4>기업신청기록</h4>
+                    </div>
+                    <ul class="lists">
+                        <li> <span onclick="location.href='/company/join/list'" style="cursor:pointer;">기록 보기</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="single-price no-padding">
+                    <div class="price-top">
+                        <h4>인재 찾기</h4>
+                    </div>
+                    <ul class="lists">
+                        <li> <span onclick="location.href='/resume/scout'" style="cursor:pointer;">공개된 이력서 보기</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="single-price no-padding">
+                    <div class="price-top">
+                        <h4>내정보보기</h4>
+                    </div>
+                    <ul class="lists">
+                        <li><a href="/members/company-page/myinfo?id=<sec:authentication property="name" />">내 정보</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="mypage-container-d">
-        <div class="mypage-column mypage-column-t">채용공고</div>
-        <div class="mypage-column mypage-column-b">
-            <span onclick="location.href='/company/posting/list'" style="cursor:pointer; color:#4C84F3;">채용공고 관리</span>
-        </div>
-    </div>
-    <div class="mypage-container-d">
-        <div class="mypage-column mypage-column-t">신청기록</div>
-        <div class="mypage-column mypage-column-b">
-            <span onclick="location.href='/company/join/list'" style="cursor:pointer; color:#4C84F3;">신청기록 보기</span>
-        </div>
-    </div>
-    <div class="mypage-container-d">
-        <div class="mypage-column mypage-column-t">인재 찾기</div>
-        <div class="mypage-column mypage-column-b">
-            <span onclick="location.href='/resume/scout'" style="cursor:pointer; color:#4C84F3;">공개된 이력서 보기</span>
-        </div>
-    </div>
-</div>
+</section>
 
 <my:job-footer />
 
