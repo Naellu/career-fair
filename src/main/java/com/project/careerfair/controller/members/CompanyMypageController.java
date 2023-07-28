@@ -1,7 +1,7 @@
 package com.project.careerfair.controller.members;
 
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.service.generalmember.UserPageService;
+import com.project.careerfair.service.members.UserPageService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

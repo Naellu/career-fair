@@ -1,6 +1,6 @@
 package com.project.careerfair.controller.members;
 
-import com.project.careerfair.service.generalmember.UserPageService;
+import com.project.careerfair.service.members.UserPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

@@ -1,8 +1,8 @@
-package com.project.careerfair.service.generalmember;
+package com.project.careerfair.service.members;
 
 import com.project.careerfair.domain.Members;
 import com.project.careerfair.mapper.Note.NoteMapper;
-import com.project.careerfair.mapper.generalmember.UserPageMapper;
+import com.project.careerfair.mapper.members.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserPageServiceImpl implements UserPageService {
 
     @Autowired
-    private UserPageMapper userMapper;
+    private MemberMapper memberMapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -21,7 +21,7 @@ public class UserPageServiceImpl implements UserPageService {
 
     @Override
     public Members get(String id) {
-        return userMapper.selectById(id);
+        return memberMapper.selectById(id);
     }
 
     @Override
@@ -34,12 +34,16 @@ public class UserPageServiceImpl implements UserPageService {
             String encryption = member.getPassword();
             member.setPassword(passwordEncoder.encode(encryption));
         }
-        Members oldMember = userMapper.selectById(member.getId());
+//        else {
+//            member.setPassword(passwordEncoder.encode(oldPassword));
+//        }
+        Members oldMember = memberMapper.selectById(member.getId());
         int cnt = 0;
-
+        System.out.println(oldMember);
+        System.out.println(oldPassword);
         if(passwordEncoder.matches(oldPassword, oldMember.getPassword())){
             // 기존 비밀번호와 같다면
-            cnt = userMapper.modify(member);
+            cnt = memberMapper.modify(member);
 
 //            if(member.getAuthority() != null){
 //                userMapper.updateAuthority(member);
@@ -49,7 +53,7 @@ public class UserPageServiceImpl implements UserPageService {
     }
     @Override
     public boolean removeAccout(Members member) {
-        Members oldMember = userMapper.selectById(member.getId());
+        Members oldMember = memberMapper.selectById(member.getId());
 
         int cnt = 0;
         if(passwordEncoder.matches(member.getPassword(), oldMember.getPassword())) {
@@ -58,7 +62,7 @@ public class UserPageServiceImpl implements UserPageService {
         //회원 테이블 0번으로 변경
 //        userMapper.deleteAuthority(member.getId());
 
-        cnt = userMapper.deleteById(member.getId(), 0);
+        cnt = memberMapper.deleteById(member.getId(), 0);
         }
         return cnt == 1;
     }

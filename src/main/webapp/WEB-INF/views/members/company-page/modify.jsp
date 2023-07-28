@@ -178,7 +178,7 @@
                     <div>
                     <span style="margin-right: 40px;">이메일 주소 *</span>
                     </div>
-                    <input id="totalemail" class="sign-input" name="email" value="${member.email}">
+                    <input id="totalemail" class="sign-input" name="email" value="${member.email}" type="email">
                     <input type="button" class="check-button" id="search-email" value="중복확인">
                     <input style="display: none;" type="button" class="check-button" id="checkEmailBtn" value="인증하기">
                 </div>
@@ -211,21 +211,23 @@
                     <div>
                         <span style="margin-right: 15px;">우편번호</span>
                     </div>
-                        <input class="sign-input" type="text" id="zipcode" name="zipCode" value="${member.zipCode}">
+                        <input class="sign-input" type="text" id="zipcode" name="zipCode" value="${member.zipCode}" readonly style="background-color: white;">
                         <input class="check-button" type="button" value="우편번호찾기" onclick="kakaoAddress()">
 
                     <div style="margin-top: 10px;">
                         <span>주 소</span>
                         </div>
-                        <input class="sign-input" type="text" name="address" id="address" value="${member.address}">
+                        <input class="sign-input" type="text" name="address" id="address" value="${member.address}" readonly style="background-color: white;">
                         <div class="form-text">변경하지 않을 시 기존의 주소로 설정됩니다.</div>
                 </div>
 
                 <div class="sign-column">
                     <span style="margin-right: 40px;">휴대폰번호 *</span>
                     <div>
-                        <input type="text" maxlength="13" class="sign-input" id="totalphone-num" name="phoneNumber" value="${member.phoneNumber}">
-                        <button class="check-button" type="button" style="outline: none;" id="checkPhoneNumBtn">중복확인</button>
+                        <div class="form-text">'-' 제외하고 입력</div>
+                        <input type="text" class="sign-input" id="totalphone-num" value="${member.phoneNumber}">
+                        <input type="hidden" class="sign-input" id="phone-num" name="phoneNumber" value="${member.phoneNumber}">
+                        <button disabled class="check-button" type="button" style="outline: none;" id="checkPhoneNumBtn">중복확인</button>
                     </div>
                     <div class="d-none form-text text-primary" id="availablePhoneNumMessage">
                         <i class="fa-solid fa-check"></i>등록 가능한 핸드폰 번호입니다.
@@ -235,7 +237,10 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: flex-end;">
-                <button disabled id="modify-Button" type="button" data-toggle="modal" data-target="#confirmModal" class="btn btn-primary">수정</button>
+                <button id="modify-Button" type="button" data-toggle="modal" data-target="#confirmModal" class="btn btn-primary">수정</button>
+                <div>
+                  <button type="button" onclick="history.go(-1);" style="margin-left: 40px;" class="btn btn-secondary">취소</button>
+                </div>
                 </div>
             </form>
 
@@ -255,8 +260,8 @@
                 <input form="modifyForm" id="inputOldPassword" class="form-control" type="password" name="oldPassword" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                 <button type="submit" form="modifyForm" class="btn btn-primary">확인</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
             </div>
         </div>
     </div>
