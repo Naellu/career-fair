@@ -38,6 +38,23 @@
     </style>
 
 
+    <style>
+        #posting-table {
+            width: 80%;
+        }
+    </style>
+
+    <style>
+        .table-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+
+
+
 </head>
 <body>
 <my:font />
@@ -47,7 +64,7 @@
 </my:job-inner-banner>
 
 
-<div class="container-lg">
+<div class="container-lg table-container">
 <table id="posting-table" class="table table-bordered custom-div">
     <thead class="table-dark">
     <tr>
