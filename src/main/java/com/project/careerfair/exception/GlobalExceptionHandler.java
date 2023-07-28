@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -18,10 +19,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public String handle403(AccessDeniedException ex, Model model) {
+    public String handle403(AccessDeniedException ex, Model model, RedirectAttributes rttr) {
         // 404 에러 처리 로직 구현
         String message = "권한이 없습니다.";
-        model.addAttribute("message", message);
-        return "error/403"; // 404 에러 페이지로 리디렉션
+        rttr.addFlashAttribute("message", message);
+        return "redirect:/login"; // 404 에러 페이지로 리디렉션
     }
 }

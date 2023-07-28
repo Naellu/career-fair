@@ -74,6 +74,8 @@
             <button id="search-btn" class="btn btn-outline-success" type="button">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
+            <div class="ms-3" id="cancel">
+            </div>
         </div>
 
         <div id="company-view" class="row mt-2">

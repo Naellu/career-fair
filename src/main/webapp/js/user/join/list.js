@@ -4,6 +4,7 @@ let industryValue = "";
 let roundValue = "";
 let pageValue = "8";
 let count = "";
+let hasResults = false;
 
 roundList();
 industryList();
@@ -135,6 +136,27 @@ function listView() {
                 `;
                 companyView.insertAdjacentHTML('beforeend', companyHtml);
             })
+            if (hasResults) {
+                const cancel = document.querySelector("#cancel");
+
+                const cancelHtml = `
+                    <button class="btn btn-outline-danger" type="button" id="cancel-search-btn">
+                        <i class="fa-solid fa-x"></i>
+                    </button>
+                `;
+
+                cancel.innerHTML = cancelHtml;
+
+                const cancelSearchBtn = document.querySelector('#cancel-search-btn');
+
+                if (cancelSearchBtn !== null) {
+                    cancelSearchBtn.addEventListener("click", function () {
+                        location.href = window.location.pathname;
+                        hasResults = false;
+                    });
+                }
+            }
+
 
         })
         .catch(error => {
@@ -155,7 +177,7 @@ searchBtn.addEventListener("click", function () {
     industryValue = industryId.value;
 
     pageValue = "8";
-
+    hasResults = true;
     listView(searchValue, typeValue, industryValue, roundValue, pageValue);
 });
 
@@ -173,6 +195,7 @@ search.addEventListener("keydown", function (event) {
 
         pageValue = "8";
 
+        hasResults = true;
         listView(searchValue, typeValue, industryValue, roundValue, pageValue);
     }
 });

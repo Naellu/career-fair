@@ -76,7 +76,7 @@
                         <a class="btn btn-success" href="/customer/notice/reg">글작성하기</a>
                     </div>
                 </sec:authorize>
-                <div class="single-widget search-widget mt-3">
+                <div class="single-widget mt-3">
                     <div class="d-flex justify-content-end ">
                         <div>
                             <div class="input-group">
@@ -91,6 +91,8 @@
                                 <button id="search-btn" class="btn btn-outline-success" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
+                                <div class="ms-3" id="cancel">
+                                </div>
                             </div>
                         </div>
                     </div>

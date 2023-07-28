@@ -1,6 +1,7 @@
 let searchValue = "";
 let typeValue = "";
 let pageValue = "1";
+let hasResults = false;
 
 listView(searchValue, typeValue, pageValue);
 
@@ -74,6 +75,27 @@ function listView(searchValue, typeValue, pageValue) {
             pageUl.innerHTML = "";
             createPagination(pageInfo, pageUl);
 
+            if (hasResults) {
+                const cancel = document.querySelector("#cancel");
+
+                const cancelHtml = `
+                    <button class="btn btn-outline-danger" type="button" id="cancel-search-btn">
+                        <i class="fa-solid fa-x"></i>
+                    </button>
+                `;
+
+                cancel.innerHTML = cancelHtml;
+
+                const cancelSearchBtn = document.querySelector('#cancel-search-btn');
+
+                if (cancelSearchBtn !== null) {
+                    cancelSearchBtn.addEventListener("click", function () {
+                        location.href = window.location.pathname;
+                        hasResults = false;
+                    });
+                }
+            }
+
         })
         .catch(error => {
             console.error("Error:", error);
@@ -90,7 +112,24 @@ searchBtn.addEventListener("click", function () {
 
     pageValue = '1';
 
+    hasResults = true;
     listView(searchValue, typeValue, pageValue);
+});
+
+const search = document.querySelector("#search");
+search.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        const search = document.querySelector("#search");
+        searchValue = search.value;
+
+        const type = document.querySelector("#type");
+        typeValue = type.value;
+
+        pageValue = '1';
+
+        hasResults = true;
+        listView(searchValue, typeValue, pageValue);
+    }
 });
 
 function createPagination(pageInfo, pageUl) {
