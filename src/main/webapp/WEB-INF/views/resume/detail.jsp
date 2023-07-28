@@ -52,6 +52,12 @@
                 <a href="/resume/" id="moveToList" class="genric-btn default-border">목록</a>
             </div>
         </sec:authorize>
+
+        <sec:authorize access="hasAuthority('recruiter') or hasAuthority('company')">
+            <div>
+                <a href="#" onclick="history.back(); return false;" class="genric-btn default">뒤로가기</a>
+            </div>
+        </sec:authorize>
     </div>
 
     <%--  인적사항  --%>
