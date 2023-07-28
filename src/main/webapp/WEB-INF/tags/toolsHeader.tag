@@ -8,11 +8,11 @@
     <div id="container">
         <div class="gjContainer svcuSubTool" id="secSvcu">
             <h2 class="gjTit">취업 성공 툴</h2>
-            <div class="pageTab">
+            <div class="pageTab pt-20 pb-30">
                 <div class="tabArea">
                     <ul class="tabs col06">
-                        <li class=""><a href="/tools/count"><span class="tx">글자수 세기</span></a></li>
                         <li class=""><a href="/tools/grade"><span class="tx">학점 계산기</span></a></li>
+                        <li class=""><a href="/tools/count"><span class="tx">글자수 세기</span></a></li>
                     </ul>
                 </div>
             </div>

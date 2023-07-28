@@ -45,6 +45,11 @@ function handleTagClick() {
 function resetIndustrySelection() {
     $("input[type=checkbox][name=industry]").prop('checked', false);
     $(".industry-tag").remove();
+
+    // URL의 쿼리 파라미터 삭제
+    let url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    // 페이지 리로드
+    window.location.href = url;
 }
 
 // 체크된 체크박스에 대해 해시태그를 생성

@@ -72,11 +72,11 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="single-feature">
-                    <a href="/members/personal-page/apply/list">
-                        <h4>입사지원</h4>
+                    <a href="/tools/grade">
+                        <h4>취업성공툴</h4>
                         <p>
-                            관심있는 기업에  <br>
-                            입사지원을 할 수 있습니다
+                            다양한 도구를 <br>
+                            사용할 수 있습니다
                         </p>
                     </a>
                 </div>
