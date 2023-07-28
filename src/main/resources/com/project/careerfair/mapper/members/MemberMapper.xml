@@ -20,6 +20,21 @@
         </collection>
     </resultMap>
 
+    <resultMap type="com.project.careerfair.domain.Members" id="userInfoMap">
+        <id property="id" column="member_id"></id>
+        <result property="password" column="password"></result>
+        <result property="name" column="name"></result>
+        <result property="gender" column="gender"></result>
+        <result property="isActive" column="is_active"></result>
+        <result property="phoneNumber" column="phone_number"></result>
+        <result property="email" column="email"></result>
+        <result property="address" column="address"></result>
+        <result property="zipCode" column="zip_code"></result>
+        <collection property="authority" ofType="string">
+            <result column="member_type"></result>
+        </collection>
+    </resultMap>
+
     <resultMap type="com.project.careerfair.domain.Members" id="signMember">
         <id property="id" column="member_id"></id>
         <result property="password" column="password"></result>

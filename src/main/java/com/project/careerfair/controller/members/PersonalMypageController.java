@@ -1,7 +1,7 @@
 package com.project.careerfair.controller.members;
 
 import com.project.careerfair.domain.Members;
-import com.project.careerfair.service.generalmember.UserPageService;
+import com.project.careerfair.service.members.UserPageService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.project.careerfair.service.apply.PostingApplyService;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.stereotype.Controller;
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestParam;

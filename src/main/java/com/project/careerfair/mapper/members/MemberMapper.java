@@ -108,15 +108,36 @@ public interface MemberMapper {
             """)
     String findMemberId(String email, String memberId);
 
-/*    @Select("""
-            SELECT
-            FROM MEMBERS
-            WHERE member_id = #{member_id}
+        @Select("""
+           SELECT * FROM TB_MEMBERS
+            WHERE member_id = #{id}
             """)
-    Members selectById(String username);*/
+        @ResultMap("userInfoMap")
+        Members selectById(String id);
 
-   /* @Insert("""
-            INSERT INTO
+        @Update("""
+            <script>
+            UPDATE TB_MEMBERS 
+            SET
+            <if test="password neq null and password neq ''">
+                password = #{password},
+            </if>
+              email = #{email}
+            , zip_code = #{zipCode}
+            , address = #{address}
+            , phone_number = #{phoneNumber}
+            WHERE 
+            member_id = #{id}        
+            </script>
             """)
-    void insertAuthority(Members member);*/
+        int modify(Members member);
+
+        @Update("""
+            UPDATE TB_MEMBERS
+            SET
+            is_active = #{isActive}
+            WHERE 
+            member_id = #{id}
+            """)
+        int deleteById(String id, Integer isActive);
 }

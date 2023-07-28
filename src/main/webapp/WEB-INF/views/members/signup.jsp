@@ -174,13 +174,15 @@
 <body>
 <my:font />
 <my:job-header-nav />
-<my:job-inner-banner />
+<my:job-inner-banner>
+회원가입
+</my:job-inner-banner >
 
     <div>
       <div style="display: flex; justify-content: center;">
         <div style="border: 1px solid rgba(0,0,0,0.3); border-radius: 7px; margin-top: 30px; padding: 0px 30px;">
           <div style="margin: 40px 0px 40px 0px; display: flex; justify-content: center;">
-            <h1>회원가입</h1>
+            <h1></h1>
           </div>
           <form method="post" id="signup-form">
             <input type="text" name="authority" value="user" style="display: none;"> <!--기업은 company로-->
