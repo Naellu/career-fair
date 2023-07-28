@@ -86,6 +86,13 @@ $("#checkPhoneNumBtn").click(function() {
 
 $("#search-email").click(function() {
     const userEmail = $("#totalemail").val();
+
+    // 이메일이 비어있는 경우에는 중복 확인 버튼 동작하지 않도록 처리
+    if (userEmail == "") {
+        alert("이메일 주소를 입력해주세요.");
+        return;
+    }
+
     // 입력한 ID와 ajax 요청 보내서
     $.ajax("/members/searchMail", {
         method: "post",
