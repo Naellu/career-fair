@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
+    a{
+        color: whitesmoke;
+    }
     .div-cloumn{
         width: 1.5px;
         height: 20px;
@@ -55,6 +58,16 @@
     .rectable-column-div{
 
     }
+    .manage-btn-back{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        padding: 5px 7px;
+        background-color: #9c9c9c;
+        color: whitesmoke;
+        border-radius: 5px;
+    }
 </style>
 
 </head>
@@ -66,7 +79,6 @@
 </my:job-inner-banner>
 
     <div style="display: flex; justify-content: center; margin: 30px 0px 40px 0px;">
-        <h3>채용공고 관리</h3>
     </div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 120px; ">
         <div class="rec-column-top">
@@ -99,7 +111,7 @@
         </div>
       <div class="rec-column-top">
         <div style="margin-left: 15px;">
-        <button><a href="/admin/main">돌아가기</a></button>
+        <button class="manage-btn-back"><a href="/admin/main">메인으로</a></button>
         </div>
       </div>
     </div>
@@ -110,10 +122,10 @@
             <div class="rectable-column-div">
               <div id="postingid-text" style="display: none;">${posting.postingId}</div>
               <div><h3><a href="/user/posting/${posting.postingId}">${posting.title}</a></h3></div>
-                <div><span>기업명 ${posting.companyName}</span></div>
-                <div><span>담당자 ${posting.memberId}</span></div>
-          <div><span>${posting.educationLevel}</span> <span>${posting.address}</span><span> ${posting.employmentType}</span></div>
-              <div>${posting.applicationCount}/${posting.hiringCount}</div>
+                <div><span>기업명 : ${posting.companyName}</span></div>
+                <div><span>담당자 : ${posting.memberId}</span></div>
+          <div><span>학력 : ${posting.educationLevel}</span>  <span>소재지 : ${posting.address}</span> <span> 계약형태 : ${posting.employmentType}</span></div>
+              <div>채용인원 : ${posting.applicationCount}/${posting.hiringCount}</div>
             </div>
           <div class="rectable-column-div">
             <div>
