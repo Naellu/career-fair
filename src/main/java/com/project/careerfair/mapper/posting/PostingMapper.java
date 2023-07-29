@@ -143,22 +143,36 @@ public interface PostingMapper {
 
     @Select("""
             <script>
-            <bind name="pattern" value="'%' + search + '%'" />
-            SELECT 
-            COUNT(*)
-            FROM 
-            VIEW_POSTING		
-              <where>
-              <if test="(type eq 'all') or (type eq 'memberId')">
-              member_id LIKE #{pattern} 
-              </if>
-              <if test="(type eq 'all') or (type eq 'title')">
-              title LIKE #{pattern} 
-              </if>
-              <if test="(type eq 'all') or (type eq 'companyName')">
-              company_name LIKE #{pattern} 
-              </if>
-              </where>
+             <bind name="pattern" value="'%' + search + '%'" />
+               SELECT COUNT(*) FROM VIEW_POSTING
+                 <where>
+                  <if test="roundValue eq 'all'">
+                  AND round &lt;= #{round}
+                  </if>
+                  <if test="roundValue eq 'now'">
+                  AND round = #{round}
+                  </if>
+                  <if test="roundValue eq 'past'">
+                  AND round &lt; #{round}
+                  </if>
+                  <choose>
+                  <when test="search != null and type eq 'all'">
+                  AND (member_id LIKE #{pattern} OR title LIKE #{pattern} OR address LIKE #{pattern})
+                  </when>
+                  <when test="search != null and type eq 'memberId'">
+                  AND member_id LIKE #{pattern}
+                  </when>
+                  <when test="search != null and type eq 'title'">
+                  AND title LIKE #{pattern}
+                  </when>
+                  <when test="search != null and type eq 'companyName'">
+                  AND company_name LIKE #{pattern}
+                  </when>
+                  <otherwise>
+                   AND 1 = 1
+                  </otherwise>
+                  </choose>
+             </where>
             </script>
             """)
     Integer manageCount(String type, String search, String roundValue, Integer round);

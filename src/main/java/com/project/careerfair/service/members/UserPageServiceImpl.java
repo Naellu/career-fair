@@ -39,8 +39,6 @@ public class UserPageServiceImpl implements UserPageService {
 //        }
         Members oldMember = memberMapper.selectById(member.getId());
         int cnt = 0;
-        System.out.println(oldMember);
-        System.out.println(oldPassword);
         if(passwordEncoder.matches(oldPassword, oldMember.getPassword())){
             // 기존 비밀번호와 같다면
             cnt = memberMapper.modify(member);
