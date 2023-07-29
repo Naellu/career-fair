@@ -121,7 +121,7 @@
         <div class="mb-3">
             <label for="experienceLevel" class="form-label">경력 요건</label>
             <select class="form-control" id="experienceLevel" name="experienceLevel" data-val="${post.experienceLevel}" required>
-                <option value="무관">경력무관</option>
+                <option value="경력무관">경력무관</option>
                 <option value="신입">신입</option>
                 <option value="경력">경력</option>
             </select>
@@ -130,7 +130,7 @@
         <div class="mb-3">
             <label for="educationLevel" class="form-label">학력 요건</label>
             <select class="form-control" id="educationLevel" name="educationLevel" data-val="${post.educationLevel}"required>
-                <option value="무관">학력무관</option>
+                <option value="학력무관">학력무관</option>
                 <option value="고졸이상">고졸이상</option>
                 <option value="초대졸이상">초대졸이상</option>
                 <option value="대졸이상">대졸이상</option>
