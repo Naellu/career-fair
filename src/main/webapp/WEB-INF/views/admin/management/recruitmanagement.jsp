@@ -190,7 +190,7 @@
                     <c:param name="type" value="${param.type }" />
                     </c:if>
                     <c:if test="${not empty param.round }">
-                    <c:param name="boardCategory" value="${param.round }" />
+                    <c:param name="round" value="${param.round }" />
                     </c:if>
                     </c:url>
                     <li class="page-item">
