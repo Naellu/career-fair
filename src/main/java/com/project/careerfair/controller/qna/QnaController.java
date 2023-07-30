@@ -60,13 +60,13 @@ public class QnaController {
     }
 
 
-
     @GetMapping("id/{id}")
     public String qnaGet(@PathVariable("id") Integer id, Model model) {
 
         QnaQuestion question = service.getQuestion(id);
+        List<Notice> topNoticeList = service.getTopNoticeList();
         model.addAttribute("question", question);
-
+        model.addAttribute("topNoticeList", topNoticeList);
 
         return "qna/get";
     }
@@ -103,20 +103,20 @@ public class QnaController {
     @PreAuthorize("isAuthenticated() and @customSecurityChecker.checkQnaWriter(authentication, #id)")
     public String qnaRemove(Integer id, RedirectAttributes rttr) {
 
-            boolean ok = service.remove(id);
+        boolean ok = service.remove(id);
 
-            if (ok) {
-                rttr.addFlashAttribute("message", "게시물이 삭제되었습니다.");
-                return "redirect:/qna/QnaList";
-            } else {
-                rttr.addFlashAttribute("message", "게시물이 삭제되지 않았습니다.");
-                return "redirect:/qna/QnaList";
-            }
+        if (ok) {
+            rttr.addFlashAttribute("message", "게시물이 삭제되었습니다.");
+            return "redirect:/qna/QnaList";
+        } else {
+            rttr.addFlashAttribute("message", "게시물이 삭제되지 않았습니다.");
+            return "redirect:/qna/QnaList";
+        }
     }
 
     @GetMapping("modify/{id}")
     @PreAuthorize("isAuthenticated() and @customSecurityChecker.checkQnaWriter(authentication, #id)")
-    public String qnaModifyForm(@PathVariable ("id") Integer id, Model model) {
+    public String qnaModifyForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("question", service.getQuestion(id));
 
         return "qna/modify";
