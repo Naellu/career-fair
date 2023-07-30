@@ -17,6 +17,7 @@ public class Resume {
     private String lastUpdated;
 
     private String memberId;
+    private String memberName;
     private Integer industryId;
 
 }

@@ -8,6 +8,7 @@
         <id column="resume_id" property="resumeId"/>
         <result column="title" property="title" />
         <result column="member_id" property="memberId" />
+        <result column="name" property="memberName" />
         <result column="military" property="military" />
         <result column="intro" property="intro" />
         <result column="industry_id" property="industryId" />
@@ -345,8 +346,18 @@
     </select>
 
     <select id="findAllByIndustry" resultMap="resumeData">
-        SELECT *
+        SELECT
+            tr.resume_id,
+            tr.title,
+            tr.military,
+            tr.intro,
+            tr.created,
+            tr.last_updated,
+            tr.member_id,
+            tm.name,
+            tr.industry_id
         FROM TB_ONLINE_RESUME tr
+        LEFT JOIN TB_MEMBERS tm ON tr.member_id = tm.member_id
         <where>
             <if test="industries neq null">
                 AND tr.industry_id IN
