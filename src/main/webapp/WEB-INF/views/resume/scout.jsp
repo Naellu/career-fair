@@ -93,7 +93,7 @@
         <c:forEach items="${resumeList}" var="resume">
             <div class="list-group-item">
                 <a class="mb-1" href="/resume/${resume.resumeId}">${resume.title}</a>
-                <p class="mb-1">${resume.memberId}</p>
+                <p class="mb-1">${resume.memberName}</p>
             </div>
         </c:forEach>
     </div>
