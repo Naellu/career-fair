@@ -47,7 +47,7 @@
         <div class="mt-5">
             <input type="hidden" value="${exhibitionInfo.etc}" id="textarea">
             <textarea class="form-control-plaintext"
-                      style="background-color:transparent; font-size: 35px; text-align: center"
+                      style="background-color:transparent; font-size: 35px; text-align: center; resize: none; overflow: hidden"
                       rows="5" readonly>${exhibitionInfo.etc}</textarea>
         </div>
     </div>

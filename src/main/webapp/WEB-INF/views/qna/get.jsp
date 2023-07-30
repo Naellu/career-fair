@@ -51,88 +51,129 @@
     </div>
 </div>
 
-<div class="container-lg">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-            <div class="d-flex">
-                <div class="me-auto">
-                    <div class="d-none">
-                        <h1>
-                            <span id="questionIdText"> ${question.id}</span>
-                        </h1>
-                    </div>
-                    <br>
-                    <br>
 
-                    <div class="d-flex justify-content-between">
-                        <h3 id="titleInput">${question.title}</h3>
-                        <p id="insertedInput">작성일 : ${question.created}</p>
-                    </div>
+<!-- Start blog-posts Area -->
+<section class="blog-posts-area mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 post-list blog-post-list">
+                <div class="d-flex">
+                    <div class="me-auto">
+                        <div class="d-none">
+                            <h1>
+                                <span id="questionIdText"> ${question.id}</span>
+                            </h1>
+                        </div>
+                        <br>
+                        <br>
 
-                    <hr class="long-hr">
+                        <div class="d-flex justify-content-between">
+                            <h3 id="titleInput">${question.title}</h3>
+                            <p id="insertedInput">작성일 : ${question.created}</p>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="content" class="form-label">내용</label>
-                        <textarea id="content" style="background-color: white" class="form-control" cols="90" rows="10"
-                                  readonly>${question.content}</textarea>
-                    </div>
+                        <hr class="long-hr">
 
-                    <div class="d-flex">
-                        <a class="btn btn-primary me-1" href="/qna/QnaList">목록으로 가기</a>
-                        <sec:authorize access="authentication.name eq #question.memberId">
-                            <a class="btn btn-secondary me-1" href="/qna/modify/${question.id }">수정</a>
-                            <button type="button" class="btn btn-danger" form="removeForm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteConfirmModal">삭제
-                            </button>
-                        </sec:authorize>
-                    </div>
-                    <!-- 삭제 -->
-                    <div class="d-none">
-                        <form action="/qna/remove" method="post" id="removeForm">
-                            <input type="text" name="id" value="${question.id }"/>
-                        </form>
-                    </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">내용</label>
+                            <textarea id="content" style="background-color: white" class="form-control" cols="90"
+                                      rows="10"
+                                      readonly>${question.content}</textarea>
+                        </div>
 
-                    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">삭제 하시겠습니까?</div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                                    <button type="submit" class="btn btn-danger" form="removeForm">삭제</button>
+                        <div class="d-flex">
+                            <a class="btn btn-primary me-1" href="/qna/QnaList">목록으로 가기</a>
+                            <sec:authorize access="authentication.name eq #question.memberId">
+                                <a class="btn btn-secondary me-1" href="/qna/modify/${question.id }">수정</a>
+                                <button type="button" class="btn btn-danger" form="removeForm"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteConfirmModal">삭제
+                                </button>
+                            </sec:authorize>
+                        </div>
+                        <!-- 삭제 -->
+                        <div class="d-none">
+                            <form action="/qna/remove" method="post" id="removeForm">
+                                <input type="text" name="id" value="${question.id }"/>
+                            </form>
+                        </div>
+
+                        <div class="modal fade" id="deleteConfirmModal" tabindex="-1"
+                             aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">삭제 하시겠습니까?</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기
+                                        </button>
+                                        <button type="submit" class="btn btn-danger" form="removeForm">삭제</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <sec:authorize
-                            access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
-                    <div id="answerContainer">
-                        <div class="mb-3" id="addAnswerContainer">
-                            <div class="input-group">
-                                <div class="form-floating">
+                        <sec:authorize
+                                access="hasAuthority('admin') or hasAuthority('company') or hasAuthority('recruiter')">
+                        <div id="answerContainer" class="mt-3">
+                            <div class="mb-3" id="addAnswerContainer">
+                                <div class="input-group">
+                                    <div class="form-floating">
                                     <textarea style="height: 97px" placeholder="답변을 남겨주세요" class="form-control"
                                               id="answerTextArea"></textarea>
-                                    <label for="answerTextArea">답변을 남겨주세요</label>
+                                        <label for="answerTextArea">답변을 남겨주세요</label>
+                                    </div>
+                                    <button class="btn btn-outline-primary" id="sendAnswerBtn"><i
+                                            class="fa-regular fa-paper-plane"></i></button>
                                 </div>
-                                <button class="btn btn-outline-primary" id="sendAnswerBtn"><i
-                                        class="fa-regular fa-paper-plane"></i></button>
                             </div>
+                            </sec:authorize>
+
+                            <ul class="list-group" id="answerListContainer">
+                            </ul>
                         </div>
-                        </sec:authorize>
-
-                        <ul class="list-group" id="answerListContainer">
-
-                        </ul>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4 sidebar">
+                <div class="single-widget category-widget">
+                    <h4 class="title">고객센터</h4>
+                    <ul>
+                        <li><a href="/qna/QnaList" class="justify-content-between align-items-center d-flex"><h6>
+                            Q&A</h6></a></li>
+                        <li><a href="/customer/notice/list"
+                               class="justify-content-between align-items-center d-flex">
+                            <h6>공지사항</h6></a></li>
+                        <li><a href="/faq" class="justify-content-between align-items-center d-flex"><h6>FAQ</h6>
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="single-widget category-widget">
+                    <h4 class="title">중요 공지</h4>
+                    <ul>
+                        <c:forEach items="${topNoticeList}" var="notice">
+                            <li><a href="/customer/notice/${notice.noticeId}"
+                                   class="justify-content-between align-items-center d-flex">
+                                <h6>${notice.title}</h6>
+                            </a></li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-lg">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
         </div>
     </div>
 </div>
