@@ -92,7 +92,12 @@ VALUES
 
 SELECT * FROM career_fair.TB_NOTICE;
 
+SELECT * FROM career_fair.TB_POSTING;
+INSERT INTO TB_POSTING (company_id,member_id ,round, title,industry_id, hiring_count, spare_count, start_date, end_date, status, address, salary, preferences, benefits, requirements, etc, employment_type, experience_level, education_level, application_count)
+SELECT company_id,member_id, 2,title, industry_id, hiring_count, spare_count, '2023-08-05', '2023-12-31', '채용중', address, salary, preferences, benefits, requirements, etc,employment_type, experience_level, education_level, application_count
+FROM TB_POSTING WHERE member_id = 'chun';
 
+DELETE FROM TB_POSTING WHERE posting_id = 34;
 
 
 

@@ -20,9 +20,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AccessDeniedException.class)
     public String handle403(AccessDeniedException ex, Model model, RedirectAttributes rttr) {
-        // 404 에러 처리 로직 구현
+        // 403 에러 처리 로직 구현
         String message = "권한이 없습니다.";
         rttr.addFlashAttribute("message", message);
-        return "redirect:/login"; // 404 에러 페이지로 리디렉션
+        return "redirect:/login"; // 403 에러 페이지로 리디렉션
     }
 }
