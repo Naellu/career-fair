@@ -77,8 +77,9 @@
     <tbody>
     <c:forEach items="${postingList}" var="list" varStatus="status">
         <tr>
-            <td>${list.memberId}</td>
-            <td><button onclick="location.href='/company/job-application/get?memberId=${list.memberId}&applicationId=${list.applicationId}&postingId=${list.postingId}'">상세 보기</button></td>
+<%--            <td>${list.memberId}</td>--%>
+            <td>${list.memberName}</td>
+            <td><button onclick="location.href='/company/job-application/get?memberId=${list.memberId}&applicationId=${list.applicationId}&postingId=${list.postingId}'" class="btn btn-outline-dark">상세 보기</button></td>
             <td>
                 <form id="updateForm${status.index}" action="/company/job-application/update" method="post">
                     <input type="hidden" name="memberId" value="${list.memberId}">
@@ -91,7 +92,7 @@
                         <option value="합격" ${list.applicationStatus == '합격' ? 'selected' : ''}>합격</option>
                         <option value="불합격" ${list.applicationStatus == '불합격' ? 'selected' : ''}>불합격</option>
                     </select>
-                    <button type="submit" form="updateForm${status.index}">변경</button>
+                    <button type="submit" class="btn btn-outline-dark" form="updateForm${status.index}">변경</button>
                 </form>
             </td>
             <sec:authentication property="name" var="userId" />
