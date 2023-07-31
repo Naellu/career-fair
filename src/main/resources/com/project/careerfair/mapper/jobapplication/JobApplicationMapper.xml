@@ -21,6 +21,7 @@
         <id column="application_id" property="applicationId"/>
         <result column="posting_id" property="postingId"/>
         <result column="member_id" property="memberId"/>
+        <result column="name" property="memberName"/>
         <result column="application_date" property="applicationDate"/>
         <result column="application_status" property="applicationStatus"/>
         <result column="age" property="age"/>

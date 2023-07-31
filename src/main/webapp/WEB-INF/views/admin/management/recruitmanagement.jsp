@@ -68,6 +68,13 @@
         color: whitesmoke;
         border-radius: 5px;
     }
+    .rectable-column-div div h3 a {
+        color: #252525;
+    }
+    .rectable-column-div div h3 a:hover {
+        color: #0a58ca;
+    }
+
 </style>
 
 </head>

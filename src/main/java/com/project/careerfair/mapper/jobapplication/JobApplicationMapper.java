@@ -35,7 +35,8 @@ public interface JobApplicationMapper {
     Integer cancelApplyByApplicationId(Integer applicationId);
 
     @Select("""
-            SELECT * FROM TB_JOB_APPLICATION
+            SELECT * FROM TB_JOB_APPLICATION tja
+            LEFT JOIN TB_MEMBERS tr ON tr.member_id = tja.member_id
             WHERE posting_id = #{postingId}
             ORDER BY application_id DESC
             """)
