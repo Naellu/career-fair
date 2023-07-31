@@ -102,13 +102,13 @@ public class MemberServiceImpl implements MemberService {
     // 비활성화 아이디 해제
     @Override
     public Map<String, Object> active(Map<String, Object> map, HttpSession session) {
-        String inputAutoCode_ = (String) map.get("inputAuthCode");
-        Integer inputAutoCode = Integer.parseInt(inputAutoCode_);
+        String inputAuthCode_ = (String) map.get("inputAuthCode");
+        Integer inputAuthCode = Integer.parseInt(inputAuthCode_);
 
         Object memberId = map.get("memberId");
         Integer authCode = (Integer) session.getAttribute("authenticatedNum");
 
-        if (authCode.equals(inputAutoCode)) {
+        if (authCode.equals(inputAuthCode)) {
             mapper.active(memberId);
             return Map.of("message", "success");
         } else {
