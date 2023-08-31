@@ -1,5 +1,7 @@
 # 손에손JOB고
 
+> [김재정(Naellu)의 커밋 이력 보기](https://github.com/Naellu/career-fair/pulls?q=is%3Apr+is%3Aclosed+author%3ANaellu)
+
 <br>
 
 <img src="https://github.com/Naellu/career-fair/assets/119831581/9fe8e24b-70a9-4837-ae41-1cf250d34e80" width="48%" height="30%">
