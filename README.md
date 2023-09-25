@@ -66,6 +66,8 @@
 
 <br>
 
+<!--
+
 ### How To Run from IDE  
 > sts4, intelliJ와 같은 IDE를 사용할 때 실행방법입니다
 
@@ -126,6 +128,7 @@ http://localhost:8083
 
 ```
 
+-->
 
 
 
